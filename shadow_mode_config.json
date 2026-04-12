@@ -1,0 +1,8 @@
+{
+  "shadow_mode": true,
+  "engine_endpoint": "http://localhost:18789/local-engine",
+  "metrics_endpoint": "http://localhost:18790/metrics",
+  "routing_percentage": 50,
+  "cache_hit_threshold": 0.95,
+  "fallback_threshold": 0.05,
+  "monitoring_interval": 60

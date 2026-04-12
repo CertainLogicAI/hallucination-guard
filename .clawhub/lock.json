@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-ceo-automation": {
+      "version": "1.0.0",
+      "installedAt": 1774130037129
+    },
+    "ai-boss-assistant": {
+      "version": "1.0.2",
+      "installedAt": 1774130040199
+    },
+    "marketing-mode": {
+      "version": "1.0.0",
+      "installedAt": 1774132085601
+    },
+    "market-research": {
+      "version": "1.0.1",
+      "installedAt": 1774132084058
+    },
+    "financial-tracker": {
+      "version": "1.0.0",
+      "installedAt": 1774131963960
+    },
+    "revenue-tracker": {
+      "version": "1.0.0",
+      "installedAt": 1774132093994
+    },
+    "delegation": {
+      "version": "0.1.0",
+      "installedAt": 1774132095179
+    },
+    "seo": {
+      "version": "1.0.3",
+      "installedAt": 1774132088882
+    },
+    "lead-generation": {
+      "version": "2.2.0",
+      "installedAt": 1774132921252
+    },
+    "cold-outreach": {
+      "version": "2.0.0",
+      "installedAt": 1774133149263
+    },
+    "crm": {
+      "version": "1.0.0",
+      "installedAt": 1774133154976
+    },
+    "copywriter": {
+      "version": "1.1.0",
+      "installedAt": 1774133152342
+    },
+    "scrape": {
+      "version": "1.0.0",
+      "installedAt": 1774133153737
+    },
+    "web-scraping": {
+      "version": "1.0.0",
+      "installedAt": 1774133156414
+    },
+    "crypto-market-data": {
+      "version": "1.0.2",
+      "installedAt": 1774132930653
+    },
+    "crypto-stock-market-data": {
+      "version": "1.0.3",
+      "installedAt": 1774132932915
+    },
+    "onchain": {
+      "version": "0.3.0",
+      "installedAt": 1774132934336
+    },
+    "outreach": {
+      "version": "1.0.0",
+      "installedAt": 1774133150823
+    },
+    "twitter-operations": {
+      "version": "1.0.0",
+      "installedAt": 1774133309790
+    },
+    "x-api": {
+      "version": "0.1.0",
+      "installedAt": 1774133417945
+    },
+    "twitter-automation": {
+      "version": "0.1.5",
+      "installedAt": 1774133312490
+    },
+    "web": {
+      "version": "1.0.0",
+      "installedAt": 1774134361372
+    },
+    "frontend-design-ultimate": {
+      "version": "1.0.0",
+      "installedAt": 1774134363223
+    },
+    "web-deploy-github": {
+      "version": "1.0.0",
+      "installedAt": 1774134365024
+    },
+    "exa": {
+      "version": "0.0.2",
+      "installedAt": 1774173034253
+    },
+    "skillcraft": {
+      "version": "1.0.0",
+      "installedAt": 1774173036702
+    },
+    "memory-setup": {
+      "version": "1.0.0",
+      "installedAt": 1774173038041
+    },
+    "agentmail": {
+      "version": "1.1.1",
+      "installedAt": 1774173043209
+    },
+    "second-brain": {
+      "version": "0.1.4",
+      "installedAt": 1774173045148
+    },
+    "ontology": {
+      "version": "1.0.4",
+      "installedAt": 1774173046620
+    },
+    "byterover": {
+      "version": "2.1.0",
+      "installedAt": 1774201697913
+    },
+    "Scrape": {
+      "version": "1.0.0",
+      "installedAt": 1774573045407
+    }
+  }
+}

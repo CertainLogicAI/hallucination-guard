@@ -1,0 +1,5 @@
+# API Keys (one per line)
+# Lines starting with # are ignored.
+# Alternatively set ALLOWED_API_KEYS environment variable (comma-separated)
+
+dev-test-key-123

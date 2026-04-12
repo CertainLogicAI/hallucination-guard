@@ -1,0 +1,1 @@
+./log_integration.sh: line 18: /data/linuxbrew/.linuxbrew/bin/sqlite3: cannot execute: required file not found

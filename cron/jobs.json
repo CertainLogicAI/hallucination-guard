@@ -1,0 +1,9 @@
+{
+  "jobs": [
+    {
+      "name": "memory_index_rebuild",
+      "command": "node /data/.openclaw/workspace/scripts/rebuild-memory-index.js",
+      "schedule": "0 4 * * *"
+    }
+  ]
+}

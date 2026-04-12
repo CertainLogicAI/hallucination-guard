@@ -1,0 +1,11 @@
+# Short factual (cache hit test)
+What is the capital of France?
+
+# Medium technical (DHI test)
+Explain fault detection in PLCs using IEC 61131-3
+
+# Long/unique (cache miss + fallback stress test)
+Summarize the entire FaultTrace codebase focusing on the deterministic cache architecture, its integration with PLC analysis, and security considerations.
+
+# Error scenario (API failure simulation)
+[Will test by calling with invalid endpoint]

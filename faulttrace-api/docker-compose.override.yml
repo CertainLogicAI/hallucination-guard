@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  faulttrace-api:
+    volumes:
+      - ./src:/app/src:ro  # mount source for live edits
+      - ./api_keys.txt:/app/api_keys.txt:ro
+      - ./reports:/app/reports
+      - ./webhook-events.jsonl:/app/webhook-events.jsonl
+    environment:
+      - NODE_ENV=development
+    command: ["node", "src/server.js"]  # override entrypoint for dev (no wait-for-redis)

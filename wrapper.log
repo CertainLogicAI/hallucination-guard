@@ -1,0 +1,84 @@
+[0;32m[INFO] Starting Log Backup System...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 460[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 462[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================
+[0;32m[INFO] One of the processes died. Restarting...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 469[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 471[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================
+[0;32m[INFO] One of the processes died. Restarting...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 480[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 483[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================
+[0;32m[INFO] One of the processes died. Restarting...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 492[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 496[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================
+[0;32m[INFO] One of the processes died. Restarting...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 506[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 508[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================
+[0;32m[INFO] One of the processes died. Restarting...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 519[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 521[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================
+[0;32m[INFO] One of the processes died. Restarting...[0m
+[0;32m[INFO] Starting FastAPI server on port 8000...[0m
+[0;32m[INFO] FastAPI server started with PID 530[0m
+[0;32m[INFO] Starting log daemon...[0m
+[0;32m[INFO] Log daemon started with PID 532[0m
+=== System Status ===
+API running: false
+Daemon running: false
+Logs directory: /data/.openclaw/workspace/conversation_logs
+Backup directory: /data/.openclaw/workspace/backup_local
+Archive directory: /data/.openclaw/workspace/backup_local/archive
+====================

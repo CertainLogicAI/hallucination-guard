@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Log Compression Timer
+After=network.target
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

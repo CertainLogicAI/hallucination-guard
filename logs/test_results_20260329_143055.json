@@ -1,0 +1,19 @@
+{
+  "test_timestamp": "2026-03-29T14:30:55+00:00",
+  "total_queries": 0,
+  "categories": {
+    "supported": 0,
+    "partially_supported": 0,
+    "unsupported": 0,
+    "adversarial": 0
+  },
+  "metrics": {
+    "hallucinations": 0,
+    "guardrail_activations": 0,
+    "citations_missing": 0,
+    "total_tokens": 0,
+    "avg_latency_ms": 0,
+    "token_efficiency": 0
+  },
+  "detailed_results": []
+}

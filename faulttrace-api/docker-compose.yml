@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  faulttrace-api:
+    build: .
+    container_name: faulttrace-api
+    ports:
+      - "${FAULTRACE_PORT:-9876}:9876"
+    environment:
+      - FAULTRACE_PORT=9876
+      - REDIS_URL=redis://redis:6379
+      - CORS_ORIGIN=${CORS_ORIGIN:-*}
+      - NODE_ENV=${NODE_ENV:-production}
+      - ALLOWED_API_KEYS=${ALLOWED_API_KEYS:-}
+    volumes:
+      - ./api_keys.txt:/app/api_keys.txt:ro
+      - ./reports:/app/reports  # optional: store generated reports
+    depends_on:
+      - redis
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9876/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    container_name: faulttrace-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  redis-data:

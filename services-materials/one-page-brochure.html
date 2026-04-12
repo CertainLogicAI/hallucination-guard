@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deterministic AI — Agents You Can Trust</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #ffffff;
+      --accent: #3b82f6;
+      --border: #333;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 0.2em; }
+    h2 { font-size: 1.8rem; margin-top: 2em; color: var(--accent); }
+    h3 { font-size: 1.3rem; margin-top: 1.5em; }
+    p { margin-bottom: 1em; }
+    ul { padding-left: 1.5em; margin-bottom: 1em; }
+    li { margin-bottom: 0.5em; }
+    strong { color: var(--accent); }
+    .tagline {
+      font-size: 1.5rem;
+      color: #888;
+      margin-bottom: 2em;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1em;
+      margin-right: 10px;
+    }
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .footer {
+      margin-top: 4em;
+      padding-top: 2em;
+      border-top: 1px solid var(--border);
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    th { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <h1>You need AI that <strong>doesn't make things up</strong></h1>
+  <p class="tagline">Deterministic AI agents for engineering teams</p>
+
+  <p>Most LLM‑powered chatbots <strong>hallucinate</strong> (plausible‑but‑false answers), <strong>waste tokens</strong> on irrelevant context, and <strong>exfiltrate</strong> your proprietary data to the cloud.</p>
+
+  <p>We build AI agents that <strong>avoid all three</strong>:</p>
+  <ul>
+    <li><strong>Deterministic</strong>: Answers <em>only</em> from your approved documents</li>
+    <li><strong>Private</strong>: Runs inside your network; your data never leaves</li>
+    <li><strong>Cheap</strong>: 95%+ token reduction via smart caching</li>
+  </ul>
+
+  <h2>How It Works</h2>
+  <p>Three steps to a trustworthy AI agent:</p>
+  <ol>
+    <li><strong>We curate your documents</strong> — SOPs, manuals, policies become a searchable reference corpus (with summaries + full‑text anchors).</li>
+    <li><strong>We build a guardrailed agent</strong> — Every response must cite the reference; unsupported queries are refused.</li>
+    <li><strong>We deploy it where you want</strong> — Slack, Teams, web portal, or embedded in your product.</li>
+  </ol>
+  <p><strong>Result:</strong> An AI that never guesses, never reveals your IP, and costs pennies to run.</p>
+
+  <h2>What "Deterministic" Means</h2>
+  <p>In our context, <strong>deterministic</strong> has two guarantees:</p>
+  <ul>
+    <li><strong>Operational determinism:</strong> The same query always returns the exact same answer (or the same refusal). No randomness, no surprises.</li>
+    <li><strong>Factual determinism:</strong> Every non‑refusal answer is <em>proven</em> to contain at least three exact phrases from your approved reference documents. If it can't be traced back, it's blocked.</li>
+  </ul>
+  <p>That's not just "low hallucination" — it's <strong>zero hallucination by design</strong>. The LLM may still generate falsehoods internally, but our guardrail catches them before they reach the user.</p>
+
+  <h2>Who This Is For</h2>
+  <ul>
+    <li><strong>Industrial automation</strong> teams that need reliable answers from PLC manuals and procedures</li>
+    <li><strong>Healthcare/legal</strong> groups handling sensitive regulated documents</li>
+    <li><strong>Engineering firms</strong> tired of ChatGPT inventing specs</li>
+    <li><strong>Anyone</strong> who prefers "I don't know" over plausible fiction</li>
+  </ul>
+
+  <h2>Proof Points</h2>
+  <ul>
+    <li><strong>99.4% token reduction</strong> vs naive LLM usage</li>
+    <li><strong>0% hallucinations</strong> on supported queries (validated in our test suite)</li>
+    <li><strong>&lt;300ms response time</strong> for typical queries</li>
+    <li><strong>Built by an engineer</strong> who understands production pressure</li>
+  </ul>
+
+  <h2>Services</h2>
+  <table>
+    <tr><th>Service</th><th>Price</th><th>Outcome</th></tr>
+    <tr><td>Discovery</td><td>$2,500</td><td>Clear use cases &amp; ROI</td></tr>
+    <tr><td>Reference Curation</td><td>$5K–$15K</td><td>Your docs turned into a deterministic knowledge base</td></tr>
+    <tr><td>Agent Build</td><td>$10K–$50K</td><td>Custom AI that only answers from your references</td></tr>
+    <tr><td>Validation</td><td>$2,500</td><td>Independent test report proving no hallucinations</td></tr>
+    <tr><td>Ongoing Support</td><td>15%/yr</td><td>Updates, monitoring, reference refresh</td></tr>
+  </table>
+  <p><em>Typical industrial client: $25K–$35K for a fully deployed, validated agent.</em></p>
+
+  <h2>Get Started in 3 Steps</h2>
+  <ol>
+    <li><strong>Answer our discovery questionnaire</strong> (15 min)</li>
+    <li><strong>Schedule a 30‑minute call</strong> to discuss your use case</li>
+    <li><strong>Receive a no‑obligation proposal</strong> within 48 hours</li>
+  </ol>
+
+  <a href="#" class="cta-button">Download questionnaire</a>
+  <a href="#" class="cta-button cta-secondary">Schedule discovery call</a>
+
+  <div class="footer">
+    <p><strong>"Agents that never make things up."</strong></p>
+    <p>Deterministic AI · Built by Controls Engineers · Privacy‑First</p>
+    <p>contact@deterministic.ai · <a href="https://deterministic.ai">https://deterministic.ai</a></p>
+    <p style="font-size: 0.8rem; color: #666; margin-top: 1em;">© 2026 Deterministic AI. All rights reserved.</p>
+  </div>
+</body>
+</html>

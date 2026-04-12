@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- PLC / Ladder Logic Icon -->
+  <rect x="16" y="16" width="96" height="96" rx="12" stroke="#6366f1" stroke-width="4" fill="#6366f1" fill-opacity="0.08"/>
+  <!-- Ladder rungs -->
+  <path d="M32 40h64" stroke="#6366f1"/>
+  <path d="M32 64h20" stroke="#6366f1"/>
+  <circle cx="62" cy="64" r="8" stroke="#6366f1" fill="none"/>
+  <path d="M70 64h26" stroke="#6366f1"/>
+  <path d="M32 88h64" stroke="#6366f1"/>
+  <!-- Vertical rails -->
+  <path d="M32 28v72" stroke="#6366f1" stroke-width="4"/>
+  <path d="M96 28v72" stroke="#6366f1" stroke-width="4"/>
+  <!-- Check/verify mark -->
+  <path d="M82 82l8 8 14-16" stroke="#10b981" stroke-width="4"/>
+</svg>

@@ -1,0 +1,14 @@
+# === PRIVATE — NEVER COMMIT ===
+projects/
+memory/
+artifacts/
+secrets/
+*.env
+*.key
+*.pem
+
+# OpenClaw internals
+.openclaw/secrets/
+
+# FaultTrace IP
+projects/plc-analyzer/

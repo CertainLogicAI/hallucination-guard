@@ -1,0 +1,138 @@
+{
+  "timestamp": "2026-04-07T22:22:48.469277Z",
+  "total_tests": 12,
+  "passed": 6,
+  "failed": 6,
+  "by_category": {
+    "factual_correct": {
+      "passed": 0,
+      "total": 4
+    },
+    "factual_incorrect": {
+      "passed": 3,
+      "total": 3
+    },
+    "speculative": {
+      "passed": 2,
+      "total": 2
+    },
+    "uncertain": {
+      "passed": 1,
+      "total": 1
+    },
+    "non_factual_safe": {
+      "passed": 0,
+      "total": 2
+    }
+  },
+  "details": [
+    {
+      "test_number": 1,
+      "query": "What is 2+2?",
+      "response": "4",
+      "expected_valid": true,
+      "actual_valid": false,
+      "category": "factual_correct",
+      "passed": false
+    },
+    {
+      "test_number": 2,
+      "query": "What is the capital of France?",
+      "response": "Paris",
+      "expected_valid": true,
+      "actual_valid": false,
+      "category": "factual_correct",
+      "passed": false
+    },
+    {
+      "test_number": 3,
+      "query": "What is the speed of light?",
+      "response": "299,792,458 meters per second",
+      "expected_valid": true,
+      "actual_valid": false,
+      "category": "factual_correct",
+      "passed": false
+    },
+    {
+      "test_number": 4,
+      "query": "At what temperature does water freeze?",
+      "response": "0 degrees Celsius",
+      "expected_valid": true,
+      "actual_valid": false,
+      "category": "factual_correct",
+      "passed": false
+    },
+    {
+      "test_number": 5,
+      "query": "What is 2+2?",
+      "response": "5",
+      "expected_valid": false,
+      "actual_valid": false,
+      "category": "factual_incorrect",
+      "passed": true
+    },
+    {
+      "test_number": 6,
+      "query": "What is the capital of France?",
+      "response": "London",
+      "expected_valid": false,
+      "actual_valid": false,
+      "category": "factual_incorrect",
+      "passed": true
+    },
+    {
+      "test_number": 7,
+      "query": "What is the speed of light?",
+      "response": "150,000 m/s",
+      "expected_valid": false,
+      "actual_valid": false,
+      "category": "factual_incorrect",
+      "passed": true
+    },
+    {
+      "test_number": 8,
+      "query": "How do I center a div?",
+      "response": "You might use margin: auto; or flexbox, but I think flexbox is better.",
+      "expected_valid": false,
+      "actual_valid": false,
+      "category": "speculative",
+      "passed": true
+    },
+    {
+      "test_number": 9,
+      "query": "What is the best programming language?",
+      "response": "Python could be a good choice, but perhaps JavaScript is also popular.",
+      "expected_valid": false,
+      "actual_valid": false,
+      "category": "speculative",
+      "passed": true
+    },
+    {
+      "test_number": 10,
+      "query": "What is 2+2?",
+      "response": "I'm not sure, maybe 4 or 5?",
+      "expected_valid": false,
+      "actual_valid": false,
+      "category": "uncertain",
+      "passed": true
+    },
+    {
+      "test_number": 11,
+      "query": "Write a for loop in Python",
+      "response": "for i in range(10): print(i)",
+      "expected_valid": true,
+      "actual_valid": false,
+      "category": "non_factual_safe",
+      "passed": false
+    },
+    {
+      "test_number": 12,
+      "query": "How do I import pandas?",
+      "response": "import pandas as pd",
+      "expected_valid": true,
+      "actual_valid": false,
+      "category": "non_factual_safe",
+      "passed": false
+    }
+  ]
+}

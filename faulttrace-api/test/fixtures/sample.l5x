@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RSLogix5000Content SchemaVersion="1.0">
+  <Controller>
+    <Programs>
+      <Program Name="MainProgram" UseIn Missions="true">
+        <Routines>
+          <Routine Name="MainRoutine" Type="RLL">
+            <RungNumber>1</RungNumber>
+            <Text>{UNUSED_OK}</Text>
+          </Routine>
+        </Routines>
+      </Program>
+    </Programs>
+    <Tags>
+      <Tag Name="Motor_Start" DataType="BOOL" Usage="Global" Rope="false" />
+      <Tag Name="Motor_Run" DataType="BOOL" Usage="Global" Rope="false" />
+    </Tags>
+  </Controller>
+</RSLogix5000Content>

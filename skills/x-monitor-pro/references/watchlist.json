@@ -1,0 +1,57 @@
+{
+  "accounts": [
+    {
+      "username": "MarioNawfal",
+      "tier": "VIP",
+      "note": "71K+ views on OpenClaw posts. AI/tech mega-account."
+    },
+    {
+      "username": "OpenClawAI",
+      "tier": "VIP",
+      "note": "Official OpenClaw account. Always reply to their announcements."
+    },
+    {
+      "username": "AnthropicAI",
+      "tier": "VIP",
+      "note": "Claude maker. Reply when they post about agent tools."
+    },
+    {
+      "username": "sama",
+      "tier": "VIP",
+      "note": "Sam Altman. Only reply if genuinely relevant."
+    },
+    {
+      "username": "emaboringkill",
+      "tier": "HIGH",
+      "note": "AI developer community. Good for visibility."
+    },
+    {
+      "username": "svpino",
+      "tier": "HIGH",
+      "note": "Santiago. ML/AI educator with large engaged following."
+    },
+    {
+      "username": "TheRundownAI",
+      "tier": "HIGH",
+      "note": "AI newsletter. High reach, news-oriented."
+    },
+    {
+      "username": "AISafetyMemes",
+      "tier": "MEDIUM",
+      "note": "AI safety community. Good for security scanner angle."
+    }
+  ],
+  "topics": [
+    "OpenClaw",
+    "AI agent",
+    "AI skills",
+    "agent tools",
+    "claude code"
+  ],
+  "settings": {
+    "peak_hours_est": ["8-10", "12-13", "17-19"],
+    "max_results_per_poll": 10,
+    "skip_retweets": true,
+    "skip_replies": true
+  }
+}

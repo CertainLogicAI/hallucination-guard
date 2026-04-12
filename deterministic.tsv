@@ -1,0 +1,5 @@
+Prompt	PromptTokens	CompletionTokens	Cost
+Summarize the entire FaultTrace codebase (approx 10,000 tokens) focusing on the deterministic cache architecture, its integration with PLC analysis, and security considerations.	41	620	0.001901
+Provide a detailed compliance checklist for deploying AI-driven PLC fault detection in a regulated industry (e.g., medical devices), referencing IEC 62279 and FDA guidance.	39	880	0.002679
+Write a step‑by‑step migration plan to move from the current open‑source LLM stack to a fully on‑prem deterministic inference pipeline, including hardware sizing and cost analysis.	44	1045	0.003179
+Generate a 2‑page executive summary for investors covering market size, token‑cost savings, and competitive advantages of the deterministic AI system.	35	827	0.002516

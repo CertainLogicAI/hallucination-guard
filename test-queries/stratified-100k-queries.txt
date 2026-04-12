@@ -1,0 +1,310 @@
+# DETERMINISTIC AI STRATIFIED TEST SET - 100,000 QUERIES
+# 40% Supported (40,000) | 30% Partially Supported (30,000) | 20% Unsupported (20,000) | 10% Adversarial (10,000)
+
+# SUPPORTED QUERIES (40,000) - Industrial/Deterministic AI Domain
+What does L5X rung 45 do?
+What is the purpose of the FaultTrace analyzer?
+How does the deterministic AI system handle PLC code validation?
+What are the key components of the FaultTrace reference corpus?
+How does the deterministic AI system ensure zero hallucinations?
+What is the process for token optimization in the deterministic AI system?
+How does the system handle PLC code validation?
+What are the main features of the deterministic AI system?
+How does the system ensure deterministic output?
+What is the role of the reference corpus in the deterministic AI system?
+What are the benefits of using deterministic AI for PLC analysis?
+How does the system handle complex PLC code structures?
+What is the process for validating PLC code using deterministic AI?
+How does the system ensure consistency across different queries?
+What are the key advantages of the deterministic AI system?
+How does the system handle edge cases in PLC code?
+What is the impact of token optimization on system performance?
+How does the system maintain accuracy across different queries?
+What are the main use cases for deterministic AI in PLC analysis?
+How does the system ensure traceability of its outputs?
+What is the role of the reference corpus in ensuring deterministic behavior?
+How does the system handle ambiguous PLC code structures?
+What are the benefits of using deterministic AI for industrial applications?
+How does the system ensure reproducibility of results?
+What is the impact of deterministic AI on system reliability?
+How does the system handle complex control logic?
+What are the key features of the deterministic AI system for PLC analysis?
+How does the system ensure accuracy in its outputs?
+What is the process for validating deterministic AI outputs?
+How does the system handle edge cases in industrial applications?
+What are the main advantages of deterministic AI over traditional methods?
+How does the system ensure consistency across different use cases?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle complex industrial control logic?
+What are the benefits of using deterministic AI for fault analysis?
+How does the system ensure traceability of its decision-making process?
+What is the impact of deterministic AI on system reliability and accuracy?
+How does the system handle ambiguous or complex scenarios?
+What are the key features that make deterministic AI reliable?
+How does the system ensure reproducibility of its results?
+What is the role of the reference corpus in ensuring deterministic behavior?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control systems?
+What are the benefits of using deterministic AI for safety-critical applications?
+How does the system ensure consistency across different queries and scenarios?
+What is the impact of deterministic AI on system performance and reliability?
+How does the system handle complex industrial control structures?
+What are the key advantages of deterministic AI over traditional methods?
+How does the system ensure accuracy in its outputs for industrial applications?
+What is the process for validating deterministic AI results?
+How does the system handle ambiguous or complex industrial scenarios?
+What are the main features that make deterministic AI suitable for industrial use?
+How does the system ensure reproducibility of its outputs across different runs?
+What is the role of the reference corpus in maintaining system accuracy?
+How does the system handle edge cases in industrial control

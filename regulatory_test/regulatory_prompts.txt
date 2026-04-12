@@ -1,0 +1,8 @@
+"What are the FDA requirements for AI/ML-based medical device software validation under 21 CFR Part 11?"
+"List the IEC 62304 software lifecycle process requirements for safety-critical healthcare systems."
+"What are the GDPR Article 22 implications for automated decision-making in employment contexts?"
+"Explain the NIST Cybersecurity Framework core functions for critical infrastructure protection."
+"What ISO 27001 controls apply to AI model deployment in financial services?"
+"What are the SEC disclosure requirements for AI-generated investment advice?"
+"Describe the IEC 62443 security levels for industrial automation and control systems."
+"What are the EU AI Act requirements for high-risk AI systems in healthcare?"

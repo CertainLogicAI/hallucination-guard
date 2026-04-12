@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    image: deterministic-brain:staging
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis-staging
+      - REDIS_PORT=6379
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - FALLBACK_CONFIDENCE_THRESHOLD=0.7
+      - TOKEN_BUDGET_INPUT=200
+      - TOKEN_BUDGET_OUTPUT=500
+    depends_on:
+      - redis-staging
+    restart: unless-stopped
+
+  redis-staging:
+    image: redis:7-alpine
+    container_name: deterministic_redis_staging
+    ports:
+      - "6379:6379"
+    restart: unless-stopped

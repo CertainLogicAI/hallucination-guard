@@ -1,0 +1,13 @@
+---
+message_id: ${MESSAGE_ID}
+sender_id: ${SENDER_ID}
+sender: ${SENDER}
+username: ${USERNAME}
+title: ${TITLE}
+tags: ${TAGS}
+date: ${DATE}
+time: ${TIME}
+---
+## Content
+
+${CONTENT}
