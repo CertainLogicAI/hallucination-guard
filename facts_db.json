@@ -257,6 +257,16 @@
       "type": "string",
       "value": "Tech: Astro + Stripe + Cloudflare Pages. Domain on Cloudflare already. Priority: blog-first for traffic. Design: polished, business credibility, light mode. Full platform: shop, blog, services, products.",
       "source": "anton/2026-04-13"
+    },
+    "anton background full": {
+      "type": "string",
+      "value": "Controls engineer by trade. Degree in marketing. Sales experience. Significant crypto experience. Ran own business buying/selling rental real estate. Believes AI compute will remain expensive as model capabilities grow. Built token saving tech to address this. Sees AI creating economic divide between those with resources/skills and those without.",
+      "source": "anton/2026-04-13"
+    },
+    "certainlogic brand colors": {
+      "type": "string",
+      "value": "Primary: #0F1724 (deep navy). Background: #FFFFFF / #F8FAFC. Accent: #2563EB (electric blue) - CTAs, links, key numbers. Text: #111827. Muted: #6B7280. Light mode. Polished, precise, professional.",
+      "source": "anton/2026-04-13"
     }
   }
 }
