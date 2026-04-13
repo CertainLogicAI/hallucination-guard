@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Nick Craig-Wood">
+    <meta property="og:site_name" content="Rclone" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://rclone.org/img/rclone-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://rclone.org/404.html" />
+    <meta property="og:title" content="404 Page not found" />
+    <meta property="og:description" content="" />
+    <link rel="shortcut icon" type="image/png" href="/img/rclone-32x32.png"/>
+    <script defer data-domain="rclone.org" src="https://weblog.rclone.org/js/script.js"></script>
+    <title>404 Page not found</title>
+    <link rel="canonical" href="https://rclone.org/404.html">
+    <link href="/css/bootstrap.min.4.4.1.css" rel="stylesheet">
+    <link href="/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/css/custom.css?r=-62135596800" rel="stylesheet">
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"><img class="rclone-logo" src="/img/logo_on_dark__horizontal_color.svg" alt="rclone logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/downloads/">Downloads</a>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Docs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/install/"><i class="fa fa-book fa-fw"></i> Installation</a>
+          <a class="dropdown-item" href="/docs/"><i class="fa fa-book fa-fw"></i> Usage</a>
+          <a class="dropdown-item" href="/filtering/"><i class="fa fa-book fa-fw"></i> Filtering</a>
+          <a class="dropdown-item" href="/gui/"><i class="fa fa-book fa-fw"></i> GUI</a>
+          <a class="dropdown-item" href="/rc/"><i class="fa fa-book fa-fw"></i> Remote Control</a>
+          <a class="dropdown-item" href="/remote_setup/"><i class="fa fa-book fa-fw"></i> Remote Setup</a>
+          <a class="dropdown-item" href="/changelog/"><i class="fa fa-book fa-fw"></i> Changelog</a>
+          <a class="dropdown-item" href="/bugs/"><i class="fa fa-book fa-fw"></i> Bugs</a>
+          <a class="dropdown-item" href="/faq/"><i class="fa fa-book fa-fw"></i> FAQ</a>
+          <a class="dropdown-item" href="/flags/"><i class="fa fa-book fa-fw"></i> Flags</a>
+          <a class="dropdown-item" href="/licence/"><i class="fa fa-book fa-fw"></i> Licence</a>
+          <a class="dropdown-item" href="/authors/"><i class="fa fa-book fa-fw"></i> Authors</a>
+          <a class="dropdown-item" href="/privacy/"><i class="fa fa-book fa-fw"></i> Privacy Policy</a>
+        </div>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Commands
+        </a>
+        <div class="dropdown-menu pre-scrollable" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/commands/"><i class="fas fa-map fa-fw"></i> Overview</a>
+          <div class="dropdown-divider"></div>
+          
+            
+              
+                <a class="dropdown-item" href="/commands/rclone/"><i class="fa fa-book fa-fw"></i> rclone</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_about/"><i class="fa fa-book fa-fw"></i> rclone about</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_archive/"><i class="fa fa-book fa-fw"></i> rclone archive</a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_authorize/"><i class="fa fa-book fa-fw"></i> rclone authorize</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_backend/"><i class="fa fa-book fa-fw"></i> rclone backend</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_bisync/"><i class="fa fa-book fa-fw"></i> rclone bisync</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_cat/"><i class="fa fa-book fa-fw"></i> rclone cat</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_check/"><i class="fa fa-book fa-fw"></i> rclone check</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_checksum/"><i class="fa fa-book fa-fw"></i> rclone checksum</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_cleanup/"><i class="fa fa-book fa-fw"></i> rclone cleanup</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_completion/"><i class="fa fa-book fa-fw"></i> rclone completion</a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_config/"><i class="fa fa-book fa-fw"></i> rclone config</a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_convmv/"><i class="fa fa-book fa-fw"></i> rclone convmv</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_copy/"><i class="fa fa-book fa-fw"></i> rclone copy</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_copyto/"><i class="fa fa-book fa-fw"></i> rclone copyto</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_copyurl/"><i class="fa fa-book fa-fw"></i> rclone copyurl</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_cryptcheck/"><i class="fa fa-book fa-fw"></i> rclone cryptcheck</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_cryptdecode/"><i class="fa fa-book fa-fw"></i> rclone cryptdecode</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_dedupe/"><i class="fa fa-book fa-fw"></i> rclone dedupe</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_delete/"><i class="fa fa-book fa-fw"></i> rclone delete</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_deletefile/"><i class="fa fa-book fa-fw"></i> rclone deletefile</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_gendocs/"><i class="fa fa-book fa-fw"></i> rclone gendocs</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_gitannex/"><i class="fa fa-book fa-fw"></i> rclone gitannex</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_hashsum/"><i class="fa fa-book fa-fw"></i> rclone hashsum</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_link/"><i class="fa fa-book fa-fw"></i> rclone link</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_listremotes/"><i class="fa fa-book fa-fw"></i> rclone listremotes</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_ls/"><i class="fa fa-book fa-fw"></i> rclone ls</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_lsd/"><i class="fa fa-book fa-fw"></i> rclone lsd</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_lsf/"><i class="fa fa-book fa-fw"></i> rclone lsf</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_lsjson/"><i class="fa fa-book fa-fw"></i> rclone lsjson</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_lsl/"><i class="fa fa-book fa-fw"></i> rclone lsl</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_md5sum/"><i class="fa fa-book fa-fw"></i> rclone md5sum</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_mkdir/"><i class="fa fa-book fa-fw"></i> rclone mkdir</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_mount/"><i class="fa fa-book fa-fw"></i> rclone mount</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_move/"><i class="fa fa-book fa-fw"></i> rclone move</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_moveto/"><i class="fa fa-book fa-fw"></i> rclone moveto</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_ncdu/"><i class="fa fa-book fa-fw"></i> rclone ncdu</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_nfsmount/"><i class="fa fa-book fa-fw"></i> rclone nfsmount</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_obscure/"><i class="fa fa-book fa-fw"></i> rclone obscure</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_purge/"><i class="fa fa-book fa-fw"></i> rclone purge</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_rc/"><i class="fa fa-book fa-fw"></i> rclone rc</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_rcat/"><i class="fa fa-book fa-fw"></i> rclone rcat</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_rcd/"><i class="fa fa-book fa-fw"></i> rclone rcd</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_rmdir/"><i class="fa fa-book fa-fw"></i> rclone rmdir</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_rmdirs/"><i class="fa fa-book fa-fw"></i> rclone rmdirs</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_selfupdate/"><i class="fa fa-book fa-fw"></i> rclone selfupdate</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_serve/"><i class="fa fa-book fa-fw"></i> rclone serve</a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_settier/"><i class="fa fa-book fa-fw"></i> rclone settier</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_sha1sum/"><i class="fa fa-book fa-fw"></i> rclone sha1sum</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_size/"><i class="fa fa-book fa-fw"></i> rclone size</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_sync/"><i class="fa fa-book fa-fw"></i> rclone sync</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_test/"><i class="fa fa-book fa-fw"></i> rclone test</a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_touch/"><i class="fa fa-book fa-fw"></i> rclone touch</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_tree/"><i class="fa fa-book fa-fw"></i> rclone tree</a>
+              
+            
+              
+                <a class="dropdown-item" href="/commands/rclone_version/"><i class="fa fa-book fa-fw"></i> rclone version</a>
+              
+            
+          
+        </div>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Storage Systems
+        </a>
+        <div class="dropdown-menu pre-scrollable" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/overview/"><i class="fas fa-map fa-fw"></i> Overview</a>
+          <a class="dropdown-item" href="/tiers/"><i class="fas fa-map fa-fw"></i> Support Tiers</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/fichier/"><i class="fa fa-archive fa-fw"></i> 1Fichier</a>
+          <a class="dropdown-item" href="/netstorage/"><i class="fas fa-database fa-fw"></i> Akamai NetStorage</a>
+          <a class="dropdown-item" href="/alias/"><i class="fa fa-link fa-fw"></i> Alias</a>
+          <a class="dropdown-item" href="/s3/"><i class="fab fa-amazon fa-fw"></i> Amazon S3 Storage Providers</a>
+          <a class="dropdown-item" href="/archive/"><i class="fa fa-archive fa-fw"></i> Archive</a>
+          <a class="dropdown-item" href="/b2/"><i class="fa fa-fire fa-fw"></i> Backblaze B2</a>
+          <a class="dropdown-item" href="/box/"><i class="fa fa-archive fa-fw"></i> Box</a>
+          <a class="dropdown-item" href="/chunker/"><i class="fa fa-cut fa-fw"></i> Chunker (splits large files)</a>
+          <a class="dropdown-item" href="/cloudinary/"><i class="fa fa-image fa-fw"></i> Cloudinary</a>
+          <a class="dropdown-item" href="/compress/"><i class="fas fa-compress fa-fw"></i> Compress (transparent gzip compression)</a>
+          <a class="dropdown-item" href="/combine/"><i class="fa fa-folder-plus fa-fw"></i> Combine (remotes into a directory tree)</a>
+          <a class="dropdown-item" href="/sharefile/"><i class="fas fa-share-square fa-fw"></i> Citrix ShareFile</a>
+          <a class="dropdown-item" href="/crypt/"><i class="fa fa-lock fa-fw"></i> Crypt (encrypts the others)</a>
+          <a class="dropdown-item" href="/koofr/#digi-storage"><i class="fa fa-cloud fa-fw"></i> Digi Storage</a>
+          <a class="dropdown-item" href="/drime/"><i class="fab fa-cloud fa-fw"></i> Drime</a>
+          <a class="dropdown-item" href="/dropbox/"><i class="fab fa-dropbox fa-fw"></i> Dropbox</a>
+          <a class="dropdown-item" href="/filefabric/"><i class="fa fa-cloud fa-fw"></i> Enterprise File Fabric</a>
+          <a class="dropdown-item" href="/filelu/"><i class="fa fa-folder fa-fw"></i> FileLu Cloud Storage</a>
+          <a class="dropdown-item" href="/s3/#filelu-s5"><i class="fa fa-folder fa-fw"></i> FileLu S5 (S3-Compatible)</a>
+          <a class="dropdown-item" href="/filen/"><i class="fa fa-solid fa-f fa-fw"></i> Filen</a>
+          <a class="dropdown-item" href="/filescom/"><i class="fa fa-brands fa-files-pinwheel fa-fw"></i> Files.com</a>
+          <a class="dropdown-item" href="/ftp/"><i class="fa fa-file fa-fw"></i> FTP</a>
+          <a class="dropdown-item" href="/gofile/"><i class="fa fa-folder fa-fw"></i> Gofile</a>
+          <a class="dropdown-item" href="/googlecloudstorage/"><i class="fab fa-google fa-fw"></i> Google Cloud Storage</a>
+          <a class="dropdown-item" href="/drive/"><i class="fab fa-google fa-fw"></i> Google Drive</a>
+          <a class="dropdown-item" href="/googlephotos/"><i class="fas fa-images fa-fw"></i> Google Photos</a>
+          <a class="dropdown-item" href="/hasher/"><i class="fa fa-check-double fa-fw"></i> Hasher (better checksums for others)</a>
+          <a class="dropdown-item" href="/hdfs/"><i class="fa fa-globe fa-fw"></i> HDFS (Hadoop Distributed Filesystem)</a>
+          <a class="dropdown-item" href="/hidrive/"><i class="fa fa-cloud fa-fw"></i> HiDrive</a>
+          <a class="dropdown-item" href="/http/"><i class="fa fa-globe fa-fw"></i> HTTP</a>
+          <a class="dropdown-item" href="/iclouddrive/"><i class="fa fa-archive fa-fw"></i> iCloud Drive</a>
+          <a class="dropdown-item" href="/imagekit/"><i class="fa fa-cloud fa-fw"></i> ImageKit</a>
+          <a class="dropdown-item" href="/internetarchive/"><i class="fa fa-archive fa-fw"></i> Internet Archive</a>
+          <a class="dropdown-item" href="/internxt/"><i class="fas fa-cloud fa-fw"></i> Internxt</a>
+          <a class="dropdown-item" href="/jottacloud/"><i class="fa fa-cloud fa-fw"></i> Jottacloud</a>
+          <a class="dropdown-item" href="/koofr/"><i class="fa fa-suitcase fa-fw"></i> Koofr</a>
+          <a class="dropdown-item" href="/linkbox/"><i class="fa fa-infinity fa-fw"></i> Linkbox</a>
+          <a class="dropdown-item" href="/mailru/"><i class="fa fa-at fa-fw"></i> Mail.ru Cloud</a>
+          <a class="dropdown-item" href="/mega/"><i class="fa fa-archive fa-fw"></i> Mega</a>
+          <a class="dropdown-item" href="/s3/#mega"><i class="fa fa-archive fa-fw"></i> Mega S4 (S3-Compatible)</a>
+          <a class="dropdown-item" href="/memory/"><i class="fas fa-memory fa-fw"></i> Memory</a>
+          <a class="dropdown-item" href="/azureblob/"><i class="fab fa-windows fa-fw"></i> Microsoft Azure Blob Storage</a>
+          <a class="dropdown-item" href="/azurefiles/"><i class="fab fa-windows fa-fw"></i> Microsoft Azure Files Storage</a>
+          <a class="dropdown-item" href="/onedrive/"><i class="fab fa-windows fa-fw"></i> Microsoft OneDrive</a>
+          <a class="dropdown-item" href="/opendrive/"><i class="fa fa-space-shuttle fa-fw"></i> OpenDrive</a>
+          <a class="dropdown-item" href="/qingstor/"><i class="fas fa-hdd fa-fw"></i> QingStor</a>
+          <a class="dropdown-item" href="/swift/"><i class="fa fa-space-shuttle fa-fw"></i> Openstack Swift</a>
+          <a class="dropdown-item" href="/oracleobjectstorage/"><i class="fa fa-cloud fa-fw"></i> Oracle Object Storage</a>
+          <a class="dropdown-item" href="/pcloud/"><i class="fa fa-cloud fa-fw"></i> pCloud</a>
+          <a class="dropdown-item" href="/pikpak/"><i class="fa fa-cloud fa-fw"></i> PikPak</a>
+          <a class="dropdown-item" href="/pixeldrain/"><i class="fa fa-circle fa-fw"></i> Pixeldrain</a>
+          <a class="dropdown-item" href="/premiumizeme/"><i class="fa fa-user fa-fw"></i> premiumize.me</a>
+          <a class="dropdown-item" href="/putio/"><i class="fas fa-parking fa-fw"></i> put.io</a>
+          <a class="dropdown-item" href="/protondrive/"><i class="fas fa-folder fa-fw"></i> Proton Drive</a>
+          <a class="dropdown-item" href="/quatrix/"><i class="fas fa-shield-alt fa-fw"></i> Quatrix</a>
+          <a class="dropdown-item" href="/seafile/"><i class="fa fa-server fa-fw"></i> Seafile</a>
+          <a class="dropdown-item" href="/sftp/"><i class="fa fa-server fa-fw"></i> SFTP</a>
+          <a class="dropdown-item" href="/sia/"><i class="fa fa-globe fa-fw"></i> Sia</a>
+          <a class="dropdown-item" href="/shade/"><i class="fa fa-moon fa-fw"></i> Shade</a>
+          <a class="dropdown-item" href="/smb/"><i class="fa fa-server fa-fw"></i> SMB / CIFS</a>
+          <a class="dropdown-item" href="/storj/"><i class="fas fa-dove fa-fw"></i> Storj</a>
+          <a class="dropdown-item" href="/sugarsync/"><i class="fas fa-dove fa-fw"></i> SugarSync</a>
+          <a class="dropdown-item" href="/ulozto/"><i class="fas fa-angle-double-down fa-fw"></i> Uloz.to</a>
+          <a class="dropdown-item" href="/union/"><i class="fa fa-link fa-fw"></i> Union (merge backends)</a>
+          <a class="dropdown-item" href="/webdav/"><i class="fa fa-server fa-fw"></i> WebDAV</a>
+          <a class="dropdown-item" href="/yandex/"><i class="fa fa-space-shuttle fa-fw"></i> Yandex Disk</a>
+          <a class="dropdown-item" href="/zoho/"><i class="fas fa-folder fa-fw"></i> Zoho WorkDrive</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/local/"><i class="fas fa-hdd fa-fw"></i> The local filesystem</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/contact/"><i class="fa fa-envelope fa-fw"></i> Contact</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/sponsor/"><i class="fa fa-heart heart fa-fw"></i> Sponsor</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a href="https://rclone.com/" target="_blank" rel="noopener" class="nav-link bizbutton" title="Click here for support and advertising contracts"><i class="fa fa-briefcase"></i> For Business</a>
+      </li>
+    </ul>
+    <form class="form-inline" name="search_form" action="https://google.com/search" target="_blank" rel="noopener" onsubmit="on_search();">
+      <input name="words" value="" type="search" placeholder="search..." class="form-control form-control-sm">
+      <input name="q" value="" type="hidden">
+      <input name="as_sitesearch" value="https://rclone.org/" type="hidden">
+    </form>
+  </div>
+</nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9">
+          
+
+          
+
+          
+
+          
+
+          
+<h1>Page not found :-(</h1>
+<a href="/">Click here to return to the homepage</a>.
+
+        </div>
+        <div class="col-md-3">
+          
+
+<div class="card">
+  <div class="card-header">Platinum Sponso⁠r</div>
+  <div class="card-body">
+    <a href="https://internxt.com/specialoffer/rclone" target="_blank" rel="noopener" title="Visit rclone's sponsor Internxt"><img style="max-width: 100%; height: auto;" src="/img/logos/internxt.jpg"></a><br />
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Gold Sponso⁠r</div>
+  <div class="card-body">
+    <a href="https://www.idrive.com/e2/?refer=rclone" target="_blank" rel="noopener" title="Visit rclone's sponsor IDrive e2"><img src="/img/logos/idrive_e2.svg" viewBox="0 0 60 55"></a><br />
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Gold Sponso⁠r</div>
+  <div class="card-body">
+    <a href="https://files.com/?utm_source=rclone&utm_medium=referral&utm_campaign=banner&utm_term=rclone" target="_blank" rel="noopener" title="Start Your Free Trial Today"><img style="max-width: 100%; height: auto;" src="/img/logos/filescom-enterprise-grade-workflows.png"></a><br />
+  </div>
+</div>
+
+
+
+<div class="card">
+  <div class="card-header">
+    Share and Enjoy
+  </div>
+  <div class="card-body card-body-padded">
+    <div class="menu">
+      
+      <i class="fab fa-twitter fa-fw" aria-hidden="true"></i> <a href="https://twitter.com/intent/tweet/?text=rclone%20-%20rsync%20for%20cloud%20storage%20from%20%40njcw&amp;url=https%3A%2F%2Frclone.org" target="_blank" rel="noopener" aria-label="Share on Twitter">Twitter</a><br />
+      <i class="fab fa-facebook fa-fw" aria-hidden="true"></i> <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Frclone.org" target="_blank" rel="noopener" aria-label="Share on Facebook">Facebook</a><br />
+      <i class="fab fa-reddit fa-fw" aria-hidden="true"></i> <a  href="https://reddit.com/submit/?url=https%3A%2F%2Frclone.org&amp;resubmit=true&amp;title=rclone%20-%20rsync%20for%20cloud%20storage" target="_blank" rel="noopener" aria-label="Share on Reddit">Reddit</a><br />
+      <iframe src="//ghbtns.com/github-btn.html?user=rclone&amp;repo=rclone&amp;type=star&amp;count=true" allowtransparency="true" frameborder="0" scrolling="no" width="120" height="20"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Links
+  </div>
+  <div class="card-body card-body-padded">
+    <div class="menu">
+      <i class="fa fa-comments fa-fw" aria-hidden="true"></i> <a href="https://forum.rclone.org">Rclone forum</a><br />
+      <i class="fab fa-github fa-fw" aria-hidden="true"></i> <a href="https://github.com/rclone/rclone">GitHub project</a><br />
+      <i class="fa fa-book fa-fw" aria-hidden="true"></i> <a href="https://github.com/rclone/rclone/wiki">Rclone Wiki</a><br />
+      <i class="fa fa-heart heart fa-fw" aria-hidden="true"></i> <a href="/sponsor/">Sponsor</a><br />
+      <i class="fab fa-twitter fa-fw" aria-hidden="true"></i> <a href="https://twitter.com/njcw">@njcw</a>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+      
+      <footer>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="card card-body">
+              <p style="font-size: 90%;">
+                &copy; <a href="https://www.craig-wood.com/nick/" target="blank">Nick Craig-Wood</a> 2014-2026<br>
+                
+                Uploaded with <a href="https://rclone.org">rclone</a>.
+                Built with <a href="https://gohugo.io/" target="blank">Hugo</a>.
+                Logo by <a href="https://twitter.com/andy23" target="blank">@andy23</a>.
+                Served by <a href="https://caddyserver.com/" target="blank">Caddy</a>.
+                Hosted at <a href="https://hetzner.cloud/?ref=62WcciVmlzHt" title="Get €⁠20 in cloud credits" target="blank">Hetzner Cloud</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+    </div>
+    <script src="/js/jquery.min.3.5.1.js"></script>
+    <script src="/js/popper.min.1.16.0.js"></script>
+    <script src="/js/bootstrap.min.4.4.1.js"></script>
+    <script src="/js/custom.js?r=-62135596800"></script>
+    <script src="/js/search.js?r=-62135596800"></script>
+  </body>
+</html>

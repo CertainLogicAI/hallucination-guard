@@ -141,13 +141,13 @@ class HybridAIRouter:
             
             # Format results for output
             formatted_results = []
-            for result in search_results:
+            for sr in search_results:
                 formatted_results.append({
-                    'file': result['file_path'],
-                    'lines': result['lines'],
-                    'snippet': result['snippet'],
-                    'hash': result['hash'],
-                    'score': result['score']
+                    'file': sr['file_path'],
+                    'lines': sr['lines'],
+                    'snippet': sr['snippet'],
+                    'hash': sr['hash'],
+                    'score': sr['score']
                 })
             
             result['processing_method'] = 'deterministic_search'

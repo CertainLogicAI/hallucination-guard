@@ -1,23 +1,32 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  app:
-    build: .
-    image: deterministic-brain:latest
-    container_name: deterministic_brain
+  brain:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deterministic-brain
     ports:
       - "8000:8000"
-    depends_on:
-      - redis
     environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - FACTS_DB_PATH=/app/facts_db.json
+      - WORKSPACE_PATH=/app
+      - MAX_OUTPUT_TOKENS=500
+      - CONFIDENCE_THRESHOLD=0.7
+    volumes:
+      - ./memory:/app/memory
+      - ./facts_db.json:/app/facts_db.json
+      - brain_audit:/app/audit
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
-  redis:
-    image: redis:7-alpine
-    container_name: deterministic_redis
-    ports:
-      - "6379:6379"
-    command: ["redis-server", "--appendonly", "yes"]
-    restart: unless-stopped
+volumes:
+  brain_audit:

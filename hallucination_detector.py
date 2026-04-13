@@ -5,6 +5,7 @@ Enhanced Hallucination Detector – Fixed implementation
 
 import re
 import json
+import sys
 from datetime import datetime
 
 class HallucinationDetector:
@@ -42,7 +43,8 @@ class HallucinationDetector:
             for num_str in extracted_vals:
                 try:
                     resp_num = float(num_str)
-                    if abs(resp_num - exp_val) / (exp_num if exp_num != 0 else 1) < 0.01:
+                    denom = abs(exp_val) if exp_val != 0 else 1e-6
+                    if abs(resp_num - exp_val) / denom < 0.01:
                         return True
                 except (ValueError, ZeroDivisionError):
                     pass
@@ -77,11 +79,11 @@ class HallucinationDetector:
                 try:
                     resp_num = float(num_str)
                     exp_num = float(expected_val)
-                    if abs(resp_num - exp_num) / max(exp_num, 1e-6) < 0.01:  # relative error <1%
+                    if abs(resp_num - exp_num) / max(abs(exp_num), 1e-6) < 0.01:
                         return True, "Numeric match within tolerance"
                 except ValueError:
                     continue
-                return False, f"Numeric mismatch: expected ~{expected_val}"
+            return False, f"Numeric mismatch: expected ~{expected_val}"
             
             # For non-numeric facts, exact substring check
         elif fact_type == "string":

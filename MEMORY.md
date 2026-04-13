@@ -1,4 +1,6 @@
 # MEMORY.md
+
+- Added a daily self-evaluation process to regularly review performance and update habits.
 # Curated long-term memory
 #
 # This file stores distilled memories, decisions, lessons learned, and other

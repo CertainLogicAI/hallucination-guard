@@ -1,5 +1,8 @@
 # HEARTBEAT.md - Nightly Memory Integrity Check
 
+## Periodic Checks
+- **Brain API**: Verify `curl -s http://127.0.0.1:8000/health` returns OK. If down, run `bash /data/.openclaw/workspace/start-brain.sh` to restart.
+
 ## Scheduled Tasks
 - **02:00 UTC**: Run nightly memory integrity check with retries
   - Executes: `/data/.openclaw/workspace/nightly_heartbeat.sh`

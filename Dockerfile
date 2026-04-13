@@ -1,37 +1,37 @@
-# Alpine-based Docker image for deterministic AI brain
-# Target size: <150MB
+# Deterministic AI Brain - Production container
+# Target: <150MB
 
 FROM python:3.11-alpine AS builder
 
-# Install build dependencies (only needed for compilation)
-RUN apk add --no-cache \
-    gcc \
-    musl-dev \
-    make \
-    libffi-dev \
-    openssl-dev
+RUN apk add --no-cache gcc musl-dev libffi-dev
 
-# Create non-root user
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+FROM python:3.11-alpine
+
 RUN addgroup -g 1001 -S appgroup && \
     adduser -u 1001 -S appuser -G appgroup
 
-# Set working directory
 WORKDIR /app
+COPY --from=builder /install /usr/local
 
-# Copy only requirements first for caching
-COPY requirements.txt .
+# Copy application modules
+COPY main.py .
+COPY token_reduction_engine.py .
+COPY deterministic_memory_search.py .
+COPY hallucination_detector.py .
+COPY hybrid_ai_router.py .
+COPY facts_db.json .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Create directories for runtime data
+RUN mkdir -p /app/memory /app/audit && chown -R appuser:appgroup /app
 
-# Copy application code
-COPY . .
-
-# Switch to non-root user
 USER appuser
-
-# Expose port (default FastAPI port)
 EXPOSE 8000
 
-# Command to run the FastAPI app with Uvicorn
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

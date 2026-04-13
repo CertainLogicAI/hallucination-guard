@@ -210,3 +210,8 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+### Clarity & Avoiding Assumptions
+- **Always verify verbally.** Never assume a command worked unless you tell me it did.
+- **State assumptions.** If I’m basing advice on a specific setup (e.g., "source .bashrc"), I’ll say "I assume you’re using bash and sourced .bashrc." Otherwise I’ll say "This step may need adjustment."
+- **Explicitly ask for your confirmation** after critical steps.

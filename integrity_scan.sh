@@ -1,26 +1,21 @@
 #!/bin/bash
+set -e
 
-# Integrity Scan for Memory System
+WORKSPACE_DIR="/data/.openclaw/workspace"
+BACKUP_DIR="$WORKSPACE_DIR/backups"
+INTEGRITY_HASH_FILE="$BACKUP_DIR/memory-integrity.hash"
 
-# Check 1: Verify MEMORY.md and daily files exist
-if [ ! -f /data/.openclaw/workspace/MEMORY.md ]; then
-  echo "ERROR: MEMORY.md missing"
-  exit 1
-fi
-if [ ! -f /data/.openclaw/workspace/memory/2026-04-12.md ]; then
-  echo "ERROR: Daily note missing"
-  exit 1
-fi
+echo "Running memory integrity scan..."
 
-# Check 2: Verify atomic writes (placeholder - implement hash checks)
-echo "Verifying atomic writes (simulated)..."
-sleep 1
+# Change to the workspace directory
+cd "$WORKSPACE_DIR"
 
-# Check 3: Simulate backup sync verification
-rclone sync /data/.openclaw/workspace /backup/destination || (echo "Backup sync failed" && exit 1)
+# Run backup using rclone. Use trailing colon to reference remote
+echo "Starting backup sync..."
+rclone sync . memory-backup: --quiet || (echo "Backup failed" && exit 1)
 
-# Check 4: Generate integrity report
-sha256sum /data/.openclaw/workspace/MEMORY.md > /backups/memory-integrity.hash
+# Generate integrity hash
+echo "Generating integrity hash..."
+sha256sum MEMORY.md memory/*.md > "$INTEGRITY_HASH_FILE"
 
-echo "
-Integrity scan complete. System status: PASS"
+echo "✅ Integrity scan complete. System status: PASS"

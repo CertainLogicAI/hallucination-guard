@@ -1,0 +1,15 @@
+INFO:     Started server process [1915]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:33906 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33910 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33912 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57640 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57172 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50656 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60238 - "PUT /facts/patent%20status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37012 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57824 - "PUT /facts/certainlogic HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60114 - "POST /facts HTTP/1.1" 201 Created
+INFO:     127.0.0.1:34926 - "GET /health HTTP/1.1" 200 OK

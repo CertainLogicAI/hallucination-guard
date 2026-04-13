@@ -1,0 +1,262 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026-04-13"
+  },
+  "facts": {
+    "2+2": {
+      "type": "numeric",
+      "value": "4",
+      "tolerance": 0.0,
+      "source": "mathematics"
+    },
+    "capital of france": {
+      "type": "string",
+      "value": "paris",
+      "source": "geography"
+    },
+    "speed of light": {
+      "type": "numeric",
+      "value": "299792458",
+      "unit": "m/s",
+      "source": "physics/NIST"
+    },
+    "water freezes at": {
+      "type": "numeric",
+      "value": "0",
+      "unit": "\u00b0c",
+      "source": "physics"
+    },
+    "pi": {
+      "type": "numeric",
+      "value": "3.1415926535",
+      "source": "mathematics"
+    },
+    "boiling point of water": {
+      "type": "numeric",
+      "value": "100",
+      "unit": "\u00b0c",
+      "source": "physics"
+    },
+    "earth distance from sun": {
+      "type": "numeric",
+      "value": "149597870.7",
+      "unit": "km",
+      "source": "astronomy/IAU"
+    },
+    "avogadro number": {
+      "type": "numeric",
+      "value": "6.02214076e23",
+      "source": "chemistry/NIST"
+    },
+    "gravitational constant": {
+      "type": "numeric",
+      "value": "6.67430e-11",
+      "unit": "m\u00b3/(kg\u00b7s\u00b2)",
+      "source": "physics/NIST"
+    },
+    "planck constant": {
+      "type": "numeric",
+      "value": "6.62607015e-34",
+      "unit": "J\u00b7s",
+      "source": "physics/NIST"
+    },
+    "capital of germany": {
+      "type": "string",
+      "value": "berlin",
+      "source": "geography"
+    },
+    "capital of japan": {
+      "type": "string",
+      "value": "tokyo",
+      "source": "geography"
+    },
+    "capital of australia": {
+      "type": "string",
+      "value": "canberra",
+      "source": "geography"
+    },
+    "chemical formula for water": {
+      "type": "string",
+      "value": "h2o",
+      "source": "chemistry"
+    },
+    "chemical formula for aspirin": {
+      "type": "string",
+      "value": "c9h8o4",
+      "source": "chemistry/IUPAC"
+    },
+    "first smartphone": {
+      "type": "string",
+      "value": "ibm simon",
+      "year": "1992",
+      "source": "technology/IEEE"
+    },
+    "inventor of telephone": {
+      "type": "string",
+      "value": "alexander graham bell",
+      "source": "history/USPTO"
+    },
+    "absolute zero": {
+      "type": "numeric",
+      "value": "-273.15",
+      "unit": "\u00b0c",
+      "source": "physics"
+    },
+    "speed of sound in air": {
+      "type": "numeric",
+      "value": "343",
+      "unit": "m/s",
+      "source": "physics"
+    },
+    "electron mass": {
+      "type": "numeric",
+      "value": "9.1093837015e-31",
+      "unit": "kg",
+      "source": "physics/NIST"
+    },
+    "deterministic ai product 1": {
+      "type": "string",
+      "value": "Agent/SMB tier: LLM responses pass hallucination filter then get cached. Future matching queries served from cache at zero token cost. Hallucination rate above 2% but acceptable for general use. Value prop: massive token savings as cache fills.",
+      "source": "anton/architecture"
+    },
+    "deterministic ai product 2": {
+      "type": "string",
+      "value": "Regulated/compliance tier: Known facts database with pre-validated authoritative data. Queries validated against facts cache. Can run with zero LLM dependency. Targeting sub-2% hallucination rate. For regulated industries (medical, financial, industrial).",
+      "source": "anton/architecture"
+    },
+    "faulttrace product": {
+      "type": "string",
+      "value": "FaultTrace: 3 modes - Troubleshoot (L5X + fault -> wire-level diagnosis), Build (parts list -> PLC program via L5X writer), Draft (parts list -> electrical schematics SVG). Client-side parsing, nothing leaves browser. Target: industrial automation, controls engineers.",
+      "source": "project docs"
+    },
+    "faulttrace domain": {
+      "type": "string",
+      "value": "faulttrace.ai",
+      "source": "project docs"
+    },
+    "faulttrace architecture": {
+      "type": "string",
+      "value": "Client-side browser app. L5X files parsed in browser via DOMParser. Zero network calls for analysis. AI features use extracted snippets only. Privacy: nothing leaves your browser.",
+      "source": "project docs"
+    },
+    "faulttrace test results": {
+      "type": "string",
+      "value": "29/29 test files passed. Largest: 7.8MB java-parser-test.L5X (30 programs, 413 routines, 11995 rungs, 30716 cross-refs) parsed in 2.5s.",
+      "source": "memory/2026-03-22.md"
+    },
+    "faulttrace pricing": {
+      "type": "string",
+      "value": "Not finalized. Discussion range: $99/mo Starter, $499/mo Professional, $2499/mo Enterprise ($30K/yr). Enterprise displaces $124K+ in headcount. Anton thinks $500/yr is too cheap - industrial software is $5K-15K/seat.",
+      "source": "anton/memory/2026-03-24.md"
+    },
+    "skills pricing": {
+      "type": "string",
+      "value": "Individual premium skills: $19 each. Business Starter Bundle: $59 launch price (normally $76). Sold via Gumroad (blenderismai.gumroad.com) and own website (blenderism.github.io).",
+      "source": "memory/2026-03-22.md"
+    },
+    "clawhub account": {
+      "type": "string",
+      "value": "@blenderism on ClawHub",
+      "source": "project docs"
+    },
+    "gumroad store": {
+      "type": "string",
+      "value": "https://blenderismai.gumroad.com/",
+      "source": "memory/2026-03-22.md"
+    },
+    "website": {
+      "type": "string",
+      "value": "blenderism.github.io - GitHub Pages hosted, Stripe for payments (2.9% vs Gumroad 10%)",
+      "source": "memory/2026-03-22.md"
+    },
+    "shopclawmart": {
+      "type": "string",
+      "value": "ShopClawMart.com - premium skills sales platform",
+      "source": "project docs"
+    },
+    "certainlogic": {
+      "type": "string",
+      "value": "CertainLogic.ai - domain owned by Anton. Intended as the consulting/custom builds brand for deterministic AI solutions for SMBs. Site not built yet.",
+      "source": "anton/2026-04-13"
+    },
+    "competitor felix": {
+      "type": "string",
+      "value": "Felix CEO persona ($99) - all-in-one persona product. We sell specialized working tools, not personas. Different market positioning.",
+      "source": "memory/2026-03-21.md"
+    },
+    "patent status": {
+      "type": "string",
+      "value": "Provisional patent DRAFTED but NOT FILED. Deterministic Query Processing System with Hash-Verified Local Execution and Hybrid LLM Routing. 10 claims under CertainLogic.ai. Needs drawings inserted. NOT submitted to USPTO/EFS-Web yet.",
+      "source": "anton/2026-04-13"
+    },
+    "patent ip protection": {
+      "type": "string",
+      "value": "No prior art posted for token reduction engine or deterministic layer. Trade secret protection maintained. Patent eligibility preserved. All implementation details confidential.",
+      "source": "memory/2026-03-31-no-prior-art.md"
+    },
+    "deterministic ai hallucination rate": {
+      "type": "numeric",
+      "value": "0.8",
+      "unit": "%",
+      "source": "patent_filings/validated_patent_application.md"
+    },
+    "deterministic ai token reduction": {
+      "type": "numeric",
+      "value": "85",
+      "unit": "%",
+      "source": "patent_filings/validated_patent_application.md"
+    },
+    "deterministic ai cache hit rate": {
+      "type": "numeric",
+      "value": "38",
+      "unit": "%",
+      "source": "patent_filings/validated_patent_application.md"
+    },
+    "token engine throughput": {
+      "type": "string",
+      "value": "464,550 queries/sec on stress test. 20,000 queries in 0.04s. 99.9% cache hit rate on repeat queries.",
+      "source": "memory/2026-03-31.md"
+    },
+    "premium skills list": {
+      "type": "string",
+      "value": "Skill Audit Pro ($19), Cold Outreach Pro ($19), Market Research Pro ($19), SEO Audit Pro ($19), AI Visibility Pro, X Monitor Pro, Domain Analyzer Pro. 25 total skills (6 premium Pro versions).",
+      "source": "memory/2026-03-22.md"
+    },
+    "anton background": {
+      "type": "string",
+      "value": "Controls engineering background. Builds and commissions industrial automation equipment. Familiar with Allen-Bradley, Studio 5000, ladder logic, structured text.",
+      "source": "conversations"
+    },
+    "anton timezone": {
+      "type": "string",
+      "value": "CST",
+      "source": "USER.md"
+    },
+    "anton telegram": {
+      "type": "string",
+      "value": "@ForCryptoClearly (ID: 1381429689)",
+      "source": "USER.md"
+    },
+    "business funnel": {
+      "type": "string",
+      "value": "Agent tech (free/cheap, high volume) -> SMB market (same product, packaged for cost savings) -> Regulated industries (stricter validation, known-facts-only, higher price) -> Manufacturing/FaultTrace (domain-specific, highest margin). Track A: deterministic AI funnel. Track B: FaultTrace (parallel, ship now).",
+      "source": "anton/2026-04-13 discussion"
+    },
+    "faulttrace value prop": {
+      "type": "string",
+      "value": "Stop paying $1,000/call to understand code someone else wrote badly. Get machines back online faster. Your newest guy can troubleshoot like your best guy.",
+      "source": "memory/2026-03-24.md"
+    },
+    "faulttrace beta testers": {
+      "type": "string",
+      "value": "Beta tester #1: AB engineer at small company automating. Said unused tags feature is something hed pay for. Beta tester #2: Commissioning manager, signed up with ref=beta2.",
+      "source": "memory/2026-03-25.md"
+    },
+    "certainlogic site decisions": {
+      "type": "string",
+      "value": "Tech: Astro + Stripe + Cloudflare Pages. Domain on Cloudflare already. Priority: blog-first for traffic. Design: polished, business credibility, light mode. Full platform: shop, blog, services, products.",
+      "source": "anton/2026-04-13"
+    }
+  }
+}

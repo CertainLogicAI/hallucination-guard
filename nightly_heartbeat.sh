@@ -4,6 +4,7 @@
 # Retries until success (max 3 attempts, 30s apart)
 
 SCRIPT="/data/.openclaw/workspace/integrity_scan.sh"
+KG_SCRIPT="/data/.openclaw/workspace/knowledge-graph/update_kg.py"
 MAX_RETRIES=3
 RETRY_DELAY=30
 LOG_FILE="/data/.openclaw/workspace/logs/heartbeat_integrity.log"
