@@ -267,6 +267,16 @@
       "type": "string",
       "value": "Primary: #0F1724 (deep navy). Background: #FFFFFF / #F8FAFC. Accent: #2563EB (electric blue) - CTAs, links, key numbers. Text: #111827. Muted: #6B7280. Light mode. Polished, precise, professional.",
       "source": "anton/2026-04-13"
+    },
+    "openrouter status": {
+      "type": "string",
+      "value": "Configured and working. 24 free models available. Best free fallback: google/gemma-4-26b-a4b-it:free. Key stored in auth-profiles.json.",
+      "source": "anton/2026-04-13"
+    },
+    "x twitter handle": {
+      "type": "string",
+      "value": "@CertainLogicAI \u2014 rebranded from @ForCryptoClearly. Anton personal account, pivoted to AI/CertainLogic content.",
+      "source": "anton/2026-04-13"
     }
   }
 }

@@ -2,13 +2,13 @@
 *Things that require Anton's accounts, credentials, or decisions*
 
 ## Socials to Set Up
-- [ ] **X (Twitter)** — check if @certainlogic is available. Claim it. Connect API once keys are ready.
+- [x] **X (Twitter)** — @CertainLogicAI locked in. Update bio, display name, pfp. Connect API once X API keys are ready.
 - [ ] **LinkedIn** — check if CertainLogic company page name is available. Create it. Personal profile as Anton is the credibility anchor.
 - [ ] **YouTube** — claim channel now even if not posting yet. Protect the brand name.
 
 ## Credentials Needed
 - [ ] **X API tokens** — go to developer.twitter.com, regenerate Access Token + Access Token Secret together. Provide all 4 values: API Key, API Secret, Access Token, Access Token Secret.
-- [ ] **OpenRouter API key** — dig out of notes. Needed for fallback when Claude API is down.
+- [x] **OpenRouter API key** — configured and working. 24 free models available.
 - [ ] **Stripe account** — set up at stripe.com (needs identity verification, ~15 min). Needed for CertainLogic.ai shop.
 
 ## GitHub / Cloudflare (for site launch)
