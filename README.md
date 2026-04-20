@@ -12,6 +12,10 @@
 
 </div>
 
+<p align="center">
+  <img src="social-preview-small.png" alt="CertainLogic Verifier Banner" width="640">
+</p>
+
 ---
 
 ## 🚀 Try in 2 Minutes
