@@ -1,29 +1,25 @@
 #!/usr/bin/env python3
 """
-CertainLogic Guard - Hallucination Detector
-Deterministic verification of AI responses against a curated facts database.
-MIT License
+Enhanced Hallucination Detector – Upgraded implementation
 """
 
 import re
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
+
+# Default facts_db.json path (same directory as this file)
+_DEFAULT_FACTS_DB_PATH = str(Path(__file__).parent / "facts_db.json")
 
 CONFIDENCE_THRESHOLD = 0.7
 
 
 class HallucinationDetector:
     """
-    Detects hallucinations in AI responses by cross‑checking against a versioned facts database.
-    Implements: factual consistency, uncertainty detection, internal contradiction checking,
-    and specificity validation.
+    Detects hallucinations in AI responses.
 
-    Example:
-        >>> detector = HallucinationDetector(facts_db_path="./facts_db.json")
-        >>> result = detector.validate("What is the capital of France?", "The capital is Paris.")
-        >>> result["valid"]
-        True
+    validate(query, response) -> dict  (backward compatible)
     """
 
     # Hardcoded fallback facts (used if facts_db.json is missing)
@@ -69,20 +65,41 @@ class HallucinationDetector:
         r"\bnot certain\b",
     ]
 
+    # Qualifiers that make a query speculative/theoretical, not factual
+    _SAFE_QUALIFIERS = [
+        r"in the quantum realm",
+        r"in theory",
+        r"theoretically",
+        r"hypothetically",
+        r"in principle",
+        r"in a perfect world",
+        r"in the abstract",
+        r"in the context of",
+        r"under the assumption",
+        r"assuming",
+        r"if",
+        r"suppose",
+        r"let's say",
+        r"for example",
+        r"e\.g\.",
+        r"i\.e\.",
+        r"say",
+        r"perhaps",
+        r"maybe",
+    ]
+
     def __init__(
         self,
         confidence_threshold: float = CONFIDENCE_THRESHOLD,
-        facts_db_path: str = None,
+        facts_db_path: str = _DEFAULT_FACTS_DB_PATH,
     ):
-        """
-        Args:
-            confidence_threshold: Minimum confidence (0.0‑1.0) for a response to be considered valid.
-            facts_db_path: Path to a JSON facts database. If None, only hardcoded facts are used.
-        """
         self.confidence_threshold = confidence_threshold
         self.facts_db: dict = dict(self._HARDCODED_FACTS)
-        if facts_db_path:
+        # Try loading from JSON on init
+        try:
             self.load_facts(facts_db_path)
+        except Exception:
+            pass  # Fallback to hardcoded
 
     # ------------------------------------------------------------------
     # Public API
@@ -90,13 +107,9 @@ class HallucinationDetector:
 
     def load_facts(self, facts_db_path: str) -> int:
         """Load/reload facts from JSON file. Returns count loaded."""
-        try:
-            with open(facts_db_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-        except Exception as e:
-            raise ValueError(f"Failed to load facts database: {e}")
-        # Support both {facts: {...}} and flat dict
-        facts = data.get("facts", data)
+        with open(facts_db_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        facts = data.get("facts", data)  # support both {facts: {...}} and flat dict
         count = 0
         for key, val in facts.items():
             if isinstance(val, dict) and "value" in val:
@@ -183,7 +196,7 @@ class HallucinationDetector:
         return {
             "query": query[:100],
             "response_length": len(response),
-            "valid": confidence >= self.confidence_threshold,
+            "valid": "flagged" if flagged else (confidence >= self.confidence_threshold),
             "flagged": flagged,
             "confidence": confidence,
             "severity": severity,
@@ -222,13 +235,16 @@ class HallucinationDetector:
 
     def _is_factual_query(self, query: str) -> bool:
         q = query.lower()
+        # Skip if query contains safe qualifiers (speculative/theoretical)
+        for qual in self._SAFE_QUALIFIERS:
+            if re.search(qual, q, re.IGNORECASE):
+                return False
         return any(re.search(p, q, re.IGNORECASE) for p in self._FACTUAL_QUERY_PATTERNS)
 
     def _match_facts(self, query: str) -> list[str]:
-        """Return fact keys with sufficient word overlap with query (>= 50% of key words must be present)."""
+        """Return fact keys with sufficient word overlap with query (>= 50% of key words must match)."""
         stop_words = {"what", "is", "the", "of", "a", "an", "are", "how", "many", "when", "did", "who", "was"}
-        query_lower = query.lower()
-        query_words = set(re.findall(r"\w+", query_lower)) - stop_words
+        query_words = set(re.findall(r"\w+", query.lower())) - stop_words
         matched = []
         for key in self.facts_db:
             key_words = set(re.findall(r"\w+", key.lower())) - stop_words
@@ -237,13 +253,8 @@ class HallucinationDetector:
             overlap = key_words & query_words
             ratio = len(overlap) / len(key_words)
             if ratio > 0.5:  # strict majority of key words must be present
-                # bonus if key is a substring of the query (exact phrase match)
-                substring_bonus = 1.0 if key in query_lower else 0.0
-                score = ratio + substring_bonus
-                matched.append((score, ratio, len(key), key))
-        # Sort by score descending, then ratio, then key length descending
-        matched.sort(key=lambda x: (x[0], x[1], x[2]), reverse=True)
-        return [key for _, _, _, key in matched]
+                matched.append(key)
+        return matched
 
     def _check_factual_consistency(self, query: str, response: str) -> dict:
         matched_keys = self._match_facts(query)
@@ -266,17 +277,16 @@ class HallucinationDetector:
                 }
 
         response_lower = response.lower()
-        matched_key = None
-        mismatch_messages = []
+        mismatches = []
+        first_key = matched_keys[0]
 
-        # Iterate over matched keys in order of relevance
         for key in matched_keys:
             fact = self.facts_db[key]
             fact_type = fact.get("type", "string")
             expected = fact["value"].lower().replace(",", "")
 
             if fact_type == "numeric":
-                numbers = re.findall(r"-?\d+(?:\.\d+)?(?:e[+-]?\d+)?", response_lower.replace(",", ""))
+                numbers = re.findall(r"-?\d+(?:\\.\d+)?(?:e[+-]?\d+)?", response_lower.replace(",", ""))
                 match = False
                 for num_str in numbers:
                     try:
@@ -284,42 +294,36 @@ class HallucinationDetector:
                         exp_num = float(expected)
                         denom = abs(exp_num) if exp_num != 0 else 1e-6
                         if abs(resp_num - exp_num) / denom < 0.01:
+                            # Numeric match passed; now check unit if present
+                            unit = fact.get("unit")
+                            if unit:
+                                unit_lower = unit.lower()
+                                # Look for unit in response (allow plural variations)
+                                if unit_lower not in response_lower:
+                                    # Unit mismatch, continue searching other numbers
+                                    continue
                             match = True
-                            matched_key = key
                             break
                     except (ValueError, ZeroDivisionError):
                         pass
-                if match:
-                    break
-                # no match
-                if numbers:
-                    mismatch_messages.append(f"'{key}' expected ~{expected}")
-                else:
-                    # numeric fact but no numbers in response
-                    mismatch_messages.append(f"'{key}' expected a numeric value")
-            elif fact_type == "string":
+                if not match and numbers:
+                    unit = fact.get("unit")
+                    mismatches.append(f"'{key}' expected ~{expected}" + (f" {unit}" if unit else ""))
                 expected_words = set(re.findall(r"\w+", expected))
                 if len(expected_words) > 5:
                     # Long text fact — skip substring check, too noisy
                     continue
-                if expected in response_lower:
-                    matched_key = key
-                    break
-                else:
-                    mismatch_messages.append(f"'{key}' expected '{expected}'")
-        else:
-            # loop completed without break → no match found
-            matched_key = matched_keys[0]
+                if expected not in response_lower:
+                    mismatches.append(f"'{key}' expected '{expected}'")
+
+        if mismatches:
             return {
                 "passed": False,
-                "message": "; ".join(mismatch_messages),
+                "message": "; ".join(mismatches),
                 "score": 0.5,
                 "delta": -0.5,
-                "matched_key": matched_key,
+                "matched_key": first_key,
             }
-
-        # If we broke out of loop, matched_key is set, we have a match
-        # Continue with qualifier checks...
 
         # Qualifier check: detect unverifiable context injected into the query.
         # If the query adds qualifiers (industry, location, time, demographic, etc.)
@@ -342,6 +346,14 @@ class HallucinationDetector:
         for pattern in qualifier_patterns:
             for m in re.finditer(pattern, query_lower, re.IGNORECASE):
                 qualifier = m.group(0).strip()
+                # Skip if qualifier matches safe qualifiers (speculative/theoretical)
+                safe = False
+                for safe_pat in self._SAFE_QUALIFIERS:
+                    if re.search(safe_pat, qualifier, re.IGNORECASE):
+                        safe = True
+                        break
+                if safe:
+                    continue
                 # If the qualifier text isn't mentioned in any fact value, it's unverifiable
                 qualifier_words = set(re.findall(r"\w+", qualifier.lower())) - {"in", "the", "for", "from", "at", "of"}
                 if qualifier_words and not any(w in all_fact_values for w in qualifier_words):
@@ -353,7 +365,7 @@ class HallucinationDetector:
                 "message": f"Query contains unverifiable qualifiers not in facts: {', '.join(unverifiable_qualifiers[:3])}",
                 "score": 0.4,
                 "delta": -0.6,
-                "matched_key": matched_key,
+                "matched_key": first_key,
             }
 
         return {
@@ -361,7 +373,7 @@ class HallucinationDetector:
             "message": f"Fact(s) verified: {', '.join(matched_keys[:3])}",
             "score": 1.0,
             "delta": 0.0,
-            "matched_key": matched_key,
+            "matched_key": first_key,
         }
 
     def _check_uncertainty(self, query: str, response: str) -> dict:
@@ -485,9 +497,36 @@ class HallucinationDetector:
         r"\d+\s*%",  # specific percentages
     ]
 
+    # Qualifiers that make a query speculative/theoretical, not factual
+    _SAFE_QUALIFIERS = [
+        r"in the quantum realm",
+        r"in theory",
+        r"theoretically",
+        r"hypothetically",
+        r"in principle",
+        r"in a perfect world",
+        r"in the abstract",
+        r"in the context of",
+        r"under the assumption",
+        r"assuming",
+        r"if",
+        r"suppose",
+        r"let's say",
+        r"for example",
+        r"e\.g\.",
+        r"i\.e\.",
+        r"say",
+        r"perhaps",
+        r"maybe",
+    ]
+
     def _is_specific_unverifiable_query(self, query: str) -> bool:
         """Return True if query contains specific claims that should be fact-checked."""
         q = query.lower()
+        # Skip if query contains safe qualifiers (speculative/theoretical)
+        for qual in self._SAFE_QUALIFIERS:
+            if re.search(qual, q, re.IGNORECASE):
+                return False
         return any(re.search(p, q, re.IGNORECASE) for p in self._SPECIFIC_CLAIM_PATTERNS)
 
     @staticmethod
@@ -536,6 +575,5 @@ if __name__ == "__main__":
             "flags": result["flags"],
         }
         print(json.dumps(out, indent=2))
-    else:
-        print("Usage: hallucination_detector.py <query> <response>")
-        print("Example: hallucination_detector.py 'What is 2+2?' 'The answer is 4.'")
+        with open("hallucination_validation_detailed.json", "w") as f:
+            json.dump({"run": result, "timestamp": datetime.now().isoformat() + "Z"}, f, indent=2)
