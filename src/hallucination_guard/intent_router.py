@@ -5,8 +5,8 @@ Thin orchestration layer: reduce → classify → return routing decision.
 MIT License
 """
 
+from .intent_classifier import IntentResult, classify
 from .token_reduction_engine import reduce
-from .intent_classifier import classify, IntentResult
 
 
 class IntentRouter:

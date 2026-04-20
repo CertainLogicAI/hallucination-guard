@@ -1,0 +1,11 @@
+include LICENSE
+include README.md
+include pyproject.toml
+include facts_db.json
+include demo.py
+include CHANGELOG.md
+include SECURITY.md
+include CODE_OF_CONDUCT.md
+recursive-include src *.py
+recursive-include tests *.py *.json
+recursive-include deploy *.yaml *.yml *.txt *.tpl

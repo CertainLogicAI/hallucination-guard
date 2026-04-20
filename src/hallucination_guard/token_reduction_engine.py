@@ -79,17 +79,18 @@ _metrics_lock = threading.Lock()
 # Core helpers
 # ---------------------------------------------------------------------------
 
+
 def _estimate_tokens(text: str) -> int:
     """Estimate token count using simple word-based approximation."""
     if not text:
         return 0
-    words = len(re.findall(r'\b\w+\b', text))
+    words = len(re.findall(r"\b\w+\b", text))
     return int(words / TOKEN_ESTIMATE_RATIO)
 
 
 def _hash_query(query: str) -> str:
     """Generate SHA-256 hash of query for cache key."""
-    return hashlib.sha256(query.encode('utf-8')).hexdigest()
+    return hashlib.sha256(query.encode("utf-8")).hexdigest()
 
 
 def _get_from_cache(query_hash: str) -> Optional[Tuple[str, int]]:
@@ -100,7 +101,7 @@ def _get_from_cache(query_hash: str) -> Optional[Tuple[str, int]]:
         now = time.time()
         row = conn.execute(
             "SELECT result, token_count, created_at FROM query_cache WHERE query_hash = ?",
-            (query_hash,)
+            (query_hash,),
         ).fetchone()
         if row is None:
             with _metrics_lock:
@@ -117,7 +118,7 @@ def _get_from_cache(query_hash: str) -> Optional[Tuple[str, int]]:
         # Update access metadata
         conn.execute(
             "UPDATE query_cache SET last_accessed = ?, access_count = access_count + 1 WHERE query_hash = ?",
-            (now, query_hash)
+            (now, query_hash),
         )
         conn.commit()
         with _metrics_lock:
@@ -130,8 +131,13 @@ def _get_from_cache(query_hash: str) -> Optional[Tuple[str, int]]:
         return None
 
 
-def _store_in_cache(query_hash: str, result: str, token_count: int,
-                    agent_id: str = 'default', query_text: str = ''):
+def _store_in_cache(
+    query_hash: str,
+    result: str,
+    token_count: int,
+    agent_id: str = "default",
+    query_text: str = "",
+):
     """Upsert result in SQLite cache, evicting LRU rows if over limit."""
     try:
         conn = _get_conn()
@@ -140,13 +146,13 @@ def _store_in_cache(query_hash: str, result: str, token_count: int,
             """INSERT OR REPLACE INTO query_cache
                (query_hash, result, token_count, created_at, last_accessed, access_count, agent_id)
                VALUES (?, ?, ?, ?, ?, 1, ?)""",
-            (query_hash, result, token_count, now, now, agent_id)
+            (query_hash, result, token_count, now, now, agent_id),
         )
         # Store the original query text for semantic lookup (best-effort)
         try:
             conn.execute(
                 "UPDATE query_cache SET query=? WHERE query_hash=?",
-                (query_text or result, query_hash)
+                (query_text or result, query_hash),
             )
         except Exception:
             pass
@@ -160,7 +166,7 @@ def _store_in_cache(query_hash: str, result: str, token_count: int,
                     SELECT query_hash FROM query_cache
                     ORDER BY last_accessed ASC LIMIT ?
                 )""",
-                (evict,)
+                (evict,),
             )
             conn.commit()
     except sqlite3.Error as e:
@@ -172,7 +178,7 @@ def _deterministic_fallback(query: str) -> str:
     Deterministic summarization fallback when over budget.
     Uses extractive summarization: take first N sentences.
     """
-    sentences = re.split(r'(?<=[.!?])\s+', query.strip())
+    sentences = re.split(r"(?<=[.!?])\s+", query.strip())
     kept = []
     tokens_used = 0
     for sent in sentences:
@@ -182,16 +188,21 @@ def _deterministic_fallback(query: str) -> str:
         kept.append(sent)
         tokens_used += sent_tokens
     if not kept:
-        kept = [query[:MAX_TOKENS_PER_QUERY * 4]]
-    return ' '.join(kept)
+        kept = [query[: MAX_TOKENS_PER_QUERY * 4]]
+    return " ".join(kept)
 
 
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
 
-def reduce_tokens(query: str, force_deterministic: bool = False, semantic: bool = True,
-                  agent_id: str = 'default') -> Dict:
+
+def reduce_tokens(
+    query: str,
+    force_deterministic: bool = False,
+    semantic: bool = True,
+    agent_id: str = "default",
+) -> Dict:
     """
     Main entry point: reduce tokens in query if needed, return reduced query and metadata.
 
@@ -224,21 +235,22 @@ def reduce_tokens(query: str, force_deterministic: bool = False, semantic: bool 
         with _metrics_lock:
             _tokens_saved += MAX_TOKENS_PER_QUERY - token_count
         return {
-            'reduced_query': result,
-            'original_tokens': token_count,
-            'reduced_tokens': token_count,
-            'tokens_saved': MAX_TOKENS_PER_QUERY - token_count,
-            'cache_hit': True,
-            'semantic_hit': False,
-            'semantic_score': None,
-            'method': 'cache',
-            'routing': 'deterministic'
+            "reduced_query": result,
+            "original_tokens": token_count,
+            "reduced_tokens": token_count,
+            "tokens_saved": MAX_TOKENS_PER_QUERY - token_count,
+            "cache_hit": True,
+            "semantic_hit": False,
+            "semantic_score": None,
+            "method": "cache",
+            "routing": "deterministic",
         }
 
     # L2: semantic cache lookup (optional)
     if semantic:
         try:
             from semantic_cache import semantic_lookup, store_embedding
+
             sem_result = semantic_lookup(query)
             if sem_result:
                 sem_cached, sem_score = sem_result
@@ -246,18 +258,24 @@ def reduce_tokens(query: str, force_deterministic: bool = False, semantic: bool 
                 with _metrics_lock:
                     _tokens_saved += MAX_TOKENS_PER_QUERY - sem_tokens
                 # Promote to L1 cache for next time
-                _store_in_cache(query_hash, sem_cached, sem_tokens, agent_id=agent_id, query_text=query)
+                _store_in_cache(
+                    query_hash,
+                    sem_cached,
+                    sem_tokens,
+                    agent_id=agent_id,
+                    query_text=query,
+                )
                 store_embedding(query_hash, query)
                 return {
-                    'reduced_query': sem_cached,
-                    'original_tokens': sem_tokens,
-                    'reduced_tokens': sem_tokens,
-                    'tokens_saved': MAX_TOKENS_PER_QUERY - sem_tokens,
-                    'cache_hit': False,
-                    'semantic_hit': True,
-                    'semantic_score': round(sem_score, 4),
-                    'method': 'semantic',
-                    'routing': 'deterministic'
+                    "reduced_query": sem_cached,
+                    "original_tokens": sem_tokens,
+                    "reduced_tokens": sem_tokens,
+                    "tokens_saved": MAX_TOKENS_PER_QUERY - sem_tokens,
+                    "cache_hit": False,
+                    "semantic_hit": True,
+                    "semantic_score": round(sem_score, 4),
+                    "method": "semantic",
+                    "routing": "deterministic",
                 }
         except ImportError:
             logger.warning("semantic_cache not installed; semantic lookup disabled.")
@@ -267,31 +285,37 @@ def reduce_tokens(query: str, force_deterministic: bool = False, semantic: bool 
     original_tokens = _estimate_tokens(query)
 
     if original_tokens <= MAX_TOKENS_PER_QUERY:
-        _store_in_cache(query_hash, query, original_tokens, agent_id=agent_id, query_text=query)
+        _store_in_cache(
+            query_hash, query, original_tokens, agent_id=agent_id, query_text=query
+        )
         # Store embedding for future semantic lookups (non-blocking best-effort)
         try:
             from semantic_cache import store_embedding
+
             store_embedding(query_hash, query)
         except Exception:
             pass
         return {
-            'reduced_query': query,
-            'original_tokens': original_tokens,
-            'reduced_tokens': original_tokens,
-            'tokens_saved': 0,
-            'cache_hit': False,
-            'semantic_hit': False,
-            'semantic_score': None,
-            'method': 'original',
-            'routing': 'deterministic' if force_deterministic else 'external'
+            "reduced_query": query,
+            "original_tokens": original_tokens,
+            "reduced_tokens": original_tokens,
+            "tokens_saved": 0,
+            "cache_hit": False,
+            "semantic_hit": False,
+            "semantic_score": None,
+            "method": "original",
+            "routing": "deterministic" if force_deterministic else "external",
         }
 
     reduced = _deterministic_fallback(query)
     reduced_tokens = _estimate_tokens(reduced)
 
-    _store_in_cache(query_hash, reduced, reduced_tokens, agent_id=agent_id, query_text=query)
+    _store_in_cache(
+        query_hash, reduced, reduced_tokens, agent_id=agent_id, query_text=query
+    )
     try:
         from semantic_cache import store_embedding
+
         store_embedding(query_hash, query)
     except Exception:
         pass
@@ -301,34 +325,40 @@ def reduce_tokens(query: str, force_deterministic: bool = False, semantic: bool 
         _tokens_saved += tokens_saved
 
     return {
-        'reduced_query': reduced,
-        'original_tokens': original_tokens,
-        'reduced_tokens': reduced_tokens,
-        'tokens_saved': tokens_saved,
-        'cache_hit': False,
-        'semantic_hit': False,
-        'semantic_score': None,
-        'method': 'deterministic',
-        'routing': 'deterministic'
+        "reduced_query": reduced,
+        "original_tokens": original_tokens,
+        "reduced_tokens": reduced_tokens,
+        "tokens_saved": tokens_saved,
+        "cache_hit": False,
+        "semantic_hit": False,
+        "semantic_score": None,
+        "method": "deterministic",
+        "routing": "deterministic",
     }
 
 
 def get_metrics() -> Dict:
     """Return current engine metrics for monitoring."""
-    hit_rate = (_cache_hits / (_cache_hits + _cache_misses)) * 100 if (_cache_hits + _cache_misses) > 0 else 0
+    hit_rate = (
+        (_cache_hits / (_cache_hits + _cache_misses)) * 100
+        if (_cache_hits + _cache_misses) > 0
+        else 0
+    )
     avg_tokens_saved = (_tokens_saved / _total_queries) if _total_queries > 0 else 0
     try:
-        cache_size = _get_conn().execute("SELECT COUNT(*) FROM query_cache").fetchone()[0]
+        cache_size = (
+            _get_conn().execute("SELECT COUNT(*) FROM query_cache").fetchone()[0]
+        )
     except sqlite3.Error:
         cache_size = 0
     return {
-        'total_queries': _total_queries,
-        'cache_hits': _cache_hits,
-        'cache_misses': _cache_misses,
-        'cache_hit_rate_percent': round(hit_rate, 2),
-        'cache_size': cache_size,
-        'total_tokens_saved': _tokens_saved,
-        'average_tokens_saved_per_query': round(avg_tokens_saved, 2)
+        "total_queries": _total_queries,
+        "cache_hits": _cache_hits,
+        "cache_misses": _cache_misses,
+        "cache_hit_rate_percent": round(hit_rate, 2),
+        "cache_size": cache_size,
+        "total_tokens_saved": _tokens_saved,
+        "average_tokens_saved_per_query": round(avg_tokens_saved, 2),
     }
 
 
@@ -360,6 +390,7 @@ def reduce(text: str) -> tuple:
 # ---------------------------------------------------------------------------
 # Persistent-cache utilities
 # ---------------------------------------------------------------------------
+
 
 def get_cache_stats() -> Dict:
     """Return persistent cache stats."""
@@ -439,7 +470,7 @@ def import_cache(path: str) -> int:
                     """INSERT INTO query_cache
                        (query_hash, result, token_count, created_at, last_accessed, access_count)
                        VALUES (?, ?, ?, ?, ?, 1)""",
-                    (h, result, token_count, created_at, now)
+                    (h, result, token_count, created_at, now),
                 )
                 imported += 1
         conn.commit()
@@ -452,6 +483,7 @@ def import_cache(path: str) -> int:
 if __name__ == "__main__":
     # Simple CLI for testing
     import sys
+
     if len(sys.argv) < 2:
         print("Usage: token_reduction_engine.py <query>")
         sys.exit(1)

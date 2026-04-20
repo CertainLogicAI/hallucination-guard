@@ -13,11 +13,24 @@ from typing import Optional
 
 # Known facts domains for coverage check — can be overridden via env
 DEFAULT_FACTS_DOMAINS = {
-    "plc", "l5x", "faulttrace", "fault", "trace",
-    "iec", "iso", "nfpa", "osha",
-    "compliance", "standard", "standards",
+    "plc",
+    "l5x",
+    "faulttrace",
+    "fault",
+    "trace",
+    "iec",
+    "iso",
+    "nfpa",
+    "osha",
+    "compliance",
+    "standard",
+    "standards",
 }
-FACTS_DOMAINS = set(os.getenv("FACTS_DOMAINS", "").split(",")) if os.getenv("FACTS_DOMAINS") else DEFAULT_FACTS_DOMAINS
+FACTS_DOMAINS = (
+    set(os.getenv("FACTS_DOMAINS", "").split(","))
+    if os.getenv("FACTS_DOMAINS")
+    else DEFAULT_FACTS_DOMAINS
+)
 
 # Model names (configurable via env)
 MODEL_HAIKU = os.getenv("MODEL_HAIKU", "anthropic/claude-haiku-4-5")
@@ -64,11 +77,11 @@ MULTI_PART_PATTERN = re.compile(
 
 @dataclass
 class IntentResult:
-    complexity: str        # "simple" | "moderate" | "complex"
-    domain: str            # "status" | "code" | "compliance" | "creative" | "general"
-    openclaw_model: str    # model name (configurable)
-    brain_handler: str     # "cache" | "facts" | "llm"
-    confidence: float      # 0.0–1.0
+    complexity: str  # "simple" | "moderate" | "complex"
+    domain: str  # "status" | "code" | "compliance" | "creative" | "general"
+    openclaw_model: str  # model name (configurable)
+    brain_handler: str  # "cache" | "facts" | "llm"
+    confidence: float  # 0.0–1.0
     reasoning: str
 
 
@@ -184,7 +197,9 @@ def classify(text: str, token_count: Optional[int] = None) -> IntentResult:
         original_model = result.openclaw_model
         result.openclaw_model = ESCALATION_MAP.get(result.openclaw_model, MODEL_SONNET)
         if result.openclaw_model != original_model:
-            result.reasoning += f" (escalated from {original_model} due to low confidence)"
+            result.reasoning += (
+                f" (escalated from {original_model} due to low confidence)"
+            )
 
     # Facts coverage check
     if result.brain_handler == "facts":

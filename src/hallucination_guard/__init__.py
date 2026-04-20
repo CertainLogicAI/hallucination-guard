@@ -4,11 +4,10 @@ Hallucination Guard package.
 Deterministic verification for AI-generated content.
 """
 
-from .hallucination_detector import HallucinationDetector
-from .token_reduction_engine import reduce_tokens, get_metrics
 from .deterministic_memory_search import search_memory
+from .hallucination_detector import HallucinationDetector
 from .intent_router import IntentRouter
-import sys
+from .token_reduction_engine import get_metrics, reduce_tokens
 
 __version__ = "0.1.0"
 

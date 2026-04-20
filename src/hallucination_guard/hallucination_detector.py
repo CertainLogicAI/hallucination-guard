@@ -3,8 +3,8 @@
 Enhanced Hallucination Detector – Upgraded implementation
 """
 
-import re
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -181,14 +181,20 @@ class HallucinationDetector:
                 for pat in specific_attr_patterns:
                     if re.search(pat, query_lower, re.IGNORECASE):
                         # The query asks for a specific attribute — is it in the fact value?
-                        attr_words = set(re.findall(r"\w+", re.sub(r"[\\^$.*+?()\[\]{}|]", "", pat).lower())) - {"b", "s"}
+                        attr_words = set(
+                            re.findall(
+                                r"\w+", re.sub(r"[\\^$.*+?()\[\]{}|]", "", pat).lower()
+                            )
+                        ) - {"b", "s"}
                         if not any(w in fact_value for w in attr_words if len(w) > 3):
                             should_flag = True
                             break
             if should_flag:
                 confidence = min(confidence, 0.65)
                 flagged = True
-                flags.append("Specific claim with no verifiable fact — flagged for human review")
+                flags.append(
+                    "Specific claim with no verifiable fact — flagged for human review"
+                )
 
         # Severity
         severity = self._severity(confidence)
@@ -196,7 +202,9 @@ class HallucinationDetector:
         return {
             "query": query[:100],
             "response_length": len(response),
-            "valid": "flagged" if flagged else (confidence >= self.confidence_threshold),
+            "valid": (
+                "flagged" if flagged else (confidence >= self.confidence_threshold)
+            ),
             "flagged": flagged,
             "confidence": confidence,
             "severity": severity,
@@ -243,7 +251,21 @@ class HallucinationDetector:
 
     def _match_facts(self, query: str) -> list[str]:
         """Return fact keys with sufficient word overlap with query (>= 50% of key words must match)."""
-        stop_words = {"what", "is", "the", "of", "a", "an", "are", "how", "many", "when", "did", "who", "was"}
+        stop_words = {
+            "what",
+            "is",
+            "the",
+            "of",
+            "a",
+            "an",
+            "are",
+            "how",
+            "many",
+            "when",
+            "did",
+            "who",
+            "was",
+        }
         query_words = set(re.findall(r"\w+", query.lower())) - stop_words
         matched = []
         for key in self.facts_db:
@@ -286,7 +308,9 @@ class HallucinationDetector:
             expected = fact["value"].lower().replace(",", "")
 
             if fact_type == "numeric":
-                numbers = re.findall(r"-?\d+(?:\\.\d+)?(?:e[+-]?\d+)?", response_lower.replace(",", ""))
+                numbers = re.findall(
+                    r"-?\d+(?:\\.\d+)?(?:e[+-]?\d+)?", response_lower.replace(",", "")
+                )
                 match = False
                 for num_str in numbers:
                     try:
@@ -308,7 +332,9 @@ class HallucinationDetector:
                         pass
                 if not match and numbers:
                     unit = fact.get("unit")
-                    mismatches.append(f"'{key}' expected ~{expected}" + (f" {unit}" if unit else ""))
+                    mismatches.append(
+                        f"'{key}' expected ~{expected}" + (f" {unit}" if unit else "")
+                    )
                 expected_words = set(re.findall(r"\w+", expected))
                 if len(expected_words) > 5:
                     # Long text fact — skip substring check, too noisy
@@ -332,15 +358,17 @@ class HallucinationDetector:
             r"\bin\s+the\s+([\w\s]+?)\s+(?:industry|sector|market|field|region|country|area|space)",
             r"\bfor\s+(?:the\s+)?([\w\s]+?)\s+(?:industry|sector|market|customers|clients|users)",
             r"\bfrom\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)",  # named locations
-            r"\bin\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)",    # named places
-            r"\bsince\s+(\d{4}|last\s+\w+|this\s+\w+)",    # time qualifiers
+            r"\bin\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)",  # named places
+            r"\bsince\s+(\d{4}|last\s+\w+|this\s+\w+)",  # time qualifiers
             r"\bafter\s+(\d{4}|last\s+\w+)",
             r"\bunder\s+(\w+\s+)?(?:ceo|cto|management|leadership)",
         ]
         query_lower = query.lower()
         # Build a combined string of all matched fact values for reference
         all_fact_values = " ".join(
-            self.facts_db[k]["value"].lower() for k in matched_keys if k in self.facts_db
+            self.facts_db[k]["value"].lower()
+            for k in matched_keys
+            if k in self.facts_db
         )
         unverifiable_qualifiers = []
         for pattern in qualifier_patterns:
@@ -355,8 +383,17 @@ class HallucinationDetector:
                 if safe:
                     continue
                 # If the qualifier text isn't mentioned in any fact value, it's unverifiable
-                qualifier_words = set(re.findall(r"\w+", qualifier.lower())) - {"in", "the", "for", "from", "at", "of"}
-                if qualifier_words and not any(w in all_fact_values for w in qualifier_words):
+                qualifier_words = set(re.findall(r"\w+", qualifier.lower())) - {
+                    "in",
+                    "the",
+                    "for",
+                    "from",
+                    "at",
+                    "of",
+                }
+                if qualifier_words and not any(
+                    w in all_fact_values for w in qualifier_words
+                ):
                     unverifiable_qualifiers.append(qualifier)
 
         if unverifiable_qualifiers:
@@ -425,10 +462,14 @@ class HallucinationDetector:
                     pred_words = set(re.findall(r"\w+", pred.lower()))
                     asserted_words = set(re.findall(r"\w+", asserted_pred.lower()))
                     if asserted_words & pred_words:  # any word overlap = contradiction
-                        issues.append(f"'{subj} is {asserted_pred}' contradicted by '{subj} is not {pred}'")
+                        issues.append(
+                            f"'{subj} is {asserted_pred}' contradicted by '{subj} is not {pred}'"
+                        )
 
         # Also check "always...never" pattern
-        if re.search(r"\balways\b", response, re.IGNORECASE) and re.search(r"\bnever\b", response, re.IGNORECASE):
+        if re.search(r"\balways\b", response, re.IGNORECASE) and re.search(
+            r"\bnever\b", response, re.IGNORECASE
+        ):
             issues.append("Response contains both 'always' and 'never'")
 
         if issues:
@@ -457,21 +498,36 @@ class HallucinationDetector:
     def _check_specificity(self, query: str, response: str, matched_key) -> dict:
         """For factual queries with a known fact, check response isn't all vague qualifiers."""
         if not matched_key:
-            return {"passed": True, "message": "Not a known factual query", "score": 1.0, "delta": 0.0}
+            return {
+                "passed": True,
+                "message": "Not a known factual query",
+                "score": 1.0,
+                "delta": 0.0,
+            }
 
         # Skip specificity check for procedural/code queries — they don't require numbers/dates/names
         if self._is_code_query(query, response):
-            return {"passed": True, "message": "Code/procedural query — specificity check skipped", "score": 1.0, "delta": 0.0}
+            return {
+                "passed": True,
+                "message": "Code/procedural query — specificity check skipped",
+                "score": 1.0,
+                "delta": 0.0,
+            }
 
         # Look for numbers, dates, proper nouns (capitalised words), or known keywords
         has_specific = bool(
-            re.search(r"\b\d+\b", response) or
-            re.search(r"\b[A-Z][a-z]+\b", response) or
-            re.search(r"\b\d{4}\b", response)  # year
+            re.search(r"\b\d+\b", response)
+            or re.search(r"\b[A-Z][a-z]+\b", response)
+            or re.search(r"\b\d{4}\b", response)  # year
         )
 
         if has_specific:
-            return {"passed": True, "message": "Response contains specific claims", "score": 1.0, "delta": 0.0}
+            return {
+                "passed": True,
+                "message": "Response contains specific claims",
+                "score": 1.0,
+                "delta": 0.0,
+            }
 
         return {
             "passed": False,
@@ -527,7 +583,9 @@ class HallucinationDetector:
         for qual in self._SAFE_QUALIFIERS:
             if re.search(qual, q, re.IGNORECASE):
                 return False
-        return any(re.search(p, q, re.IGNORECASE) for p in self._SPECIFIC_CLAIM_PATTERNS)
+        return any(
+            re.search(p, q, re.IGNORECASE) for p in self._SPECIFIC_CLAIM_PATTERNS
+        )
 
     @staticmethod
     def _severity(confidence: float) -> str:
@@ -549,7 +607,9 @@ class HallucinationDetector:
         return result["passed"], result["message"]
 
     def contains_uncertainty_pattern(self, text: str) -> bool:
-        return any(re.search(p, text, re.IGNORECASE) for p in self._UNCERTAINTY_PATTERNS)
+        return any(
+            re.search(p, text, re.IGNORECASE) for p in self._UNCERTAINTY_PATTERNS
+        )
 
     def contains_speculative_language(self, text: str) -> list:
         found = []
@@ -576,4 +636,8 @@ if __name__ == "__main__":
         }
         print(json.dumps(out, indent=2))
         with open("hallucination_validation_detailed.json", "w") as f:
-            json.dump({"run": result, "timestamp": datetime.now().isoformat() + "Z"}, f, indent=2)
+            json.dump(
+                {"run": result, "timestamp": datetime.now().isoformat() + "Z"},
+                f,
+                indent=2,
+            )

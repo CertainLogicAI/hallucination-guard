@@ -12,7 +12,6 @@ import os
 import sqlite3
 import struct
 import threading
-import time
 from typing import Optional, Tuple
 
 import numpy as np
@@ -33,6 +32,7 @@ _thread_local = threading.local()
 # ---------------------------------------------------------------------------
 # Model (lazy, singleton)
 # ---------------------------------------------------------------------------
+
 
 def _get_model():
     global _model
@@ -61,6 +61,7 @@ def encode(text: str) -> np.ndarray:
 # ---------------------------------------------------------------------------
 # DB helpers
 # ---------------------------------------------------------------------------
+
 
 def _get_conn() -> sqlite3.Connection:
     conn = getattr(_thread_local, "conn", None)
@@ -92,6 +93,7 @@ def _ensure_schema(conn: sqlite3.Connection):
 # Encode → bytes (BLOB storage)
 # ---------------------------------------------------------------------------
 
+
 def _vec_to_blob(vec: np.ndarray) -> bytes:
     return struct.pack(f"{len(vec)}f", *vec)
 
@@ -109,6 +111,7 @@ def _cosine(a: np.ndarray, b: np.ndarray) -> float:
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
+
 
 def store_embedding(query_hash: str, query_text: str):
     """
@@ -128,7 +131,7 @@ def store_embedding(query_hash: str, query_text: str):
         blob = _vec_to_blob(vec)
         conn.execute(
             "UPDATE query_cache SET embedding=?, query=? WHERE query_hash=?",
-            (blob, query_text, query_hash)
+            (blob, query_text, query_hash),
         )
         conn.commit()
     except Exception as e:
@@ -199,7 +202,7 @@ def backfill_embeddings(batch_size: int = 50, dry_run: bool = False) -> dict:
     skipped = 0
 
     for i in range(0, len(rows), batch_size):
-        batch = rows[i:i + batch_size]
+        batch = rows[i : i + batch_size]
         for query_hash, query_text in batch:
             if not query_text or not query_text.strip():
                 skipped += 1
@@ -212,7 +215,7 @@ def backfill_embeddings(batch_size: int = 50, dry_run: bool = False) -> dict:
                 blob = _vec_to_blob(vec)
                 conn.execute(
                     "UPDATE query_cache SET embedding=? WHERE query_hash=?",
-                    (blob, query_hash)
+                    (blob, query_hash),
                 )
                 processed += 1
             except Exception as e:
@@ -250,6 +253,7 @@ def get_semantic_stats() -> dict:
 
 if __name__ == "__main__":
     import sys
+
     if len(sys.argv) < 2:
         print("Usage: semantic_cache.py <query> [threshold]")
         sys.exit(1)
@@ -258,6 +262,10 @@ if __name__ == "__main__":
     result = semantic_lookup(query, threshold)
     if result:
         cached, score = result
-        print(json.dumps({"found": True, "cached_result": cached, "score": score}, indent=2))
+        print(
+            json.dumps(
+                {"found": True, "cached_result": cached, "score": score}, indent=2
+            )
+        )
     else:
         print(json.dumps({"found": False}, indent=2))
