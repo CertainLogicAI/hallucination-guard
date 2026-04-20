@@ -1,0 +1,16 @@
+# Core dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+numpy>=1.24.0
+
+# Optional semantic caching
+sentence-transformers>=2.2.0
+
+# Optional: SQLite (included in Python standard library)
+# Optional: regex (uses built-in re)
+
+# Development extras
+black>=24.0.0
+ruff>=0.1.0
+pytest>=7.4.0

@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+.env/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Application files
+cache.db
+*.log
+*.sqlite3
+
+# Sensitive data
+secrets/
+*.key
+*.pem
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.tar.gz
+*.whl
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

@@ -1,0 +1,29 @@
+# Ignore everything by default
+*
+
+# Allow these
+!LICENSE
+!README.md
+!requirements.txt
+!Dockerfile
+!*.py
+!facts_db.json
+!memory/
+
+# Exclude development files
+.git
+.gitignore
+.env
+*.log
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+.vscode/
+.idea/
+*.swp
+*.swo
