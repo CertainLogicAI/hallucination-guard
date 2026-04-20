@@ -1,0 +1,47 @@
+{
+  "facts": {
+    "2+2": {
+      "type": "numeric",
+      "value": "4",
+      "tolerance": 0.0
+    },
+    "capital of france": {
+      "type": "string",
+      "value": "paris"
+    },
+    "speed of light": {
+      "type": "numeric",
+      "value": "299792458",
+      "unit": "m/s"
+    },
+    "water freezes at": {
+      "type": "numeric",
+      "value": "0",
+      "unit": "°c"
+    },
+    "pi": {
+      "type": "numeric",
+      "value": "3.1415926535"
+    },
+    "python release year": {
+      "type": "numeric",
+      "value": "1991"
+    },
+    "docker first release": {
+      "type": "numeric",
+      "value": "2013"
+    },
+    "http status 404": {
+      "type": "string",
+      "value": "not found"
+    },
+    "largest planet in solar system": {
+      "type": "string",
+      "value": "jupiter"
+    },
+    "einstein's theory of relativity": {
+      "type": "string",
+      "value": "e=mc^2"
+    }
+  }
+}

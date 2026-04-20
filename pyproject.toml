@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hallucination-guard"
+version = "0.1.0"
+description = "Deterministic AI verification middleware that catches hallucinations and cuts token costs."
+requires-python = ">=3.11"
+keywords = ["AI", "hallucination detection", "LLM guardrails", "deterministic verification", "semantic caching", "self-hosted", "audit logging", "compliance", "HIPAA", "GDPR", "SOC2"]
+readme = "README.md"
+authors = [{name = "CertainLogic", email = "ops@certainlogic.ai"}]
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.0.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+semantic_cache = ["sentence-transformers>=2.2.0"]
+dev = ["black", "ruff", "pytest", "coverage", "isort", "pre-commit"]
+
+[project.scripts]
+hallucination-guard = "hallucination_guard.__main__:main"
+
+[project.urls]
+repository = "https://github.com/CertainLogicAI/hallucination-guard"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+target-version = "py38"
+fix = true
+select = ["E", "F", "I", "N", "Q", "W"]
+ignore = ["E301", "E251", "E203", "E701", "E902", "W503"]

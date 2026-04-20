@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hallucination-guard.fullname" . }}
+  labels:
+    {{- include "hallucination-guard.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "hallucination-guard.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "hallucination-guard.selectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "hallucination-guard.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+          env:
+            - name: PRODUCT_MODE
+              value: {{ .Values.env.PRODUCT_MODE | quote }}
+            - name: LOG_LEVEL
+              value: {{ .Values.env.LOG_LEVEL | quote }}
+            - name: CACHE_DIR
+              value: {{ .Values.env.CACHE_DIR | quote }}
+            {{- if .Values.env.OPENROUTER_API_KEY }}
+            - name: OPENROUTER_API_KEY
+              value: {{ .Values.env.OPENROUTER_API_KEY | quote }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: cache-volume
+              mountPath: {{ .Values.persistence.mountPath }}
+            {{- if .Values.auditLog.enabled }}
+            - name: audit-log
+              mountPath: {{ .Values.auditLog.mountPath }}
+              subPath: audit_log.jsonl
+            {{- end }}
+            {{- if .Values.factsDb.configMapName }}
+            - name: facts-db
+              mountPath: /app/facts_db.json
+              subPath: facts_db.json
+            {{- end }}
+      volumes:
+        - name: cache-volume
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "hallucination-guard.fullname" . }}-cache
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- if .Values.auditLog.enabled }}
+        - name: audit-log
+          emptyDir: {}
+        {{- end }}
+        {{- if .Values.factsDb.configMapName }}
+        - name: facts-db
+          configMap:
+            name: {{ .Values.factsDb.configMapName }}
+        {{- end }}

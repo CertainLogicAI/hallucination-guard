@@ -58,10 +58,6 @@ class SearchRequest(BaseModel):
     top_k: Optional[int] = 5
 
 
-class RouteRequest(BaseModel):
-    query: str = Field(..., min_length=1, max_length=5000)
-
-
 # API endpoints
 @app.get("/health")
 def health():
@@ -99,9 +95,9 @@ def search(data: SearchRequest):
 
 
 @app.post("/route")
-def route(data: RouteRequest):
+def route(query: str):
     """Route a query through token reduction and intent classification."""
-    return router.route(data.query)
+    return router.route(query)
 
 
 @app.delete("/cache")

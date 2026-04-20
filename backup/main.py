@@ -12,10 +12,10 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from hallucination_guard.hallucination_detector import HallucinationDetector
-from hallucination_guard.token_reduction_engine import reduce_tokens, get_metrics, clear_cache
-from hallucination_guard.deterministic_memory_search import search_memory
-from hallucination_guard.intent_router import IntentRouter
+from hallucination_detector import HallucinationDetector
+from token_reduction_engine import reduce_tokens, get_metrics, clear_cache
+from deterministic_memory_search import search_memory
+from intent_router import IntentRouter
 
 # Configuration
 FACTS_DB_PATH = os.getenv("FACTS_DB_PATH", "./facts_db.json")
@@ -58,10 +58,6 @@ class SearchRequest(BaseModel):
     top_k: Optional[int] = 5
 
 
-class RouteRequest(BaseModel):
-    query: str = Field(..., min_length=1, max_length=5000)
-
-
 # API endpoints
 @app.get("/health")
 def health():
@@ -99,9 +95,9 @@ def search(data: SearchRequest):
 
 
 @app.post("/route")
-def route(data: RouteRequest):
+def route(query: str):
     """Route a query through token reduction and intent classification."""
-    return router.route(data.query)
+    return router.route(query)
 
 
 @app.delete("/cache")

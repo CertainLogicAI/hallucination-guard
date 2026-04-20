@@ -1,0 +1,25 @@
+{{- if .Values.factsDb.configMapName -}}
+{{/* This configmap is expected to be created by the user */}}
+{{- else -}}
+{{/* Optionally create a default empty facts DB */}}
+{{- if .Values.factsDb.createDefault }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hallucination-guard.fullname" . }}-facts
+  labels:
+    {{- include "hallucination-guard.labels" . | nindent 4 }}
+data:
+  facts_db.json: |
+    {
+      "facts": {
+        "example": {
+          "type": "general",
+          "value": "This is an example fact. Replace with your own facts.",
+          "source": "default",
+          "verified_at": "2026-04-20"
+        }
+      }
+    }
+{{- end }}
+{{- end }}

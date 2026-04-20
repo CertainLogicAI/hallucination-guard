@@ -1,0 +1,22 @@
+CertainLogic Verifier has been deployed!
+
+1. Get the service URL:
+   export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "hallucination-guard.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+   kubectl port-forward $POD_NAME 8000:8000 --namespace {{ .Release.Namespace }}
+
+2. Test validation:
+   curl -X POST http://localhost:8000/validate \
+     -H "Content-Type: application/json" \
+     -d '{"query": "What is the price of GPT‑5?", "response": "$200/month"}'
+
+3. View logs:
+   kubectl logs -f $POD_NAME --namespace {{ .Release.Namespace }}
+
+4. Provide your own facts_db.json:
+   - Create a ConfigMap with your facts:
+     kubectl create configmap my-facts --from-file=facts_db.json
+   - Update the Helm values:
+     factsDb:
+       configMapName: "my-facts"
+
+Documentation: https://github.com/CertainLogicAI/hallucination-guard

@@ -1,0 +1,76 @@
+# Default values for hallucination-guard.
+replicaCount: 1
+
+image:
+  repository: certainlogic/hallucination-guard
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: hallucination-guard.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+env:
+  # Product mode: coder (free) or agent (enterprise)
+  PRODUCT_MODE: "coder"
+  LOG_LEVEL: "INFO"
+  CACHE_DIR: "/app/cache"
+  # OPENROUTER_API_KEY: ""  # Set for cache‑miss fallback
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessModes: ["ReadWriteOnce"]
+  size: 1Gi
+  mountPath: /app/cache
+
+factsDb:
+  # Provide your facts_db.json as a ConfigMap or Secret
+  configMapName: ""
+  secretName: ""
+
+auditLog:
+  enabled: true
+  mountPath: /app/audit_log.jsonl
+
+serviceAccount:
+  create: true
+  name: ""
+
+podSecurityContext:
+  fsGroup: 1000
+  runAsUser: 1000
+  runAsNonRoot: true
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

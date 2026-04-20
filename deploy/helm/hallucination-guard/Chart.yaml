@@ -1,0 +1,25 @@
+apiVersion: v2
+name: hallucination-guard
+description: Deterministic AI verification middleware that catches hallucinations and cuts token costs.
+version: 0.1.0
+appVersion: "1.0.0"
+type: application
+home: https://github.com/CertainLogicAI/hallucination-guard
+sources:
+  - https://github.com/CertainLogicAI/hallucination-guard
+keywords:
+  - ai
+  - hallucination-detection
+  - llm-guardrails
+  - compliance
+  - self-hosted
+  - token-optimization
+maintainers:
+  - name: CertainLogicAI
+    email: ops@certainlogic.ai
+annotations:
+  artifacthub.io/prerelease: "false"
+  artifacthub.io/operator: "false"
+  artifacthub.io/images: |
+    - name: hallucination-guard
+      image: certainlogic/hallucination-guard:latest
