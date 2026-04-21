@@ -39,7 +39,7 @@ dev = ["black", "ruff", "pytest", "pytest-cov", "coverage", "isort", "pre-commit
 hallucination_guard = ["facts_db.json"]
 
 [project.scripts]
-hallucination-guard = "hallucination_guard.__main__:main"
+hallucination-guard = "hallucination_guard.cli:main"
 
 [project.urls]
 Homepage = "https://certainlogic.ai"

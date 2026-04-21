@@ -17,6 +17,7 @@ Quick start::
 from .deterministic_memory_search import search_memory
 from .hallucination_detector import HallucinationDetector
 from .intent_router import IntentRouter
+from .packs import get_active_cache_path, get_active_facts_path, install_pack, pack_status, update_pack
 from .token_reduction_engine import get_metrics, reduce_tokens
 
 __version__ = "0.1.0"
@@ -27,4 +28,9 @@ __all__ = [
     "get_metrics",
     "search_memory",
     "IntentRouter",
+    "install_pack",
+    "update_pack",
+    "pack_status",
+    "get_active_facts_path",
+    "get_active_cache_path",
 ]
