@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application
 COPY . .
 
+# Install the package
+RUN pip install --no-cache-dir -e .
+
 # Create data directory for persistence
 RUN mkdir -p /app/data
 VOLUME ["/app/data"]
