@@ -1,14 +1,17 @@
 # Ignore everything by default
 *
 
-# Allow these
+# Allow application files
 !LICENSE
 !README.md
 !requirements.txt
+!pyproject.toml
 !Dockerfile
 !*.py
+!src/
 !facts_db.json
 !memory/
+!deploy/
 
 # Exclude development files
 .git
