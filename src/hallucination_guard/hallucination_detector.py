@@ -183,16 +183,17 @@ class HallucinationDetector:
         # ---- 5. Flagged tier: specific claim that can't be verified ----
         flagged = False
         if self._is_specific_unverifiable_query(query):
-            # Flag if: no fact matched at all, OR fact matched but it's a broad entity match
-            # (i.e. the fact value doesn't contain the specific attribute being asked about)
             should_flag = False
-            if fc_result["matched_key"] is None:
-                should_flag = True
+
+            # If factual consistency already verified the answer, skip flagging
+            if fc_result["passed"] and fc_result["score"] >= 1.0:
+                should_flag = False  # fact matched and verified
+            elif fc_result["matched_key"] is None:
+                should_flag = True  # no fact matched at all
             else:
-                # Fact matched — check if the specific attribute is actually in the fact value
+                # Fact matched but check if the specific attribute is in the value
                 matched_key = fc_result["matched_key"]
                 fact_value = self.facts_db.get(matched_key, {}).get("value", "").lower()
-                # If the fact value is short/generic (entity name only), it can't verify specific claims
                 specific_attr_patterns = [
                     r"\b(funding|series\s+[abc]|raised|valuation|investor)",
                     r"\b(cto|ceo|coo|founder|co-founder)",
@@ -207,7 +208,6 @@ class HallucinationDetector:
                 query_lower = query.lower()
                 for pat in specific_attr_patterns:
                     if re.search(pat, query_lower, re.IGNORECASE):
-                        # The query asks for a specific attribute — is it in the fact value?
                         attr_words = set(
                             re.findall(
                                 r"\w+", re.sub(r"[\\^$.*+?()\[\]{}|]", "", pat).lower()
@@ -216,6 +216,7 @@ class HallucinationDetector:
                         if not any(w in fact_value for w in attr_words if len(w) > 3):
                             should_flag = True
                             break
+
             if should_flag:
                 confidence = min(confidence, 0.65)
                 flagged = True
