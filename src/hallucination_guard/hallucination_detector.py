@@ -316,18 +316,42 @@ class HallucinationDetector:
             "was",
         }
         query_words = set(re.findall(r"\w+", query.lower())) - stop_words
-        matched = []
+        candidates = []
         for key in self.facts_db:
             key_words = set(re.findall(r"\w+", key.lower())) - stop_words
-            if not key_words:
+            if not key_words or len(key_words) < 2:
+                # Skip single-word keys (too prone to cross-matching)
+                # Exception: allow if query words are a superset of key words
+                if key_words and key_words.issubset(query_words):
+                    candidates.append(
+                        (len(key_words & query_words) / len(key_words), key)
+                    )
                 continue
             overlap = key_words & query_words
             ratio = len(overlap) / len(key_words)
-            if ratio > 0.5:  # strict majority of key words must be present
-                matched.append(key)
-        return matched
+            if ratio > 0.5:
+                candidates.append((ratio, key))
+        # Sort by overlap ratio descending; return only the best match(es)
+        candidates.sort(key=lambda x: -x[0])
+        if not candidates:
+            return []
+        best_ratio = candidates[0][0]
+        # Return all matches at the best ratio (ties)
+        return [key for ratio, key in candidates if ratio >= best_ratio - 0.01]
 
     def _check_factual_consistency(self, query: str, response: str) -> dict:
+        # Skip factual validation for speculative/hedged queries
+        q_lower = query.lower()
+        for qual in self._SAFE_QUALIFIERS:
+            if re.search(qual, q_lower, re.IGNORECASE):
+                return {
+                    "passed": True,
+                    "message": "Speculative query — skipping factual check",
+                    "score": 1.0,
+                    "delta": 0.0,
+                    "matched_key": None,
+                }
+
         matched_keys = self._match_facts(query)
         if not matched_keys:
             if self._is_strict_factual_query(query):
@@ -386,10 +410,12 @@ class HallucinationDetector:
                     mismatches.append(
                         f"'{key}' expected ~{expected}" + (f" {unit}" if unit else "")
                     )
-                expected_words = set(re.findall(r"\w+", expected))
-                if len(expected_words) > 5:
-                    # Long text fact — skip substring check, too noisy
-                    continue
+                elif not match:
+                    # No numbers found for a numeric fact
+                    if expected not in response_lower:
+                        mismatches.append(f"'{key}' expected '{expected}'")
+            else:
+                # String-type fact: check if expected value appears in response
                 if expected not in response_lower:
                     mismatches.append(f"'{key}' expected '{expected}'")
 
@@ -409,7 +435,7 @@ class HallucinationDetector:
             r"\bin\s+the\s+([\w\s]+?)\s+(?:industry|sector|market|field|region|country|area|space)",
             r"\bfor\s+(?:the\s+)?([\w\s]+?)\s+(?:industry|sector|market|customers|clients|users)",
             r"\bfrom\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)",  # named locations
-            r"\bin\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)",  # named places
+            r"\bin\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)",  # named places (not langs)
             r"\bsince\s+(\d{4}|last\s+\w+|this\s+\w+)",  # time qualifiers
             r"\bafter\s+(\d{4}|last\s+\w+)",
             r"\bunder\s+(\w+\s+)?(?:ceo|cto|management|leadership)",
@@ -441,6 +467,29 @@ class HallucinationDetector:
                     "from",
                     "at",
                     "of",
+                    # Programming languages — not geographic qualifiers
+                    "python",
+                    "javascript",
+                    "typescript",
+                    "rust",
+                    "java",
+                    "ruby",
+                    "swift",
+                    "kotlin",
+                    "go",
+                    "dart",
+                    "react",
+                    "node",
+                    "django",
+                    "flask",
+                    "fastapi",
+                    "docker",
+                    "kubernetes",
+                    "linux",
+                    "postgres",
+                    "mysql",
+                    "redis",
+                    "mongodb",
                 }
                 if qualifier_words and not any(
                     w in all_fact_values for w in qualifier_words

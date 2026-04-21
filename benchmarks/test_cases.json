@@ -1,0 +1,1402 @@
+[
+  {
+    "query": "What is the current stable version of Python?",
+    "response": "The current stable version of Python is 3.13.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Exact match to fact: python current stable version = 3.13"
+  },
+  {
+    "query": "What is the Python 3.12 release date?",
+    "response": "Python 3.12 was released on 2023-10-02.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Exact date match"
+  },
+  {
+    "query": "What does GIL stand for in Python?",
+    "response": "GIL stands for Global Interpreter Lock.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "String fact match"
+  },
+  {
+    "query": "What is the default max recursion depth in Python?",
+    "response": "Python's default maximum recursion depth is 1000.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric fact match"
+  },
+  {
+    "query": "What is the PEP 8 max line length recommendation?",
+    "response": "PEP 8 recommends a maximum line length of 79 characters.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Exact numeric match"
+  },
+  {
+    "query": "What was the Python 2 end of life date?",
+    "response": "Python 2 reached end of life on 2020-01-01.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Date string match"
+  },
+  {
+    "query": "What version introduced Python f-strings?",
+    "response": "F-strings were introduced in Python 3.6.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Version string match"
+  },
+  {
+    "query": "What is the walrus operator symbol in Python?",
+    "response": "The walrus operator symbol in Python is :=",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Symbol match"
+  },
+  {
+    "query": "What does JavaScript typeof null return?",
+    "response": "In JavaScript, typeof null returns 'object', which is a historical bug.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "String fact match"
+  },
+  {
+    "query": "What is the JavaScript max safe integer?",
+    "response": "The maximum safe integer in JavaScript is 9007199254740991 (2^53 - 1).",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric fact match"
+  },
+  {
+    "query": "What was the React initial release year?",
+    "response": "React was initially released in 2013.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Year match"
+  },
+  {
+    "query": "What version introduced React Hooks?",
+    "response": "React Hooks were introduced in version 16.8.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Version match"
+  },
+  {
+    "query": "What is the default Docker network driver?",
+    "response": "The default Docker network driver is bridge.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "String match"
+  },
+  {
+    "query": "What is the default Redis port?",
+    "response": "Redis uses port 6379 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric port match"
+  },
+  {
+    "query": "What is the default PostgreSQL port?",
+    "response": "PostgreSQL runs on port 5432 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric port match"
+  },
+  {
+    "query": "What is the default MySQL port?",
+    "response": "MySQL uses port 3306 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric port match"
+  },
+  {
+    "query": "What does ACID stand for in databases?",
+    "response": "ACID stands for Atomicity, Consistency, Isolation, Durability.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Acronym match"
+  },
+  {
+    "query": "What is the HTTP status 404 meaning?",
+    "response": "HTTP 404 means Not Found - the requested resource does not exist.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Status code meaning match"
+  },
+  {
+    "query": "What is the HTTP status 200 meaning?",
+    "response": "HTTP status 200 means OK - the request succeeded.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Status code match"
+  },
+  {
+    "query": "What is the HTTPS port?",
+    "response": "HTTPS uses port 443.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Port number match"
+  },
+  {
+    "query": "What is the SSH default port?",
+    "response": "SSH runs on port 22 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Port fact match"
+  },
+  {
+    "query": "What is the JWT structure?",
+    "response": "JWT is composed of three base64url-encoded parts: header.payload.signature",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Structure fact match"
+  },
+  {
+    "query": "What is the AWS Lambda max execution timeout?",
+    "response": "AWS Lambda has a maximum execution timeout of 900 seconds (15 minutes).",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric timeout match"
+  },
+  {
+    "query": "What is the AWS S3 max object size?",
+    "response": "The maximum object size in AWS S3 is 5 TB.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Size fact match"
+  },
+  {
+    "query": "What is the default Kubernetes namespace?",
+    "response": "The default namespace in Kubernetes is 'default'.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "String match"
+  },
+  {
+    "query": "What is the GitHub Actions workflow file location?",
+    "response": "GitHub Actions workflow files are stored in .github/workflows/*.yml",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Path string match"
+  },
+  {
+    "query": "What is TypeScript released by?",
+    "response": "TypeScript was released by Microsoft.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Company match"
+  },
+  {
+    "query": "What is the Docker default registry?",
+    "response": "Docker's default registry is Docker Hub (hub.docker.com).",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Registry match"
+  },
+  {
+    "query": "What is the bcrypt hash rounds default recommendation?",
+    "response": "The recommended bcrypt cost factor is 12.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric recommendation match"
+  },
+  {
+    "query": "What is the OWASP Top 10 2021 number 1?",
+    "response": "The number 1 item on the OWASP Top 10 2021 list is Broken Access Control.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Security fact match"
+  },
+  {
+    "query": "What does XSS stand for?",
+    "response": "XSS stands for Cross-Site Scripting.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Acronym match"
+  },
+  {
+    "query": "What does CSRF stand for?",
+    "response": "CSRF stands for Cross-Site Request Forgery.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Acronym match"
+  },
+  {
+    "query": "What version introduced Python match statement?",
+    "response": "The match statement was introduced in Python 3.10.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Version fact match"
+  },
+  {
+    "query": "What is the Python number of built-in functions?",
+    "response": "Python has 68 built-in functions.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Numeric match"
+  },
+  {
+    "query": "What is the TLS 1.3 released year?",
+    "response": "TLS 1.3 was released in 2018.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Year match"
+  },
+  {
+    "query": "What is the Flask run command default port?",
+    "response": "The Flask development server runs on port 5000 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Port fact match"
+  },
+  {
+    "query": "What is the default Elasticsearch port?",
+    "response": "Elasticsearch runs on port 9200 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Port match"
+  },
+  {
+    "query": "What is the MongoDB default port?",
+    "response": "MongoDB uses port 27017 by default.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Port match"
+  },
+  {
+    "query": "What is the Python small integer caching range?",
+    "response": "CPython caches small integers from -5 to 256.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Range fact match"
+  },
+  {
+    "query": "What is the Python string encoding default?",
+    "response": "Python's default string encoding is UTF-8.",
+    "expected_valid": true,
+    "category": "known_facts_correct",
+    "notes": "Encoding fact match"
+  },
+  {
+    "query": "What is the current stable version of Python?",
+    "response": "The current stable version of Python is 3.11.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.13"
+  },
+  {
+    "query": "What is the Python 3.12 release date?",
+    "response": "Python 3.12 was released on 2024-03-15.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong date: fact says 2023-10-02"
+  },
+  {
+    "query": "What does GIL stand for in Python?",
+    "response": "GIL stands for General Interface Library.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong expansion"
+  },
+  {
+    "query": "What is the default max recursion depth in Python?",
+    "response": "Python's default maximum recursion depth is 500.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong number: fact says 1000"
+  },
+  {
+    "query": "What is the PEP 8 max line length recommendation?",
+    "response": "PEP 8 recommends a maximum line length of 120 characters.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong length: fact says 79"
+  },
+  {
+    "query": "What was the Python 2 end of life date?",
+    "response": "Python 2 reached end of life on 2019-06-01.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong date: fact says 2020-01-01"
+  },
+  {
+    "query": "What version introduced Python f-strings?",
+    "response": "F-strings were introduced in Python 3.8.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.6"
+  },
+  {
+    "query": "What is the walrus operator symbol in Python?",
+    "response": "The walrus operator symbol in Python is =>",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong symbol: fact says :="
+  },
+  {
+    "query": "What is the JavaScript max safe integer?",
+    "response": "The maximum safe integer in JavaScript is 2147483647.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong number: fact says 9007199254740991"
+  },
+  {
+    "query": "What was the React initial release year?",
+    "response": "React was initially released in 2015.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong year: fact says 2013"
+  },
+  {
+    "query": "What version introduced React Hooks?",
+    "response": "React Hooks were introduced in version 16.3.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 16.8"
+  },
+  {
+    "query": "What is the default Redis port?",
+    "response": "Redis uses port 6380 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 6379"
+  },
+  {
+    "query": "What is the default PostgreSQL port?",
+    "response": "PostgreSQL runs on port 5433 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 5432"
+  },
+  {
+    "query": "What is the default MySQL port?",
+    "response": "MySQL uses port 3307 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 3306"
+  },
+  {
+    "query": "What is the HTTPS port?",
+    "response": "HTTPS uses port 8443.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 443"
+  },
+  {
+    "query": "What is the SSH default port?",
+    "response": "SSH runs on port 23 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port (23 is telnet): fact says 22"
+  },
+  {
+    "query": "What is the AWS Lambda max execution timeout?",
+    "response": "AWS Lambda has a maximum execution timeout of 300 seconds (5 minutes).",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong timeout: fact says 900 seconds"
+  },
+  {
+    "query": "What is the bcrypt hash rounds default recommendation?",
+    "response": "The recommended bcrypt cost factor is 8.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong cost: fact says 12"
+  },
+  {
+    "query": "What is the TLS 1.3 released year?",
+    "response": "TLS 1.3 was released in 2015.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong year: fact says 2018"
+  },
+  {
+    "query": "What is the Flask run command default port?",
+    "response": "The Flask development server runs on port 8000 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 5000"
+  },
+  {
+    "query": "What is the default Elasticsearch port?",
+    "response": "Elasticsearch runs on port 9300 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port (9300 is transport): fact says 9200"
+  },
+  {
+    "query": "What is the MongoDB default port?",
+    "response": "MongoDB uses port 28017 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 27017"
+  },
+  {
+    "query": "What is the Python small integer caching range?",
+    "response": "CPython caches small integers from -128 to 127.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong range: fact says -5 to 256"
+  },
+  {
+    "query": "What was the Python walrus operator introduced in version?",
+    "response": "The walrus operator was introduced in Python 3.9.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.8"
+  },
+  {
+    "query": "What is the OWASP Top 10 2021 number 1?",
+    "response": "The number 1 item on the OWASP Top 10 2021 list is SQL Injection.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong item: fact says Broken Access Control"
+  },
+  {
+    "query": "What was the TypeScript released by?",
+    "response": "TypeScript was released by Google.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong company: fact says Microsoft"
+  },
+  {
+    "query": "What is the React concurrent mode default since version?",
+    "response": "React concurrent mode became default in version 17.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 18"
+  },
+  {
+    "query": "What is the Python number of built-in functions?",
+    "response": "Python has 75 built-in functions.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong count: fact says 68"
+  },
+  {
+    "query": "What was Python asyncio introduced in version?",
+    "response": "Python asyncio was introduced in version 3.5.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.4"
+  },
+  {
+    "query": "What is the Python pep 8 max line length recommendation?",
+    "response": "PEP 8 says lines should be no longer than 100 characters.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong length: fact says 79"
+  },
+  {
+    "query": "What version introduced Python type hints?",
+    "response": "Python type hints were introduced in version 3.6.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.5"
+  },
+  {
+    "query": "What is the AWS S3 max object size?",
+    "response": "The maximum object size in AWS S3 is 100 GB.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong size: fact says 5 TB"
+  },
+  {
+    "query": "What does ACID stand for in databases?",
+    "response": "ACID stands for Atomicity, Concurrency, Isolation, Durability.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong C: Concurrency vs Consistency"
+  },
+  {
+    "query": "What is JavaScript async/await introduced in es version?",
+    "response": "JavaScript async/await was introduced in ES2016 (ES7).",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says ES2017 (ES8)"
+  },
+  {
+    "query": "What is the Python dict preserves insertion order since version?",
+    "response": "Python dicts preserve insertion order since version 3.6.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: 3.6 was impl detail, 3.7 was guaranteed"
+  },
+  {
+    "query": "What is the Python dataclasses introduced in version?",
+    "response": "Python dataclasses were introduced in version 3.6.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.7"
+  },
+  {
+    "query": "What version was the Python match statement introduced?",
+    "response": "The Python match statement was introduced in version 3.9.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong version: fact says 3.10"
+  },
+  {
+    "query": "What is the Docker default container stop signal?",
+    "response": "Docker containers receive SIGKILL as the default stop signal.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong signal: fact says SIGTERM first"
+  },
+  {
+    "query": "What is the default MongoDB port?",
+    "response": "MongoDB uses port 27001 by default.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong port: fact says 27017"
+  },
+  {
+    "query": "What is the Python exception base class?",
+    "response": "The base class for all Python exceptions is Exception.",
+    "expected_valid": false,
+    "category": "known_facts_hallucination",
+    "notes": "Wrong class: fact says BaseException"
+  },
+  {
+    "query": "How much does Python cost?",
+    "response": "Python costs $49.99 per month for the standard edition.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Python is free; invented price"
+  },
+  {
+    "query": "How much does Docker Desktop cost for enterprise?",
+    "response": "Docker Desktop Enterprise costs $21 per user per month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented price"
+  },
+  {
+    "query": "What is the price of AWS Lambda per invocation?",
+    "response": "AWS Lambda costs $0.0000002 per request.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific price claim, no fact"
+  },
+  {
+    "query": "How much does GitHub Actions cost per minute?",
+    "response": "GitHub Actions costs $0.008 per minute for Linux runners.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented price"
+  },
+  {
+    "query": "How much does Redis Cloud cost?",
+    "response": "Redis Cloud starts at $99 per month for the starter plan.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented price"
+  },
+  {
+    "query": "What is the cost of a Kubernetes cluster on GKE?",
+    "response": "A standard GKE cluster costs $0.10 per hour for cluster management.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific price claim not in facts"
+  },
+  {
+    "query": "How much does FastAPI cost to use?",
+    "response": "FastAPI is open-source but the enterprise support plan costs $500/month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented enterprise pricing"
+  },
+  {
+    "query": "How much does MongoDB Atlas cost?",
+    "response": "MongoDB Atlas dedicated clusters start at $57 per month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific invented price"
+  },
+  {
+    "query": "How much does AWS S3 storage cost per GB?",
+    "response": "AWS S3 costs $0.023 per GB per month for standard storage.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific price not verified in DB"
+  },
+  {
+    "query": "What is the price of GitHub Copilot?",
+    "response": "GitHub Copilot costs $19 per month for individual users.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented price"
+  },
+  {
+    "query": "How much does Elasticsearch cloud cost?",
+    "response": "Elasticsearch Service on Elastic Cloud starts at $95 per month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented price"
+  },
+  {
+    "query": "How much does a TypeScript license cost?",
+    "response": "TypeScript is free and open-source, licensed under Apache 2.0, costing $0.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Price claim even $0 on pricing query"
+  },
+  {
+    "query": "How much does Terraform Cloud cost?",
+    "response": "Terraform Cloud starts at $20 per user per month for the team plan.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented pricing"
+  },
+  {
+    "query": "What is the cost of AWS EC2 t3.micro instance?",
+    "response": "The AWS EC2 t3.micro costs $0.0104 per hour in us-east-1.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific price not in facts"
+  },
+  {
+    "query": "How much does Docker Hub cost for private repositories?",
+    "response": "Docker Hub Pro plan with unlimited private repos costs $7 per month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented price"
+  },
+  {
+    "query": "How much does React cost?",
+    "response": "React is completely free. The MIT license costs $0.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Even correct free answer on price query should be flagged"
+  },
+  {
+    "query": "What is the cost of AWS CloudWatch logs per GB?",
+    "response": "AWS CloudWatch Logs ingestion costs $0.50 per GB.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific price not in DB"
+  },
+  {
+    "query": "How much does Kubernetes cost to install?",
+    "response": "Kubernetes is free, but EKS control plane costs $0.10/hour.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented managed service price"
+  },
+  {
+    "query": "How much does pytest cost?",
+    "response": "pytest is free. Enterprise support costs $200/year.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented enterprise support price"
+  },
+  {
+    "query": "What is the price of Flask?",
+    "response": "Flask is free. Flask Enterprise Edition costs $299/year.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented enterprise edition"
+  },
+  {
+    "query": "How much does Django cost?",
+    "response": "Django is free. Django Pro support is $150/month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented support pricing"
+  },
+  {
+    "query": "How much does the React Native license cost?",
+    "response": "React Native is free under the MIT license, available at no cost.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Pricing query, unverifiable from DB"
+  },
+  {
+    "query": "What is the cost of using GitHub Actions for private repos?",
+    "response": "GitHub Actions provides 2000 free minutes; additional minutes cost $0.008 each.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Specific pricing not in DB"
+  },
+  {
+    "query": "How much does AWS RDS cost per month?",
+    "response": "AWS RDS db.t3.micro costs about $12.41 per month.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Invented specific price"
+  },
+  {
+    "query": "What is the cost of Node.js?",
+    "response": "Node.js is free and open-source under the MIT license.",
+    "expected_valid": false,
+    "category": "pricing_queries",
+    "notes": "Pricing query with no fact match"
+  },
+  {
+    "query": "What version introduced Python walrus operator?",
+    "response": "The walrus operator (:=) was introduced in Python 3.8.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version was Python match statement introduced in?",
+    "response": "Python match statement was introduced in version 3.10.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python asyncio?",
+    "response": "asyncio was introduced in Python 3.4.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python dataclasses?",
+    "response": "Python dataclasses were introduced in version 3.7.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python type hints?",
+    "response": "Type hints were introduced in Python 3.5 via PEP 484.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version was Python pathlib introduced?",
+    "response": "The pathlib module was introduced in Python 3.4.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python f-strings?",
+    "response": "F-strings were introduced in Python 3.6.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced React hooks?",
+    "response": "React Hooks were introduced in React 16.8.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced React concurrent mode as default?",
+    "response": "React 18 made concurrent features the default rendering model.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version did JavaScript async/await get introduced?",
+    "response": "async/await was introduced in ES2017 (ES8).",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct ES version"
+  },
+  {
+    "query": "What version introduced TypeScript satisfies operator?",
+    "response": "The satisfies operator was introduced in TypeScript 4.9.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What year was TLS 1.3 released?",
+    "response": "TLS 1.3 was standardized and released in 2018.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct year"
+  },
+  {
+    "query": "What version did Python introduce tomllib?",
+    "response": "The tomllib module was added to Python in version 3.11.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python dict insertion order guarantee?",
+    "response": "Python 3.7 officially guaranteed that dictionaries preserve insertion order.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python new union syntax for type hints?",
+    "response": "The new union syntax (X | Y) for type hints was introduced in Python 3.10.",
+    "expected_valid": true,
+    "category": "date_version_queries",
+    "notes": "Correct version"
+  },
+  {
+    "query": "What version introduced Python walrus operator?",
+    "response": "The := (walrus) operator was added in Python 3.10.",
+    "expected_valid": false,
+    "category": "date_version_queries",
+    "notes": "Wrong version: fact says 3.8"
+  },
+  {
+    "query": "What version introduced React hooks?",
+    "response": "Hooks became available starting with React 17.0.",
+    "expected_valid": false,
+    "category": "date_version_queries",
+    "notes": "Wrong version: fact says 16.8"
+  },
+  {
+    "query": "What year was TLS 1.3 released?",
+    "response": "TLS 1.3 was finalized in 2016.",
+    "expected_valid": false,
+    "category": "date_version_queries",
+    "notes": "Wrong year: fact says 2018"
+  },
+  {
+    "query": "What version introduced Python asyncio?",
+    "response": "asyncio was added to Python in version 3.6.",
+    "expected_valid": false,
+    "category": "date_version_queries",
+    "notes": "Wrong version: fact says 3.4"
+  },
+  {
+    "query": "What version introduced Python dataclasses?",
+    "response": "Python dataclasses module was added in Python 3.8.",
+    "expected_valid": false,
+    "category": "date_version_queries",
+    "notes": "Wrong version: fact says 3.7"
+  },
+  {
+    "query": "What is Docker?",
+    "response": "Docker is a containerization platform that packages applications and their dependencies into isolated containers for consistent deployment across environments.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is REST API?",
+    "response": "REST (Representational State Transfer) is an architectural style for distributed hypermedia systems using stateless HTTP requests.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is microservices architecture?",
+    "response": "Microservices is an architectural pattern where an application is built as a collection of small, independently deployable services.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a binary search tree?",
+    "response": "A binary search tree is a data structure where each node has at most two children, left smaller and right larger than the parent.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is dependency injection?",
+    "response": "Dependency injection is a design pattern where an object receives its dependencies from external sources rather than creating them itself.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a closure in programming?",
+    "response": "A closure is a function that retains access to its enclosing scope even after the outer function has finished executing.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a deadlock?",
+    "response": "A deadlock occurs when two or more processes are waiting for each other to release resources, creating a circular dependency.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is eventual consistency?",
+    "response": "Eventual consistency is a consistency model where distributed replicas will eventually converge to the same value if no new updates are made.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is the CAP theorem?",
+    "response": "The CAP theorem states a distributed system can only guarantee two of: Consistency, Availability, and Partition tolerance.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is memoization?",
+    "response": "Memoization is an optimization technique that stores the results of expensive function calls and returns cached results for same inputs.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a race condition?",
+    "response": "A race condition is a bug that occurs when behavior depends on the sequence or timing of uncontrollable events like thread execution order.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is garbage collection?",
+    "response": "Garbage collection is automatic memory management where the runtime tracks and frees memory that is no longer referenced.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is idempotency in APIs?",
+    "response": "An idempotent operation produces the same result regardless of how many times it is applied. GET, PUT, and DELETE are idempotent.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a webhook?",
+    "response": "A webhook is an HTTP callback that allows one system to notify another system when a specific event occurs in real-time.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is technical debt?",
+    "response": "Technical debt refers to the implied cost of rework caused by choosing an easy solution now instead of a better approach.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a load balancer?",
+    "response": "A load balancer distributes incoming network traffic across multiple servers to improve reliability and performance.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is an ORM?",
+    "response": "An ORM (Object-Relational Mapper) lets you interact with a database using programming language objects instead of writing SQL.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "Define Big O notation",
+    "response": "Big O notation describes the upper bound of an algorithm time or space complexity as input size grows.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What are design patterns?",
+    "response": "Design patterns are reusable solutions to commonly occurring software design problems, categorized into creational, structural, and behavioral.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is continuous integration?",
+    "response": "Continuous integration is a practice where developers frequently merge code changes into a shared repository, triggering automated builds and tests.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is an event-driven architecture?",
+    "response": "Event-driven architecture is a design pattern where components communicate by producing and consuming events asynchronously.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is sharding in databases?",
+    "response": "Sharding is horizontal scaling that partitions data across multiple database instances, each holding a subset of the total data.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is a CDN?",
+    "response": "A CDN (Content Delivery Network) is a distributed network of servers that delivers web content from geographically closer locations.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What is blue-green deployment?",
+    "response": "Blue-green deployment maintains two identical production environments, switching traffic between them for zero-downtime releases.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "What are reactive systems?",
+    "response": "Reactive systems are responsive, resilient, elastic, and message-driven applications designed to handle variable loads and failures gracefully.",
+    "expected_valid": true,
+    "category": "definitional_queries",
+    "notes": "Definitional query with no matching fact - should pass through"
+  },
+  {
+    "query": "In theory, how many built-in functions could Python have?",
+    "response": "In theory, Python could have hundreds of built-in functions if common operations were elevated to built-in status.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "If Python had a different version numbering scheme, what might 3.13 be called?",
+    "response": "If Python used a different scheme, version 3.13 might be called Python 4 or Python 2026.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Theoretically, what port could Redis use if reconfigured?",
+    "response": "Theoretically, Redis could be configured to listen on any port from 1 to 65535.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Hypothetically, what would happen if JavaScript NaN equaled itself?",
+    "response": "Hypothetically, if NaN === NaN were true, certain equality checks and array indexOf calls would behave differently.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Suppose Docker used a different default network driver. What might it be?",
+    "response": "Suppose Docker used an overlay driver by default - containers in different hosts could communicate without additional config.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "In principle, could AWS Lambda run indefinitely?",
+    "response": "In principle, AWS Lambda could support longer timeouts, but current constraints limit execution to 900 seconds.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Maybe Docker could use a different default stop signal?",
+    "response": "Maybe Docker could use SIGINT instead of SIGTERM as the default stop signal - many processes handle SIGINT gracefully.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Perhaps React Hooks could have been introduced earlier?",
+    "response": "Perhaps React Hooks could have shipped in version 16.0 if the API had been finalized earlier.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Assuming PostgreSQL used a different default port, what might it be?",
+    "response": "Assuming PostgreSQL used port 3306 (like MySQL), cross-database tooling would need reconfiguration.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Let's say Python increased the default recursion limit to 5000. What would change?",
+    "response": "If Python's recursion limit were 5000, deeper recursive algorithms could run without hitting RecursionError.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Could TypeScript eventually replace JavaScript entirely?",
+    "response": "TypeScript could theoretically replace JavaScript if browsers gained native TypeScript compilation support.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Might bcrypt increase its recommended rounds in the future?",
+    "response": "As CPUs get faster, bcrypt might increase the recommended cost factor beyond 12 to maintain security margins.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Say someone needed to run TLS on a non-standard port - what would they use?",
+    "response": "Say you ran TLS on port 8443 or 4443 - both are common alternatives to 443 for development or load balancers.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "For example, if Docker default registry changed, which would be best?",
+    "response": "For example, if Docker's default registry switched to GHCR (ghcr.io), it could tighten integration with GitHub Actions.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "If Python were compiled instead of interpreted, would the GIL still be needed?",
+    "response": "If Python were fully AOT compiled, the GIL might be less necessary since thread safety could be handled at the hardware level.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Suppose the HTTP status code 404 meant something different - what could it mean?",
+    "response": "Suppose 404 meant 'temporarily unavailable' instead of 'not found' - retry logic would need to distinguish it from 503.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "E.g., if MongoDB used port 5432, what would happen?",
+    "response": "E.g., if MongoDB defaulted to port 5432 (PostgreSQL's port), you'd see constant port conflicts in full-stack setups.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "In a perfect world, would SQL NULL comparisons work with = ?",
+    "response": "In a perfect world, NULL = NULL might return true instead of NULL, making queries more intuitive for developers.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Under the assumption that GitHub Actions doubled its free minutes, how would CI costs change?",
+    "response": "Under the assumption of doubled free minutes, small teams could eliminate CI costs entirely for moderate workflows.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "I.e., what if Python's GIL was removed entirely in 3.12 instead of 3.13?",
+    "response": "I.e., if the free-threaded build had shipped in 3.12, multithreaded Python code could have been tested one cycle earlier.",
+    "expected_valid": true,
+    "category": "speculative_hedged",
+    "notes": "Speculative/hedged query - safe qualifier present, should pass through"
+  },
+  {
+    "query": "Write a Python function to reverse a string",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a JavaScript function to debounce a callback",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Implement a binary search algorithm in Python",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a SQL query to find duplicate emails",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a Docker healthcheck example",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a React hook for fetching data",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Implement a class for a stack data structure",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a script using the fetch API to POST JSON data",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "How do I write a FastAPI endpoint with dependency injection?",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a TypeScript interface for a User object",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "How do I write a GitHub Actions workflow for CI?",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write an example Kubernetes deployment manifest",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "How can I implement a simple LRU cache in Python?",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a method to flatten a nested list",
+    "response": "    def flatten(lst):\n        result = []\n        for item in lst:\n            if isinstance(item, list):\n                result.extend(flatten(item))\n            else:\n                result.append(item)\n        return result",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "Write a simple function example using Python dataclasses module",
+    "response": "",
+    "expected_valid": true,
+    "category": "code_output",
+    "notes": "Code snippet response - should pass (not factual)"
+  },
+  {
+    "query": "",
+    "response": "I can help you with your question.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Empty query - no factual pattern - should pass through"
+  },
+  {
+    "query": "What is the default Redis port?",
+    "response": "",
+    "expected_valid": false,
+    "category": "edge_cases",
+    "notes": "Empty response to factual query - should fail specificity check"
+  },
+  {
+    "query": "What is the default Redis port?",
+    "response": "Redis uses port 6379. But actually, Redis does not use port 6379. It always uses port 6379 but it is never 6379.",
+    "expected_valid": false,
+    "category": "edge_cases",
+    "notes": "Internal contradiction in response"
+  },
+  {
+    "query": "What is the AWS Lambda max execution timeout?",
+    "response": "AWS Lambda has a maximum execution timeout of 900 minutes (15 hours).",
+    "expected_valid": false,
+    "category": "edge_cases",
+    "notes": "Unit mismatch: fact says seconds, response says minutes"
+  },
+  {
+    "query": "What is the Python PEP 8 max line length recommendation?",
+    "response": "PEP 8 recommends keeping lines under 79 meters in length for readability.",
+    "expected_valid": false,
+    "category": "edge_cases",
+    "notes": "Correct number but absurd unit (meters instead of characters)"
+  },
+  {
+    "query": "What is the Python max recursion depth?",
+    "response": "Python's max recursion depth is about 1000, give or take. I'm not sure of the exact value.",
+    "expected_valid": false,
+    "category": "edge_cases",
+    "notes": "Uncertainty language in factual response"
+  },
+  {
+    "query": "What is the HTTPS port?",
+    "response": "HTTPS uses port 443. This is well-established per RFC 2818 and is the standard port assigned by IANA for HTTPS traffic. All major browsers default to port 443 for HTTPS connections. Infrastructure teams configure firewalls to allow 443 for web traffic.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Long response with correct answer - should still validate"
+  },
+  {
+    "query": "What is the HTTP status 200 meaning?",
+    "response": "200",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Extremely short but numeric response - has specific value"
+  },
+  {
+    "query": "What is the Python exception base class?",
+    "response": "The base class is BaseException. Exception is also a base class, but BaseException is at the very top.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Correct with additional clarification"
+  },
+  {
+    "query": "What is the default Docker network driver?",
+    "response": "I think the default Docker network driver is bridge, maybe.",
+    "expected_valid": false,
+    "category": "edge_cases",
+    "notes": "Correct answer but wrapped in uncertainty language (I think, maybe)"
+  },
+  {
+    "query": "What is the JavaScript NaN === NaN?",
+    "response": "NaN === NaN is false. NaN is not equal to itself.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Boolean fact check with correct value"
+  },
+  {
+    "query": "What is the Python walrus operator symbol?",
+    "response": "The walrus operator is written as := and is sometimes called the assignment expression operator.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Correct symbol with additional context"
+  },
+  {
+    "query": "What is the bcrypt hash rounds default recommendation?",
+    "response": "The recommended bcrypt cost factor is approximately 12, balancing security and performance on modern hardware.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Correct with qualifying language (approximately) - should still pass"
+  },
+  {
+    "query": "What is the Python GIL removed in version?",
+    "response": "The GIL was removed in Python 3.13 as an experimental free-threaded build under PEP 703.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Long fact value match"
+  },
+  {
+    "query": "What is the AWS SQS message retention default?",
+    "response": "AWS SQS retains messages for 4 days by default, with a maximum of 14 days.",
+    "expected_valid": true,
+    "category": "edge_cases",
+    "notes": "Fact with multiple numeric values"
+  }
+]
