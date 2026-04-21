@@ -448,18 +448,46 @@ Designed for:
 
 ---
 
-## 💼 Commercial Support & Fact Packs
+## 💼 Coder Pack — Production-Ready in Minutes
 
-CertainLogic offers **verified fact packs** for specific industries:
+The free tier includes **100 verified facts** and **10 sample queries** — enough to prove the system works and see exact token savings.
 
-| Pack | Price | Contents |
-|------|-------|----------|
-| **Coder Pack** | $39 | 158 coding facts (Python, JavaScript, APIs, frameworks) |
-| **Industrial Pack** | $199 | 500+ industrial automation facts (PLC, L5X, IEC, ISO) |
-| **Healthcare Pack** | $199 | 300+ medical coding, HIPAA, FDA regulation facts |
-| **Finance Pack** | $199 | 400+ SOX, PCI, GAAP, SEC regulation facts |
+Want to skip weeks of DIY cache warming and fact verification?
 
-We also provide **cache‑warming services** (pre‑warmed facts from your internal documents) and **compliance consulting** for regulated deployments.
+| | Free | Coder Pack ($69) | + Updates (+$9.99/mo) |
+|---|---|---|---|
+| Verified coding facts | 100 | **303+** | 303+ (growing) |
+| Pre-warmed cache | 10 sample queries | **Full** (published hit rate) | Full + monthly refresh |
+| Time to production | Days/weeks (DIY) | **Immediate** | Immediate + improving |
+| Cache warming cost | You pay (LLM calls + time) | **$0** (we did it) | $0 (we keep doing it) |
+| Updates | None | Snapshot | **Monthly** |
+
+**What's in the pack:**
+- 303+ verified facts across Python, JS/TS, Docker, Git, SQL, HTTP, Cloud, Security, DevOps, React, FastAPI
+- Pre-warmed semantic cache from thousands of verified queries
+- Drop-in `cache.db` replacement — zero cold start
+- Every fact sourced and dated
+
+> 💡 **$69 is less than most developers spend on a single day of LLM API calls during cache warming.**
+
+<details>
+<summary><b>🧪 Try the free sample queries first</b></summary>
+
+Run the 10 included sample queries against `/reduce` and see exact savings:
+
+```bash
+# Example: query that hits the facts cache (0 tokens, $0.00)
+curl -X POST http://localhost:8000/reduce \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What is the current stable version of Python?", "semantic": true}'
+```
+
+See [`sample_queries.json`](sample_queries.json) for all 10 queries with expected results and cost comparisons.
+</details>
+
+**Coming soon:** Industry packs for Healthcare (HIPAA/FDA), Finance (SOX/PCI), and Industrial Automation (IEC/ISO).
+
+We also provide **enterprise cache‑warming services** — we ingest your internal docs and deliver a production‑ready verified cache ($999–$5,000+/project).
 
 **Contact:** [sales@certainlogic.ai](mailto:sales@certainlogic.ai) | [@CertainLogicAI](https://x.com/CertainLogicAI)
 

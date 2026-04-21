@@ -1,0 +1,170 @@
+{
+  "_meta": {
+    "name": "CertainLogic Verifier — Sample Queries",
+    "description": "10 sample queries to verify cache hit savings. Run these against the free tier to see token reduction in action.",
+    "version": "1.0.0",
+    "created": "2026-04-21",
+    "instructions": "POST each query to /reduce with semantic=true. Compare 'tokens_saved' and 'cache_hit' fields in the response."
+  },
+  "queries": [
+    {
+      "id": 1,
+      "category": "python",
+      "query": "What is the default branch name in modern Git?",
+      "expected_fact": "main (changed from master; configurable via init.defaultBranch)",
+      "without_cache": {
+        "estimated_tokens": 350,
+        "estimated_cost_usd": 0.005
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 2,
+      "category": "docker",
+      "query": "What is the difference between EXPOSE and publish in Docker?",
+      "expected_fact": "EXPOSE documents a port; -p/--publish actually maps it to the host",
+      "without_cache": {
+        "estimated_tokens": 500,
+        "estimated_cost_usd": 0.008
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 3,
+      "category": "http",
+      "query": "What does HTTP status code 429 mean?",
+      "expected_fact": "too many requests — rate limiting",
+      "without_cache": {
+        "estimated_tokens": 250,
+        "estimated_cost_usd": 0.004
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 4,
+      "category": "sql",
+      "query": "How do you correctly check for NULL in SQL?",
+      "expected_fact": "IS NULL or IS NOT NULL (not = NULL or != NULL)",
+      "without_cache": {
+        "estimated_tokens": 400,
+        "estimated_cost_usd": 0.006
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 5,
+      "category": "javascript",
+      "query": "What does typeof null return in JavaScript?",
+      "expected_fact": "object (historical bug in JS specification)",
+      "without_cache": {
+        "estimated_tokens": 300,
+        "estimated_cost_usd": 0.005
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 6,
+      "category": "python",
+      "query": "What is the current stable version of Python?",
+      "expected_fact": "3.13",
+      "without_cache": {
+        "estimated_tokens": 200,
+        "estimated_cost_usd": 0.003
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 7,
+      "category": "aws",
+      "query": "What is the maximum execution timeout for AWS Lambda?",
+      "expected_fact": "900 seconds (15 minutes)",
+      "without_cache": {
+        "estimated_tokens": 280,
+        "estimated_cost_usd": 0.004
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 8,
+      "category": "react",
+      "query": "What version of React introduced hooks?",
+      "expected_fact": "16.8",
+      "without_cache": {
+        "estimated_tokens": 250,
+        "estimated_cost_usd": 0.004
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 9,
+      "category": "fastapi",
+      "query": "What is FastAPI based on?",
+      "expected_fact": "Starlette (ASGI framework) and Pydantic (data validation)",
+      "without_cache": {
+        "estimated_tokens": 350,
+        "estimated_cost_usd": 0.005
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    },
+    {
+      "id": 10,
+      "category": "git",
+      "query": "What is the Git staging area also called?",
+      "expected_fact": "index",
+      "without_cache": {
+        "estimated_tokens": 200,
+        "estimated_cost_usd": 0.003
+      },
+      "with_cache": {
+        "tokens": 0,
+        "cost_usd": 0.0,
+        "source": "deterministic fact lookup"
+      }
+    }
+  ],
+  "totals": {
+    "queries": 10,
+    "without_cache_tokens": 3080,
+    "without_cache_cost_usd": 0.047,
+    "with_cache_tokens": 0,
+    "with_cache_cost_usd": 0.0,
+    "savings_pct": 100,
+    "note": "These 10 queries hit deterministic facts directly — 100% token savings. Real-world mix of cached + uncached queries averages 85-98% savings depending on workload."
+  }
+}
