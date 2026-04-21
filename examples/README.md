@@ -4,6 +4,7 @@
 |--------|-------------|
 | `basic_validation.py` | Validate AI responses locally using `HallucinationDetector` — no server needed |
 | `api_client.py` | Interact with the running FastAPI service endpoints |
+| `langchain_integration.py` | LangChain callback handler + LCEL Runnable integration |
 
 ## Quick Start
 

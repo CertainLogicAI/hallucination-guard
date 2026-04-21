@@ -1,0 +1,32 @@
+{
+  "name": "Coder Facts Pack v1.0",
+  "version": "1.0.0",
+  "fact_count": 303,
+  "categories": {
+    "Python stdlib & language": 47,
+    "JavaScript/TypeScript": 30,
+    "React/Node.js": 29,
+    "Docker": 29,
+    "Git": 25,
+    "SQL/Databases": 26,
+    "FastAPI/Flask/Django": 26,
+    "REST/HTTP": 27,
+    "Cloud basics (AWS/GCP/Azure)": 20,
+    "Security/Auth": 20,
+    "DevOps/CI": 20,
+    "Framework gotchas & deprecations": 20
+  },
+  "schema": {
+    "required_fields": ["type", "value", "source", "verified_date"],
+    "type_values": ["string", "numeric"]
+  },
+  "quality_notes": [
+    "All facts are objectively verifiable",
+    "All sources cite official documentation or well-known references",
+    "No geography, history, or general knowledge facts",
+    "Numeric facts include units where applicable",
+    "String facts lowercased for matching"
+  ],
+  "created": "2026-04-21",
+  "author": "CertainLogic"
+}

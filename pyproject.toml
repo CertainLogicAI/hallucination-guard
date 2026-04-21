@@ -20,7 +20,8 @@ dependencies = [
 
 [project.optional-dependencies]
 semantic_cache = ["sentence-transformers>=2.2.0"]
-dev = ["black", "ruff", "pytest", "coverage", "isort", "pre-commit"]
+langchain = ["langchain-core>=0.2.0"]
+dev = ["black", "ruff", "pytest", "pytest-cov", "coverage", "isort", "pre-commit"]
 
 [tool.setuptools.package-data]
 hallucination_guard = ["facts_db.json"]

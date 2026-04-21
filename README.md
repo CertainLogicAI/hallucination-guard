@@ -344,18 +344,50 @@ The facts database is a versioned JSON file:
 
 ## 🔌 Integration Examples
 
-### LangChain / LlamaIndex
+### LangChain (built-in)
+
+```bash
+pip install hallucination-guard langchain-core
+```
+
+**Pattern 1 — Callback handler** (drop-in, validates every LLM response):
+
+```python
+from langchain_openai import ChatOpenAI
+from hallucination_guard.integrations.langchain import HallucinationGuardCallback
+
+callback = HallucinationGuardCallback(
+    facts_db_path="./company_facts.json",
+    raise_on_hallucination=True,  # block hallucinated responses
+)
+
+llm = ChatOpenAI(callbacks=[callback])
+llm.invoke("What is our enterprise pricing?")  # validated automatically
+```
+
+**Pattern 2 — LCEL Runnable** (compose into pipelines):
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
+from hallucination_guard.integrations.langchain import HallucinationGuardChain
+
+guard = HallucinationGuardChain(facts_db_path="./facts.json")
+
+chain = ChatOpenAI() | StrOutputParser() | guard.as_runnable()
+result = chain.invoke("What is 2+2?")  # hallucinations blocked
+```
+
+See [`examples/langchain_integration.py`](examples/langchain_integration.py) for a complete working demo.
+
+### Direct Python
 
 ```python
 from hallucination_guard import HallucinationDetector
 
 detector = HallucinationDetector(facts_db_path="./company_facts.json")
-
-def validate_chain_output(query: str, response: str) -> bool:
-    result = detector.validate(query, response)
-    if not result["valid"]:
-        logger.warning(f"Hallucination detected: {result['flags']}")
-    return result["valid"]
+result = detector.validate("What is 2+2?", "4")
+assert result["valid"] is True
 ```
 
 ### FastAPI Middleware
