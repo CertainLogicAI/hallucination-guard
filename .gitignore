@@ -41,6 +41,9 @@ coverage.xml
 cache.db
 *.log
 *.sqlite3
+backup/
+src.backup/
+package_backup/
 
 # Sensitive data
 secrets/
@@ -51,8 +54,10 @@ secrets/
 dist/
 build/
 *.egg-info/
+*.egg
 *.tar.gz
 *.whl
+SDIST/
 
 # macOS
 .DS_Store
