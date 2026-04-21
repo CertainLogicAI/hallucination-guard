@@ -82,6 +82,11 @@ jobs:
       - name: Smoke test container
         run: |
           docker run -d --name hg-test -p 8000:8000 hallucination-guard:test
-          sleep 5
-          curl -sf http://localhost:8000/health | grep -q '"status":"ok"'
+          sleep 10
+          docker logs hg-test
+          curl -sf http://localhost:8000/health | grep -q '"status":"ok"' || {
+            echo "Health check failed. Container logs:"
+            docker logs hg-test
+            exit 1
+          }
           docker stop hg-test
