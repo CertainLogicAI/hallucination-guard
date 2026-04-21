@@ -22,6 +22,9 @@ dependencies = [
 semantic_cache = ["sentence-transformers>=2.2.0"]
 dev = ["black", "ruff", "pytest", "coverage", "isort", "pre-commit"]
 
+[tool.setuptools.package-data]
+hallucination_guard = ["facts_db.json"]
+
 [project.scripts]
 hallucination-guard = "hallucination_guard.__main__:main"
 

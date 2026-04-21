@@ -29,13 +29,13 @@ def test_validate_endpoint():
 
 
 def test_validate_onunverifiable():
-    """Test /validate with query that has no fact in DB."""
-    payload = {"query": "What is 9+10?", "response": "19"}
+    """Test /validate with a strict factual query that has no fact in DB."""
+    payload = {"query": "How much does GPT-5 cost?", "response": "$200/month"}
     response = client.post("/validate", json=payload)
     assert response.status_code == 200
     data = response.json()
-    # Expect valid=False (confidence below threshold)
-    assert not data.get("valid")
+    # Strict factual query with no matching fact → flagged
+    assert data.get("valid") != True  # noqa: E712
 
 
 def test_reduce_endpoint():

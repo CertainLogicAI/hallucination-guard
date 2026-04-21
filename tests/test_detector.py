@@ -53,10 +53,16 @@ class TestHallucinationDetector:
         # We can also check the flags contain factual mismatch
 
     def test_validate_unverifiable(self, facts_db_path):
-        """Query not in DB yields low confidence (valid=False)."""
+        """Strict factual query not in DB yields flagged/false."""
         detector = HallucinationDetector(facts_db_path=facts_db_path)
-        result = detector.validate("What is 9+10?", "19")  # not in facts
-        assert not result["valid"]  # confidence below threshold
+        result = detector.validate("How much does item X cost?", "$50")  # not in facts
+        assert result["valid"] != True  # noqa: E712  # flagged or False
+
+    def test_validate_definitional_passthrough(self, facts_db_path):
+        """Definitional queries with no matching fact pass through."""
+        detector = HallucinationDetector(facts_db_path=facts_db_path)
+        result = detector.validate("What is Docker?", "A containerization platform.")
+        assert result["valid"]  # definitional → pass through
 
     def test_validate_internal_contradiction(self, facts_db_path):
         """Test internal consistency check (placeholder)."""

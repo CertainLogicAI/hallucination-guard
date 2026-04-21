@@ -49,23 +49,33 @@ class HallucinationDetector:
     }
 
     # Signals that a query is asking for a factual/specific answer
-    _FACTUAL_QUERY_PATTERNS = [
+    # Definitional queries — safe to pass through when no fact matches
+    _DEFINITIONAL_QUERY_PATTERNS = [
         r"\bwhat is\b",
+        r"\bwhat are\b",
+        r"\bwhat was\b",
+        r"\bdefine\b",
+        r"\bwhat's the\b",
+        r"\bwho is\b",
+    ]
+
+    # Strict factual queries — SHOULD flag when no fact matches
+    _STRICT_FACTUAL_PATTERNS = [
         r"\bhow many\b",
         r"\bhow much\b",
         r"\bhow much does\b",
         r"\bhow much is\b",
         r"\bwhen did\b",
-        r"\bwho is\b",
         r"\bwhat year\b",
-        r"\bwhat's the\b",
-        r"\bwhat are\b",
-        r"\bdefine\b",
-        r"\bwhat was\b",
         r"\bwhat is the price of\b",
         r"\bwhat's the cost of\b",
         r"\bwhat is the cost of\b",
+        r"\bhow old\b",
+        r"\bwhat date\b",
     ]
+
+    # Combined for backward compat
+    _FACTUAL_QUERY_PATTERNS = _DEFINITIONAL_QUERY_PATTERNS + _STRICT_FACTUAL_PATTERNS
 
     # Uncertainty language to flag (only in factual responses)
     _UNCERTAINTY_PATTERNS = [
@@ -266,12 +276,26 @@ class HallucinationDetector:
     # ------------------------------------------------------------------
 
     def _is_factual_query(self, query: str) -> bool:
+        """Check if query is any factual pattern (definitional or strict)."""
         q = query.lower()
-        # Skip if query contains safe qualifiers (speculative/theoretical)
         for qual in self._SAFE_QUALIFIERS:
             if re.search(qual, q, re.IGNORECASE):
                 return False
         return any(re.search(p, q, re.IGNORECASE) for p in self._FACTUAL_QUERY_PATTERNS)
+
+    def _is_strict_factual_query(self, query: str) -> bool:
+        """Check if query asks for specific numbers, prices, dates, or quantities.
+
+        These are high-risk: if no fact matches, the response should be flagged.
+        Definitional queries ('what is X') are NOT strict — they pass through.
+        """
+        q = query.lower()
+        for qual in self._SAFE_QUALIFIERS:
+            if re.search(qual, q, re.IGNORECASE):
+                return False
+        return any(
+            re.search(p, q, re.IGNORECASE) for p in self._STRICT_FACTUAL_PATTERNS
+        )
 
     def _match_facts(self, query: str) -> list[str]:
         """Return fact keys with sufficient word overlap with query (>= 50% of key words must match)."""
@@ -305,15 +329,17 @@ class HallucinationDetector:
     def _check_factual_consistency(self, query: str, response: str) -> dict:
         matched_keys = self._match_facts(query)
         if not matched_keys:
-            if self._is_factual_query(query):
+            if self._is_strict_factual_query(query):
+                # Pricing, dates, quantities — flag when no fact matches
                 return {
                     "passed": False,
-                    "message": "No matching fact for factual query — unverifiable",
+                    "message": "No matching fact for specific factual query — unverifiable",
                     "score": 0.5,
                     "delta": -0.5,
                     "matched_key": None,
                 }
             else:
+                # Definitional or unknown queries — safe to pass through
                 return {
                     "passed": True,
                     "message": "No matching fact — unknown query",
