@@ -8,6 +8,8 @@
 [![Docker Ready](https://img.shields.io/badge/Docker-Ready-blue.svg)](Dockerfile)
 [![Kubernetes](https://img.shields.io/badge/K8s-Helm-green.svg)](deploy/helm)
 [![CI](https://github.com/CertainLogicAI/hallucination-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/CertainLogicAI/hallucination-guard/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/hallucination-guard?color=blue)](https://pypi.org/project/hallucination-guard/)
+[![Docker](https://img.shields.io/badge/GHCR-available-blue?logo=docker)](https://ghcr.io/certainlogicai/hallucination-guard)
 [![Self-Hosted](https://img.shields.io/badge/Self--Hosted-✓-success)](https://github.com/CertainLogicAI/hallucination-guard)
 [![Open Source](https://img.shields.io/badge/Open--Source-✓-brightgreen)](https://github.com/CertainLogicAI/hallucination-guard)
 
