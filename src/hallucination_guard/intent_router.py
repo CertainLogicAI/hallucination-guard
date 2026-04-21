@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-CertainLogic Verifier - Intent Router
-Thin orchestration layer: reduce → classify → return routing decision.
-MIT License
+Intent Router — query classification and routing.
+
+Orchestrates token reduction and rule-based intent classification
+to route queries to the appropriate handler (cache, LLM, escalation).
+No additional LLM calls required.
 """
 
 from .intent_classifier import IntentResult, classify

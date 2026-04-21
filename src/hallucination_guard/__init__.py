@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 """
-Hallucination Guard package.
-Deterministic verification for AI-generated content.
+Hallucination Guard — deterministic verification for AI-generated content.
+
+CertainLogic Verifier catches hallucinations, reduces token costs, and provides
+audit-ready logging for regulated industries. Self-hosted, air-gapped, MIT licensed.
+
+Quick start::
+
+    from hallucination_guard import HallucinationDetector
+
+    detector = HallucinationDetector()
+    result = detector.validate("What is 2+2?", "4")
+    print(result["valid"])  # True
 """
 
 from .deterministic_memory_search import search_memory

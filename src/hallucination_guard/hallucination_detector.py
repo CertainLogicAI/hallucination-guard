@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Enhanced Hallucination Detector – Upgraded implementation
+Hallucination Detector — deterministic fact-checking for AI responses.
+
+Validates AI-generated text against a verified facts database using
+rule-based checks (no additional LLM calls). Provides confidence scores,
+severity ratings, and detailed flags for audit logging.
 """
 
 import json
@@ -16,10 +20,23 @@ CONFIDENCE_THRESHOLD = 0.7
 
 
 class HallucinationDetector:
-    """
-    Detects hallucinations in AI responses.
+    """Deterministic hallucination detector for AI-generated responses.
 
-    validate(query, response) -> dict  (backward compatible)
+    Validates (query, response) pairs against a verified facts database.
+    Returns structured results with confidence scores, flags, and severity
+    ratings suitable for audit logging and compliance workflows.
+
+    Args:
+        facts_db_path: Path to a JSON facts database. Falls back to built-in
+            facts if the file is missing.
+        confidence_threshold: Minimum confidence score (0.0–1.0) to consider
+            a response valid. Default: 0.7.
+
+    Example::
+
+        detector = HallucinationDetector(facts_db_path="my_facts.json")
+        result = detector.validate("What is 2+2?", "4")
+        assert result["valid"] is True
     """
 
     # Hardcoded fallback facts (used if facts_db.json is missing)
@@ -233,8 +250,15 @@ class HallucinationDetector:
             "flags": flags,
         }
 
-    def validate_batch(self, pairs: list) -> list:
-        """Validate multiple (query, response) pairs. Returns list of results."""
+    def validate_batch(self, pairs: list[tuple[str, str]]) -> list[dict]:
+        """Validate multiple (query, response) pairs.
+
+        Args:
+            pairs: List of (query, response) tuples.
+
+        Returns:
+            List of validation result dicts (same schema as ``validate``).
+        """
         return [self.validate(q, r) for q, r in pairs]
 
     # ------------------------------------------------------------------

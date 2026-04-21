@@ -7,7 +7,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker Ready](https://img.shields.io/badge/Docker-Ready-blue.svg)](Dockerfile)
 [![Kubernetes](https://img.shields.io/badge/K8s-Helm-green.svg)](deploy/helm)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/CertainLogicAI/hallucination-guard/actions)
+[![CI](https://github.com/CertainLogicAI/hallucination-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/CertainLogicAI/hallucination-guard/actions/workflows/ci.yml)
 [![Self-Hosted](https://img.shields.io/badge/Self--Hosted-✓-success)](https://github.com/CertainLogicAI/hallucination-guard)
 [![Open Source](https://img.shields.io/badge/Open--Source-✓-brightgreen)](https://github.com/CertainLogicAI/hallucination-guard)
 
@@ -204,14 +204,94 @@ Example Helm chart included in `deploy/helm/` (coming soon).
 
 ## 📖 API Reference
 
-| Endpoint | Purpose | Example |
-|----------|---------|---------|
-| `POST /validate` | Validate query–response pair | `curl … -d '{"query": "…", "response": "…"}'` |
-| `POST /reduce` | Reduce token count (cache/summarize) | `curl … -d '{"query": "…", "semantic": true}'` |
-| `POST /search` | TF‑IDF search over local memory files | `curl … -d '{"query": "PLC safety", "top_k": 5}'` |
-| `POST /route` | Token‑reduce + classify query | `curl … -d '{"query": "…"}'` |
-| `GET /metrics` | Cache hit rate, token savings, stats | `curl http://localhost:8000/metrics` |
-| `DELETE /cache` | Clear token‑reduction cache | `curl -X DELETE http://localhost:8000/cache` |
+### `POST /validate`
+
+Validate an AI-generated response against the facts database.
+
+```bash
+curl -X POST http://localhost:8000/validate \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What is 2+2?", "response": "4"}'
+```
+
+**Request body:**
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `query` | string | ✅ | The original user query (1–2000 chars) |
+| `response` | string | ✅ | The AI-generated response to validate (1–10000 chars) |
+
+**Response:**
+```json
+{
+  "query": "What is 2+2?",
+  "valid": true,
+  "flagged": false,
+  "confidence": 1.0,
+  "severity": "none",
+  "flags": [],
+  "checks": {
+    "factual_consistency": {"passed": true, "message": "...", "score": 1.0},
+    "uncertainty": {"passed": true, "issues": [], "score": 1.0},
+    "internal_consistency": {"passed": true, "issues": [], "score": 1.0},
+    "specificity": {"passed": true, "message": "...", "score": 1.0}
+  }
+}
+```
+
+### `POST /reduce`
+
+Reduce token count via caching and deterministic summarization.
+
+```bash
+curl -X POST http://localhost:8000/reduce \
+  -H "Content-Type: application/json" \
+  -d '{"query": "Explain quantum theory in detail", "semantic": true}'
+```
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `query` | string | — | Query to reduce (1–5000 chars) |
+| `force_deterministic` | bool | `false` | Skip LLM routing, use deterministic fallback |
+| `semantic` | bool | `true` | Attempt semantic cache lookup on exact-hash miss |
+
+### `POST /search`
+
+Search verified facts via TF-IDF over the memory index.
+
+```bash
+curl -X POST http://localhost:8000/search \
+  -H "Content-Type: application/json" \
+  -d '{"query": "Python best practices", "top_k": 5}'
+```
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `query` | string | — | Search query (1–500 chars) |
+| `top_k` | int | `5` | Maximum number of results |
+
+### `POST /route`
+
+Classify a query and route to the appropriate handler.
+
+```bash
+curl -X POST http://localhost:8000/route \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What is the price of GPT-5?"}'
+```
+
+**Response includes:** `brain_handler`, `openclaw_model`, `compressed` query, `token_count`, full `intent` classification.
+
+### `GET /health`
+
+Health check. Returns `{"status": "ok"}` when the service is running.
+
+### `GET /metrics`
+
+Cache hit rates, token savings, cost tracking, and query volumes.
+
+### `DELETE /cache`
+
+Purge the token-reduction cache. Returns `{"cleared": true}`.
 
 ---
 
@@ -227,18 +307,38 @@ The facts database is a versioned JSON file:
       "value": "1991"
     },
     "speed of light": {
-      "type": "numeric", 
+      "type": "numeric",
       "value": "299792458",
       "unit": "m/s"
+    },
+    "capital of france": {
+      "type": "string",
+      "value": "paris"
+    },
+    "product price": {
+      "type": "numeric",
+      "value": "49.99",
+      "unit": "usd",
+      "tolerance": 0.01
     }
   }
 }
 ```
 
+**Fact schema:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | `"numeric"` \| `"string"` | ✅ | How the value is compared |
+| `value` | string | ✅ | The verified ground-truth value |
+| `unit` | string | — | Unit of measure (for display and matching) |
+| `tolerance` | float | — | Acceptable numeric deviation (default: 0.0) |
+
 **Workflow:**
 1. Export internal knowledge (prices, policies, compliance rules) to JSON
-2. Load via `FACTS_DB_PATH` environment variable  
+2. Load via `FACTS_DB_PATH` environment variable or pass to `HallucinationDetector(facts_db_path=...)`
 3. The detector flags any AI response contradicting these facts
+4. See [`examples/`](examples/) for working code samples
 
 ---
 
@@ -247,7 +347,7 @@ The facts database is a versioned JSON file:
 ### LangChain / LlamaIndex
 
 ```python
-from hallucination_detector import HallucinationDetector
+from hallucination_guard import HallucinationDetector
 
 detector = HallucinationDetector(facts_db_path="./company_facts.json")
 
