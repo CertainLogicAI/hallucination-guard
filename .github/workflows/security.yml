@@ -1,0 +1,76 @@
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"  # Weekly Monday 6am UTC
+  workflow_dispatch:
+
+permissions:
+  security-events: write
+  contents: read
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t hallucination-guard:security .
+
+      - name: Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: hallucination-guard:security
+          format: sarif
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+
+      - name: Upload to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy-results.sarif
+
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t hallucination-guard:sbom .
+
+      - name: Generate SBOM
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: hallucination-guard:sbom
+          format: cyclonedx
+          output: sbom.cdx.json
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json
+
+  pip-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: |
+          pip install pip-audit
+          pip install -r requirements.txt
+          pip-audit --format json --output pip-audit.json || true
+          pip-audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pip-audit
+          path: pip-audit.json
