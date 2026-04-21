@@ -15,8 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application
 COPY . .
 
-# Create volume mount points for persistence
-VOLUME ["/app/cache.db", "/app/facts_db.json", "/app/memory"]
+# Create data directory for persistence
+RUN mkdir -p /app/data
+VOLUME ["/app/data"]
 
 # Environment variables
 ENV FACTS_DB_PATH=/app/facts_db.json
