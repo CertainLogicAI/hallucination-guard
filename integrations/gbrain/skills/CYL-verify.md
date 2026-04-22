@@ -87,6 +87,38 @@ Expected: `CYL-verify: ✅ installed, health checks passing`
 
 ### Before writing to compiled truth
 
+**Step 0 — Domain Gate (the filter)**
+
+Every fact passes through a domain classifier before hitting the Brain API. This prevents:
+- Personal facts from silently failing validation
+- Financial/business facts from wasting API calls
+- Subjective opinions from producing confusing `uncertain` results
+
+| Domain | Action | Example |
+|---|---|---|
+| **languages** | ✅ Validate | "Python list is mutable" |
+| **apis** | ✅ Validate | "HTTP 429 means rate limited" |
+| **git** | ✅ Validate | "Git rebase vs merge" |
+| **containers** | ✅ Validate | "Docker compose up" |
+| **databases** | ✅ Validate | "SQL left join returns" |
+| **security** | ✅ Validate | "JWT structure" |
+| **frameworks** | ✅ Validate | "FastAPI auto docs URL" |
+| **personal** | 🚫 Skip | "Sarah's birthday is March 15" |
+| **financial** | 🚫 Skip | "Acme Corp revenue 2026" |
+| **subjective** | 🚫 Skip | "I think React is better" |
+| **current_events** | 🚫 Skip | "Weather in London today" |
+| **unclear** | ❓ Validate (safer) | Ambiguous technical query |
+
+**Skipped facts** bypass the Brain API entirely:
+- No API cost ($0)
+- No confusing `uncertain` result
+- No `[Source: CertainLogic]` attribution
+- Continue through normal brain pipeline unchanged
+
+**Why not an on/off toggle?** If left on by default, irrelevant facts produce terrible UX. If left off by default, users miss the value. A domain gate silently handles this — technical facts get validated, everything else passes through.
+
+**Track your hit rates:** Run `hallucination-guard report` to see in-scope vs out-of-scope breakdown and cache hit rates per domain.
+
 **Step 1 — Extract atomic facts**
 
 Split every compound claim into single assertions:
@@ -189,6 +221,8 @@ Before marking an enrichment as complete, verify:
 
 ## Anti-Patterns
 
+**❌ Do NOT** validate out-of-scope facts. If the domain gate skips a personal fact, let it go. Don't force-validation.
+
 **❌ Do NOT** block brain operations because verification is temporarily unavailable. Degrade gracefully — log a warning and continue.
 
 **❌ Do NOT** use Brain API as a primary research tool. It's a validator, not Google.
@@ -196,6 +230,8 @@ Before marking an enrichment as complete, verify:
 **❌ Do NOT** write uncertain facts to compiled truth "just in case." Timeline only.
 
 **❌ Do NOT** forget to set `BRAIN_API_KEY`. The skill degrades but you'll miss validation.
+
+**❌ Do NOT** ignore the hit rate report. If cache hit rate drops below 50%, your fact pack needs expansion. Run `hallucination-guard report` weekly.
 
 ## Error Handling
 
