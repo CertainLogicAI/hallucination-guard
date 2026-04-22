@@ -1,0 +1,686 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "pack_id": "coder-free",
+    "name": "Coder Pack \u2014 Free Tier",
+    "description": "100 essential verified facts for developers. Covers Python, HTTP, Git, Docker, SQL, JS/TS, Security, and frameworks.",
+    "fact_count": 100,
+    "sample_queries_count": 15,
+    "created": "2026-04-22",
+    "updated": "2026-04-22",
+    "categories": {
+      "python": 25,
+      "http_api": 15,
+      "git": 12,
+      "docker": 8,
+      "sql": 10,
+      "javascript_typescript": 12,
+      "security": 10,
+      "frameworks": 8
+    }
+  },
+  "facts": {
+    "python current stable version": {
+      "type": "string",
+      "value": "3.13",
+      "source": "https://www.python.org/downloads/",
+      "verified_date": "2026-04-21"
+    },
+    "python list is mutable": {
+      "type": "string",
+      "value": "true",
+      "source": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
+      "verified_date": "2026-04-21"
+    },
+    "python tuple is immutable": {
+      "type": "string",
+      "value": "true",
+      "source": "https://docs.python.org/3/library/stdtypes.html#immutable-sequence-types",
+      "verified_date": "2026-04-21"
+    },
+    "python dict preserves insertion order since version": {
+      "type": "string",
+      "value": "3.7",
+      "source": "https://docs.python.org/3/whatsnew/3.7.html",
+      "verified_date": "2026-04-21"
+    },
+    "python walrus operator introduced in version": {
+      "type": "string",
+      "value": "3.8",
+      "source": "https://docs.python.org/3/whatsnew/3.8.html",
+      "verified_date": "2026-04-21"
+    },
+    "python walrus operator symbol": {
+      "type": "string",
+      "value": ":=",
+      "source": "https://docs.python.org/3/whatsnew/3.8.html",
+      "verified_date": "2026-04-21"
+    },
+    "python default mutable argument gotcha": {
+      "type": "string",
+      "value": "default mutable arguments (list, dict) are evaluated once at function definition, not per call",
+      "source": "https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments",
+      "verified_date": "2026-04-21"
+    },
+    "python __init__.py purpose": {
+      "type": "string",
+      "value": "marks a directory as a python package; can be empty",
+      "source": "https://docs.python.org/3/reference/import.html#package-relative-imports",
+      "verified_date": "2026-04-21"
+    },
+    "python f-strings introduced in version": {
+      "type": "string",
+      "value": "3.6",
+      "source": "https://docs.python.org/3/whatsnew/3.6.html",
+      "verified_date": "2026-04-21"
+    },
+    "python match statement introduced in version": {
+      "type": "string",
+      "value": "3.10",
+      "source": "https://docs.python.org/3/whatsnew/3.10.html",
+      "verified_date": "2026-04-21"
+    },
+    "python type hints introduced in version": {
+      "type": "string",
+      "value": "3.5",
+      "source": "https://docs.python.org/3/whatsnew/3.5.html",
+      "verified_date": "2026-04-21"
+    },
+    "python typing union syntax new style version": {
+      "type": "string",
+      "value": "3.10 (use x | y instead of Union[x, y])",
+      "source": "https://docs.python.org/3/whatsnew/3.10.html",
+      "verified_date": "2026-04-21"
+    },
+    "python is operator checks": {
+      "type": "string",
+      "value": "object identity (memory address), not equality",
+      "source": "https://docs.python.org/3/reference/expressions.html#is",
+      "verified_date": "2026-04-21"
+    },
+    "python set is unordered": {
+      "type": "string",
+      "value": "true; sets do not preserve insertion order",
+      "source": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+      "verified_date": "2026-04-21"
+    },
+    "python frozenset is hashable": {
+      "type": "string",
+      "value": "true",
+      "source": "https://docs.python.org/3/library/stdtypes.html#frozenset",
+      "verified_date": "2026-04-21"
+    },
+    "python generator function keyword": {
+      "type": "string",
+      "value": "yield",
+      "source": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
+      "verified_date": "2026-04-21"
+    },
+    "python exception base class": {
+      "type": "string",
+      "value": "BaseException",
+      "source": "https://docs.python.org/3/library/exceptions.html#BaseException",
+      "verified_date": "2026-04-21"
+    },
+    "python none type": {
+      "type": "string",
+      "value": "NoneType",
+      "source": "https://docs.python.org/3/library/constants.html#None",
+      "verified_date": "2026-04-21"
+    },
+    "python string encoding default": {
+      "type": "string",
+      "value": "utf-8",
+      "source": "https://docs.python.org/3/howto/unicode.html",
+      "verified_date": "2026-04-21"
+    },
+    "python range function returns": {
+      "type": "string",
+      "value": "range object (lazy sequence), not a list",
+      "source": "https://docs.python.org/3/library/stdtypes.html#ranges",
+      "verified_date": "2026-04-21"
+    },
+    "python list comprehension vs map performance": {
+      "type": "string",
+      "value": "list comprehensions are generally faster than map() with lambda in cpython",
+      "source": "https://wiki.python.org/moin/PythonSpeed/PerformanceTips",
+      "verified_date": "2026-04-21"
+    },
+    "python deepcopy module": {
+      "type": "string",
+      "value": "copy",
+      "source": "https://docs.python.org/3/library/copy.html",
+      "verified_date": "2026-04-21"
+    },
+    "python dataclasses introduced in version": {
+      "type": "string",
+      "value": "3.7",
+      "source": "https://docs.python.org/3/library/dataclasses.html",
+      "verified_date": "2026-04-21"
+    },
+    "python asyncio introduced in version": {
+      "type": "string",
+      "value": "3.4",
+      "source": "https://docs.python.org/3/whatsnew/3.4.html",
+      "verified_date": "2026-04-21"
+    },
+    "python pathlib introduced in version": {
+      "type": "string",
+      "value": "3.4",
+      "source": "https://docs.python.org/3/library/pathlib.html",
+      "verified_date": "2026-04-21"
+    },
+    "http status 200 meaning": {
+      "type": "string",
+      "value": "ok - request succeeded",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200",
+      "verified_date": "2026-04-21"
+    },
+    "http status 201 meaning": {
+      "type": "string",
+      "value": "created - resource successfully created",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201",
+      "verified_date": "2026-04-21"
+    },
+    "http status 204 meaning": {
+      "type": "string",
+      "value": "no content - success with no response body",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204",
+      "verified_date": "2026-04-21"
+    },
+    "http status 301 meaning": {
+      "type": "string",
+      "value": "moved permanently - resource has new permanent uri",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301",
+      "verified_date": "2026-04-21"
+    },
+    "http status 400 meaning": {
+      "type": "string",
+      "value": "bad request - client sent invalid request",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "verified_date": "2026-04-21"
+    },
+    "http status 401 meaning": {
+      "type": "string",
+      "value": "unauthorized - authentication required",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
+      "verified_date": "2026-04-21"
+    },
+    "http status 403 meaning": {
+      "type": "string",
+      "value": "forbidden - authenticated but not authorized",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403",
+      "verified_date": "2026-04-21"
+    },
+    "http status 404 meaning": {
+      "type": "string",
+      "value": "not found - resource does not exist",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "verified_date": "2026-04-21"
+    },
+    "http status 422 meaning": {
+      "type": "string",
+      "value": "unprocessable entity - request well-formed but semantic errors (used in rest apis)",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422",
+      "verified_date": "2026-04-21"
+    },
+    "http status 429 meaning": {
+      "type": "string",
+      "value": "too many requests - rate limit exceeded",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429",
+      "verified_date": "2026-04-21"
+    },
+    "http status 500 meaning": {
+      "type": "string",
+      "value": "internal server error - server encountered unexpected condition",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+      "verified_date": "2026-04-21"
+    },
+    "http status 502 meaning": {
+      "type": "string",
+      "value": "bad gateway - upstream server returned invalid response",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "verified_date": "2026-04-21"
+    },
+    "http status 503 meaning": {
+      "type": "string",
+      "value": "service unavailable - server temporarily overloaded or down",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503",
+      "verified_date": "2026-04-21"
+    },
+    "http methods safe and idempotent": {
+      "type": "string",
+      "value": "GET and HEAD are safe (no side effects) and idempotent",
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP",
+      "verified_date": "2026-04-21"
+    },
+    "http content-type for json": {
+      "type": "string",
+      "value": "application/json",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type",
+      "verified_date": "2026-04-21"
+    },
+    "git HEAD refers to": {
+      "type": "string",
+      "value": "current branch tip or current commit (if detached HEAD state)",
+      "source": "https://git-scm.com/docs/gitglossary",
+      "verified_date": "2026-04-21"
+    },
+    "git staging area also called": {
+      "type": "string",
+      "value": "index",
+      "source": "https://git-scm.com/about/staging-area",
+      "verified_date": "2026-04-21"
+    },
+    "git default branch name (modern)": {
+      "type": "string",
+      "value": "main (changed from master; configurable via init.defaultBranch)",
+      "source": "https://git-scm.com/docs/git-init",
+      "verified_date": "2026-04-21"
+    },
+    "git detached HEAD state": {
+      "type": "string",
+      "value": "HEAD points directly to a commit sha instead of a branch ref",
+      "source": "https://git-scm.com/docs/git-checkout",
+      "verified_date": "2026-04-21"
+    },
+    "git rebase vs merge": {
+      "type": "string",
+      "value": "merge preserves history with merge commit; rebase replays commits for linear history",
+      "source": "https://git-scm.com/book/en/v2/Git-Branching-Rebasing",
+      "verified_date": "2026-04-21"
+    },
+    "git fetch vs pull": {
+      "type": "string",
+      "value": "fetch downloads remote changes without merging; pull = fetch + merge",
+      "source": "https://git-scm.com/docs/git-pull",
+      "verified_date": "2026-04-21"
+    },
+    "git stash command purpose": {
+      "type": "string",
+      "value": "temporarily shelves uncommitted changes so working directory is clean",
+      "source": "https://git-scm.com/docs/git-stash",
+      "verified_date": "2026-04-21"
+    },
+    "git reflog purpose": {
+      "type": "string",
+      "value": "records updates to branch tips; useful for recovering lost commits",
+      "source": "https://git-scm.com/docs/git-reflog",
+      "verified_date": "2026-04-21"
+    },
+    "git cherry-pick purpose": {
+      "type": "string",
+      "value": "applies a specific commit from one branch onto current branch",
+      "source": "https://git-scm.com/docs/git-cherry-pick",
+      "verified_date": "2026-04-21"
+    },
+    "git --amend flag purpose": {
+      "type": "string",
+      "value": "modifies the most recent commit (message and/or staged changes)",
+      "source": "https://git-scm.com/docs/git-commit",
+      "verified_date": "2026-04-21"
+    },
+    "git force push command": {
+      "type": "string",
+      "value": "git push --force or git push -f (prefer --force-with-lease for safety)",
+      "source": "https://git-scm.com/docs/git-push",
+      "verified_date": "2026-04-21"
+    },
+    "git shallow clone flag": {
+      "type": "string",
+      "value": "--depth=N; clones only the last N commits",
+      "source": "https://git-scm.com/docs/git-clone",
+      "verified_date": "2026-04-21"
+    },
+    "docker default registry": {
+      "type": "string",
+      "value": "docker hub (hub.docker.com)",
+      "source": "https://docs.docker.com/docker-hub/",
+      "verified_date": "2026-04-21"
+    },
+    "docker image layers are": {
+      "type": "string",
+      "value": "read-only; container adds a writable layer on top",
+      "source": "https://docs.docker.com/storage/storagedriver/",
+      "verified_date": "2026-04-21"
+    },
+    "docker layer caching invalidated when": {
+      "type": "string",
+      "value": "a dockerfile instruction or its context changes; all subsequent layers are rebuilt",
+      "source": "https://docs.docker.com/build/cache/",
+      "verified_date": "2026-04-21"
+    },
+    "docker expose vs publish": {
+      "type": "string",
+      "value": "EXPOSE documents a port; -p/--publish actually maps it to the host",
+      "source": "https://docs.docker.com/engine/reference/builder/#expose",
+      "verified_date": "2026-04-21"
+    },
+    "docker exec vs run difference": {
+      "type": "string",
+      "value": "docker run creates a new container; docker exec runs command in existing running container",
+      "source": "https://docs.docker.com/engine/reference/commandline/exec/",
+      "verified_date": "2026-04-21"
+    },
+    "docker entrypoint vs cmd": {
+      "type": "string",
+      "value": "ENTRYPOINT sets the executable; CMD provides default arguments (overridable at runtime)",
+      "source": "https://docs.docker.com/engine/reference/builder/#entrypoint",
+      "verified_date": "2026-04-21"
+    },
+    "docker volumes vs bind mounts": {
+      "type": "string",
+      "value": "volumes are managed by docker and stored in docker area; bind mounts map host directory directly",
+      "source": "https://docs.docker.com/storage/volumes/",
+      "verified_date": "2026-04-21"
+    },
+    "docker restart policy options": {
+      "type": "string",
+      "value": "no, always, on-failure, unless-stopped",
+      "source": "https://docs.docker.com/engine/reference/run/#restart-policies---restart",
+      "verified_date": "2026-04-21"
+    },
+    "sql select distinct removes": {
+      "type": "string",
+      "value": "duplicate rows from result set",
+      "source": "https://www.postgresql.org/docs/current/sql-select.html",
+      "verified_date": "2026-04-21"
+    },
+    "sql null comparison correct operator": {
+      "type": "string",
+      "value": "IS NULL or IS NOT NULL (not = NULL or != NULL)",
+      "source": "https://www.postgresql.org/docs/current/functions-comparison.html",
+      "verified_date": "2026-04-21"
+    },
+    "sql inner join returns": {
+      "type": "string",
+      "value": "rows with matching values in both tables",
+      "source": "https://www.postgresql.org/docs/current/queries-table-expressions.html#QUERIES-JOIN",
+      "verified_date": "2026-04-21"
+    },
+    "sql left join returns": {
+      "type": "string",
+      "value": "all rows from left table plus matched rows from right; nulls for non-matches",
+      "source": "https://www.postgresql.org/docs/current/queries-table-expressions.html#QUERIES-JOIN",
+      "verified_date": "2026-04-21"
+    },
+    "sql group by requirement": {
+      "type": "string",
+      "value": "all non-aggregate columns in SELECT must appear in GROUP BY clause",
+      "source": "https://www.postgresql.org/docs/current/sql-select.html#SQL-GROUPBY",
+      "verified_date": "2026-04-21"
+    },
+    "sql having vs where": {
+      "type": "string",
+      "value": "WHERE filters rows before aggregation; HAVING filters groups after aggregation",
+      "source": "https://www.postgresql.org/docs/current/sql-select.html#SQL-HAVING",
+      "verified_date": "2026-04-21"
+    },
+    "sql between operator is inclusive": {
+      "type": "string",
+      "value": "true; BETWEEN a AND b includes both endpoints",
+      "source": "https://www.postgresql.org/docs/current/functions-comparison.html",
+      "verified_date": "2026-04-21"
+    },
+    "sql acid acronym": {
+      "type": "string",
+      "value": "atomicity, consistency, isolation, durability",
+      "source": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "verified_date": "2026-04-21"
+    },
+    "sql transaction isolation levels": {
+      "type": "string",
+      "value": "read uncommitted, read committed, repeatable read, serializable",
+      "source": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "verified_date": "2026-04-21"
+    },
+    "sql injection prevention": {
+      "type": "string",
+      "value": "use parameterized queries / prepared statements; never interpolate user input into sql strings",
+      "source": "https://owasp.org/www-community/attacks/SQL_Injection",
+      "verified_date": "2026-04-21"
+    },
+    "javascript == vs === difference": {
+      "type": "string",
+      "value": "== performs type coercion; === checks strict equality without coercion",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness",
+      "verified_date": "2026-04-21"
+    },
+    "javascript typeof null returns": {
+      "type": "string",
+      "value": "object (historical bug in js specification)",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof",
+      "verified_date": "2026-04-21"
+    },
+    "javascript nan === nan is": {
+      "type": "string",
+      "value": "false (NaN is not equal to itself)",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+      "verified_date": "2026-04-21"
+    },
+    "javascript var scoping": {
+      "type": "string",
+      "value": "function-scoped (not block-scoped)",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var",
+      "verified_date": "2026-04-21"
+    },
+    "javascript let and const scoping": {
+      "type": "string",
+      "value": "block-scoped",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
+      "verified_date": "2026-04-21"
+    },
+    "javascript hoisting applies to": {
+      "type": "string",
+      "value": "var declarations and function declarations (not let/const)",
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/Hoisting",
+      "verified_date": "2026-04-21"
+    },
+    "javascript event loop is": {
+      "type": "string",
+      "value": "single-threaded; uses call stack, task queue, and microtask queue",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+      "verified_date": "2026-04-21"
+    },
+    "javascript promise states": {
+      "type": "string",
+      "value": "pending, fulfilled, rejected",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "verified_date": "2026-04-21"
+    },
+    "javascript arrow functions do not bind": {
+      "type": "string",
+      "value": "this, arguments, super, or new.target",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+      "verified_date": "2026-04-21"
+    },
+    "javascript async/await introduced in es version": {
+      "type": "string",
+      "value": "es2017 (es8)",
+      "source": "https://tc39.es/ecma262/2017/",
+      "verified_date": "2026-04-21"
+    },
+    "typescript interface vs type alias": {
+      "type": "string",
+      "value": "interfaces can be extended/merged; type aliases can express union/intersection types more flexibly",
+      "source": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces",
+      "verified_date": "2026-04-21"
+    },
+    "typescript any vs unknown": {
+      "type": "string",
+      "value": "unknown requires type check before use; any bypasses all type checks",
+      "source": "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+      "verified_date": "2026-04-21"
+    },
+    "jwt structure": {
+      "type": "string",
+      "value": "three base64url-encoded parts: header.payload.signature",
+      "source": "https://jwt.io/introduction",
+      "verified_date": "2026-04-21"
+    },
+    "jwt exp claim": {
+      "type": "string",
+      "value": "expiration time as unix timestamp; must be validated by recipient",
+      "source": "https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4",
+      "verified_date": "2026-04-21"
+    },
+    "oauth 2.0 grant types": {
+      "type": "string",
+      "value": "authorization code, implicit (deprecated), client credentials, resource owner password (deprecated), device code",
+      "source": "https://oauth.net/2/grant-types/",
+      "verified_date": "2026-04-21"
+    },
+    "oauth pkce stands for": {
+      "type": "string",
+      "value": "proof key for code exchange; prevents authorization code interception attacks",
+      "source": "https://oauth.net/2/pkce/",
+      "verified_date": "2026-04-21"
+    },
+    "csrf stands for": {
+      "type": "string",
+      "value": "cross-site request forgery",
+      "source": "https://owasp.org/www-community/attacks/csrf",
+      "verified_date": "2026-04-21"
+    },
+    "xss stands for": {
+      "type": "string",
+      "value": "cross-site scripting",
+      "source": "https://owasp.org/www-community/attacks/xss/",
+      "verified_date": "2026-04-21"
+    },
+    "owasp top 10 2021 number 1": {
+      "type": "string",
+      "value": "broken access control",
+      "source": "https://owasp.org/Top10/",
+      "verified_date": "2026-04-21"
+    },
+    "bcrypt hash rounds default recommendation": {
+      "type": "numeric",
+      "value": "12 (cost factor; higher = slower = more secure)",
+      "source": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "verified_date": "2026-04-21"
+    },
+    "ssh default port": {
+      "type": "numeric",
+      "value": "22",
+      "source": "https://www.iana.org/assignments/service-names-port-numbers/",
+      "verified_date": "2026-04-21"
+    },
+    "tls 1.3 released year": {
+      "type": "string",
+      "value": "2018",
+      "source": "https://datatracker.ietf.org/doc/html/rfc8446",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi automatic docs url": {
+      "type": "string",
+      "value": "/docs (swagger ui) and /redoc",
+      "source": "https://fastapi.tiangolo.com/tutorial/first-steps/",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi default uvicorn port": {
+      "type": "numeric",
+      "value": "8000",
+      "source": "https://fastapi.tiangolo.com/tutorial/first-steps/",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi dependency injection keyword": {
+      "type": "string",
+      "value": "Depends()",
+      "source": "https://fastapi.tiangolo.com/tutorial/dependencies/",
+      "verified_date": "2026-04-21"
+    },
+    "flask run command default port": {
+      "type": "numeric",
+      "value": "5000",
+      "source": "https://flask.palletsprojects.com/en/3.0.x/quickstart/",
+      "verified_date": "2026-04-21"
+    },
+    "flask application factory pattern": {
+      "type": "string",
+      "value": "create_app() function that instantiates and configures Flask app; enables testing with different configs",
+      "source": "https://flask.palletsprojects.com/en/3.0.x/patterns/appfactories/",
+      "verified_date": "2026-04-21"
+    },
+    "django admin default url": {
+      "type": "string",
+      "value": "/admin/",
+      "source": "https://docs.djangoproject.com/en/5.0/ref/contrib/admin/",
+      "verified_date": "2026-04-21"
+    },
+    "react hooks introduced in version": {
+      "type": "string",
+      "value": "16.8",
+      "source": "https://reactjs.org/blog/2019/02/06/react-v16.8.0.html",
+      "verified_date": "2026-04-21"
+    },
+    "react virtual dom purpose": {
+      "type": "string",
+      "value": "in-memory representation of the real dom; react diffs it to minimize actual dom mutations",
+      "source": "https://reactjs.org/docs/faq-internals.html",
+      "verified_date": "2026-04-21"
+    }
+  },
+  "sample_queries": [
+    {
+      "query": "What Python version is current?",
+      "expected_fact": "python current stable version"
+    },
+    {
+      "query": "Why does my function mutate the default list argument?",
+      "expected_fact": "python default mutable argument gotcha"
+    },
+    {
+      "query": "What's the difference between list and tuple?",
+      "expected_fact": "python list is mutable"
+    },
+    {
+      "query": "What does the walrus operator do?",
+      "expected_fact": "python walrus operator symbol"
+    },
+    {
+      "query": "What HTTP status means rate limited?",
+      "expected_fact": "http status 429 meaning"
+    },
+    {
+      "query": "What's the difference between 401 and 403?",
+      "expected_fact": "http status 401 meaning"
+    },
+    {
+      "query": "How do I undo the last commit but keep changes?",
+      "expected_fact": "git --amend flag purpose"
+    },
+    {
+      "query": "What's the difference between rebase and merge?",
+      "expected_fact": "git rebase vs merge"
+    },
+    {
+      "query": "How do I run a command in a running container?",
+      "expected_fact": "docker exec vs run difference"
+    },
+    {
+      "query": "What's the correct way to compare NULL in SQL?",
+      "expected_fact": "sql null comparison correct operator"
+    },
+    {
+      "query": "Why is typeof null 'object' in JavaScript?",
+      "expected_fact": "javascript typeof null returns"
+    },
+    {
+      "query": "What's the difference between == and ===?",
+      "expected_fact": "javascript == vs === difference"
+    },
+    {
+      "query": "What does JWT stand for and what's its structure?",
+      "expected_fact": "jwt structure"
+    },
+    {
+      "query": "What's the OWASP #1 vulnerability?",
+      "expected_fact": "owasp top 10 2021 number 1"
+    },
+    {
+      "query": "Where does FastAPI auto-generate docs?",
+      "expected_fact": "fastapi automatic docs url"
+    }
+  ]
+}
