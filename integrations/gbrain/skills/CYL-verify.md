@@ -235,6 +235,59 @@ Before marking an enrichment as complete, verify:
 
 ## Error Handling
 
+### Tool Resolution (Critical for GBrain Runtime)
+
+GBrain's dispatcher resolves tool names to executables. The CertainLogic skill exposes three tools that must map to the `hallucination-guard` CLI:
+
+**Tool → CLI mapping:**
+
+| Tool Name | GBrain Calls | Resolved To |
+|---|---|---|
+| `brain_api_query` | `cross_modal_review.tools.brain_api_query(...)` | `hallucination-guard verify "{query}"` |
+| `verify_fact` | `cross_modal_review.tools.verify_fact(...)` | `hallucination-guard verify "{query}" "{text}"` |
+| `log_audit_entry` | `cross_modal_review.tools.log_audit_entry(...)` | `hallucination-guard log --task-id {id} --entity {name}` |
+
+**Resolver configuration** (add to your `gbrain/config/tools.yaml` or equivalent):
+
+```yaml
+tools:
+  brain_api_query:
+    command: hallucination-guard
+    args: ["verify", "{query}"]
+    env:
+      BRAIN_API_KEY: "${BRAIN_API_KEY}"
+      FACTS_DB_PATH: "${HOME}/.hallucination-guard/facts_db.json"
+    timeout: 5s
+    
+  verify_fact:
+    command: hallucination-guard
+    args: ["verify", "{query}", "{text}"]
+    env:
+      BRAIN_API_KEY: "${BRAIN_API_KEY}"
+      FACTS_DB_PATH: "${HOME}/.hallucination-guard/facts_db.json"
+    timeout: 10s
+    
+  log_audit_entry:
+    command: hallucination-guard
+    args: ["log", "--task-id", "{task_id}", "--entity", "{entity}"]
+    env:
+      HALLUCINATION_GUARD_DATA: "${HOME}/.hallucination-guard"
+    timeout: 2s
+```
+
+**If `hallucination-guard` is not in PATH:**
+
+Specify the full path in your resolver config:
+
+```yaml
+brain_api_query:
+  command: /usr/local/bin/hallucination-guard  # or wherever pip installed it
+```
+
+**If `hallucination-guard` is not installed yet:**
+
+The skill degrades gracefully — all three tools return a warning and the enrichment continues without validation. The brain page gets `[Source: unverified — CYL-verify not installed]` instead of failing entirely.
+
 ### Brain API unavailable
 
 ```typescript
