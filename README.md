@@ -1,4 +1,4 @@
-# CertainLogic Verifier – Open‑source deterministic AI verification
+# CertainLogic Verifier - Open-source deterministic AI verification
 
 <div align="center">
 
@@ -13,10 +13,12 @@
 [![Docker](https://img.shields.io/badge/GHCR-available-blue?logo=docker)](https://ghcr.io/certainlogicai/hallucination-guard)
 [![Docs](https://img.shields.io/badge/docs-live-brightgreen)](https://certainlogicai.github.io/hallucination-guard)
 [![Self-Hosted](https://img.shields.io/badge/Self--Hosted-✓-success)](https://github.com/CertainLogicAI/hallucination-guard)
+[![Standalone](https://img.shields.io/badge/Standalone-✓-brightgreen)](https://certainlogic.ai)
 [![MCP Server](https://img.shields.io/badge/MCP%20Server-✓-blueviolet)](integrations/mcp/)
+[![GBrain Skill](https://img.shields.io/badge/GBrain%20Skill-✓-purple)](integrations/gbrain/)
 [![Open Source](https://img.shields.io/badge/Open--Source-✓-brightgreen)](https://github.com/CertainLogicAI/hallucination-guard)
 
-**Kill AI hallucinations deterministically • 85‑98 % token savings • Self‑hosted & audit‑ready**
+**Kill AI hallucinations deterministically • 85-98 % token savings • Self-hosted & audit-ready**
 
 </div>
 
@@ -40,71 +42,96 @@
 
 ---
 
-## 🚀 Try in 2 Minutes
+## ⚡ Quick Start (30 Seconds)
 
-**Copy‑paste this in your terminal:**
-
-```bash
-git clone https://github.com/CertainLogicAI/hallucination-guard.git
-cd hallucination-guard
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-**In another terminal, test validation:**
+**No GBrain required. No cloud account. Works offline.**
 
 ```bash
-curl -X POST http://localhost:8000/validate \\
-  -H "Content-Type: application/json" \\
-  -d '{"query": "What is the price of GPT‑5?", "response": "$200/month"}'
+pip install hallucination-guard
+hallucination-guard install         # Free tier: 100 essential facts
+hallucination-guard status          # Verify everything is ready
+hallucination-guard verify "What is Python's latest version?"
 ```
 
-<details>
-<summary><b>📊 See the result (hallucination caught!)</b></summary>
+**That's it.** You now have deterministic AI verification with 100 verified coding facts. No external services. No API keys. Zero network calls after install.
 
-```json
-{
-  "valid": false,
-  "confidence": 0.5,
-  "severity": "medium",
-  "message": "Factual mismatch: No matching fact for factual query — unverifiable",
-  "flags": ["Specific claim with no verifiable fact — flagged for human review"]
-}
+### Want More Facts?
+
+```bash
+pip install hallucination-guard
+hallucination-guard install --paid --key YOUR_KEY
+# → 333 verified developer facts + pre-warmed cache (zero cold start)
 ```
-*Price hallucinations are caught and flagged for human review.*
-</details>
+
+### Want the MCP Server?
+
+```bash
+pip install certainlogic-mcp
+export BRAIN_API_KEY="your_key_here"
+certainlogic-mcp --host 127.0.0.1 --port 8000
+```
+
+Then point Claude, Cursor, or any MCP client to `http://127.0.0.1:8000`.
 
 ---
 
-## 🎯 Why This Exists
+## 🎯 What This Is (Standalone First)
 
-AI hallucinations break trust and compliance. But most “guardrail” tools are **black‑box SaaS** that create new risks: no auditability, data‑residency concerns, and vendor lock‑in.
+CertainLogic is a **deterministic, self-hosted AI verification engine** that works with any editor, any agent, any platform.
 
-**CertainLogic Verifier** is different:
-- ✅ **Deterministic verification** – rule‑based fact‑checking against your versioned facts DB (no extra LLM calls)
-- ✅ **Up to 98 % token reduction** – semantic caching + similarity lookup bypass LLMs entirely
-- ✅ **Self‑hosted & air‑gapped** – runs entirely inside your VPC, on‑prem, or private cloud
-- ✅ **Regulatory‑ready** – built‑in audit logging, SBOM, and deployment patterns for HIPAA/GDPR/SOC2/FedRAMP
-- ✅ **MIT licensed** – every line inspectable by your security/compliance teams
+**It does not require:**
+- GBrain (optional integration available)
+- Cloud accounts
+- API subscriptions
+- Network access after installation
 
-Built for **regulated industries (healthcare, finance, government)** and **cost‑conscious AI agent teams** that need trustworthy AI without sacrificing control.
+**It gives you:**
+- ✅ **333 verified developer facts** (Python, HTTP, Git, Docker, SQL, JS/TS, Security, Frameworks, Cloud)
+- ✅ **96% cache hit rate** in production (24 of 25 queries answered without LLM calls)
+- ✅ **Pre-warmed cache** on install (zero cold start)
+- ✅ **Deterministic answers** (same query → same verified answer, every time)
+- ✅ **Cryptographic audit trail** (SHA-256 hashes, append-only logs)
+- ✅ **Domain gate** out-of-scope facts (personal, financial, opinion) bypass silently instead of producing false negatives
+
+**Use cases:** IDE autocomplete, CI/CD pipelines, agent runtimes, API servers, air-gapped environments.
+
+**Works as:** CLI tool, Python library, MCP server, OpenClaw skill, GBrain skill.
 
 ---
 
-## 📈 Benchmarks (Real‑World Performance)
+## 🔌 Integrations (Optional)
+
+Use the **standalone product** first. Add integrations as needed:
+
+### GBrain Skill (YC)
+
+*[Only if you already use GBrain](https://github.com/garrytan/gbrain)*
+
+For builders in the GBrain/GStack ecosystem, we ship a native **CYL-verify** skill that fits their philosophy: thin harness, fat skills, brain-first workflows.
+
+It hooks into GBrain's enrichment pipeline and validates facts before they get written to compiled truth.
+
+```bash
+# Already have GBrain? One file installs the skill:
+cp integrations/gbrain/skills/CYL-verify.md /path/to/gbrain/skills/
+```
+
+**The standalone product does everything the GBrain skill does.** The skill is just one way to access it.
+
+---
+
+## 📈 Benchmarks (Real-World Performance)
 
 | Metric | Score | What It Means |
 |--------|-------|---------------|
-| **Hallucination detection accuracy** | 83.9 % | Correctly identifies fabricated/mismatched facts |
-| **Recall on pricing queries** | 100 % | Catches every “how much”, “price”, “cost” hallucination |
-| **Token reduction rate** | 85‑98 % | Similar/same queries bypass LLM entirely via cache |
-| **False‑positive rate** | 17.2 % → **<5 %** (after recent fixes) | Rarely flags legitimate speculative/theoretical answers |
-| **Inference latency** | <100 ms | Rule‑based checks add negligible overhead |
-| **Cache hit rate (production)** | 96% (24/25 production queries) | Real‑world savings without extra LLM calls |
+| **Hallucination detection accuracy** | 83.9 % | Correctly identifies fabricated/mismatched facts |
+| **Recall on pricing queries** | 100 % | Catches every "how much", "price", "cost" hallucination |
+| **Token reduction rate** | 85-98 % | Similar/same queries bypass LLM entirely via cache |
+| **False-positive rate** | 17.2 % → **<5 %** (after recent fixes) | Rarely flags legitimate speculative/theoretical answers |
+| **Inference latency** | <100 ms | Rule-based checks add negligible overhead |
+| **Cache hit rate (production)** | 96% (24/25 production queries) | Real-world savings without extra LLM calls |
 
-*Based on 62‑example benchmark suite (April 2026). New qualifier safelist and unit‑aware matching push accuracy >85 %.*
+*Based on 62-example benchmark suite (April 2026). New qualifier safelist and unit-aware matching push accuracy >85 %.*
 
 ---
 
@@ -112,36 +139,36 @@ Built for **regulated industries (healthcare, finance, government)** and **cost�
 
 | Feature | CertainLogic Verifier | Guardrails AI / LLM Guard / NeMo Guard |
 |---------|----------------------|----------------------------------------|
-| **Verification method** | Rule‑based + facts DB | LLM‑as‑a‑judge (another LLM call) |
-| **Extra LLM cost** | **$0.00** (no extra calls) | $0.05‑$0.50 per validation |
-| **Audit trail** | SHA‑256 chained JSONL, immutable | Logs only, no cryptographic proof |
-| **Data residency** | 100% self‑hosted, air‑gapped | Often cloud‑based, SaaS |
+| **Verification method** | Rule-based + facts DB | LLM-as-a-judge (another LLM call) |
+| **Extra LLM cost** | **$0.00** (no extra calls) | $0.05-$0.50 per validation |
+| **Audit trail** | SHA-256 chained JSONL, immutable | Logs only, no cryptographic proof |
+| **Data residency** | 100% self-hosted, air-gapped | Often cloud-based, SaaS |
 | **Deterministic output** | ✅ Same query → same verified answer | ❌ Probabilistic, varies by call |
-| **Hallucination rate** | **<1%** (rule‑based) | 5‑15% (LLM judges can hallucinate too) |
-| **Token savings** | **85‑98%** via semantic cache | 0‑30% (limited caching) |
-| **Compliance ready** | HIPAA/GDPR/SOC2/FedRAMP patterns | Usually not designed for air‑gapped |
+| **Hallucination rate** | **<1%** (rule-based) | 5-15% (LLM judges can hallucinate too) |
+| **Token savings** | **85-98%** via semantic cache | 0-30% (limited caching) |
+| **Compliance ready** | HIPAA/GDPR/SOC2/FedRAMP patterns | Usually not designed for air-gapped |
 
-**Bottom line:** We give you a verifiable safety layer that doesn’t hallucinate and doesn’t add cost.
+**Bottom line:** We give you a verifiable safety layer that doesn't hallucinate and doesn't add cost.
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-Query → [Intent Router] → [Semantic Cache] → Cache Hit → Bypass LLM (0 tokens)
+Query → [Intent Router] → [Semantic Cache] → Cache Hit → Bypass LLM (0 tokens)
                 ↓ (miss)
            [Token Reduction] → [Hallucination Detector] → [Facts DB]
                 ↓
-           LLM → Response → [Audit Log (SHA‑256 chained)]
+           LLM → Response → [Audit Log (SHA-256 chained)]
 ```
 
 **Components included:**
-- **Hallucination Detector** – factual consistency, uncertainty detection, internal contradiction checks
-- **Token Reduction Engine** – SQLite LRU cache + semantic similarity + summarization fallback  
-- **Semantic Cache (L2)** – sentence‑transformers embeddings for similarity lookup
-- **Deterministic Memory Search** – TF‑IDF over local `.md` files (no embeddings needed)
-- **Intent Classifier/Router** – zero‑LLM rule‑based routing to appropriate models
-- **FastAPI Service** – production‑ready REST API with metrics, audit logging, health checks
+- **Hallucination Detector** - factual consistency, uncertainty detection, internal contradiction checks
+- **Token Reduction Engine** - SQLite LRU cache + semantic similarity + summarization fallback
+- **Semantic Cache (L2)** - sentence-transformers embeddings for similarity lookup
+- **Deterministic Memory Search** - TF-IDF over local `.md` files (no embeddings needed)
+- **Intent Classifier/Router** - zero-LLM rule-based routing to appropriate models
+- **FastAPI Service** - production-ready REST API with metrics, audit logging, health checks
 
 ---
 
@@ -199,10 +226,10 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 Example Helm chart included in `deploy/helm/` (coming soon).
 
-### Air‑Gapped / On‑Premises
+### Air-Gapped / On-Premises
 
 1. Build Docker image inside your secure network
-2. Push to private registry  
+2. Push to private registry
 3. Deploy with persistent volume for `cache.db` and `facts_db.json`
 4. Configure network policies to block all egress (no external API calls)
 
@@ -223,8 +250,8 @@ curl -X POST http://localhost:8000/validate \
 **Request body:**
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `query` | string | ✅ | The original user query (1–2000 chars) |
-| `response` | string | ✅ | The AI-generated response to validate (1–10000 chars) |
+| `query` | string | ✅ | The original user query (1-2000 chars) |
+| `response` | string | ✅ | The AI-generated response to validate (1-10000 chars) |
 
 **Response:**
 ```json
@@ -256,7 +283,7 @@ curl -X POST http://localhost:8000/reduce \
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `query` | string | — | Query to reduce (1–5000 chars) |
+| `query` | string | - | Query to reduce (1-5000 chars) |
 | `force_deterministic` | bool | `false` | Skip LLM routing, use deterministic fallback |
 | `semantic` | bool | `true` | Attempt semantic cache lookup on exact-hash miss |
 
@@ -272,7 +299,7 @@ curl -X POST http://localhost:8000/search \
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `query` | string | — | Search query (1–500 chars) |
+| `query` | string | - | Search query (1-500 chars) |
 | `top_k` | int | `5` | Maximum number of results |
 
 ### `POST /route`
@@ -337,8 +364,8 @@ The facts database is a versioned JSON file:
 |-------|------|----------|-------------|
 | `type` | `"numeric"` \| `"string"` | ✅ | How the value is compared |
 | `value` | string | ✅ | The verified ground-truth value |
-| `unit` | string | — | Unit of measure (for display and matching) |
-| `tolerance` | float | — | Acceptable numeric deviation (default: 0.0) |
+| `unit` | string | - | Unit of measure (for display and matching) |
+| `tolerance` | float | - | Acceptable numeric deviation (default: 0.0) |
 
 **Workflow:**
 1. Export internal knowledge (prices, policies, compliance rules) to JSON
@@ -350,7 +377,7 @@ The facts database is a versioned JSON file:
 
 ## 🔌 Integrations
 
-### MCP Server — Claude, Cursor, Windsurf
+### MCP Server - Claude, Cursor, Windsurf
 
 Use CertainLogic as an MCP tool in any compatible agent. Install once, verify everywhere.
 
@@ -383,15 +410,15 @@ Settings → MCP → Add Server → Command: `certainlogic-mcp`
 | `verify_fact_guard` | Hallucination detector against source text | valid/invalid/unclear |
 | `health_check` | Brain API availability | ok / degraded / down |
 
-**Example — agent calling the guard via MCP:**
+**Example - agent calling the guard via MCP:**
 
 ```python
 # Your agent reasoning
-"The user claims GPT‑5 costs $200/month. Let me verify."
-→ brain_api_query("What is the price of GPT‑5?")
-   → { "answer": "No pricing announced for GPT‑5.",
+"The user claims GPT-5 costs $200/month. Let me verify."
+→ brain_api_query("What is the price of GPT-5?")
+   → { "answer": "No pricing announced for GPT-5.",
        "confident": true, "method": "facts" }
-→ Agent: "That claim can't be verified — GPT‑5 pricing hasn't been announced  [Source: CertainLogic]."
+→ Agent: "That claim can't be verified - GPT-5 pricing hasn't been announced  [Source: CertainLogic]."
 ```
 
 Learn more: [`integrations/mcp/`](integrations/mcp/)
@@ -409,9 +436,9 @@ It turns your brain's enrichment and idea-ingest pipelines into a **deterministi
 - **Clear decisions**: validated / uncertain / rejected with full SHA-256 chained audit logging
 - **Automatic triggers** on high-stakes signals (Tier-1 enrichment, numerical claims, quotes, etc.) via cross-modal conventions
 
-This isn't a loose wrapper — it's a proper **fat skill** written in GBrain's own Markdown format, complete with triggers, quality bars, resolver hooks, and 36 passing integration tests. It respects the core values of **thin harness, fat skills, deterministic Minions over probabilistic judgment, brain-first workflows, legibility, auditability, and human sovereignty**.
+This isn't a loose wrapper - it's a proper **fat skill** written in GBrain's own Markdown format, complete with triggers, quality bars, resolver hooks, and 36 passing integration tests. It respects the core values of **thin harness, fat skills, deterministic Minions over probabilistic judgment, brain-first workflows, legibility, auditability, and human sovereignty**.
 
-In practice, it gives GBrain agents a reliable verification layer that reduces hallucinations when they hurt most — right at the moment new knowledge is written into your compiled truth — while keeping everything local, auditable, and cost-efficient.
+In practice, it gives GBrain agents a reliable verification layer that reduces hallucinations when they hurt most - right at the moment new knowledge is written into your compiled truth - while keeping everything local, auditable, and cost-efficient.
 
 **Installation is dead simple:** copy the skill file and point your MCP server at hallucination-guard. Claude Code, Cursor, and other MCP clients can discover the exposed tools (`brain_api_query`, `verify_fact_guard`, etc.) instantly.
 
@@ -427,7 +454,7 @@ Learn more: [`integrations/gbrain/`](integrations/gbrain/)
 pip install hallucination-guard langchain-core
 ```
 
-**Pattern 1 — Callback handler** (drop-in, validates every LLM response):
+**Pattern 1 - Callback handler** (drop-in, validates every LLM response):
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -442,7 +469,7 @@ llm = ChatOpenAI(callbacks=[callback])
 llm.invoke("What is our enterprise pricing?")  # validated automatically
 ```
 
-**Pattern 2 — LCEL Runnable** (compose into pipelines):
+**Pattern 2 - LCEL Runnable** (compose into pipelines):
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -496,37 +523,37 @@ def compress_query(task_instance):
 ## 🛡️ Compliance & Security
 
 ### Audit Trail
-Every validation logged to append‑only JSONL with SHA‑256 hash chaining (see `examples/audit_logger.py`).
+Every validation logged to append-only JSONL with SHA-256 hash chaining (see `examples/audit_logger.py`).
 
 ### Data Residency
-Zero data exfiltration – runs entirely inside your VPC, private cloud, or air‑gapped network.
+Zero data exfiltration - runs entirely inside your VPC, private cloud, or air-gapped network.
 
 ### SBOM & Vulnerability Scanning
 Software Bill of Materials in `sbom.spdx.json`, regularly updated with vulnerability reports.
 
 ### Certification Support
 Designed for:
-- **HIPAA** – No PHI exfiltration, audit logging, access controls
-- **GDPR** – Data locality, right to erasure (cache clearing), transparency  
-- **SOC2** – Security, availability, processing integrity
-- **FedRAMP** – Controlled environments, no external dependencies
+- **HIPAA** - No PHI exfiltration, audit logging, access controls
+- **GDPR** - Data locality, right to erasure (cache clearing), transparency
+- **SOC2** - Security, availability, processing integrity
+- **FedRAMP** - Controlled environments, no external dependencies
 
 ---
 
 ## 📅 Roadmap
 
-- **Q2 2026** – GPU‑accelerated embedding backfill, PostgreSQL vector store support
-- **Q3 2026** – Multi‑modal verification (image, audio, video), real‑time streaming validation
-- **Q4 2026** – Federated learning for fact‑database sharing (enterprise‑only)
+- **Q2 2026** - GPU-accelerated embedding backfill, PostgreSQL vector store support
+- **Q3 2026** - Multi-modal verification (image, audio, video), real-time streaming validation
+- **Q4 2026** - Federated learning for fact-database sharing (enterprise-only)
 
 ---
 
-## 💼 Coder Pack — Production-Ready in Minutes
+## 💼 Coder Pack - Production-Ready in Minutes
 
 > **Production proven:** On our last coding project, the Coder Pack achieved **96% cache hit rate** (24 of 25 queries answered directly from cache). Code shipped without hallucinations. No debug cycles wasted on AI-generated errors.
 
 
-The free tier includes **100 verified facts** and **10 sample queries** — enough to prove the system works and see exact token savings.
+The free tier includes **100 verified facts** and **10 sample queries** - enough to prove the system works and see exact token savings.
 
 Want to skip weeks of DIY cache warming and fact verification?
 
@@ -541,7 +568,7 @@ Want to skip weeks of DIY cache warming and fact verification?
 **What's in the pack:**
 - 303+ verified facts across Python, JS/TS, Docker, Git, SQL, HTTP, Cloud, Security, DevOps, React, FastAPI
 - Pre-warmed semantic cache from thousands of verified queries
-- Drop-in `cache.db` replacement — zero cold start
+- Drop-in `cache.db` replacement - zero cold start
 - Every fact sourced and dated
 
 > 💡 **$69 is less than most developers spend on a single day of LLM API calls during cache warming.**
@@ -563,7 +590,7 @@ See [`sample_queries.json`](sample_queries.json) for all 10 queries with expecte
 
 **Coming soon:** Industry packs for Healthcare (HIPAA/FDA), Finance (SOX/PCI), and Industrial Automation (IEC/ISO).
 
-We also provide **enterprise cache‑warming services** — we ingest your internal docs and deliver a production‑ready verified cache ($999–$5,000+/project).
+We also provide **enterprise cache-warming services** - we ingest your internal docs and deliver a production-ready verified cache ($999-$5,000+/project).
 
 **Contact:** [sales@certainlogic.ai](mailto:sales@certainlogic.ai) | [@CertainLogicAI](https://x.com/CertainLogicAI)
 
@@ -571,7 +598,7 @@ We also provide **enterprise cache‑warming services** — we ingest your inter
 
 ## 📄 License
 
-MIT License – see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
