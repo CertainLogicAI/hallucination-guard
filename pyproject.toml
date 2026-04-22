@@ -36,7 +36,7 @@ langchain = ["langchain-core>=0.2.0"]
 dev = ["black", "ruff", "pytest", "pytest-cov", "coverage", "isort", "pre-commit", "httpx"]
 
 [tool.setuptools.package-data]
-hallucination_guard = ["facts_db.json"]
+hallucination_guard = ["facts_db.json", "free_tier_facts.json"]
 
 [project.scripts]
 hallucination-guard = "hallucination_guard.cli:main"
