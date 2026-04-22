@@ -532,7 +532,7 @@ Want to skip weeks of DIY cache warming and fact verification?
 
 | | Free | Coder Pack ($69 one-time) | + Updates (+$9.99/mo) |
 |---|---|---|---|
-| Verified coding facts | 100 coding facts | **252 coding facts** | 252+ (growing) |
+| Verified coding facts | 100 coding facts | **303 verified developer facts** | 303+ (growing) |
 | Pre-warmed cache | 10 sample queries | **Full** (published hit rate) | Full + monthly refresh |
 | Time to production | Days/weeks (DIY) | **Immediate** | Immediate + improving |
 | Cache warming cost | You pay (LLM calls + time) | **$0** (we did it) | $0 (we keep doing it) |
