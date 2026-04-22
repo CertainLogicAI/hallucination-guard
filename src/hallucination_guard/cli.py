@@ -47,6 +47,10 @@ def main():
     verify_p.add_argument("query", help="Query to validate")
     verify_p.add_argument("response", help="AI response to check")
 
+    # report
+    report_p = sub.add_parser("report", help="Show domain gate hit rate report")
+    report_p.add_argument("--data-dir", help="Custom data directory")
+
     args = parser.parse_args()
 
     if args.command is None:
@@ -63,6 +67,8 @@ def main():
         _cmd_update(args)
     elif args.command == "verify":
         _cmd_verify(args)
+    elif args.command == "report":
+        _cmd_report(args)
 
 
 def _cmd_install(args):
@@ -148,6 +154,15 @@ def _cmd_update(args):
         sys.exit(1)
 
     print(f"✅ {result.get('message', 'Updated')}")
+
+
+def _cmd_report(args):
+    from pathlib import Path
+    from hallucination_guard.domain_gate import HitRateTracker
+
+    data_dir = Path(args.data_dir) if args.data_dir else None
+    tracker = HitRateTracker(data_dir=data_dir)
+    tracker.print_report()
 
 
 def _cmd_verify(args):
