@@ -26,3 +26,6 @@ name = "CertainLogic AI"
 
 [project.scripts]
 certainlogic-mcp = "certainlogic_mcp.server:main"
+
+[tool.setuptools.package-data]
+certainlogic_mcp = ["free_tier_facts.json"]

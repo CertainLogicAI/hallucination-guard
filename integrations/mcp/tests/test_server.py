@@ -110,13 +110,25 @@ async def test_llm_method(mock_httpx_post):
 
 @pytest.mark.asyncio
 async def test_missing_api_key(mock_httpx_post):
-    """No param and no env key → error result, no HTTP call."""
+    """No param and no env key → offline mode, answers from bundled facts if available."""
     with patch("certainlogic_mcp.server.DEFAULT_API_KEY", ""):
-        result = await brain_api_query("What is Python?")
+        result = await brain_api_query("What is Python 3.13 latest stable version?")
 
-    assert "No API key" in result.answer
-    assert result.confident is False
+    assert result.method == "offline_match"
+    assert result.confident is True
+    assert "3.13" in result.answer
+    mock_httpx_post.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_offline_no_facts_loaded(mock_httpx_post):
+    """Offline mode with no facts file → error."""
+    with patch("certainlogic_mcp.server.DEFAULT_API_KEY", ""):
+        with patch("certainlogic_mcp.server._OFFLINE_FACTS", {}):
+            result = await brain_api_query("What is Python?")
+
     assert result.method == "error"
+    assert "Offline facts not loaded" in result.answer
     mock_httpx_post.assert_not_awaited()
 
 
@@ -391,12 +403,13 @@ async def test_batch_query_empty(mock_httpx_post):
 
 @pytest.mark.asyncio
 async def test_batch_query_missing_key(mock_httpx_post):
-    """Batch query without API key should return error."""
+    """Batch query without API key → offline mode, returns results from bundled facts."""
     with patch("certainlogic_mcp.server.DEFAULT_API_KEY", ""):
-        result = await batch_query(queries=["Q1", "Q2"])
+        result = await batch_query(queries=["python latest version", "git merge vs rebase"])
 
-    assert result.total == 0
-    assert result.errors == 1
+    assert result.total == 2
+    assert result.confident == 2  # Both should match offline facts
+    assert result.errors == 0
     mock_httpx_post.assert_not_awaited()
 
 
