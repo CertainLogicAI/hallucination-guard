@@ -3,7 +3,9 @@
     "name": "Coder Facts Pack v1.0",
     "version": "1.0.0",
     "created": "2026-04-21",
-    "author": "CertainLogic"
+    "author": "CertainLogic",
+    "fact_count": 333,
+    "last_updated": "2026-04-22"
   },
   "facts": {
     "python current stable version": {
@@ -252,7 +254,6 @@
       "source": "https://docs.python.org/3/library/tomllib.html",
       "verified_date": "2026-04-21"
     },
-
     "javascript ecmascript 2015 also known as": {
       "type": "string",
       "value": "es6",
@@ -427,7 +428,6 @@
       "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz",
       "verified_date": "2026-04-21"
     },
-
     "react initial release year": {
       "type": "string",
       "value": "2013",
@@ -578,7 +578,6 @@
       "source": "https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023",
       "verified_date": "2026-04-21"
     },
-
     "docker default registry": {
       "type": "string",
       "value": "docker hub (hub.docker.com)",
@@ -735,7 +734,6 @@
       "source": "https://docs.docker.com/build/buildkit/",
       "verified_date": "2026-04-21"
     },
-
     "git default branch name (modern)": {
       "type": "string",
       "value": "main (changed from master; configurable via init.defaultBranch)",
@@ -886,7 +884,6 @@
       "source": "https://git-scm.com/docs/git-rebase",
       "verified_date": "2026-04-21"
     },
-
     "sql select distinct removes": {
       "type": "string",
       "value": "duplicate rows from result set",
@@ -1037,7 +1034,6 @@
       "source": "https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT",
       "verified_date": "2026-04-21"
     },
-
     "fastapi based on": {
       "type": "string",
       "value": "starlette (asgi framework) and pydantic (data validation)",
@@ -1188,7 +1184,6 @@
       "source": "https://docs.djangoproject.com/en/5.0/ref/csrf/",
       "verified_date": "2026-04-21"
     },
-
     "http status 200 meaning": {
       "type": "string",
       "value": "ok - request succeeded",
@@ -1345,7 +1340,6 @@
       "source": "https://restfulapi.net/statelessness/",
       "verified_date": "2026-04-21"
     },
-
     "aws s3 max object size": {
       "type": "numeric",
       "value": "5 tb",
@@ -1466,7 +1460,6 @@
       "source": "https://docs.aws.amazon.com/elasticache/",
       "verified_date": "2026-04-21"
     },
-
     "oauth 2.0 grant types": {
       "type": "string",
       "value": "authorization code, implicit (deprecated), client credentials, resource owner password (deprecated), device code",
@@ -1587,7 +1580,6 @@
       "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After",
       "verified_date": "2026-04-21"
     },
-
     "github actions workflow file location": {
       "type": "string",
       "value": ".github/workflows/*.yml",
@@ -1714,7 +1706,6 @@
       "source": "https://docs.github.com/en/actions/using-jobs/using-concurrency",
       "verified_date": "2026-04-21"
     },
-
     "react 16 deprecated lifecycle componentWillMount": {
       "type": "string",
       "value": "deprecated in react 16.3; renamed UNSAFE_componentWillMount; replaced by componentDidMount or useEffect",
@@ -1834,6 +1825,346 @@
       "value": "importlib.resources.path() deprecated in 3.9; use importlib.resources.files() instead",
       "source": "https://docs.python.org/3/library/importlib.resources.html",
       "verified_date": "2026-04-21"
+    },
+    "langchain latest version": {
+      "type": "string",
+      "value": "1.2.15",
+      "source": "pypi.org/pypi/langchain",
+      "verified": "2026-04-14",
+      "aliases": [
+        "langchain version",
+        "langchain current version"
+      ],
+      "category": "framework-versions"
+    },
+    "crewai latest version": {
+      "type": "string",
+      "value": "1.14.1",
+      "source": "pypi.org/pypi/crewai",
+      "verified": "2026-04-14",
+      "aliases": [
+        "crewai version",
+        "crew ai version"
+      ],
+      "category": "framework-versions"
+    },
+    "autogen latest version": {
+      "type": "string",
+      "value": "0.11.5",
+      "source": "pypi.org/pypi/autogen",
+      "verified": "2026-04-14",
+      "aliases": [
+        "autogen version",
+        "microsoft autogen version"
+      ],
+      "category": "framework-versions"
+    },
+    "openai python sdk version": {
+      "type": "string",
+      "value": "2.31.0",
+      "source": "pypi.org/pypi/openai",
+      "verified": "2026-04-14",
+      "aliases": [
+        "openai sdk version",
+        "openai library version"
+      ],
+      "category": "framework-versions"
+    },
+    "anthropic python sdk version": {
+      "type": "string",
+      "value": "0.94.1",
+      "source": "pypi.org/pypi/anthropic",
+      "verified": "2026-04-14",
+      "aliases": [
+        "anthropic sdk version",
+        "anthropic library version"
+      ],
+      "category": "framework-versions"
+    },
+    "fastapi latest version": {
+      "type": "string",
+      "value": "0.135.3",
+      "source": "pypi.org/pypi/fastapi",
+      "verified": "2026-04-14",
+      "aliases": [
+        "fastapi version"
+      ],
+      "category": "framework-versions"
+    },
+    "pydantic latest version": {
+      "type": "string",
+      "value": "2.13.0",
+      "source": "pypi.org/pypi/pydantic",
+      "verified": "2026-04-14",
+      "aliases": [
+        "pydantic version"
+      ],
+      "category": "framework-versions"
+    },
+    "llama-index latest version": {
+      "type": "string",
+      "value": "0.14.20",
+      "source": "pypi.org/pypi/llama-index",
+      "verified": "2026-04-14",
+      "aliases": [
+        "llamaindex version",
+        "llama index version"
+      ],
+      "category": "framework-versions"
+    },
+    "python latest stable version": {
+      "type": "string",
+      "value": "3.14.4",
+      "source": "endoflife.date/api/python.json",
+      "verified": "2026-04-14",
+      "aliases": [
+        "python version",
+        "python stable",
+        "latest python"
+      ],
+      "category": "language-specs"
+    },
+    "python 3.14 eol": {
+      "type": "string",
+      "value": "2030-10-31",
+      "source": "endoflife.date/api/python.json",
+      "verified": "2026-04-14",
+      "aliases": [
+        "python 3.14 end of life",
+        "python 3.14 support end"
+      ],
+      "category": "language-specs"
+    },
+    "nodejs latest version": {
+      "type": "string",
+      "value": "25.9.0",
+      "source": "endoflife.date/api/nodejs.json",
+      "verified": "2026-04-14",
+      "aliases": [
+        "node version",
+        "node.js version",
+        "nodejs version"
+      ],
+      "category": "language-specs"
+    },
+    "pip latest version": {
+      "type": "string",
+      "value": "26.0.1",
+      "source": "pypi.org/pypi/pip",
+      "verified": "2026-04-14",
+      "aliases": [
+        "pip version"
+      ],
+      "category": "language-specs"
+    },
+    "openai gpt-4o context window": {
+      "type": "numeric",
+      "value": "128000",
+      "unit": "tokens",
+      "source": "platform.openai.com/docs/models",
+      "verified": "2026-04-14",
+      "aliases": [
+        "gpt-4o context",
+        "gpt4o tokens",
+        "gpt-4o token limit"
+      ],
+      "category": "model-specs"
+    },
+    "openai gpt-4o max output tokens": {
+      "type": "numeric",
+      "value": "16384",
+      "unit": "tokens",
+      "source": "platform.openai.com/docs/models",
+      "verified": "2026-04-14",
+      "aliases": [
+        "gpt-4o output limit",
+        "gpt-4o max response"
+      ],
+      "category": "model-specs"
+    },
+    "claude claude-3-5-sonnet context window": {
+      "type": "numeric",
+      "value": "200000",
+      "unit": "tokens",
+      "source": "docs.anthropic.com/models",
+      "verified": "2026-04-14",
+      "aliases": [
+        "claude sonnet context",
+        "claude 3.5 sonnet tokens",
+        "sonnet context window"
+      ],
+      "category": "model-specs"
+    },
+    "claude max output tokens": {
+      "type": "numeric",
+      "value": "8192",
+      "unit": "tokens",
+      "source": "docs.anthropic.com/models",
+      "verified": "2026-04-14",
+      "aliases": [
+        "claude output limit",
+        "anthropic max output"
+      ],
+      "category": "model-specs"
+    },
+    "openai embedding model": {
+      "type": "string",
+      "value": "text-embedding-3-small",
+      "source": "platform.openai.com/docs/models",
+      "verified": "2026-04-14",
+      "aliases": [
+        "openai embeddings",
+        "best openai embedding",
+        "openai vector model"
+      ],
+      "category": "model-specs"
+    },
+    "openai chat completions endpoint": {
+      "type": "string",
+      "value": "https://api.openai.com/v1/chat/completions",
+      "source": "platform.openai.com/docs/api-reference",
+      "verified": "2026-04-14",
+      "aliases": [
+        "openai api url",
+        "openai completions url",
+        "chatgpt api endpoint"
+      ],
+      "category": "api-behavior"
+    },
+    "openai api auth header": {
+      "type": "string",
+      "value": "Authorization: Bearer {api_key}",
+      "source": "platform.openai.com/docs/api-reference",
+      "verified": "2026-04-14",
+      "aliases": [
+        "openai auth",
+        "openai header format"
+      ],
+      "category": "api-behavior"
+    },
+    "anthropic api version header": {
+      "type": "string",
+      "value": "anthropic-version: 2023-06-01",
+      "source": "docs.anthropic.com/api",
+      "verified": "2026-04-14",
+      "aliases": [
+        "anthropic api header",
+        "claude api version"
+      ],
+      "category": "api-behavior"
+    },
+    "openai function calling format": {
+      "type": "string",
+      "value": "tools array with type=function, function.name, function.description, function.parameters (JSON Schema)",
+      "source": "platform.openai.com/docs/guides/function-calling",
+      "verified": "2026-04-14",
+      "aliases": [
+        "openai tool calling",
+        "openai function schema",
+        "gpt tool format"
+      ],
+      "category": "api-behavior"
+    },
+    "crewai tool hallucination cause": {
+      "type": "string",
+      "value": "agents fabricate tool outputs instead of calling tools when tool descriptions are ambiguous or model is under-prompted",
+      "source": "github.com/crewAIInc/crewAI/issues",
+      "verified": "2026-04-14",
+      "aliases": [
+        "crewai fake tool call",
+        "crewai tool simulation"
+      ],
+      "category": "api-behavior"
+    },
+    "langchain agent tool name error": {
+      "type": "string",
+      "value": "tool name in agent must exactly match tool.name field \u2014 spaces and case cause routing failures",
+      "source": "github.com/langchain-ai/langchain/issues",
+      "verified": "2026-04-14",
+      "aliases": [
+        "langchain tool not found",
+        "langchain invalid tool"
+      ],
+      "category": "api-behavior"
+    },
+    "json schema required field type": {
+      "type": "string",
+      "value": "array of strings listing required property names",
+      "source": "json-schema.org/draft-07",
+      "verified": "2026-04-14",
+      "aliases": [
+        "json schema required",
+        "pydantic required fields"
+      ],
+      "category": "tool-schemas"
+    },
+    "pydantic v1 vs v2 breaking change": {
+      "type": "string",
+      "value": "pydantic v2 uses model_validate() not parse_obj(); .dict() replaced by .model_dump()",
+      "source": "docs.pydantic.dev/migration",
+      "verified": "2026-04-14",
+      "aliases": [
+        "pydantic migration",
+        "pydantic v2 changes",
+        "pydantic breaking"
+      ],
+      "category": "tool-schemas"
+    },
+    "openai tool choice options": {
+      "type": "string",
+      "value": "auto | none | required | {type: function, function: {name: str}}",
+      "source": "platform.openai.com/docs/api-reference/chat",
+      "verified": "2026-04-14",
+      "aliases": [
+        "tool_choice values",
+        "openai force tool call"
+      ],
+      "category": "tool-schemas"
+    },
+    "python http status 429 meaning": {
+      "type": "string",
+      "value": "Too Many Requests \u2014 rate limit exceeded, check Retry-After header",
+      "source": "RFC 6585",
+      "verified": "2026-04-14",
+      "aliases": [
+        "429 error",
+        "rate limit status code"
+      ],
+      "category": "api-behavior"
+    },
+    "git default branch name": {
+      "type": "string",
+      "value": "main (changed from master in 2020)",
+      "source": "github.blog",
+      "verified": "2026-04-14",
+      "aliases": [
+        "git main branch",
+        "default git branch",
+        "github default branch"
+      ],
+      "category": "language-specs"
+    },
+    "docker compose v2 command": {
+      "type": "string",
+      "value": "docker compose (space, not hyphen) \u2014 docker-compose v1 deprecated",
+      "source": "docs.docker.com",
+      "verified": "2026-04-14",
+      "aliases": [
+        "docker-compose vs docker compose",
+        "docker compose command"
+      ],
+      "category": "tool-schemas"
+    },
+    "async python keyword": {
+      "type": "string",
+      "value": "async def for coroutines, await for awaitable calls, requires Python 3.5+",
+      "source": "docs.python.org",
+      "verified": "2026-04-14",
+      "aliases": [
+        "python async syntax",
+        "asyncio keyword"
+      ],
+      "category": "language-specs"
     }
   }
 }
