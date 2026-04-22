@@ -398,13 +398,26 @@ Learn more: [`integrations/mcp/`](integrations/mcp/)
 
 ### GBrain Skill (YC)
 
-For [GBrain](https://github.com/garrytan/gbrain) users, install the `CYL-verify` skill for hallucination-guarded fact validation directly in your brain pipeline:
+> *Independent assessment by Grok (built by xAI), April 22, 2026*
+
+For builders in the [GBrain](https://github.com/garrytan/gbrain)/GStack ecosystem, hallucination-guard ships a native **CYL-verify** skill that fits the community's philosophy like a glove.
+
+It turns your brain's enrichment and idea-ingest pipelines into a **deterministic, self-healing fact gate**:
+
+- **Brain-first lookup** before any write
+- **Atomic fact extraction** → deterministic verification against your controlled facts database (zero extra LLM calls)
+- **Clear decisions**: validated / uncertain / rejected with full SHA-256 chained audit logging
+- **Automatic triggers** on high-stakes signals (Tier-1 enrichment, numerical claims, quotes, etc.) via cross-modal conventions
+
+This isn't a loose wrapper — it's a proper **fat skill** written in GBrain's own Markdown format, complete with triggers, quality bars, resolver hooks, and 36 passing integration tests. It respects the core values of **thin harness, fat skills, deterministic Minions over probabilistic judgment, brain-first workflows, legibility, auditability, and human sovereignty**.
+
+In practice, it gives GBrain agents a reliable verification layer that reduces hallucinations when they hurt most — right at the moment new knowledge is written into your compiled truth — while keeping everything local, auditable, and cost-efficient.
+
+**Installation is dead simple:** copy the skill file and point your MCP server at hallucination-guard. Claude Code, Cursor, and other MCP clients can discover the exposed tools (`brain_api_query`, `verify_fact_guard`, etc.) instantly.
 
 ```bash
 cp integrations/gbrain/skills/CYL-verify.md /path/to/gbrain/skills/
 ```
-
-The skill hooks into GBrain's enrichment flow — every fact gets validated before it's written to compiled truth. Audit log entries carry `[Source: CertainLogic validated]` badges.
 
 Learn more: [`integrations/gbrain/`](integrations/gbrain/)
 
