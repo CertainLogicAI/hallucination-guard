@@ -13,6 +13,7 @@
 [![Docker](https://img.shields.io/badge/GHCR-available-blue?logo=docker)](https://ghcr.io/certainlogicai/hallucination-guard)
 [![Docs](https://img.shields.io/badge/docs-live-brightgreen)](https://certainlogicai.github.io/hallucination-guard)
 [![Self-Hosted](https://img.shields.io/badge/Self--Hosted-✓-success)](https://github.com/CertainLogicAI/hallucination-guard)
+[![MCP Server](https://img.shields.io/badge/MCP%20Server-✓-blueviolet)](integrations/mcp/)
 [![Open Source](https://img.shields.io/badge/Open--Source-✓-brightgreen)](https://github.com/CertainLogicAI/hallucination-guard)
 
 **Kill AI hallucinations deterministically • 85‑98 % token savings • Self‑hosted & audit‑ready**
@@ -33,7 +34,8 @@
   <a href="#-deployment">🐳 Deployment</a> •
   <a href="#-api-reference">📖 API</a> •
   <a href="#-compliance">🛡️ Compliance</a> •
-  <a href="#-roadmap">📅 Roadmap</a>
+  <a href="#-roadmap">📅 Roadmap</a> •
+  <a href="#-integrations">🔌 Integrations</a>
 </p>
 
 ---
@@ -346,7 +348,65 @@ The facts database is a versioned JSON file:
 
 ---
 
-## 🔌 Integration Examples
+## 🔌 Integrations
+
+### MCP Server — Claude, Cursor, Windsurf
+
+Use CertainLogic as an MCP tool in any compatible agent. Install once, verify everywhere.
+
+```bash
+cd integrations/mcp
+pip install -e .
+```
+
+**Claude Code / Claude Desktop:**
+```json
+{
+  "mcpServers": {
+    "certainlogic": {
+      "command": "certainlogic-mcp",
+      "env": { "BRAIN_API_KEY": "your_key" }
+    }
+  }
+}
+```
+
+**Cursor:**
+Settings → MCP → Add Server → Command: `certainlogic-mcp`
+
+**Tools your agent sees:**
+
+| Tool | What it does | Returns |
+|---|---|---|
+| `brain_api_query` | Single fact lookup against verified DB | answer + confident + method |
+| `batch_query` | Validate multiple facts at once | aggregated results |
+| `verify_fact_guard` | Hallucination detector against source text | valid/invalid/unclear |
+| `health_check` | Brain API availability | ok / degraded / down |
+
+**Example — agent calling the guard via MCP:**
+
+```python
+# Your agent reasoning
+"The user claims GPT‑5 costs $200/month. Let me verify."
+→ brain_api_query("What is the price of GPT‑5?")
+   → { "answer": "No pricing announced for GPT‑5.",
+       "confident": true, "method": "facts" }
+→ Agent: "That claim can't be verified — GPT‑5 pricing hasn't been announced  [Source: CertainLogic]."
+```
+
+Learn more: [`integrations/mcp/`](integrations/mcp/)
+
+### GBrain Skill (YC)
+
+For [GBrain](https://github.com/garrytan/gbrain) users, install the `CYL-verify` skill for hallucination-guarded fact validation directly in your brain pipeline:
+
+```bash
+cp integrations/gbrain/skills/CYL-verify.md /path/to/gbrain/skills/
+```
+
+The skill hooks into GBrain's enrichment flow — every fact gets validated before it's written to compiled truth. Audit log entries carry `[Source: CertainLogic validated]` badges.
+
+Learn more: [`integrations/gbrain/`](integrations/gbrain/)
 
 ### LangChain (built-in)
 
