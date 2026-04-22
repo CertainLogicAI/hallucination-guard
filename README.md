@@ -55,6 +55,8 @@ hallucination-guard verify "What is Python's latest version?"
 
 **That's it.** You now have deterministic AI verification with 100 verified coding facts. No external services. No API keys. Zero network calls after install.
 
+📋 [Full technical requirements →](TECH-REQUIREMENTS.md) (RAM, disk, server options, Docker)
+
 ### Want More Facts?
 
 ```bash
