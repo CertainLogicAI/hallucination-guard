@@ -3,8 +3,8 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hallucination-guard"
-version = "0.1.0"
+name = "certainlogic-guard"
+version = "0.1.1"
 description = "Deterministic AI verification middleware that catches hallucinations and cuts token costs."
 requires-python = ">=3.11"
 keywords = ["AI", "hallucination detection", "LLM guardrails", "deterministic verification", "semantic caching", "self-hosted", "audit logging", "compliance", "HIPAA", "GDPR", "SOC2"]
@@ -40,6 +40,7 @@ hallucination_guard = ["facts_db.json", "free_tier_facts.json"]
 
 [project.scripts]
 hallucination-guard = "hallucination_guard.cli:main"
+certainlogic-guard = "hallucination_guard.cli:main"
 
 [project.urls]
 Homepage = "https://certainlogic.ai"
