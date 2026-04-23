@@ -17,7 +17,7 @@ Semantic Versioning: [SemVer](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 - Initial release of CYL-verify skill for GBrain
-- Hallucination-guarded fact validation against verified developer facts database
+- Hallucination-guarded fact validation against 333 verified developer facts
 - Cryptographic audit logging with append-only SQLite store
 - Cross-modal review integration (`skills/conventions/cross-modal.yaml`)
 - Automatic triggers: enrich Tier 1, idea-ingest >3 numbers, maintain stale sweep

@@ -75,7 +75,7 @@ Trigger an enrichment on a company. Check compiled truth — you should see `[So
 
 | Feature | Status |
 |---|---|
-| Fact validation (verified developer facts database) | ✅ |
+| Fact validation (333 verified developer facts) | ✅ |
 | Pre-warmed cache (zero cold start) | ✅ |
 | Cryptographic audit logging | ✅ |
 | Graceful degradation (no blocking on API failure) | ✅ |
