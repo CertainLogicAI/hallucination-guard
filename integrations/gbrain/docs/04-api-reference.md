@@ -308,7 +308,7 @@ CertainLogic stores facts in this format:
 |---|---|---|
 | 1.0.0 | 2026-04-21 | Initial integration: MCP server, fact validation, audit logging |
 | 1.1.0 | Planned | Periodic re-validation in maintain skill |
-| 2.0.0 | Planned | XOR cryptographic audit chain, AgentPathfinder integration |
+| 2.0.0 | Planned | Enhanced cryptographic audit integrity |
 
 ---
 

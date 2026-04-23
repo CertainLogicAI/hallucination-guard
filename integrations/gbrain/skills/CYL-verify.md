@@ -1,68 +1,77 @@
 ---
-id: certainlogic-cyl-verify
-name: CertainLogic Verify
+name: cyl-verify
 version: 1.0.0
 description: |
-  Hallucination-guarded fact validation + cryptographic audit logging for GBrain.
-  Use before writing to compiled truth, after enrichment, or whenever factual
-  accuracy matters. Checks facts against a verified database before your brain
-  commits them. Returns `uncertain` instead of trusting unverified AI output.
-category: brain
-requires: []
-secrets:
-  - name: BRAIN_API_KEY
-    description: CertainLogic Brain API key for fact validation queries
-    where: https://certainlogic.ai/get-started
-health_checks:
-  - type: env_exists
-    env: BRAIN_API_KEY
-  - type: command
-    command: curl -s http://127.0.0.1:8000/health | grep ok
-setup_time: 5 minutes
+  CertainLogic integration for gbrain. Hallucination-guarded fact validation
+  + cryptographic audit logging. Use when enriching, ingesting, or reviewing
+  brain content where factual accuracy matters.
+triggers:
+  - "verify fact"
+  - "validate claim"
+  - "check before writing brain"
+  - "certainlogic"
+  - "guard"
+  - "audit fact"
+  - "is this true"
+tools:
+  - web_search
+  - brain_api_query  # CertainLogic Brain API tool
+  - verify_fact      # Guard validator
+  - log_audit_entry  # Audit chain
+  - get_page
+  - put_page
+mutating: true
 ---
 
-# CertainLogic Verify — SKILL.md
+# CertainLogic Verify
 
-> **TL;DR** Install this skill and every fact written to your brain's compiled truth gets validated against a verified fact database before commit. Hallucinations are caught. Sources are attributed. Everything is auditable.
+## What This Is
 
-## When to Use This Skill
+An optional validation layer for gbrain that:
+1. **Checks facts** against Brain API's hallucination detector before writing to brain
+2. **Audits every enrich decision** with a cryptographic log (tamper-evident)
+3. **Returns `uncertain`** instead of trusting unverified AI-extracted facts
 
-| Trigger | Why it fires |
-|---|---|
-| `enrich` Tier 1 pipeline | Before writing company data to compiled truth |
-| `idea-ingest` with >3 numbers | After cross-modal-review, before brain write |
-| `media-ingest` with >5 entities | After entity extraction, before enrichment |
-| `maintain` stale sweep | Re-validating compiled truth older than 90 days |
-| Manual: "verify this claim" | Anytime the user explicitly requests fact-checking |
-| Manual: "is this true" | Direct trust query against the fact database |
+Use this when factual accuracy matters: company data, financials, legal claims, regulatory info, technical facts, quotations.
 
-**Chain position:** `enrich → cross-modal-review → cyl-verify → brain write`
+## Philosophy
 
-## Quick Start (5 minutes)
+> gbrain captures everything. CertainLogic tells you what's true.
+>
+> gbrain is *comprehensive*. CertainLogic is *discriminating*.
+> They work better together than either alone.
+
+## When to Activate
+
+- Any **Tier 1 enrich** (full pipeline) involving company data
+- Any **brain write** with numerical claims, dates, or quotes
+- Any **enrich** where source authority is uncertain
+- Any fact that contradicts existing brain knowledge
+- Before writing to compiled truth (State section)
+
+## How to Register
 
 ### Step 1: Install the MCP server
 
 ```bash
 pip install certainlogic-mcp
-export BRAIN_API_KEY="your_key_here"
+export BRAIN_API_KEY=your_key_here
 ```
 
-Verify it's running:
+Add to your agent's MCP config:
 
-```bash
-curl -s http://127.0.0.1:8000/health
-# Expected: {"status":"ok","components":{...}}
+```json
+{
+  "mcpServers": {
+    "gbrain": { "command": "gbrain", "args": ["serve"] },
+    "certainlogic": { "command": "certainlogic-mcp" }
+  }
+}
 ```
 
-### Step 2: Add the skill to GBrain
+### Step 2: Configure as cross-modal reviewer
 
-```bash
-cp skills/CYL-verify.md /path/to/gbrain/skills/
-```
-
-### Step 3: Configure cross-modal review
-
-Edit `skills/conventions/cross-modal.yaml`:
+In your `skills/conventions/cross-modal.yaml`, add:
 
 ```yaml
 review_pairs:
@@ -74,319 +83,122 @@ review_pairs:
     when: "page contains >3 numerical claims or >2 quotes"
 ```
 
-### Step 4: Run health check
-
-```bash
-gbrain doctor
-gbrain skillpack-check
-```
-
-Expected: `CYL-verify: ✅ installed, health checks passing`
-
 ## The Verification Protocol
 
-### Before writing to compiled truth
+### Before writing to compiled truth:
 
-**Step 0 — Domain Gate (the filter)**
+**Step 1:** Extract atomic facts from the content
+- Each claim gets ONE fact check
+- Split: "Acme raised $50M from Sequoia in March 2026"
+  → "Acme raised $50M"
+  → "Acme funding from Sequoia"
+  → "Acme funding date March 2026"
 
-Every fact passes through a domain classifier before hitting the Brain API. This prevents:
-- Personal facts from silently failing validation
-- Financial/business facts from wasting API calls
-- Subjective opinions from producing confusing `uncertain` results
-
-| Domain | Action | Example |
-|---|---|---|
-| **languages** | ✅ Validate | "Python list is mutable" |
-| **apis** | ✅ Validate | "HTTP 429 means rate limited" |
-| **git** | ✅ Validate | "Git rebase vs merge" |
-| **containers** | ✅ Validate | "Docker compose up" |
-| **databases** | ✅ Validate | "SQL left join returns" |
-| **security** | ✅ Validate | "JWT structure" |
-| **frameworks** | ✅ Validate | "FastAPI auto docs URL" |
-| **personal** | 🚫 Skip | "Sarah's birthday is March 15" |
-| **financial** | 🚫 Skip | "Acme Corp revenue 2026" |
-| **subjective** | 🚫 Skip | "I think React is better" |
-| **current_events** | 🚫 Skip | "Weather in London today" |
-| **unclear** | ❓ Validate (safer) | Ambiguous technical query |
-
-**Skipped facts** bypass the Brain API entirely:
-- No API cost ($0)
-- No confusing `uncertain` result
-- No `[Source: CertainLogic]` attribution
-- Continue through normal brain pipeline unchanged
-
-**Why not an on/off toggle?** If left on by default, irrelevant facts produce terrible UX. If left off by default, users miss the value. A domain gate silently handles this — technical facts get validated, everything else passes through.
-
-**Track your hit rates:** Run `hallucination-guard report` to see in-scope vs out-of-scope breakdown and cache hit rates per domain.
-
-**Step 1 — Extract atomic facts**
-
-Split every compound claim into single assertions:
+**Step 2:** Call Brain API / Guard for each fact
 
 ```
-"Acme raised $50M from Sequoia in March 2026"
-→ "Acme raised $50M"
-→ "Acme Series B led by Sequoia"
-→ "Acme funding date March 2026"
+brain_api_query("Did Acme AI raise $50M in March 2026?")
+→ { "answer": "Yes — Acme AI raised $50M Series B (Source: TechCrunch, 2026-03-15)",
+    "confident": true,
+    "method": "facts" }
 ```
 
-**Step 2 — Query Brain API for each fact**
-
-```typescript
-const result = await brain_api_query("Did Acme AI raise $50M in March 2026?");
-// → { answer: "Yes — $50M Series B (Source: TechCrunch, 2026-03-15)",
-//     confident: true, method: "facts" }
+```
+brain_api_query("Who invested in Acme AI's Series B?")
+→ { "answer": "Sequoia Capital and Andreessen Horowitz co-led",
+    "confident": true,
+    "method": "facts" }
 ```
 
-**Step 3 — Route based on confidence**
+**Step 3:** If `confident: true` → write to brain with `[Source: CertainLogic validated]`
 
-| Result | Action |
-|---|---|
-| `confident: true` | Write to compiled truth with `[Source: CertainLogic validated, ...]` |
-| `confident: false` | Write to timeline as `[UNVERIFIED claim: ...]` — do NOT write to compiled truth |
-| `confident: uncertain` | Same as false — flag for human review |
+**Step 4:** If `confident: false` → flag as UNVERIFIED, do NOT write to compiled truth
+  - Write to timeline: `[UNVERIFIED claim: ...] [Source: AI extracted, pending validation]`
+  - Log audit: claim unverified, reason: no source match in fact DB
 
-**Step 4 — Log audit entry**
+### After writing to brain:
 
-```typescript
-await log_audit_entry({
-  task_id: enrichment_task_id,
-  entity: "Acme AI",
-  facts_validated: 3,
-  facts_rejected: 1,
-  method: "cyl-verify",
-  timestamp: new Date().toISOString(),
-});
-```
-
-### After writing to compiled truth
-
-The audit log is append-only. Every compiled truth entry that passed verification gets an `[Audit: ...]` link referencing the log entry.
-
-## Brain-First Lookup Rules
-
-1. **Query brain first.** If gbrain already has a compiled truth page for the entity, read it before calling Brain API.
-2. **Brain API as validator.** Use CertainLogic's Brain API to confirm or challenge what's already in the brain — not as a primary source.
-3. **Never overwrite brain truth with unvalidated claims.** If Brain API returns uncertain, keep the existing compiled truth (if any) and flag the new claim as unverified.
-
-## Source Attribution (Compiled Truth Format)
-
-### Above the line — Synthesis
-
-```markdown
-## Compiled Truth
-
-Acme AI raised $50M Series B led by Sequoia Capital in March 2026.
-```
-
-### Below the line — Evidence
-
-```markdown
----
-
-**Sources:**
-- [Source: CertainLogic validated, TechCrunch 2026-03-15]
-- [Audit: a1b2c3d4-e5f6-7890-abcd-ef1234567890]
-```
-
-### Attribution types
-
-| Source type | Format |
-|---|---|
-| CertainLogic facts DB | `[Source: CertainLogic validated, source_name]` |
-| CertainLogic Guard | `[Source: CertainLogic Guard validated, confidence: 0.92]` |
-| Unverified / uncertain | `[Source: UNVERIFIED — CertainLogic uncertain]` |
-| Audit reference | `[Audit: audit_id]` |
-
-## Quality Checklist
-
-Before marking an enrichment as complete, verify:
-
-- [ ] Every numerical claim in compiled truth has a `[Source: ...]` line
-- [ ] Every `[Source: CertainLogic ...]` claim has a matching audit entry
-- [ ] No `[UNVERIFIED]` claims appear in compiled truth (only in timeline)
-- [ ] Audit log is writable (not read-only or missing)
-- [ ] Brain API health check passes (`curl http://127.0.0.1:8000/health`)
-- [ ] If API is unavailable, task degrades gracefully (logs warning, continues)
-
-## How This Makes Your GBrain Smarter Overnight
-
-| Without CYL-verify | With CYL-verify |
-|---|---|
-| Brain writes whatever the LLM claims | Brain writes only validated facts |
-| No way to know if a fact was checked | Every fact has an audit trail with SHA-256 hashes |
-| Stale compiled truth sits forever | Monthly re-validation sweep flags outdated facts |
-| Hallucinated investors, dates, amounts | Confident claims sourced; uncertain claims quarantined |
-| "Trust but verify" is manual | Verification runs automatically on every Tier 1 enrichment |
-
-## Anti-Patterns
-
-**❌ Do NOT** validate out-of-scope facts. If the domain gate skips a personal fact, let it go. Don't force-validation.
-
-**❌ Do NOT** block brain operations because verification is temporarily unavailable. Degrade gracefully — log a warning and continue.
-
-**❌ Do NOT** use Brain API as a primary research tool. It's a validator, not Google.
-
-**❌ Do NOT** write uncertain facts to compiled truth "just in case." Timeline only.
-
-**❌ Do NOT** forget to set `BRAIN_API_KEY`. The skill degrades but you'll miss validation.
-
-**❌ Do NOT** ignore the hit rate report. If cache hit rate drops below 50%, your fact pack needs expansion. Run `hallucination-guard report` weekly.
-
-## Error Handling
-
-### Tool Resolution (Critical for GBrain Runtime)
-
-GBrain's dispatcher resolves tool names to executables. The CertainLogic skill exposes three tools that must map to the `hallucination-guard` CLI:
-
-**Tool → CLI mapping:**
-
-| Tool Name | GBrain Calls | Resolved To |
-|---|---|---|
-| `brain_api_query` | `cross_modal_review.tools.brain_api_query(...)` | `hallucination-guard verify "{query}"` |
-| `verify_fact` | `cross_modal_review.tools.verify_fact(...)` | `hallucination-guard verify "{query}" "{text}"` |
-| `log_audit_entry` | `cross_modal_review.tools.log_audit_entry(...)` | `hallucination-guard log --task-id {id} --entity {name}` |
-
-**Resolver configuration** (add to your `gbrain/config/tools.yaml` or equivalent):
-
-```yaml
-tools:
-  brain_api_query:
-    command: hallucination-guard
-    args: ["verify", "{query}"]
-    env:
-      BRAIN_API_KEY: "${BRAIN_API_KEY}"
-      FACTS_DB_PATH: "${HOME}/.hallucination-guard/facts_db.json"
-    timeout: 5s
-    
-  verify_fact:
-    command: hallucination-guard
-    args: ["verify", "{query}", "{text}"]
-    env:
-      BRAIN_API_KEY: "${BRAIN_API_KEY}"
-      FACTS_DB_PATH: "${HOME}/.hallucination-guard/facts_db.json"
-    timeout: 10s
-    
-  log_audit_entry:
-    command: hallucination-guard
-    args: ["log", "--task-id", "{task_id}", "--entity", "{entity}"]
-    env:
-      HALLUCINATION_GUARD_DATA: "${HOME}/.hallucination-guard"
-    timeout: 2s
-```
-
-**If `hallucination-guard` is not in PATH:**
-
-Specify the full path in your resolver config:
-
-```yaml
-brain_api_query:
-  command: /usr/local/bin/hallucination-guard  # or wherever pip installed it
-```
-
-**If `hallucination-guard` is not installed yet:**
-
-The skill degrades gracefully — all three tools return a warning and the enrichment continues without validation. The brain page gets `[Source: unverified — CYL-verify not installed]` instead of failing entirely.
-
-### Brain API unavailable
-
-```typescript
-try {
-  result = await brain_api_query(claim);
-} catch (err) {
-  log_warning("CertainLogic API unavailable — skipping validation");
-  // Continue. Write with [Source: unverified — API down]
-}
-```
-
-### Rate limited (429)
-
-Exponential backoff, max 3 retries. Then continue without validation.
-
-### Missing API key
-
-```typescript
-if (!process.env.BRAIN_API_KEY) {
-  log_warning("BRAIN_API_KEY not set — CYL-verify inactive");
-  return; // Skip verification, do not block
-}
-```
-
-## Example Usage
-
-### Scenario: Enriching a company page
+**Step 5:** Log audit entry
 
 ```
-User: "Add everything you know about Acme AI"
-Agent: → detects entity "Acme AI"
-       → loads brain pages
-       → discovers new claims: "$50M Series B, led by Sequoia, March 2026"
-       → cyl_verify("Acme AI raised $50M") → confident: true
-       → cyl_verify("Acme AI Series B led by Sequoia") → confident: true
-       → cyl_verify("Acme AI funding date March 2026") → confident: true
-       → writes compiled truth with [Source: CertainLogic validated, TechCrunch]
-       → logs audit entry
-       → responds: "Added 3 validated facts to Acme AI page"
+log_audit_entry(
+  task_id=enrichment_task_id,
+  entity="Acme AI",
+  facts_validated=3,
+  facts_rejected=1,
+  method="cyl-verify",
+  timestamp=ISO8601
+)
 ```
 
-### Scenario: Uncertain claim
+## Audit Chain — Cryptographic Proof
 
-```
-User: "Add that Acme AI will IPO in 2027"
-Agent: → cyl_verify("Acme AI IPO in 2027") → confident: false, method: uncertain
-       → writes to timeline: "[UNVERIFIED claim: IPO in 2027] [Source: AI extracted, pending validation]"
-       → does NOT write to compiled truth
-       → responds: "Added to timeline as unverified. I have no sources confirming this."
-```
+Every verification decision is logged with:
+- **Task ID**: UUID of the enrichment job
+- **Entity**: Person/company name
+- **Fact hash**: SHA-256 of the claim text
+- **Result**: `validated` | `rejected` | `uncertain`
+- **Method**: `facts` (cache hit) | `llm` ( LLM-checked ) | `uncertain` (no data)
+- **Timestamp**: ISO 8601
 
-### Scenario: Manual verification
-
-```
-User: "Verify: Did Acme AI raise $50M?"
-Agent: → cyl_verify("Acme AI raised $50M") → confident: true
-       → responds: "Yes, verified. $50M Series B led by Sequoia Capital (TechCrunch, 2026-03-15)"
-```
-
-## Performance
-
-| Metric | Target | Typical |
-|---|---|---|
-| Fact extraction | < 100ms per claim | 45ms |
-| Brain API query | < 500ms per fact | 120ms (cache hit) |
-| Guard check (filter) | < 100ms per fact | 25ms |
-| Audit log write | < 50ms per entry | 15ms |
-| **Total overhead (3-5 facts)** | **< 1s** | **~350ms** |
-| Memory footprint | < 10MB | 6MB |
+The log is append-only. Entries can be verified independently.
 
 ## Integration Points
 
-| Skill | How CYL-verify fits |
+### 1. Enrich skill (before write)
+
+Override the default `enrich` flow:
+
+```diff
+  1. Detect entities
+  2. Load brain pages
+  3. Identify new information
++ 4. CYL-verify: validate each claim
++    - Pass → write compiled truth
++    - Fail → write to timeline as UNVERIFIED
+  5. Write it back
+```
+
+### 2. Cross-modal review (after write)
+
+After `cross-modal-review` checks quality, `cyl-verify` checks truth:
+
+```
+Idea ingest → cross-modal-review (style) → cyl-verify (truth) → brain write
+```
+
+### 3. Maintain skill (periodic audit)
+
+Monthly: sweep compiled truth for facts older than 90 days, re-verify.
+
+```
+Skill: maintain + cyl-verify
+Trigger: monthly cron
+Action: Re-validate compiled truth entries, flag stale facts
+```
+
+## What You Get
+
+| Without CYL-verify | With CYL-verify |
 |---|---|
-| `enrich` | Validation gate before compiled truth write |
-| `cross-modal-review` | Runs after quality check, before brain write |
-| `idea-ingest` | Validates numerical claims and quotes |
-| `media-ingest` | Validates entity extraction results |
-| `maintain` | Monthly re-validation of stale compiled truth |
-| `query` | Optional double-check before trusting compiled truth |
+| "Acme raised $50M" (maybe true?) | "Acme raised $50M" [Source: CertainLogic validated, TechCrunch 2026-03-15] |
+| Hallucinated investors | Verified investor list or flagged unverified |
+| Stale compiled truth | Periodic re-validation with audit trail |
+| No proof claims were checked | Cryptographic log of every verification |
 
-## Future: XOR Audit Fragments
+## Cost
 
-CertainLogic is building a cryptographic proof-of-completion system:
+Brain API is **free tier**: 3,000 queries/month.
+Paid tier: $69 one-time (Coder Pack), $499-$2,499/year (Agent/Enterprise).
 
-- Each enrichment task generates XOR secret fragments
-- Fragments issued only after facts are validated
-- Audit layer reconstructs the secret to confirm all steps completed
-- If an agent skips validation, the secret cannot be reconstructed
-
-This makes verification **tamper-evident**, not just logged. Planned for v2.0.0.
+Each enrichment typically triggers 3-5 fact checks = negligible cost.
 
 ## Credits
 
 - **CertainLogic**: https://certainlogic.ai — deterministic AI validation
 - **GBrain**: https://github.com/garrytan/gbrain — self-evolving second brain
-- **Maintained openly**: Issues and PRs welcome at https://github.com/CertainLogicAI/hallucination-guard
+- This integration is maintained openly. Issues/PRs welcome.
 
 ---
 
-*CertainLogic is the "validated data guys." Part of the gbrain skill ecosystem.*
-*Skill v1.0.0 | Conforms to gbrain skill standard v1.0.0*
+*Part of the gbrain skill ecosystem. CertainLogic is the "validated data guys."*

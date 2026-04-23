@@ -249,26 +249,9 @@ user asks: "Does Acme AI have 10x performance?"
 - GBrain agent never sees the key in context
 - Key is passed via MCP server config (not LLM tool input)
 
-## Next: Cryptographic Audit Chain (v2.0)
+## Next: Enhanced Audit Integrity (v2.0)
 
-The current audit log is trustworthy but not cryptographically enforced. v2.0 will add:
-
-- **XOR secret splitting:** Each enrichment task generates fragments
-- **Fragment gating:** Fragments issued only after facts validated
-- **Reconstruction:** Audit layer confirms all steps completed
-- **Tamper detection:** If an agent skips validation, the secret cannot be reconstructed
-
-```
-Enrichment task → generates secret S
-  → Split into S₁, S₂, ..., Sₙ (one per validation step)
-  → Validate step 1 → receive S₁
-  → Validate step 2 → receive S₂
-  → ...
-  → Audit layer: reconstruct S = S₁ ⊕ S₂ ⊕ ... ⊕ Sₙ
-    → If any Sᵢ missing → task incomplete → alert
-```
-
-This makes verification **provable**, not just logged.
+Future versions will explore cryptographic enforcement mechanisms to make audit logs provably tamper-evident, complementing the current append-only logging system.
 
 ---
 

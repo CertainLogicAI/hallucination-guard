@@ -4,7 +4,7 @@
 
 ## The Pitch
 
-GBrain captures everything. CertainLogic tells you what's true.
+Gbrain captures everything. CertainLogic tells you what's true.
 
 This integration adds deterministic hallucination detection + cryptographic audit logging to gbrain's enrichment pipeline. Every fact written to compiled truth passes through CertainLogic's Guard before your brain commits it.
 
@@ -12,108 +12,127 @@ This integration adds deterministic hallucination detection + cryptographic audi
 
 | Component | Status | Tests |
 |---|---|---|
-| SKILL.md (GBrain v1.0.0 format) | ✅ Complete | Schema validated |
 | Skill definition | ✅ Complete | Unit + integration |
 | MCP server | ✅ Ready | 10/10 passing |
 | Integration tests | ✅ 36/36 passing | End-to-end pipeline |
 | Audit logging | ✅ SQLite schema + tests | Append-only |
-| CHANGELOG.md | ✅ Complete | Version history |
-| Migrations | ✅ v1.0.0 guide | Upgrade path documented |
-| RESOLVER.md | ✅ Complete | Dispatcher trigger mapping |
-| Integration recipe | ✅ Self-installing | 5-minute setup |
-| Documentation | ✅ Complete | 6 docs |
-| Crypto audit chain | 🔄 Planned v2.0 | AgentPathfinder integration |
+| Documentation | ✅ Complete | 5 docs |
+| Crypto audit chain | 🔄 Planned v2.0 | Tamper-evident verification chaining |
 
-## Quick Start (5 minutes)
+## Quick Start
 
-**Self-installing recipe — copy, paste, done:**
-
-[→ integration recipe](docs/integrations/README.md)
-
-Or the one-liner version:
+### 1. Install the MCP server
 
 ```bash
-pip install certainlogic-mcp && \
-cp skills/CYL-verify.md /path/to/gbrain/skills/ && \
-gbrain doctor && gbrain skillpack-check
+pip install certainlogic-mcp
+export BRAIN_API_KEY=your_key_here
 ```
 
-## What's in the Box
+### 2. Configure Your Agent
+
+```json
+{
+  "mcpServers": {
+    "gbrain": { "command": "gbrain", "args": ["serve"] },
+    "certainlogic": { "command": "certainlogic-mcp" }
+  }
+}
+```
+
+### 3. Add the Skill
+
+```bash
+cp skills/CYL-verify.md /path/to/gbrain/skills/
+```
+
+### 4. Configure Cross-Modal Review
+
+Edit `gbrain/skills/conventions/cross-modal.yaml`:
+
+```yaml
+review_pairs:
+  - trigger_skill: enrich
+    review_skill: cyl-verify
+    when: "Tier 1 enrichment or any company/person data"
+  - trigger_skill: idea-ingest
+    review_skill: cyl-verify
+    when: "page contains >3 numerical claims or >2 quotes"
+```
+
+## Running Tests
+
+```bash
+cd opensource/gbrain-integration
+pytest tests/test_integration.py -v
+```
+
+**Expected: 36 passed**
+
+## What's Included
 
 | File | Purpose |
 |---|---|
-| `skills/CYL-verify.md` | **The skill** — frontmatter + protocol for GBrain agents |
-| `CHANGELOG.md` | Version history (Keep a Changelog format) |
-| `migrations/v1.0.0.md` | Upgrade guide from pre-v1.0.0 skill |
-| `RESOLVER.md` | Dispatcher trigger mapping and chain position |
-| `docs/integrations/README.md` | Self-installing recipe for new users |
-| `docs/05-gbrain-skill-spec.md` | Full conformance specification |
+| `skills/CYL-verify.md` | GBrain skill spec (frontmatter + full body) |
+| `docs/01-installation.md` | Step-by-step setup |
+| `docs/02-architecture.md` | Pipeline design, security model |
+| `docs/03-usage.md` | 7 real-world examples |
+| `docs/04-api-reference.md` | MCP tools, HTTP endpoints, rate limits |
+| `docs/05-gbrain-skill-spec.md` | GBrain conformance, trigger resolution |
+| `tests/test_integration.py` | 36 end-to-end tests |
+| `CONTRIBUTING.md` | PR process, CoC |
 
-## How It Works
-
-```
-[Enrich triggered]
-    ↓
-[Extract atomic facts]
-    ↓
-[CertainLogic Brain API — validate each fact]
-    ↓
-  ✅ Confident    → Write compiled truth [Source: CertainLogic validated, ...]
-  ❌ Uncertain    → Write timeline [UNVERIFIED claim: ...]
-    ↓
-[Log audit entry — append-only, SHA-256]
-    ↓
-[Done]
-```
-
-### Chain Position
+## Architecture
 
 ```
-Enrich → Cross-Modal Review → CertainLogic Verify → Brain Write
-         (quality check)      (truth check)         (commit)
+Inbound signal
+    ↓
+GBrain enrich / idea-ingest
+    ↓
+Brain-first lookup (existing pages)
+    ↓
+CYL-verify:
+  1. Extract atomic facts
+  2. brain_api_query (pre-verified facts DB)
+  3. Guard (hallucination detector)
+  4. Decision: validated | uncertain | rejected
+  5. Audit log (SHA-256 hashed, append-only)
+    ↓
+Write: compiled truth (✓) or timeline (✗)
 ```
 
-## Performance
+## When to Use
 
-| Metric | Target | Typical |
-|---|---|---|
-| Fact extraction | < 100ms | 45ms |
-| Brain API query | < 500ms | 120ms (cache hit) |
-| Total overhead (3-5 facts) | < 1s | ~350ms |
-| Memory footprint | < 10MB | 6MB |
+- **Enriching** person/company pages with external data
+- **Ingesting** articles with numerical claims
+- **Fact-checking** user quotes before brain write
+- **Due diligence** before investor meetings
+- **Maintenance** monthly re-validation sweep
 
-## Verified Facts Database
+## Cost
 
-333 verified developer facts covering:
-- Python (core, advanced, async, testing)
-- HTTP / APIs (all status codes, methods, headers)
-- Git (branching, rebasing, GitHub Actions)
-- Docker (compose, layers, networking)
-- SQL (joins, transactions, optimization)
-- JavaScript / TypeScript (ES6+, TypeScript strict mode)
-- Security (JWT, OAuth, OWASP, TLS 1.3)
-- Frameworks (FastAPI, Flask, Django, React, Next.js)
-- Cloud (AWS, GCP, Azure basics)
+- **Free tier**: 3,000 queries/month — enough for most personal brains
+- **Paid tier**: From $69 one-time (Coder Pack)
+- Each enrichment: 3-5 fact checks = negligible cost
+- Cache hits: free, ~50ms
 
-**Free tier:** 100 essential facts. **Paid tier:** All 333 + pre-warmed cache.
+## Security
 
-## Upgrade Path
-
-See [CHANGELOG.md](CHANGELOG.md) for version history and [migrations/](migrations/) for step-by-step upgrade guides.
-
-### Planned (v2.0.0)
-
-- XOR audit fragments (tamper-evident verification)
-- Real-time brain sync (push validated facts immediately)
-- Federation (multiple GBrain instances sharing validation state)
+- API key in env var only — never in LLM context
+- Query text hashed (SHA-256) for telemetry
+- Audit log: append-only, no PII
+- CertainLogic does not retain query text after validation
 
 ## Credits
 
-- **CertainLogic**: https://certainlogic.ai — deterministic AI validation
-- **GBrain**: https://github.com/garrytan/gbrain — self-evolving second brain
-- Maintained openly at https://github.com/CertainLogicAI/hallucination-guard
+- **Integration**: CertainLogic (https://certainlogic.ai)
+- **GBrain**: Garry Tan (https://github.com/garrytan/gbrain)
+- **GStack**: Garry Tan (https://github.com/garrytan/gstack)
+- **License**: MIT
 
-## License
+## Integration for GStack Users
 
-Integration code: MIT
-Data products: Subject to [EULA](../EULA.md)
+Same integration works for gstack. The MCP server adds `brain_api_query` to Claude Code's tool set, so every gstack-powered agent gets CertainLogic validation alongside the 23 gstack tools.
+
+---
+
+*CertainLogic is the "validated data guys" for the gbrain/gstack community.*

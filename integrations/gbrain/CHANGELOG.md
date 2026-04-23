@@ -8,8 +8,8 @@ Semantic Versioning: [SemVer](https://semver.org/spec/v2.0.0.html)
 ## [Unreleased]
 
 ### Planned
-- XOR audit fragment system (tamper-evident verification)
-- AgentPathfinder integration for cross-agent audit chains
+- Enhanced cryptographic audit integrity
+- Cross-agent audit chain verification
 - Real-time brain sync (push validated facts to brain immediately)
 - Federation support (multiple GBrain instances sharing validation state)
 
@@ -17,7 +17,7 @@ Semantic Versioning: [SemVer](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 - Initial release of CYL-verify skill for GBrain
-- Hallucination-guarded fact validation against 333 verified developer facts
+- Hallucination-guarded fact validation against verified developer facts database
 - Cryptographic audit logging with append-only SQLite store
 - Cross-modal review integration (`skills/conventions/cross-modal.yaml`)
 - Automatic triggers: enrich Tier 1, idea-ingest >3 numbers, maintain stale sweep
