@@ -232,7 +232,8 @@
       "type": "numeric",
       "value": "79 characters",
       "source": "https://peps.python.org/pep-0008/",
-      "verified_date": "2026-04-21"
+      "verified_date": "2026-04-21",
+      "unit": "characters"
     },
     "python pathlib introduced in version": {
       "type": "string",
@@ -1355,7 +1356,8 @@
       "type": "numeric",
       "value": "900 seconds (15 minutes)",
       "source": "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html",
-      "verified_date": "2026-04-21"
+      "verified_date": "2026-04-21",
+      "unit": "seconds"
     },
     "aws lambda max memory": {
       "type": "numeric",
