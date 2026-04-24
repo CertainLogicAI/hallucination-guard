@@ -10,11 +10,17 @@ Phase-A additions:
   - Health assessment after gatekeeper passes
   - Per-iteration cost tracking
 
+Phase-B additions:
+  - failure_analyzer.py integration (Phase 2)
+  - fix_designer.py integration (Phase 3)
+  - Auto-fix execution with dry-run support (Phase 4)
+
 Usage:
     python scripts/auto_improve.py --mode daemon    # Run forever
     python scripts/auto_improve.py --mode once      # Single iteration
     python scripts/auto_improve.py --mode benchmark # Run benchmark only
     python scripts/auto_improve.py --force          # Bypass rate limit
+    python scripts/auto_improve.py --dry-run        # No file changes
 """
 import argparse
 import hashlib
@@ -215,6 +221,45 @@ def apply_auto_fixes(categories: dict[str, list[dict]]) -> list[str]:
     return fixes_applied
 
 
+def execute_fix(fix: dict, dry_run: bool = False) -> dict:
+    """Apply an auto-fix to target_file. Returns execution result dict."""
+    target = REPO_ROOT / fix.get("target_file", "")
+    result = {"applied": False, "target": str(target), "error": None}
+    if not target.exists():
+        result["error"] = f"Target file not found: {target}"
+        return result
+
+    old_text = fix.get("old_text")
+    new_text = fix.get("new_text")
+    if old_text is None or new_text is None:
+        result["error"] = "Missing old_text or new_text"
+        return result
+
+    content = target.read_text()
+    if old_text not in content:
+        result["error"] = "old_text not found in target file (content may have drifted)"
+        return result
+
+    if dry_run:
+        result["applied"] = "dry_run"
+        result["diff_preview"] = new_text[:200]
+        return result
+
+    content = content.replace(old_text, new_text, 1)
+    target.write_text(content)
+    result["applied"] = True
+    return result
+
+
+def log_result(fix: dict):
+    """Log fix result to iteration log."""
+    log_event("auto_fix_executed", {
+        "target_file": fix.get("target_file"),
+        "description": fix.get("description"),
+        "estimated_impact": fix.get("estimated_impact"),
+    })
+
+
 def spawn_improvement_subagent(failure_analysis: dict, suppress_until: Optional[str] = None) -> None:
     """Spawn a subagent to fix the specific failure pattern."""
     if suppress_until:
@@ -235,16 +280,18 @@ def spawn_improvement_subagent(failure_analysis: dict, suppress_until: Optional[
     })
 
 
-def run_iteration(state: IterationState, force: bool = False) -> IterationState:
-    """Run one full iteration: gatekeeper → assess → benchmark → analyze → fix → report."""
+def run_iteration(state: IterationState, force: bool = False, dry_run: bool = False) -> IterationState:
+    """Run one full iteration: gatekeeper -> assess -> benchmark -> analyze -> fix -> report."""
     state.iteration += 1
     state.last_run = datetime.now(timezone.utc).isoformat()
 
     print(f"\n{'='*60}")
     print(f"ITERATION {state.iteration}")
     print(f"{'='*60}")
+    if dry_run:
+        print("[DRY RUN] No file changes will be applied.\n")
 
-    # ── Step 0a: Gatekeeper ─────────────────────────────
+    # -- Step 0a: Gatekeeper --------------------------------
     gk_report = gatekeeper.gatekeeper(force=force)
     state.last_gatekeeper_result = gk_report
     print(f"[gatekeeper] proceed={gk_report['proceed']} | block_reason={gk_report['block_reason']}")
@@ -253,7 +300,7 @@ def run_iteration(state: IterationState, force: bool = False) -> IterationState:
         state.save()
         return state
 
-    # ── Step 0b: Assessment ─────────────────────────────
+    # -- Step 0b: Assessment --------------------------------
     try:
         assessment = assessor.assess()
         state.last_assessment = assessment
@@ -266,14 +313,13 @@ def run_iteration(state: IterationState, force: bool = False) -> IterationState:
         print(f"[assessor] failed: {e}")
         log_event("assessment_failed", {"error": str(e)})
 
-    # ── Step 0c: Cost snapshot (before) ─────────────────
+    # -- Step 0c: Cost snapshot (before) --------------------
     cost_before = cost_tracker.snapshot()
 
-    # ── Step 1: Run benchmark ────────────────────────────
+    # -- Step 1: Run benchmark ------------------------------
     results = run_benchmark()
     if not results:
         log_event("iteration_failed", {"reason": "benchmark failed"})
-        # Still log cost even on failure
         cost_after = cost_tracker.snapshot()
         cost_tracker.log_iteration_cost(cost_before, cost_after, state.iteration)
         return state
@@ -281,7 +327,7 @@ def run_iteration(state: IterationState, force: bool = False) -> IterationState:
     overall = results.get("overall", {})
     accuracy = overall.get("accuracy", 0)
 
-    # ── Step 2: Check if improved ────────────────────────
+    # -- Step 2: Check if improved --------------------------
     if accuracy > state.best_accuracy:
         state.best_accuracy = accuracy
         log_event("new_best_accuracy", {
@@ -290,35 +336,67 @@ def run_iteration(state: IterationState, force: bool = False) -> IterationState:
             "iteration": state.iteration,
         })
 
-    # ── Step 3: Categorize failures ──────────────────────
+    # -- Step 3: Categorize failures (legacy) ---------------
     categories = categorize_failures(results)
     log_event("failure_analysis", {
         "categories": {k: len(v) for k, v in categories.items()},
         "total_failures": sum(len(v) for v in categories.values()),
     })
 
-    # ── Step 4: Apply auto-fixes ─────────────────────────
+    # -- Step 4: Apply legacy auto-fixes --------------------
     fixes = apply_auto_fixes(categories)
     if fixes:
         log_event("fixes_applied", {"fixes": fixes})
         state.total_fixes_applied += len(fixes)
 
-    # ── Step 5: Spawn improvement subagent if needed ─────
+    # -- Phase 2: Analyze failures --------------------------
+    result = subprocess.run(
+        [sys.executable, str(_SCRIPTS_DIR / "failure_analyzer.py"), str(RESULTS_PATH)],
+        capture_output=True, text=True, cwd=REPO_ROOT,
+    )
+    failure_patterns_path = REPO_ROOT / "failure_patterns.json"
+    with open(failure_patterns_path, "w") as f:
+        f.write(result.stdout)
+
+    # -- Phase 3: Design fixes ------------------------------
+    result2 = subprocess.run(
+        [sys.executable, str(_SCRIPTS_DIR / "fix_designer.py")],
+        capture_output=True, text=True,
+        stdin=open(failure_patterns_path, "r"),
+        cwd=REPO_ROOT,
+    )
+    fix_proposals_path = REPO_ROOT / "fix_proposals.json"
+    with open(fix_proposals_path, "w") as f:
+        f.write(result2.stdout)
+
+    # -- Phase 4: Execute auto-fixes ------------------------
+    try:
+        proposals = json.loads(result2.stdout)
+    except json.JSONDecodeError:
+        proposals = {}
+    for fix in proposals.get("auto_fixes", []):
+        exec_result = execute_fix(fix, dry_run=dry_run)
+        log_result(fix)
+        log_event("auto_fix_result", exec_result)
+        if exec_result.get("applied") is True:
+            state.total_fixes_applied += 1
+
+    # -- Step 5: Spawn improvement subagent if needed -------
     total_failures = sum(len(v) for v in categories.values())
     if total_failures > 5 and accuracy < ACCURACY_TARGET:
         spawn_improvement_subagent(categories, suppress_until=state.subagent_suppress_until)
 
-    # ── Step 6: Cost snapshot (after) ────────────────────
+    # -- Step 6: Cost snapshot (after) ----------------------
     cost_after = cost_tracker.snapshot()
     cost_info = cost_tracker.log_iteration_cost(cost_before, cost_after, state.iteration)
     state.total_spend = round((state.total_spend or 0.0) + cost_info.get("iteration_spend", 0.0), 4)
 
-    # ── Step 7: Update hashes and save ───────────────────
+    # -- Step 7: Update hashes and save ---------------------
     state.last_facts_hash = hash_file(FACTS_PATH)
     state.last_code_hash = hash_directory(SRC_DIR)
     state.save()
 
-    # ── Step 8: Report ───────────────────────────────────
+    # -- Step 8: Report -------------------------------------
     print(f"\nIteration {state.iteration} complete:")
     print(f"  Accuracy: {accuracy:.1%}")
     print(f"  Best: {state.best_accuracy:.1%}")
@@ -329,7 +407,7 @@ def run_iteration(state: IterationState, force: bool = False) -> IterationState:
     return state
 
 
-def daemon_mode(force: bool = False):
+def daemon_mode(force: bool = False, dry_run: bool = False):
     """Run continuous iteration loop."""
     print("Starting 24/7 Auto-Iteration Engine...")
     print(f"Check interval: {CHECK_INTERVAL_SECONDS}s")
@@ -338,6 +416,8 @@ def daemon_mode(force: bool = False):
     print(f"Max iterations/session: {MAX_ITERATIONS_PER_SESSION}")
     print(f"Log: {LOG_PATH}")
     print(f"State: {STATE_PATH}")
+    if dry_run:
+        print("[DRY RUN] No file changes will be applied.")
     print("\nPress Ctrl+C to stop.\n")
 
     state = IterationState.load()
@@ -348,7 +428,7 @@ def daemon_mode(force: bool = False):
 
             if should_run:
                 log_event("iteration_triggered", {"reason": reason})
-                state = run_iteration(state, force=force)
+                state = run_iteration(state, force=force, dry_run=dry_run)
 
                 if state.iteration >= MAX_ITERATIONS_PER_SESSION:
                     log_event("session_limit_reached", {
@@ -376,16 +456,18 @@ def main():
                        help=f"Target accuracy (default: {DEFAULT_ACCURACY_TARGET})")
     parser.add_argument("--force", action="store_true",
                        help="Bypass gatekeeper rate limit")
+    parser.add_argument("--dry-run", action="store_true",
+                       help="Run all phases but do not apply file changes")
     args = parser.parse_args()
 
     global ACCURACY_TARGET
     ACCURACY_TARGET = args.target
 
     if args.mode == "daemon":
-        daemon_mode(force=args.force)
+        daemon_mode(force=args.force, dry_run=args.dry_run)
     elif args.mode == "once":
         state = IterationState.load()
-        state = run_iteration(state, force=args.force)
+        state = run_iteration(state, force=args.force, dry_run=args.dry_run)
         state.save()
     elif args.mode == "benchmark":
         results = run_benchmark()
