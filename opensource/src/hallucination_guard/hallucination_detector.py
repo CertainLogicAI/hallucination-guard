@@ -13,6 +13,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from hallucination_guard import unit_validator as uv
+
 # Default facts_db.json path (same directory as this file)
 _DEFAULT_FACTS_DB_PATH = str(Path(__file__).parent / "facts_db.json")
 
@@ -135,14 +137,25 @@ class HallucinationDetector:
     def load_facts(self, facts_db_path: str) -> int:
         """Load/reload facts from JSON file. Returns count loaded."""
         with open(facts_db_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        facts = data.get("facts", data)  # support both {facts: {...}} and flat dict
-        count = 0
-        for key, val in facts.items():
-            if isinstance(val, dict) and "value" in val:
-                self.facts_db[key.lower()] = val
-                count += 1
-        return count
+            data = f.read()
+        try:
+            from hallucination_guard.schemas import FactsDB
+            facts_db = FactsDB.model_validate_json(data)
+            self.facts_db = {
+                key: (fact.to_legacy() if hasattr(fact, "to_legacy") else fact)
+                for key, fact in facts_db.facts.items()
+            }
+            return len(self.facts_db)
+        except Exception:
+            # Fallback to legacy parsing
+            raw = json.loads(data)
+            facts = raw.get("facts", raw)
+            count = 0
+            for key, val in facts.items():
+                if isinstance(val, dict) and "value" in val:
+                    self.facts_db[key.lower()] = val
+                    count += 1
+            return count
 
     def set_threshold(self, threshold: float):
         """Set confidence threshold for valid/invalid decision."""
@@ -489,6 +502,21 @@ class HallucinationDetector:
                         mismatches.append(f"'{key}' expected '{expected}'")
             else:
                 # String-type fact: check if expected value appears in response
+                # Handle exact_match_required: ALL fact words must appear in response
+                exact_match = fact.get("exact_match_required", False)
+                if exact_match:
+                    expected_words = set(re.findall(r"\w+", expected))
+                    response_words = set(re.findall(r"\w+", response_lower))
+                    if expected_words.issubset(response_words):
+                        matched_any = True
+                        break
+                    else:
+                        missing = expected_words - response_words
+                        mismatches.append(
+                            f"'{key}' exact_match_required: missing words {', '.join(sorted(missing))}"
+                        )
+                        continue
+
                 if expected not in response_lower:
                     expected_words = set(re.findall(r"\w+", expected))
                     has_nums = bool(re.search(r"\d+", expected))
@@ -526,6 +554,23 @@ class HallucinationDetector:
                 "matched_key": first_key,
             }
         
+        # Unit sanity check: if a fact matched, validate units in the response
+        if matched_any and matched_keys:
+            for key in matched_keys:
+                fact = self.facts_db[key]
+                fact_type = fact.get("type", "string")
+                if fact_type == "numeric":
+                    unit_check = uv.validate_unit(query, response, fact)
+                    if not unit_check["valid"]:
+                        return {
+                            "passed": False,
+                            "message": f"Unit validation failed: {unit_check['reason']}",
+                            "score": 0.4,
+                            "delta": -0.6,
+                            "matched_key": first_key,
+                        }
+                    break
+
         if matched_any:
             return {
                 "passed": True,
