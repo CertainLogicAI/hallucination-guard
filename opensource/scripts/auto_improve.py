@@ -189,7 +189,8 @@ def main():
         import subprocess
         cmd = [
             sys.executable, "-c",
-            "import sys; sys.path.insert(0, 'src'); import benchmarks.benchmark_suite as bm; bm.main()",
+            "import sys; sys.path.insert(0, 'src'); sys.path.insert(0, '.'); "
+            "import benchmarks.benchmark_suite as bm; bm.main()",
         ]
         result = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO_ROOT)
         results_path = REPO_ROOT / "benchmarks" / "results.json"
