@@ -1,94 +1,50 @@
 #!/usr/bin/env python3
 """
-24/7 Auto-Iteration Engine for CertainLogic/hallucination-guard.
+24/7 Auto-Iteration Engine — Simplified Entry Point.
 
-Monitors repo changes, runs benchmarks, promotes verified facts,
-and spawns improvement subagents when regressions are detected.
+Phase D cleanup: All phase logic has been extracted into dedicated modules:
+  - gatekeeper.py     (Phase 0)
+  - assessor.py       (Phase 1)
+  - iteration_orchestrator.py (Phases 2–8, full pipeline wiring)
+  - custodian.py      (Phase 7: git custody)
+  - reporter.py       (Phase 8: human-readable reporting)
 
-Phase-A additions:
-  - Gatekeeper safety checks before each iteration
-  - Health assessment after gatekeeper passes
-  - Per-iteration cost tracking
+This file now only:
+  1. Parses CLI arguments
+  2. Loads config (from file or defaults)
+  3. Dispatches to iteration_orchestrator.run_full_iteration()
+  4. Handles daemon mode (sleep + loop)
 
-Phase-B additions:
-  - failure_analyzer.py integration (Phase 2)
-  - fix_designer.py integration (Phase 3)
-  - Auto-fix execution with dry-run support (Phase 4)
-
-Usage:
-    python scripts/auto_improve.py --mode daemon    # Run forever
-    python scripts/auto_improve.py --mode once      # Single iteration
-    python scripts/auto_improve.py --mode benchmark # Run benchmark only
-    python scripts/auto_improve.py --force          # Bypass rate limit
-    python scripts/auto_improve.py --dry-run        # No file changes
+Backward-compatibility:
+  --mode daemon/once/benchmark    preserved
+  --force                         preserved
+  --dry-run                       preserved
+  --target                          preserved
 """
+
 import argparse
-import hashlib
 import json
-import os
-import subprocess
 import sys
 import time
-from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
 
-# Ensure our scripts directory is importable
 _SCRIPTS_DIR = Path(__file__).parent
 if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
-import gatekeeper
-import assessor
-import cost_tracker
+from iteration_orchestrator import run_full_iteration
 
-# Paths
 REPO_ROOT = Path(__file__).parent.parent
-SRC_DIR = REPO_ROOT / "src/hallucination_guard"
-BENCHMARK_DIR = REPO_ROOT / "benchmarks"
-FACTS_PATH = REPO_ROOT / "coder_facts_pack_v1.0.json"
-RESULTS_PATH = BENCHMARK_DIR / "results.json"
 STATE_PATH = REPO_ROOT / ".iteration_state.json"
 LOG_PATH = REPO_ROOT / ".iteration_log.jsonl"
 
-# Targets
 DEFAULT_ACCURACY_TARGET = 0.95
-MAX_ITERATIONS_PER_SESSION = 10
+DEFAULT_MAX_ITERATIONS = 12
 CHECK_INTERVAL_SECONDS = 300  # 5 minutes
 
 
-@dataclass
-class IterationState:
-    iteration: int = 0
-    best_accuracy: float = 0.0
-    last_facts_hash: str = ""
-    last_code_hash: str = ""
-    total_fixes_applied: int = 0
-    last_run: Optional[str] = None
-    # Phase-A additions
-    total_spend: float = 0.0
-    last_gatekeeper_result: Optional[dict] = None
-    last_assessment: Optional[dict] = None
-    subagent_suppress_until: Optional[str] = None
-
-    def save(self):
-        with open(STATE_PATH, "w") as f:
-            json.dump(self.__dict__, f, indent=2, default=str)
-
-    @classmethod
-    def load(cls) -> "IterationState":
-        if STATE_PATH.exists():
-            with open(STATE_PATH) as f:
-                data = json.load(f)
-            # Coerce extra fields from old states gracefully
-            known = {k for k in cls.__dataclass_fields__}
-            data = {k: v for k, v in data.items() if k in known}
-            return cls(**data)
-        return cls()
-
-
-def log_event(event: str, details: dict):
+def _log_event(event: str, details: dict):
     """Append structured log entry."""
     entry = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -100,381 +56,152 @@ def log_event(event: str, details: dict):
     print(f"[{entry['timestamp']}] {event}: {details}")
 
 
-def hash_file(path: Path) -> str:
-    """SHA-256 hash of file contents."""
-    if not path.exists():
-        return ""
-    return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
+def _load_config(args) -> dict:
+    """Build config dict from CLI args and optional config file."""
+    config_path = REPO_ROOT / ".improve_config.json"
+    config = {}
+    if config_path.exists():
+        try:
+            with open(config_path, "r") as f:
+                config = json.load(f)
+        except json.JSONDecodeError:
+            pass
+
+    # CLI overrides
+    config["target_accuracy"] = args.target
+    config["max_iterations_per_day"] = config.get("max_iterations_per_day", DEFAULT_MAX_ITERATIONS)
+    config["auto_commit"] = config.get("auto_commit", True)
+    config["dry_run"] = args.dry_run
+    return config
 
 
-def hash_directory(dir_path: Path, pattern: str = "*.py") -> str:
-    """Hash of all matching files in directory."""
-    hashes = []
-    for f in sorted(dir_path.rglob(pattern)):
-        hashes.append(f"{f.relative_to(dir_path)}:{hash_file(f)}")
-    return hashlib.sha256("\n".join(hashes).encode()).hexdigest()[:16]
-
-
-def run_benchmark() -> Optional[dict]:
-    """Run benchmark suite and return results."""
-    log_event("benchmark_start", {})
-
-    cmd = [
-        sys.executable, "-c",
-        "import sys; sys.path.insert(0, 'src'); import benchmarks.benchmark_suite as bm; bm.main()"
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO_ROOT)
-
-    if RESULTS_PATH.exists():
-        with open(RESULTS_PATH) as f:
-            data = json.load(f)
-        overall = data.get("overall", {})
-        log_event("benchmark_complete", {
-            "accuracy": overall.get("accuracy", 0),
-            "correct": overall.get("correct", 0),
-            "total": overall.get("total", 0),
-            "fp": overall.get("fp", 0),
-            "fn": overall.get("fn", 0),
-        })
-        return data
-
-    log_event("benchmark_failed", {"stderr": result.stderr[:500]})
-    return None
-
-
-def categorize_failures(results: dict) -> dict[str, list[dict]]:
-    """Group failures by root cause pattern."""
-    failures = []
-    for case in results.get("cases", []):
-        expected = case.get("expected_valid", False)
-        actual = case.get("actual_valid", False)
-        if expected != actual:
-            failures.append(case)
-
-    categories: dict[str, list[dict]] = {
-        "qualifier_misfire": [],
-        "cross_match": [],
-        "numeric_tolerance": [],
-        "missing_fact": [],
-        "string_mismatch": [],
-        "code_output": [],
-        "other": [],
-    }
-
-    for case in failures:
-        flags = " ".join(case.get("flags", [])).lower()
-        query = case.get("query", "").lower()
-        category = case.get("category", "unknown")
-
-        if "unverifiable qualifiers" in flags:
-            categories["qualifier_misfire"].append(case)
-        elif any(wrong in flags for wrong in ["javascript == vs ===", "python asyncio introduced", "python type hints introduced"]):
-            categories["cross_match"].append(case)
-        elif category == "code_output":
-            categories["code_output"].append(case)
-        elif "expected" in flags and any(c.isdigit() for c in flags):
-            categories["numeric_tolerance"].append(case)
-        elif "expected" in flags:
-            categories["string_mismatch"].append(case)
-        elif "no matching fact" in flags or not case.get("flags"):
-            categories["missing_fact"].append(case)
-        else:
-            categories["other"].append(case)
-
-    return {k: v for k, v in categories.items() if v}
-
-
-def should_trigger_iteration(state: IterationState) -> tuple[bool, str]:
+def _should_trigger_iteration() -> tuple[bool, str]:
     """Check if facts or code changed since last run."""
-    current_facts_hash = hash_file(FACTS_PATH)
-    current_code_hash = hash_directory(SRC_DIR)
+    import hashlib
 
-    if current_facts_hash != state.last_facts_hash:
-        return True, f"facts changed: {state.last_facts_hash} → {current_facts_hash}"
+    def _hash_file(path: Path) -> str:
+        if not path.exists():
+            return ""
+        return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
 
-    if current_code_hash != state.last_code_hash:
-        return True, f"code changed: {state.last_code_hash} → {current_code_hash}"
+    def _hash_directory(dir_path: Path, pattern: str = "*.py") -> str:
+        hashes = []
+        for f in sorted(dir_path.rglob(pattern)):
+            hashes.append(f"{f.relative_to(dir_path)}:{_hash_file(f)}")
+        return hashlib.sha256("\n".join(hashes).encode()).hexdigest()[:16]
+
+    facts_path = REPO_ROOT / "coder_facts_pack_v1.0.json"
+    src_dir = REPO_ROOT / "src" / "hallucination_guard"
+
+    state = {}
+    if STATE_PATH.exists():
+        with open(STATE_PATH, "r") as f:
+            state = json.load(f)
+
+    current_facts_hash = _hash_file(facts_path)
+    current_code_hash = _hash_directory(src_dir)
+
+    if current_facts_hash != state.get("last_facts_hash", ""):
+        return True, f"facts changed"
+
+    if current_code_hash != state.get("last_code_hash", ""):
+        return True, f"code changed"
 
     return False, "no changes detected"
 
 
-def apply_auto_fixes(categories: dict[str, list[dict]]) -> list[str]:
-    """Apply automatic fixes based on failure categories."""
-    fixes_applied = []
-
-    # Fix 1: Missing facts
-    if "missing_fact" in categories:
-        fixes_applied.append(f"missing_facts: {len(categories['missing_fact'])} cases need new facts")
-
-    # Fix 2: Code output false positives
-    if "code_output" in categories:
-        fixes_applied.append(f"code_output: {len(categories['code_output'])} cases — consider skipping factual check for 'write a'/'how do I write' queries")
-
-    # Fix 3: Cross-match
-    if "cross_match" in categories:
-        fixes_applied.append(f"cross_match: {len(categories['cross_match'])} cases — need tokenization fix")
-
-    # Fix 4: Qualifier misfire
-    if "qualifier_misfire" in categories:
-        fixes_applied.append(f"qualifier_misfire: {len(categories['qualifier_misfire'])} cases — need safe-qualifier update")
-
-    return fixes_applied
-
-
-def execute_fix(fix: dict, dry_run: bool = False) -> dict:
-    """Apply an auto-fix to target_file. Returns execution result dict."""
-    target = REPO_ROOT / fix.get("target_file", "")
-    result = {"applied": False, "target": str(target), "error": None}
-    if not target.exists():
-        result["error"] = f"Target file not found: {target}"
-        return result
-
-    old_text = fix.get("old_text")
-    new_text = fix.get("new_text")
-    if old_text is None or new_text is None:
-        result["error"] = "Missing old_text or new_text"
-        return result
-
-    content = target.read_text()
-    if old_text not in content:
-        result["error"] = "old_text not found in target file (content may have drifted)"
-        return result
-
-    if dry_run:
-        result["applied"] = "dry_run"
-        result["diff_preview"] = new_text[:200]
-        return result
-
-    content = content.replace(old_text, new_text, 1)
-    target.write_text(content)
-    result["applied"] = True
-    return result
-
-
-def log_result(fix: dict):
-    """Log fix result to iteration log."""
-    log_event("auto_fix_executed", {
-        "target_file": fix.get("target_file"),
-        "description": fix.get("description"),
-        "estimated_impact": fix.get("estimated_impact"),
-    })
-
-
-def spawn_improvement_subagent(failure_analysis: dict, suppress_until: Optional[str] = None) -> None:
-    """Spawn a subagent to fix the specific failure pattern."""
-    if suppress_until:
-        from datetime import datetime as _dt
-        try:
-            until = _dt.fromisoformat(suppress_until)
-            if _dt.now(timezone.utc) < until:
-                log_event("subagent_spawn_skipped", {
-                    "reason": "suppressed",
-                    "suppress_until": suppress_until,
-                })
-                return
-        except ValueError:
-            pass
-    log_event("subagent_spawn_request", {
-        "target": "benchmark_improvement",
-        "failure_categories": {k: len(v) for k, v in failure_analysis.items()},
-    })
-
-
-def run_iteration(state: IterationState, force: bool = False, dry_run: bool = False) -> IterationState:
-    """Run one full iteration: gatekeeper -> assess -> benchmark -> analyze -> fix -> report."""
-    state.iteration += 1
-    state.last_run = datetime.now(timezone.utc).isoformat()
-
-    print(f"\n{'='*60}")
-    print(f"ITERATION {state.iteration}")
-    print(f"{'='*60}")
-    if dry_run:
-        print("[DRY RUN] No file changes will be applied.\n")
-
-    # -- Step 0a: Gatekeeper --------------------------------
-    gk_report = gatekeeper.gatekeeper(force=force)
-    state.last_gatekeeper_result = gk_report
-    print(f"[gatekeeper] proceed={gk_report['proceed']} | block_reason={gk_report['block_reason']}")
-    if not gk_report["proceed"]:
-        log_event("iteration_blocked", {"reason": gk_report["block_reason"], "gatekeeper": gk_report})
-        state.save()
-        return state
-
-    # -- Step 0b: Assessment --------------------------------
-    try:
-        assessment = assessor.assess()
-        state.last_assessment = assessment
-        print(f"[assessor] risk={assessment['risk_level']} | score={assessment['overall_score']}")
-        log_event("assessment_complete", {
-            "risk_level": assessment["risk_level"],
-            "overall_score": assessment["overall_score"],
-        })
-    except Exception as e:
-        print(f"[assessor] failed: {e}")
-        log_event("assessment_failed", {"error": str(e)})
-
-    # -- Step 0c: Cost snapshot (before) --------------------
-    cost_before = cost_tracker.snapshot()
-
-    # -- Step 1: Run benchmark ------------------------------
-    results = run_benchmark()
-    if not results:
-        log_event("iteration_failed", {"reason": "benchmark failed"})
-        cost_after = cost_tracker.snapshot()
-        cost_tracker.log_iteration_cost(cost_before, cost_after, state.iteration)
-        return state
-
-    overall = results.get("overall", {})
-    accuracy = overall.get("accuracy", 0)
-
-    # -- Step 2: Check if improved --------------------------
-    if accuracy > state.best_accuracy:
-        state.best_accuracy = accuracy
-        log_event("new_best_accuracy", {
-            "accuracy": accuracy,
-            "previous_best": state.best_accuracy,
-            "iteration": state.iteration,
-        })
-
-    # -- Step 3: Categorize failures (legacy) ---------------
-    categories = categorize_failures(results)
-    log_event("failure_analysis", {
-        "categories": {k: len(v) for k, v in categories.items()},
-        "total_failures": sum(len(v) for v in categories.values()),
-    })
-
-    # -- Step 4: Apply legacy auto-fixes --------------------
-    fixes = apply_auto_fixes(categories)
-    if fixes:
-        log_event("fixes_applied", {"fixes": fixes})
-        state.total_fixes_applied += len(fixes)
-
-    # -- Phase 2: Analyze failures --------------------------
-    result = subprocess.run(
-        [sys.executable, str(_SCRIPTS_DIR / "failure_analyzer.py"), str(RESULTS_PATH)],
-        capture_output=True, text=True, cwd=REPO_ROOT,
-    )
-    failure_patterns_path = REPO_ROOT / "failure_patterns.json"
-    with open(failure_patterns_path, "w") as f:
-        f.write(result.stdout)
-
-    # -- Phase 3: Design fixes ------------------------------
-    result2 = subprocess.run(
-        [sys.executable, str(_SCRIPTS_DIR / "fix_designer.py")],
-        capture_output=True, text=True,
-        stdin=open(failure_patterns_path, "r"),
-        cwd=REPO_ROOT,
-    )
-    fix_proposals_path = REPO_ROOT / "fix_proposals.json"
-    with open(fix_proposals_path, "w") as f:
-        f.write(result2.stdout)
-
-    # -- Phase 4: Execute auto-fixes ------------------------
-    try:
-        proposals = json.loads(result2.stdout)
-    except json.JSONDecodeError:
-        proposals = {}
-    for fix in proposals.get("auto_fixes", []):
-        exec_result = execute_fix(fix, dry_run=dry_run)
-        log_result(fix)
-        log_event("auto_fix_result", exec_result)
-        if exec_result.get("applied") is True:
-            state.total_fixes_applied += 1
-
-    # -- Step 5: Spawn improvement subagent if needed -------
-    total_failures = sum(len(v) for v in categories.values())
-    if total_failures > 5 and accuracy < ACCURACY_TARGET:
-        spawn_improvement_subagent(categories, suppress_until=state.subagent_suppress_until)
-
-    # -- Step 6: Cost snapshot (after) ----------------------
-    cost_after = cost_tracker.snapshot()
-    cost_info = cost_tracker.log_iteration_cost(cost_before, cost_after, state.iteration)
-    state.total_spend = round((state.total_spend or 0.0) + cost_info.get("iteration_spend", 0.0), 4)
-
-    # -- Step 7: Update hashes and save ---------------------
-    state.last_facts_hash = hash_file(FACTS_PATH)
-    state.last_code_hash = hash_directory(SRC_DIR)
-    state.save()
-
-    # -- Step 8: Report -------------------------------------
-    print(f"\nIteration {state.iteration} complete:")
-    print(f"  Accuracy: {accuracy:.1%}")
-    print(f"  Best: {state.best_accuracy:.1%}")
-    print(f"  Failures: {total_failures}")
-    print(f"  Spend: ${cost_info.get('iteration_spend', 0):.4f}")
-    print(f"  Categories: { {k: len(v) for k, v in categories.items()} }")
-
-    return state
-
-
-def daemon_mode(force: bool = False, dry_run: bool = False):
+def daemon_mode(config: dict, force: bool = False, dry_run: bool = False):
     """Run continuous iteration loop."""
+    target = config.get("target_accuracy", DEFAULT_ACCURACY_TARGET)
+    max_iterations = config.get("max_iterations_per_day", DEFAULT_MAX_ITERATIONS)
+
     print("Starting 24/7 Auto-Iteration Engine...")
     print(f"Check interval: {CHECK_INTERVAL_SECONDS}s")
-    global ACCURACY_TARGET
-    print(f"Accuracy target: {ACCURACY_TARGET:.0%}")
-    print(f"Max iterations/session: {MAX_ITERATIONS_PER_SESSION}")
+    print(f"Accuracy target: {target:.0%}")
+    print(f"Max iterations/session: {max_iterations}")
     print(f"Log: {LOG_PATH}")
     print(f"State: {STATE_PATH}")
     if dry_run:
         print("[DRY RUN] No file changes will be applied.")
     print("\nPress Ctrl+C to stop.\n")
 
-    state = IterationState.load()
-
+    iteration_count = 0
     try:
         while True:
-            should_run, reason = should_trigger_iteration(state)
-
+            should_run, reason = _should_trigger_iteration()
             if should_run:
-                log_event("iteration_triggered", {"reason": reason})
-                state = run_iteration(state, force=force, dry_run=dry_run)
+                _log_event("iteration_triggered", {"reason": reason})
+                result = run_full_iteration(config, force=force, dry_run=dry_run)
+                iteration_count += 1
 
-                if state.iteration >= MAX_ITERATIONS_PER_SESSION:
-                    log_event("session_limit_reached", {
-                        "iterations": state.iteration,
-                        "best_accuracy": state.best_accuracy,
+                if result.get("aborted_at"):
+                    _log_event("iteration_aborted", {
+                        "phase": result["aborted_at"],
+                        "summary": result.get("summary", {}),
                     })
-                    print(f"\nReached max iterations ({MAX_ITERATIONS_PER_SESSION}). Restart to continue.")
+
+                if iteration_count >= max_iterations:
+                    _log_event("session_limit_reached", {
+                        "iterations": iteration_count,
+                        "best_accuracy": result.get("summary", {}).get("best_accuracy", 0.0),
+                    })
+                    print(f"\nReached max iterations ({max_iterations}). Restart to continue.")
                     break
             else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] {reason}, sleeping...")
+                print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S')}] {reason}, sleeping...")
 
             time.sleep(CHECK_INTERVAL_SECONDS)
 
     except KeyboardInterrupt:
         print("\nStopping daemon...")
-        state.save()
-        log_event("daemon_stopped", {"iterations": state.iteration})
+        _log_event("daemon_stopped", {"iterations": iteration_count})
 
 
 def main():
     parser = argparse.ArgumentParser(description="24/7 Auto-Iteration Engine")
-    parser.add_argument("--mode", choices=["daemon", "once", "benchmark"], default="once",
-                       help="Run mode: daemon (continuous), once (single iteration), benchmark (only)")
-    parser.add_argument("--target", type=float, default=DEFAULT_ACCURACY_TARGET,
-                       help=f"Target accuracy (default: {DEFAULT_ACCURACY_TARGET})")
-    parser.add_argument("--force", action="store_true",
-                       help="Bypass gatekeeper rate limit")
-    parser.add_argument("--dry-run", action="store_true",
-                       help="Run all phases but do not apply file changes")
+    parser.add_argument(
+        "--mode",
+        choices=["daemon", "once", "benchmark"],
+        default="once",
+        help="Run mode: daemon (continuous), once (single), benchmark (benchmark only)",
+    )
+    parser.add_argument(
+        "--target", type=float, default=DEFAULT_ACCURACY_TARGET,
+        help=f"Target accuracy (default: {DEFAULT_ACCURACY_TARGET})",
+    )
+    parser.add_argument("--force", action="store_true", help="Bypass gatekeeper rate limit")
+    parser.add_argument("--dry-run", action="store_true", help="Run all phases but do not apply file changes")
     args = parser.parse_args()
 
-    global ACCURACY_TARGET
-    ACCURACY_TARGET = args.target
+    config = _load_config(args)
 
     if args.mode == "daemon":
-        daemon_mode(force=args.force, dry_run=args.dry_run)
+        daemon_mode(config, force=args.force, dry_run=args.dry_run)
     elif args.mode == "once":
-        state = IterationState.load()
-        state = run_iteration(state, force=args.force, dry_run=args.dry_run)
-        state.save()
+        result = run_full_iteration(config, force=args.force, dry_run=args.dry_run)
+        summary = result.get("summary", {})
+        if result.get("aborted_at"):
+            print(f"Iteration aborted at: {result['aborted_at']}")
+            sys.exit(1)
+        print(f"\nDone. Accuracy: {summary.get('accuracy', 0):.1%}")
     elif args.mode == "benchmark":
-        results = run_benchmark()
-        if results:
-            overall = results.get("overall", {})
+        # Benchmark-only mode: run a single benchmark and print results
+        import subprocess
+        cmd = [
+            sys.executable, "-c",
+            "import sys; sys.path.insert(0, 'src'); import benchmarks.benchmark_suite as bm; bm.main()",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO_ROOT)
+        results_path = REPO_ROOT / "benchmarks" / "results.json"
+        if results_path.exists():
+            with open(results_path) as f:
+                data = json.load(f)
+            overall = data.get("overall", {})
             print(f"Accuracy: {overall.get('accuracy', 0):.1%}")
             print(f"Correct: {overall.get('correct', 0)}/{overall.get('total', 0)}")
+        else:
+            print("Benchmark failed to produce results")
+            print(result.stderr[:500])
 
 
 if __name__ == "__main__":
