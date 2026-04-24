@@ -422,10 +422,12 @@ class HallucinationDetector:
         mismatches = []
         first_key = matched_keys[0]
 
+        # Find the FIRST matching fact, stop checking once one passes
         for key in matched_keys:
             fact = self.facts_db[key]
             fact_type = fact.get("type", "string")
             expected = fact["value"].lower().replace(",", "")
+            matched_any = False
 
             if fact_type == "numeric":
                 numbers = re.findall(
@@ -446,6 +448,7 @@ class HallucinationDetector:
                     "." not in exp_num_str
                     and str(int(exp_num)) == exp_num_str
                 )
+                match = False
                 for num_str in numbers:
                     try:
                         resp_num = float(num_str)
@@ -471,6 +474,9 @@ class HallucinationDetector:
                             break
                     except (ValueError, ZeroDivisionError):
                         pass
+                if match:
+                    matched_any = True
+                    break
                 if not match and numbers:
                     unit = fact.get("unit")
                     mismatches.append(
@@ -493,21 +499,39 @@ class HallucinationDetector:
                             mismatches.append(
                                 f"'{key}' expected '{expected}'"
                             )
+                        else:
+                            matched_any = True
+                            break
                     elif len(expected_words) > 3:
                         response_words = set(re.findall(r"\w+", response_lower))
                         if not any(w in response_words for w in expected_words):
                             mismatches.append(
                                 f"'{key}' expected '{expected}'"
                             )
+                        else:
+                            matched_any = True
+                            break
                     else:
                         mismatches.append(f"'{key}' expected '{expected}'")
+                else:
+                    matched_any = True
+                    break
 
-        if mismatches:
+        if mismatches and not matched_any:
             return {
                 "passed": False,
                 "message": "; ".join(mismatches),
                 "score": 0.5,
                 "delta": -0.5,
+                "matched_key": first_key,
+            }
+        
+        if matched_any:
+            return {
+                "passed": True,
+                "message": "Fact verified",
+                "score": 1.0,
+                "delta": 0.0,
                 "matched_key": first_key,
             }
 
