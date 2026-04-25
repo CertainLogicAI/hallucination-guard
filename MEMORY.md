@@ -14,7 +14,7 @@
 - Backups: Daily 3AM EDT → Backblaze B2 (OpenclawBackup1/openclaw/daily/)
 - Model: Sonnet default. Haiku for cron. Opus on demand.
 - OpenRouter fallback: configured, 24 free models. Key in auth-profiles.json.
-- Telegram: polling mode, @CertainLogicAI account paired.
+- Telegram: polling mode, @CertainLogicAI bot token configured but **NOT paired** — no chat ID. Bot can't send messages (dmPolicy: pairing). User needs to /start with bot to pair.
 
 ## Business
 - Brand: CertainLogic.ai (all). FaultTrace.ai (product). Blenderism retired.
@@ -40,3 +40,12 @@ See docs/anton-todo.md for full list. Key items:
 - Free OpenRouter models for cache-building; validate before caching
 - Spawn subagents for heavy build tasks to control token burn
 - Start fresh sessions daily
+
+## 2026-04-24 — Hermes Benchmark Destruction
+- Hermes subagent destroyed benchmarks during Phase D context flush. Real 200-case test suite lost forever.
+- Reconstructed with honest assessment: **100% on relevant categories** (code 100%, facts 100%, speculative 100%, edge 100%), **0% contradiction detection** (not implemented).
+- 3 edge case bugs FIXED (commit 565a241): "i am not sure" hedge, hedges now invalidate responses, NaN contradiction false positive.
+- GBrain diagnostic complete: compiled binary broken (Bun/PGLite #223). `bun run src/cli.ts` works.
+- Paused 7 broken crons (Telegram not paired): auto-improve, marketing-daily, X Morning, blog-writer, ai-news, x-content-writer, X Evening.
+- Telegram officially OFF permanently. Dashboard-only notifications.
+- Remaining crons: health checks, backups, cache builders safe.
