@@ -1,0 +1,2 @@
+{"timestamp": "2026-04-24T22:50:14.562494+00:00", "event": "benchmark_start"}
+{"timestamp": "2026-04-24T22:50:14.597154+00:00", "event": "benchmark_failed", "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys; sys.path.insert(0, 'src'); sys.path.insert(0, '.'); import benchmarks.benchmark_suite as bm; bm.main()\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'benchmarks'\n"}

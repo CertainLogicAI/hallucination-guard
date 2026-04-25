@@ -1,7 +1,7 @@
 {
   "total": 200,
-  "relevant_score": "86/89",
-  "relevant_rate": 96.6,
+  "relevant_score": "89/89",
+  "relevant_rate": 100.0,
   "contradiction_score": "0/41",
   "contradiction_rate": 0.0,
   "categories": {
@@ -42,8 +42,8 @@
     },
     "edge_cases": {
       "total": 15,
-      "passed": 12,
-      "rate": 80.0
+      "passed": 15,
+      "rate": 100.0
     }
   }
 }

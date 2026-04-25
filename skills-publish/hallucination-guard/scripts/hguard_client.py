@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hallucination Guard — Customer SDK for CertainLogic Brain API.
+"""Hallucination Guard -- Customer SDK for CertainLogic Brain API.
 
 Deterministic validation without LLM calls. Install this skill and import
 to validate any AI-generated text.
@@ -16,7 +16,6 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
 BRAIN_API = os.getenv("CERTAINLOGIC_API", "http://127.0.0.1:8000")
-API_KEY = os.getenv("CERTAINLOGIC_KEY", "")
 
 
 class HGuardClient:
@@ -26,32 +25,43 @@ class HGuardClient:
         self.api_url = api_url.rstrip("/")
         self.threshold = 0.7
 
-    def validate(self, query: str, response: str) -> dict:
-        """Validate a (query, response) pair for hallucinations."""
+    def _post(self, endpoint: str, payload: dict) -> dict:
         req = Request(
-            f"{self.api_url}/query",
-            data=json.dumps({
-                "query": query,
-                "response": response,
-                "force_deterministic": False
-            }).encode(),
+            f"{self.api_url}{endpoint}",
+            data=json.dumps(payload).encode(),
             headers={"Content-Type": "application/json"},
             method="POST"
         )
         try:
             with urlopen(req, timeout=30) as r:
-                result = json.loads(r.read().decode())
+                return json.loads(r.read().decode())
+        except HTTPError as e:
+            return {"error": f"HTTP {e.code}: {e.reason}"}
         except Exception as e:
-            return {"valid": True, "error": str(e), "flags": [f"API error: {e}"]}
+            return {"error": str(e)}
 
-        validation = result.get("validation", {})
+    def validate(self, query: str, response: str) -> dict:
+        """Validate a (query, response) pair for hallucinations.
+        
+        Uses /validate endpoint for direct validation, not /query (which routes).
+        """
+        result = self._post("/validate", {"query": query, "response": response})
+        
+        if "error" in result:
+            return {
+                "valid": True,
+                "flagged": False,
+                "confidence": 1.0,
+                "flags": [f"API error: {result['error']}"],
+                "error": result["error"]
+            }
+        
         return {
-            "valid": validation.get("valid", True),
-            "flagged": validation.get("flagged", False),
-            "confidence": validation.get("confidence", 1.0),
-            "flags": validation.get("flags", []),
-            "method": result.get("method", "unknown"),
-            "routing": result.get("routing", "unknown")
+            "valid": result.get("valid", True),
+            "flagged": result.get("flagged", False),
+            "confidence": result.get("confidence", 1.0),
+            "flags": result.get("flags", []),
+            "checks": result.get("checks", {})
         }
 
     def batch_validate(self, cases: list[dict]) -> list[dict]:

@@ -237,6 +237,27 @@ def query_endpoint(req: QueryRequest):
     return process_query(req)
 
 
+class ValidateRequest(BaseModel):
+    query: str
+    response: str
+
+
+@app.post("/validate")
+def validate_endpoint(req: ValidateRequest):
+    """Direct hallucination validation — no routing, no LLM calls.
+    
+    Returns structured validation result for any (query, response) pair.
+    """
+    result = detector.validate(req.query, req.response)
+    return {
+        "valid": result.get("valid", True),
+        "flagged": result.get("flagged", False),
+        "confidence": result.get("confidence", 1.0),
+        "flags": result.get("flags", []),
+        "checks": result.get("checks", {}),
+    }
+
+
 @app.get("/health")
 def health():
     """Health check with component status."""

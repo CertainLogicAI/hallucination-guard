@@ -1,0 +1,45 @@
+{
+  "test_run": "brain_integration_dry_run",
+  "date": "2026-04-25",
+  "summary": "Hermes Brain Client integration test \u2014 SDK working with /validate endpoint",
+  "results": [
+    {
+      "task": "correct_fact",
+      "valid": true,
+      "confidence": 1.0,
+      "notes": "Fact in DB, validated"
+    },
+    {
+      "task": "correct_code",
+      "valid": true,
+      "confidence": 1.0,
+      "notes": "Code query passes"
+    },
+    {
+      "task": "speculative",
+      "valid": false,
+      "confidence": 1.0,
+      "notes": "DETECTOR BUG: spec query treated as factual"
+    },
+    {
+      "task": "hedge",
+      "valid": false,
+      "confidence": 1.0,
+      "notes": "Hedge detected and invalidated"
+    },
+    {
+      "task": "wrong_number",
+      "valid": false,
+      "confidence": 1.0,
+      "notes": "After adding fact to DB, 500 detected as wrong"
+    }
+  ],
+  "issues": [
+    "Speculative queries not detected properly (false negative)",
+    "Need more facts in DB for comprehensive validation"
+  ],
+  "total_tests": 5,
+  "tests_passed": 3,
+  "tests_failed": 2,
+  "flags_triggered": 0
+}
