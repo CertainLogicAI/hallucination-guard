@@ -82,6 +82,7 @@ class HallucinationDetector:
     # Uncertainty language to flag (only in factual responses)
     _UNCERTAINTY_PATTERNS = [
         r"\bi'm not sure\b",
+        r"\bi am not sure\b",
         r"\bi think\b",
         r"\bmaybe\b",
         r"\bperhaps\b",
@@ -675,13 +676,14 @@ class HallucinationDetector:
         if not found:
             return {"passed": True, "issues": [], "score": 1.0, "delta": 0.0}
 
-        penalty = min(0.5, len(found) * 0.15)
-        score = round(1.0 - penalty, 4)
+        # Hedges invalidate responses to factual queries
+        score = round(1.0 - min(0.5, len(found) * 0.15), 4)
+        # Always flagged if uncertainty found in factual response
         return {
             "passed": False,
             "issues": found,
             "score": score,
-            "delta": -penalty,
+            "delta": -0.5 if len(found) >= 1 else -0.2,
         }
 
     def _check_internal_consistency(self, response: str) -> dict:
@@ -690,7 +692,7 @@ class HallucinationDetector:
         issues = []
 
         # Simple heuristic: look for "X is Y" then "X is not Y" (or vice versa)
-        assertion_re = re.compile(r"(\w[\w\s]{1,20})\s+is\s+([\w\s]{1,20})")
+        assertion_re = re.compile(r"(\w[\w\s]{1,20})\s+is\s+(?!not\b)([\w\s]{1,20})")
         negation_re = re.compile(r"(\w[\w\s]{1,20})\s+is\s+not\s+([\w\s]{1,20})")
 
         assertions: dict[str, str] = {}
