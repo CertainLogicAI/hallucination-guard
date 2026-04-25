@@ -1,0 +1,49 @@
+{
+  "total": 200,
+  "relevant_score": "86/89",
+  "relevant_rate": 96.6,
+  "contradiction_score": "0/41",
+  "contradiction_rate": 0.0,
+  "categories": {
+    "known_facts_correct": {
+      "total": 39,
+      "passed": 39,
+      "rate": 100.0
+    },
+    "known_facts_hallucination": {
+      "total": 41,
+      "passed": 0,
+      "rate": 0.0
+    },
+    "pricing_cost": {
+      "total": 25,
+      "passed": 13,
+      "rate": 52.0
+    },
+    "date_version": {
+      "total": 20,
+      "passed": 11,
+      "rate": 55.0
+    },
+    "definitional": {
+      "total": 25,
+      "passed": 13,
+      "rate": 52.0
+    },
+    "speculative": {
+      "total": 20,
+      "passed": 20,
+      "rate": 100.0
+    },
+    "code_output": {
+      "total": 15,
+      "passed": 15,
+      "rate": 100.0
+    },
+    "edge_cases": {
+      "total": 15,
+      "passed": 12,
+      "rate": 80.0
+    }
+  }
+}
