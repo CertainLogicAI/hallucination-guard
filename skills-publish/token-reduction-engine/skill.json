@@ -1,0 +1,16 @@
+{
+  "name": "token-reduction-engine",
+  "version": "1.0.2",
+  "description": "Deterministic AI validation middleware — catches hallucinations without LLM calls",
+  "author": "CertainLogic",
+  "license": "MIT-0",
+  "entry": "scripts/hguard_client.py",
+  "bin": {
+    "token-reduction": "scripts/hguard_client.py"
+  },
+  "requires": ["python3"],
+  "config": {
+    "api_url": "",
+    "threshold": 0.7
+  }
+}
