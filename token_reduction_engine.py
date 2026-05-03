@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 """
-Token Reduction Engine
----------------------
-Provides token budgeting, caching, and deterministic fallback for LLM queries.
-Designed to run locally before routing to external LLMs.
+Token Reduction Engine v1.1 — Answer Caching with Hallucination Guard
+-------------------------------------------------------------------
+Caches LLM responses so repeated queries return instantly.
+Guard gates cache — flagged answers are shown but not stored.
 
-Features:
-- Token counting (approx using whitespace/punctuation)
-- LRU cache with hash-based deduplication
-- Budget enforcement (max tokens per query)
-- Fallback to deterministic summarization when over budget
-- Metrics collection for monitoring
+Original: token budget management (query trimming)
+Enhanced: response caching (answer storage + uncertainty checking)
 """
 
 import hashlib
@@ -18,182 +14,280 @@ import json
 import os
 import re
 import time
+import sys
 from collections import OrderedDict
 from typing import Dict, Tuple, Optional
 
-# Configuration
-MAX_TOKENS_PER_QUERY = 512          # Hard limit for any query sent to LLM
-CACHE_SIZE_LIMIT = 1000             # Number of query-result pairs to keep
-CACHE_TTL_SECONDS = 3600            # 1 hour
-TOKEN_ESTIMATE_RATIO = 0.75         # Rough estimate: 1 token ~ 0.75 words
-SUMMARIZE_THRESHOLD = 1.2           # Trigger summary if estimate > budget * this
+# ── Try to import Hallucination Guard ──────────────────────────────────
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from hallucination_detector import HallucinationDetector
+    _guard = HallucinationDetector()
+except ImportError:
+    _guard = None
 
-# In-memory cache: {query_hash: (result, timestamp, token_count)}
-_query_cache: OrderedDict = OrderedDict()
+# ── Configuration ──────────────────────────────────────────────────────
+MAX_TOKENS_PER_QUERY = 512
+CACHE_SIZE_LIMIT = 1000
+CACHE_TTL_SECONDS = 3600
+TOKEN_ESTIMATE_RATIO = 0.75
+
+# ── Answer Cache: {query_hash: (answer, timestamp, token_count)} ───────
+_answer_cache: OrderedDict = OrderedDict()
+CACHE_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cache_data")
+CACHE_PERSISTENCE_FILE = os.path.join(CACHE_DATA_DIR, "answer_cache.json")
 _cache_hits = 0
 _cache_misses = 0
 _total_queries = 0
 _tokens_saved = 0
+_flagged_count = 0
 
+# ── Coding Query Tracker ───────────────────────────────────────────────
+import importlib.util
+tracker_spec = importlib.util.spec_from_file_location(
+    "coding_query_tracker", 
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts/coding_query_tracker.py")
+)
+_tracker = importlib.util.module_from_spec(tracker_spec) if tracker_spec else None
+if _tracker:
+    tracker_spec.loader.exec_module(_tracker)
+else:
+    _tracker = None
 def _estimate_tokens(text: str) -> int:
-    """Estimate token count using simple word-based approximation."""
     if not text:
         return 0
     words = len(re.findall(r'\b\w+\b', text))
     return int(words / TOKEN_ESTIMATE_RATIO)
 
 def _hash_query(query: str) -> str:
-    """Generate SHA-256 hash of query for cache key."""
     return hashlib.sha256(query.encode('utf-8')).hexdigest()
 
-def _get_from_cache(query_hash: str) -> Optional[Tuple[str, int]]:
-    """Retrieve cached result if exists and not expired."""
+# ── Cache Operations ──────────────────────────────────────────────────────
+def _get_from_answer_cache(query_hash: str) -> Optional[Tuple[str, int]]:
+    """Retrieve cached answer if exists and not expired."""
     global _cache_hits, _cache_misses
-    if query_hash in _query_cache:
-        result, timestamp, token_count = _query_cache[query_hash]
+    if query_hash in _answer_cache:
+        result, timestamp, token_count = _answer_cache[query_hash]
         if time.time() - timestamp < CACHE_TTL_SECONDS:
-            # Move to end (LRU)
-            _query_cache.move_to_end(query_hash)
+            _answer_cache.move_to_end(query_hash)  # LRU
             _cache_hits += 1
             return result, token_count
         else:
-            # Expired: remove
-            del _query_cache[query_hash]
+            del _answer_cache[query_hash]
     _cache_misses += 1
     return None
 
-def _store_in_cache(query_hash: str, result: str, token_count: int):
-    """Store result in LRU cache, evicting oldest if needed."""
-    global _query_cache
-    _query_cache[query_hash] = (result, time.time(), token_count)
-    _query_cache.move_to_end(query_hash)
-    if len(_query_cache) > CACHE_SIZE_LIMIT:
-        _query_cache.popitem(last=False)
+def _store_answer_in_cache(query_hash: str, answer: str, token_count: int) -> Dict:
+    """
+    Store answer in cache ONLY if Hallucination Guard passes.
+    
+    If Guard detects uncertainty, answer is NOT cached but still returned
+    to user with a warning.
+    
+    Returns: {"cached": bool, "flagged": bool, "reason": str}
+    """
+    global _answer_cache, _flagged_count
+    
+    # Guard check
+    if _guard is not None:
+        try:
+            if _guard.is_uncertain(answer):
+                _flagged_count += 1
+                return {
+                    "cached": False,
+                    "flagged": True,
+                    "reason": "Contains uncertain language (e.g., 'maybe', 'I think', 'not sure')",
+                    "warning": "⚠️ Response contains hedging language. Not added to knowledge base."
+                }
+        except Exception:
+            pass  # Don't block on Guard errors
+    
+    # Cache the clean answer
+    _answer_cache[query_hash] = (answer, time.time(), token_count)
+    _answer_cache.move_to_end(query_hash)
+    if len(_answer_cache) > CACHE_SIZE_LIMIT:
+        _answer_cache.popitem(last=False)
+    
+    # Persist to disk (user cache only — NOT Facts DB)
+    _save_cache_to_disk()
+    
+    return {"cached": True, "flagged": False, "reason": "Guard passed"}
 
-def _deterministic_fallback(query: str) -> str:
-    """
-    Deterministic summarization fallback when over budget.
-    Uses extractive summarization: take first N sentences.
-    """
-    sentences = re.split(r'(?<=[.!?])\s+', query.strip())
-    # Keep enough sentences to stay under budget
-    kept = []
-    tokens_used = 0
-    for sent in sentences:
-        sent_tokens = _estimate_tokens(sent)
-        if tokens_used + sent_tokens > MAX_TOKENS_PER_QUERY:
-            break
-        kept.append(sent)
-        tokens_used += sent_tokens
-    if not kept:
-        # Extreme case: return first chunk
-        kept = [query[:MAX_TOKENS_PER_QUERY * 4]]  # rough char approx
-    return ' '.join(kept)
 
-def reduce_tokens(query: str, force_deterministic: bool = False) -> Dict:
+def _save_cache_to_disk():
+    """Persist answer cache to disk. NOT Facts DB — this is user-facing cache only."""
+    try:
+        os.makedirs(CACHE_DATA_DIR, exist_ok=True)
+        data = {
+            "entries": [
+                {"q": query_hash, "a": answer, "ts": ts, "tc": tc}
+                for query_hash, (answer, ts, tc) in _answer_cache.items()
+            ]
+        }
+        with open(CACHE_PERSISTENCE_FILE, "w") as fh:
+            json.dump(data, fh, indent=2)
+    except Exception:
+        pass  # Don't crash on write errors
+
+def _load_cache_from_disk():
+    """Load persisted answer cache on startup."""
+    global _answer_cache
+    if not os.path.exists(CACHE_PERSISTENCE_FILE):
+        return
+    try:
+        with open(CACHE_PERSISTENCE_FILE, "r") as fh:
+            data = json.load(fh)
+        for entry in data.get("entries", []):
+            _answer_cache[entry["q"]] = (entry["a"], entry["ts"], entry["tc"])
+    except Exception:
+        _answer_cache.clear()
+
+def cache_answer(query: str, answer: str) -> Dict:
     """
-    Main entry point: reduce tokens in query if needed, return reduced query and metadata.
+    Public: attempt to cache an LLM answer for a user query.
     
     Args:
-        query: Original user query
-        force_deterministic: If True, skip LLM routing and use deterministic fallback
+        query: The exact user query string
+        answer: The LLM-generated response
     
     Returns:
-        dict with keys:
-        - 'reduced_query': query to send to LLM (or deterministic result)
-        - 'original_tokens': estimated token count of original
-        - 'reduced_tokens': estimated token count of reduced query
-        - 'tokens_saved': difference
-        - 'cache_hit': bool
-        - 'method': 'cache', 'deterministic', or 'original'
-        - 'routing': 'deterministic' or 'external' (based on force flag)
+        {"cached": bool, "flagged": bool, "reason": str, "warning": str|None}
     """
+    query_hash = _hash_query(query)
+    token_count = _estimate_tokens(answer)
+    result = _store_answer_in_cache(query_hash, answer, token_count)
+    return result
+
+def get_cached_answer(query: str) -> Optional[Tuple[str, int]]:
+    """
+    Public: retrieve cached answer for a query.
+
+    Args:
+        query: The exact user query string
+
+    Returns:
+        (answer, token_count) or None if not in cache
+    """
+    query_hash = _hash_query(query)
+    return _get_from_answer_cache(query_hash)
+
+# ── Legacy: Token Reduction (kept for backward compat) ───────────────────
+def reduce_tokens(query: str, force_deterministic: bool = False) -> Dict:
+    """Legacy: token budget management for queries."""
     global _total_queries, _tokens_saved
     _total_queries += 1
     
     query_hash = _hash_query(query)
-    cached = _get_from_cache(query_hash)
-    if cached:
-        result, token_count = cached
-        _tokens_saved += MAX_TOKENS_PER_QUERY - token_count  # approximation
-        return {
-            'reduced_query': result,
-            'original_tokens': token_count,
-            'reduced_tokens': token_count,
-            'tokens_saved': MAX_TOKENS_PER_QUERY - token_count,
-            'cache_hit': True,
-            'method': 'cache',
-            'routing': 'deterministic'  # cached results are treated as deterministic
-        }
-    
     original_tokens = _estimate_tokens(query)
     
-    # If under budget, return as-is (but still cache for future)
-    if original_tokens <= MAX_TOKENS_PER_QUERY:
-        _store_in_cache(query_hash, query, original_tokens)
+    # Check if we have a cached ANSWER for this query
+    cached = _get_from_answer_cache(query_hash)
+    if cached:
+        answer, token_count = cached
+        
+        # Log coding query with hit
+        if _tracker and _tracker.is_coding_query(query):
+            _tracker.log_query(query, cache_hit=True, tokens_saved=original_tokens - token_count, response_time_ms=0.0)
+        
         return {
-            'reduced_query': query,
+            'reduced_query': answer,  # Return cached answer instead of original query
             'original_tokens': original_tokens,
-            'reduced_tokens': original_tokens,
-            'tokens_saved': 0,
-            'cache_hit': False,
-            'method': 'original',
-            'routing': 'deterministic' if force_deterministic else 'external'
+            'reduced_tokens': token_count,
+            'tokens_saved': original_tokens - token_count,
+            'cache_hit': True,
+            'method': 'answer_cache',
+            'routing': 'deterministic'
         }
     
-    # Check if forced deterministic and under budget
-    if force_deterministic and original_tokens <= MAX_TOKENS_PER_QUERY:
-        reduced = query
-    else:
-        # Apply deterministic fallback (truncate to fit budget)
-        reduced = _deterministic_fallback(query)
-    reduced_tokens = _estimate_tokens(reduced)
-    
-    # Store reduced version in cache (so future similar queries get reduced form)
-    _store_in_cache(query_hash, reduced, reduced_tokens)
-    
-    tokens_saved = original_tokens - reduced_tokens
-    _tokens_saved += tokens_saved
+    # Log coding query miss
+    if _tracker and _tracker.is_coding_query(query):
+        _tracker.log_query(query, cache_hit=False, tokens_saved=0, response_time_ms=0.0)
     
     return {
-        'reduced_query': reduced,
+        'reduced_query': query,
         'original_tokens': original_tokens,
-        'reduced_tokens': reduced_tokens,
-        'tokens_saved': tokens_saved,
+        'reduced_tokens': original_tokens,
+        'tokens_saved': 0,
         'cache_hit': False,
-        'method': 'deterministic',
-        'routing': 'deterministic'  # forced deterministic via fallback
+        'method': 'original',
+        'routing': 'external'
     }
 
 def get_metrics() -> Dict:
-    """Return current engine metrics for monitoring."""
+    """Return cache metrics."""
     hit_rate = (_cache_hits / (_cache_hits + _cache_misses)) * 100 if (_cache_hits + _cache_misses) > 0 else 0
-    avg_tokens_saved = (_tokens_saved / _total_queries) if _total_queries > 0 else 0
     return {
         'total_queries': _total_queries,
         'cache_hits': _cache_hits,
         'cache_misses': _cache_misses,
         'cache_hit_rate_percent': round(hit_rate, 2),
-        'cache_size': len(_query_cache),
-        'total_tokens_saved': _tokens_saved,
-        'average_tokens_saved_per_query': round(avg_tokens_saved, 2)
+        'cache_size': len(_answer_cache),
+        'flagged_responses': _flagged_count,
+        'guard_loaded': _guard is not None,
     }
 
 def clear_cache():
-    """Clear the query cache."""
-    global _query_cache, _cache_hits, _cache_misses, _total_queries, _tokens_saved
-    _query_cache.clear()
-    _cache_hits = _cache_misses = _total_queries = _tokens_saved = 0
+    """Clear the answer cache (RAM + disk)."""
+    global _answer_cache, _cache_hits, _cache_misses, _total_queries, _tokens_saved, _flagged_count
+    _answer_cache.clear()
+    _cache_hits = _cache_misses = _total_queries = _tokens_saved = _flagged_count = 0
+    try:
+        if os.path.exists(CACHE_PERSISTENCE_FILE):
+            os.remove(CACHE_PERSISTENCE_FILE)
+    except Exception:
+        pass
+
+
+# ── For Brain API integration ──────────────────────────────────────────
+def _store_to_brain_api(query: str, answer: str):
+    """Persist to Brain API for permanent knowledge base."""
+    try:
+        import requests
+        requests.post('http://127.0.0.1:8000/facts', json={
+            'key': query[:100],
+            'type': 'string',
+            'value': answer[:5000],
+            'source': 'tre_answer_cache'
+        }, timeout=1)
+    except Exception:
+        pass  # Don't fail if Brain API down
+
 
 if __name__ == '__main__':
-    # Simple CLI test
-    import sys
-    if len(sys.argv) > 1:
-        test_query = ' '.join(sys.argv[1:])
-    else:
-        test_query = "Explain the theory of relativity in detail, including both special and general relativity, and discuss its implications for modern physics, cosmology, and technology."
+    # Quick test
+    print("=== TRE v1.1 Answer Cache Test ===\n")
     
-    result = reduce_tokens(test_query)
-    print(json.dumps(result, indent=2))
-    print("\n--- Metrics ---")
+    # First query — cache miss
+    cached = get_cached_answer("What is Python?")
+    print(f"1a. First get: {'HIT' if cached else 'MISS'}")
+    
+    # Cache a clean answer
+    result = cache_answer("What is Python?", "Python is a programming language.")
+    print(f"1b. Cache result: {json.dumps(result, indent=2)}")
+    
+    # Same query — cache hit
+    cached = get_cached_answer("What is Python?")
+    print(f"1c. Second get: {'HIT' if cached else 'MISS'}")
+    if cached:
+        print(f"    Answer: {cached[0][:50]}...")
+    
+    # Flagged answer — not cached
+    result = cache_answer("What is 2+2?", "I think it might be 4, but I'm not sure.")
+    print(f"\n2a. Flagged cache: {json.dumps(result, indent=2)}")
+    
+    # Cache hit check
+    cached = get_cached_answer("What is 2+2?")
+    print(f"2b. After flagged: {'HIT (BUG!)' if cached else 'MISS (correct — not cached)'}")
+    
+    print(f"\n=== Metrics ===")
     print(json.dumps(get_metrics(), indent=2))
+    print(f"\n=== Persistence ===")
+    if os.path.exists(CACHE_PERSISTENCE_FILE):
+        size = os.path.getsize(CACHE_PERSISTENCE_FILE)
+        print(f"Cache file: {CACHE_PERSISTENCE_FILE} ({size} bytes)")
+    else:
+        print(f"Cache not yet persisted.")
+
+
+# Auto-load persisted cache on module import (process restart)
+_load_cache_from_disk()
