@@ -192,7 +192,28 @@ Each chunk independently testable. Build and test one at a time.
 
 ---
 
-## Architecture Summary
+## Real OpenClaw Plugin System
+
+**Manifest:** `openclaw.plugin.json` (not `plugin.json`)  
+**Entry points:** `index.js`, `register.runtime.js`, `setup-api.js`  
+**Format:** Node.js module with OpenClaw-specific hooks  
+**Install:** `openclaw plugins install ./path --link`  
+**Verify:** `openclaw plugins list` and `openclaw plugins doctor`
+
+> ⚠️ **Note:** The research roadmap below uses generic hook names (`message_received`, `before_tool_call`, etc.). Actual OpenClaw hook names may differ. We need to inspect the runtime API (`runtime-api.js` in stock plugins) to determine exact hook surface.
+
+### Quick Discovery Commands
+
+```bash
+# List all available hooks in your OpenClaw instance
+openclaw plugins inspect <plugin-id> --full
+
+# Read a stock plugin's runtime API for hook patterns
+cat /usr/local/lib/node_modules/openclaw/dist/extensions/acpx/runtime-api.js | head -100
+
+# Check what hooks are available
+openclaw plugins list --verbose | grep hooks
+```
 
 ```
 User Query → CertainLogic Brain Plugin
