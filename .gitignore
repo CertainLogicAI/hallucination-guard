@@ -12,3 +12,18 @@ secrets/
 
 # FaultTrace IP
 projects/plc-analyzer/
+secrets/
+.env
+
+# Generated files
+__pycache__/
+*.pyc
+*.pyo
+pathfinder_data/
+cache.db
+cache_data/
+.build_data/
+logs/*.json
+agentpathfinder_dashboard.html
+archive/
+logs/
