@@ -128,6 +128,42 @@
     "Scrape": {
       "version": "1.0.0",
       "installedAt": 1774573045407
+    },
+    "security-scanner": {
+      "version": "1.0.0",
+      "installedAt": 1777579286782
+    },
+    "skill-audit": {
+      "version": "1.0.0",
+      "installedAt": 1777579425076
+    },
+    "sandbox": {
+      "version": "1.0.0",
+      "installedAt": 1777579425241
+    },
+    "skill-guard": {
+      "version": "1.0.2",
+      "installedAt": 1777579594845
+    },
+    "skill-vetter-plus": {
+      "version": "2.0.0",
+      "installedAt": 1777667808379
+    },
+    "pa-pack": {
+      "version": "1.0.4",
+      "installedAt": 1777667828471
+    },
+    "skill-oracle": {
+      "version": "1.0.3",
+      "installedAt": 1777667830767
+    },
+    "certainlogic-smart-router": {
+      "version": "1.0.0",
+      "installedAt": 1777718157072
+    },
+    "certainlogic-pathfinder": {
+      "version": "1.3.0",
+      "installedAt": 1777766336292
     }
   }
 }

@@ -1,33 +1,47 @@
-# Anton's To-Do List
-*Things that require Anton's accounts, credentials, or decisions*
+# Anton's To-Do List (Updated 2026-05-03)
 
-## Socials to Set Up
-- [x] **X (Twitter)** — @CertainLogicAI locked in. Update bio, display name, pfp. Connect API once X API keys are ready.
-- [ ] **LinkedIn** — check if CertainLogic company page name is available. Create it. Personal profile as Anton is the credibility anchor.
-- [ ] **YouTube** — claim channel now even if not posting yet. Protect the brand name.
+## In Progress (Alex working today 2026-05-03)
+- [x] **Audit plan prepared** — AUDIT_PLAN.md ready for Anton's clean machine testing
+- [x] **SKILLS_REGISTRY corrected** — Skill Oracle & PA Pack reclassified as documentation
+- [x] **Git cleanup report** — GIT_CLEANUP_REPORT.md created, awaits Anton approval
+- [x] **Smart Router delist** — ClawHub CLI has no unpublish, need web UI or support
+- [x] **PA Pack delist** — ClawHub CLI has no unpublish, need web UI or support
+- [ ] **Investigate smart-router quality hold** — code is clean, likely auto-hold for simple tools
+- [ ] **Investigate skill-vetter-plus suspicious flag** — ClawHub security scanner false positive analysis
+- [ ] **Pathfinder final polish** — docs, install script, ready for Anton verification
+- [ ] **HEARTBEAT.md expansion** — add skill/flag/install checks
 
-## Credentials Needed
-- [ ] **X API tokens** — go to developer.twitter.com, regenerate Access Token + Access Token Secret together. Provide all 4 values: API Key, API Secret, Access Token, Access Token Secret.
-- [x] **OpenRouter API key** — configured and working. 24 free models available.
-- [ ] **Stripe account** — set up at stripe.com (needs identity verification, ~15 min). Needed for CertainLogic.ai shop.
+## Delist Queued (Pending Anton Action)
+- [ ] **certainlogic-smart-router** — quality held, needs proper trial before relist
+- [ ] **pa-pack** — removed per Anton decision
+- Note: ClawHub CLI has no `unpublish` command. Must use web UI or contact support.
 
-## GitHub / Cloudflare (for site launch)
-- [ ] **Create GitHub repo** — github.com/new → name: `certainlogic-site` → private
-- [ ] **Push site code** — I can do this if you give me a GitHub personal access token, or you can run:
-  ```
-  cd /data/.openclaw/workspace/certainlogic-site
-  git remote add origin https://github.com/YOUR_USERNAME/certainlogic-site.git
-  git branch -M main
-  git push -u origin main
-  ```
-- [ ] **Connect Cloudflare Pages** — dashboard → Pages → Create project → Connect Git → select repo → build: `npm run build` → output: `dist`
-- [ ] **Add custom domain** — certainlogic.ai in Cloudflare Pages settings
+## AgentPathfinder (Near Ready — Needs Anton's Clean Machine Test)
+- [x] **Fix conflicting old package** — moved /data/.openclaw/workspace/agentpathfinder to .old-april25
+- [x] **Verify clean install** — tested in fresh venv, pip install -e . works
+- [x] **CLI works** — `pf create/status/audit` verified
+- [x] **17 tests pass** — in clean environment
+- [ ] **Customer install test on fresh machine** — YOU need to verify this (tonight)
+- [ ] **Dashboard UX** — works when you copy HTML to your machine and open in browser
+- [ ] **Get approval before publish** — per claim-verification policy
 
-## Business Decisions Pending
-- [ ] **Finalize FaultTrace pricing** — Anton still working it out. Range discussed: $99-499/mo tiers.
-- [ ] **IP attorney consult** — ~$500, review patent claims before month 6 deadline. Not urgent yet.
+## Premium Products (Roadmap — Do NOT Publish Yet)
+- [ ] **skill-auditor** — empty, needs full implementation
+- [ ] **cold-outreach-pro** — empty, needs full implementation
+- [ ] **market-research-pro** — empty, needs full implementation
+- [ ] **seo-audit-pro** — empty, needs full implementation
+- [ ] **ai-visibility-pro** — empty, needs full implementation
+- [ ] **x-monitor-pro** — empty, needs full implementation
 
-## Accounts to Migrate (once Stripe is live)
-- [ ] Move Gumroad products → CertainLogic.ai shop
-- [ ] Redirect ShopClawMart.com → certainlogic.ai/shop
-- [ ] Update ClawHub @blenderism profile to link CertainLogic.ai
+## Infrastructure
+- [x] **Daily memory cron** — created, runs every 24 hours
+- [ ] **Fix onboarding-wizard & context-manager** — not on this machine, need to locate
+
+## Credentials Still Needed
+- [ ] **X API tokens** — all 4 values
+- [ ] **Stripe account** — for certainlogic.ai shop
+- [ ] **GitHub repo + Cloudflare Pages** — for site launch
+
+## No Longer Relevant (archived)
+- ~~Relist hallucination-guard~~ — killed, not viable
+- ~~Relist certainlogic-verifier~~ — killed, not viable
