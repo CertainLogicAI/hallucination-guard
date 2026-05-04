@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "description": "CertainLogic tiered model routing configuration — task-based model selection for optimal quality/cost balance",
+  "last_updated": "2026-05-04",
+  "default_model": "openrouter/moonshotai/kimi-k2.6",
+  "routing_strategy": "task_tiered",
+  "tiers": {
+    "coding_architecture": {
+      "description": "Coding tasks, spec writing, architecture design — requires strong reasoning",
+      "models": {
+        "primary": "openrouter/moonshotai/kimi-k2.6",
+        "fallback": "anthropic/claude-sonnet-4-6",
+        "fallback_free": "openrouter/anthropic/claude-sonnet-4-6"
+      },
+      "temperature": 0.2,
+      "max_tokens": 4000,
+      "use_deterministic_first": true,
+      "routing_keywords": [
+        "code", "function", "script", "implement", "build", "architecture",
+        "design", "spec", "schema", "API", "endpoint", "database",
+        "refactor", "debug", "test", "pytest", "unittest"
+      ]
+    },
+    "marketing": {
+      "description": "Marketing content, brand voice, creative writing",
+      "models": {
+        "primary": "openrouter/x-ai/grok-3",
+        "fallback": "openrouter/x-ai/grok-3-beta",
+        "fallback_free": "openrouter/x-ai/grok-3-mini"
+      },
+      "temperature": 0.8,
+      "max_tokens": 2000,
+      "use_deterministic_first": false,
+      "routing_keywords": [
+        "marketing", "tweet", "post", "content", "campaign", "brand",
+        "copywriting", "headline", "tagline", "promotion", "launch",
+        "social media", "X post", "thread", "blog post", "newsletter"
+      ]
+    },
+    "business_strategy": {
+      "description": "General business recommendations, strategic thinking",
+      "models": {
+        "primary": "openrouter/x-ai/grok-3",
+        "fallback": "openrouter/moonshotai/kimi-k2.6",
+        "fallback_free": "openrouter/x-ai/grok-3-mini"
+      },
+      "temperature": 0.5,
+      "max_tokens": 3000,
+      "use_deterministic_first": true,
+      "routing_keywords": [
+        "strategy", "business", "revenue", "pricing", "market",
+        "competitor", "positioning", "roadmap", "plan", "budget",
+        "forecast", "growth", "sales", "funnel", "conversion"
+      ]
+    },
+    "cron_automation": {
+      "description": "Automated cron jobs, routine checks, summaries",
+      "models": {
+        "primary": "google/gemma-4-26b-a4b-it:free",
+        "fallback": "openrouter/google/gemini-2.5-flash",
+        "fallback_free": "inclusionai/ling-2.6-flash:free"
+      },
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "use_deterministic_first": true,
+      "routing_keywords": [
+        "cron", "heartbeat", "check", "summary", "report", "status",
+        "sync", "backup", "cleanup", "monitor", "alert", "snapshot"
+      ]
+    },
+    "simple_queries": {
+      "description": "Simple factual queries, quick lookups",
+      "models": {
+        "primary": "inclusionai/ling-2.6-flash:free",
+        "fallback": "google/gemma-4-26b-a4b-it:free",
+        "fallback_free": "google/gemma-4-26b-a4b-it:free"
+      },
+      "temperature": 0.1,
+      "max_tokens": 500,
+      "use_deterministic_first": true,
+      "routing_keywords": [
+        "weather", "time", "definition", "lookup", "check", "verify",
+        "list", "count", "simple", "quick", "basic"
+      ]
+    }
+  },
+  "fallback_chain": [
+    "openrouter/moonshotai/kimi-k2.6",
+    "anthropic/claude-haiku-4-5",
+    "openrouter/anthropic/claude-haiku-4-5"
+  ],
+  "cost_tracking": {
+    "enabled": true,
+    "log_file": "logs/model_routing_costs.jsonl",
+    "alert_threshold_daily": 5.0
+  },
+  "deterministic_layer": {
+    "enabled": true,
+    "facts_db": "facts_db.json",
+    "cache": "cache.db",
+    "use_for_tiers": ["coding_architecture", "business_strategy", "cron_automation", "simple_queries"]
+  }
+}
