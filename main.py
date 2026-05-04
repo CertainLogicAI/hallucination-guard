@@ -18,7 +18,10 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 # Local modules
-from token_reduction_engine import reduce_tokens, get_metrics as get_token_metrics, clear_cache
+from token_reduction_engine import (
+    reduce_tokens, get_metrics as get_token_metrics, clear_cache,
+    get_cached_answer, cache_answer
+)
 from deterministic_memory_search import search_memory
 from hallucination_detector import HallucinationDetector
 from hybrid_ai_router import HybridAIRouter
@@ -129,62 +132,103 @@ def _search_facts_db(query: str) -> Optional[list]:
 # Pipeline
 # ---------------------------------------------------------------------------
 def process_query(req: QueryRequest) -> dict:
-    """Full pipeline: reduce → route → search → validate → hash → audit."""
+    """Full pipeline: cache → facts → memory → external → validate → hash → audit."""
     t0 = time.time()
 
-    # 1. Token reduction
-    token_result = reduce_tokens(req.query, force_deterministic=req.force_deterministic)
+    # ── 1. Check answer cache (TRE v1.1) ──────────────────────────────
+    cached = get_cached_answer(req.query)
+    if cached:
+        answer, token_count = cached
+        elapsed = time.time() - t0
+        audit_id = hashlib.sha256(f"{req.query}:{t0}".encode()).hexdigest()[:16]
+        _audit({
+            "audit_id": audit_id,
+            "query": req.query[:200],
+            "routing": "deterministic",
+            "method": "answer_cache",
+            "confidence": 1.0,
+            "valid": True,
+            "elapsed_ms": round(elapsed * 1000, 2),
+            "source": "tre_answer_cache"
+        })
+        return {
+            "query": req.query,
+            "routing": "deterministic",
+            "routing_confidence": 1.0,
+            "routing_reason": "Answer cache hit — instant return",
+            "method": "answer_cache",
+            "results": {"message": answer},
+            "token_stats": {
+                "original_tokens": token_count,
+                "reduced_tokens": token_count,
+                "tokens_saved": 0,
+                "cache_hit": True,
+            },
+            "validation": {"valid": True, "source": "cached"},
+            "response_hash": hashlib.sha256(answer.encode()).hexdigest()[:16],
+            "audit_id": audit_id,
+        }
 
+    # ── 2. No cache: apply token reduction ────────────────────────────
+    token_result = reduce_tokens(req.query, force_deterministic=req.force_deterministic)
     reduced_query = token_result["reduced_query"]
     method = token_result["method"]
 
-    # 2. Route
+    # ── 3. Route ─────────────────────────────────────────────────────
     ai_type, confidence, reasoning = router.route_query(reduced_query, req.context or {})
-
-    # Override to deterministic if forced or cache hit
-    if req.force_deterministic or method == "cache":
+    if req.force_deterministic:
         ai_type = "deterministic"
         confidence = 1.0
 
-    # 3. Execute — always check facts DB and memory search regardless of route
+    # ── 4. Execute: facts → memory → fallback ─────────────────────────
     results = None
+    answer_to_cache = None
 
-    # 3a. Check facts DB for direct matches
+    # 4a. Facts DB
     facts_results = _search_facts_db(reduced_query)
     if facts_results:
         method = "facts_cache"
         ai_type = "deterministic"
         confidence = 1.0
         results = facts_results
+        answer_to_cache = json.dumps(facts_results)
     else:
-        # 3b. Search memory files
+        # 4b. Memory search
         search_results = search_memory(reduced_query, top_k=req.top_k)
         if search_results:
             method = "deterministic_search"
             results = search_results
+            answer_to_cache = search_results[0].get("snippet", "") if search_results else ""
         elif ai_type == "deterministic" or req.force_deterministic:
             method = "token_fallback"
             results = {
                 "message": "No matching knowledge found in local corpus.",
                 "reduced_query": reduced_query,
             }
+            answer_to_cache = "No matching knowledge found in local corpus."
         else:
             method = "external_placeholder"
             results = {
                 "message": "No cache hit. Proceed with normal LLM reasoning.",
                 "reduced_query": reduced_query,
             }
+            answer_to_cache = "No cache hit. Proceed with normal LLM reasoning."
 
-    # 4. Validate (only meaningful for deterministic results with text)
-    validation_input = ""
+    # ── 5. Cache the answer ───────────────────────────────────────────
+    cache_result = cache_answer(req.query, answer_to_cache)
+    cache_warning = cache_result.get("warning", None)
+
+    # ── 6. Validate ────────────────────────────────────────────────────
+    validation_input = answer_to_cache
     if isinstance(results, list) and results:
         validation_input = results[0].get("snippet", "")
     elif isinstance(results, dict):
         validation_input = results.get("message", "")
 
     validation = detector.validate(req.query, validation_input)
+    valid = validation["valid"] if cache_result["cached"] else False
 
-    # 5. Hash the full response for verification
+    # ── 7. Hash & Audit ──────────────────────────────────────────────
     response_payload = {
         "query": req.query,
         "routing": ai_type,
@@ -195,7 +239,6 @@ def process_query(req: QueryRequest) -> dict:
         json.dumps(response_payload, sort_keys=True, default=str).encode()
     ).hexdigest()
 
-    # 6. Audit
     elapsed = time.time() - t0
     audit_id = hashlib.sha256(f"{req.query}:{t0}".encode()).hexdigest()[:16]
     _audit({
@@ -204,12 +247,15 @@ def process_query(req: QueryRequest) -> dict:
         "routing": ai_type,
         "method": method,
         "confidence": confidence,
-        "valid": validation["valid"],
+        "valid": valid,
         "response_hash": response_hash,
         "elapsed_ms": round(elapsed * 1000, 2),
+        "cached": cache_result["cached"],
+        "flagged": cache_result["flagged"],
     })
 
-    return {
+    # ── 8. Build response ─────────────────────────────────────────────
+    response = {
         "query": req.query,
         "routing": ai_type,
         "routing_confidence": round(confidence, 4),
@@ -220,12 +266,22 @@ def process_query(req: QueryRequest) -> dict:
             "original_tokens": token_result["original_tokens"],
             "reduced_tokens": token_result["reduced_tokens"],
             "tokens_saved": token_result["tokens_saved"],
-            "cache_hit": token_result["cache_hit"],
+            "cache_hit": False,
         },
         "validation": validation,
         "response_hash": response_hash,
         "audit_id": audit_id,
     }
+
+    if cache_warning:
+        response["warning"] = cache_warning
+        response["cache_status"] = "flagged_not_cached"
+    elif cache_result["cached"]:
+        response["cache_status"] = "cached"
+    else:
+        response["cache_status"] = "uncached"
+
+    return response
 
 
 # ---------------------------------------------------------------------------

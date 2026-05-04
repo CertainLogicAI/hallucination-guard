@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "1.0",
-    "last_updated": "2026-04-13"
+    "last_updated": "2026-04-30"
   },
   "facts": {
     "2+2": {
@@ -277,6 +277,166 @@
       "type": "string",
       "value": "@CertainLogicAI \u2014 rebranded from @ForCryptoClearly. Anton personal account, pivoted to AI/CertainLogic content.",
       "source": "anton/2026-04-13"
+    },
+    "python palindrome checker": {
+      "type": "string",
+      "value": "def is_palindrome(s): return s == s[::-1]",
+      "source": "common_python"
+    },
+    "python fibonacci sequence": {
+      "type": "string",
+      "value": "def fib(n): return n if n <= 1 else fib(n-1) + fib(n-2)",
+      "source": "common_python"
+    },
+    "python read file": {
+      "type": "string",
+      "value": "with open('file.txt', 'r') as f: content = f.read()",
+      "source": "common_python"
+    },
+    "python write file": {
+      "type": "string",
+      "value": "with open('file.txt', 'w') as f: f.write(content)",
+      "source": "common_python"
+    },
+    "python http request": {
+      "type": "string",
+      "value": "import requests; response = requests.get(url)",
+      "source": "common_python"
+    },
+    "python json parse": {
+      "type": "string",
+      "value": "import json; data = json.loads(json_string)",
+      "source": "common_python"
+    },
+    "python list comprehension": {
+      "type": "string",
+      "value": "squares = [x**2 for x in range(10)]",
+      "source": "common_python"
+    },
+    "python dictionary comprehension": {
+      "type": "string",
+      "value": "d = {k: v for k, v in zip(keys, values)}",
+      "source": "common_python"
+    },
+    "python class with init": {
+      "type": "string",
+      "value": "class MyClass:\n    def __init__(self):\n        self.value = 0",
+      "source": "common_python"
+    },
+    "python try except": {
+      "type": "string",
+      "value": "try:\n    result = risky_operation()\nexcept Exception as e:\n    print(f'Error: {e}')",
+      "source": "common_python"
+    },
+    "python decorator": {
+      "type": "string",
+      "value": "def my_decorator(f):\n    def wrapper(*args, **kwargs):\n        return f(*args, **kwargs)\n    return wrapper",
+      "source": "common_python"
+    },
+    "python lambda function": {
+      "type": "string",
+      "value": "square = lambda x: x ** 2",
+      "source": "common_python"
+    },
+    "python filter list": {
+      "type": "string",
+      "value": "evens = list(filter(lambda x: x % 2 == 0, numbers))",
+      "source": "common_python"
+    },
+    "python map function": {
+      "type": "string",
+      "value": "squares = list(map(lambda x: x**2, numbers))",
+      "source": "common_python"
+    },
+    "python sort list": {
+      "type": "string",
+      "value": "sorted_list = sorted(items, key=lambda x: x['name'])",
+      "source": "common_python"
+    },
+    "python enumerate": {
+      "type": "string",
+      "value": "for index, value in enumerate(items):\n    print(f'{index}: {value}')",
+      "source": "common_python"
+    },
+    "python zip lists": {
+      "type": "string",
+      "value": "for a, b in zip(list_a, list_b):\n    print(a, b)",
+      "source": "common_python"
+    },
+    "python datetime now": {
+      "type": "string",
+      "value": "from datetime import datetime; now = datetime.now()",
+      "source": "common_python"
+    },
+    "python regex match": {
+      "type": "string",
+      "value": "import re; match = re.search(r'pattern', text)",
+      "source": "common_python"
+    },
+    "python subprocess run": {
+      "type": "string",
+      "value": "import subprocess; result = subprocess.run(['ls', '-la'], capture_output=True, text=True)",
+      "source": "common_python"
+    },
+    "python threading": {
+      "type": "string",
+      "value": "import threading; thread = threading.Thread(target=func); thread.start()",
+      "source": "common_python"
+    },
+    "python argparse": {
+      "type": "string",
+      "value": "import argparse; parser = argparse.ArgumentParser(); parser.add_argument('--input'); args = parser.parse_args()",
+      "source": "common_python"
+    },
+    "python csv read": {
+      "type": "string",
+      "value": "import csv; with open('data.csv') as f: reader = csv.DictReader(f); rows = list(reader)",
+      "source": "common_python"
+    },
+    "python sqlite query": {
+      "type": "string",
+      "value": "import sqlite3; conn = sqlite3.connect('db.sqlite'); cursor = conn.execute('SELECT * FROM users')",
+      "source": "common_python"
+    },
+    "python logging setup": {
+      "type": "string",
+      "value": "import logging; logging.basicConfig(level=logging.INFO); logger = logging.getLogger(__name__)",
+      "source": "common_python"
+    },
+    "python os path join": {
+      "type": "string",
+      "value": "import os; filepath = os.path.join('data', 'file.txt')",
+      "source": "common_python"
+    },
+    "python random number": {
+      "type": "string",
+      "value": "import random; num = random.randint(1, 100)",
+      "source": "common_python"
+    },
+    "python hash md5": {
+      "type": "string",
+      "value": "import hashlib; hash = hashlib.md5(data.encode()).hexdigest()",
+      "source": "common_python"
+    },
+    "python base64 encode": {
+      "type": "string",
+      "value": "import base64; encoded = base64.b64encode(data.encode()).decode()",
+      "source": "common_python"
+    },
+    "python url parse": {
+      "type": "string",
+      "value": "from urllib.parse import urlparse; parsed = urlparse(url)",
+      "source": "common_python"
+    },
+    "python env var": {
+      "type": "string",
+      "value": "import os; value = os.getenv('KEY', 'default')",
+      "source": "common_python"
+    },
+    "python temp file": {
+      "type": "string",
+      "value": "import tempfile; with tempfile.NamedTemporaryFile(mode='w') as f: f.write(data)",
+      "source": "common_python"
     }
   }
 }
