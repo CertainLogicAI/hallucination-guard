@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-05-03T19:03:48.279945+00:00",
+  "source_harvest": "/data/.openclaw/workspace/cache_data/weekly_harvest.json",
+  "draft_count": 6,
+  "drafts": [
+    {
+      "key": "project scope",
+      "value": "BTC Automated Trading System",
+      "type": "string",
+      "source": "workspace-cache:docs/btc-trading-scope.md",
+      "extracted_at": "2026-05-03T19:03:48.279267+00:00",
+      "status": "draft"
+    },
+    {
+      "key": "x thread",
+      "value": "Token Reduction Engine v1",
+      "type": "string",
+      "source": "workspace-cache:docs/x-tre-announcement-v2.md",
+      "extracted_at": "2026-05-03T19:03:48.279477+00:00",
+      "status": "draft"
+    },
+    {
+      "key": "x thread",
+      "value": "Token Reduction Engine Announcement",
+      "type": "string",
+      "source": "workspace-cache:docs/x-tre-announcement.md",
+      "extracted_at": "2026-05-03T19:03:48.279513+00:00",
+      "status": "draft"
+    },
+    {
+      "key": "x thread",
+      "value": "Company Brain Announcement",
+      "type": "string",
+      "source": "workspace-cache:docs/x-company-brain-announcement.md",
+      "extracted_at": "2026-05-03T19:03:48.279591+00:00",
+      "status": "draft"
+    },
+    {
+      "key": "business plan",
+      "value": "Running CertainLogic During 12-Hour Shifts",
+      "type": "string",
+      "source": "workspace-cache:docs/shift-business-plan.md",
+      "extracted_at": "2026-05-03T19:03:48.279681+00:00",
+      "status": "draft"
+    },
+    {
+      "key": "x thread",
+      "value": "Influencer Testimonial",
+      "type": "string",
+      "source": "workspace-cache:docs/x-influencer-thread.md",
+      "extracted_at": "2026-05-03T19:03:48.279823+00:00",
+      "status": "draft"
+    }
+  ]
+}

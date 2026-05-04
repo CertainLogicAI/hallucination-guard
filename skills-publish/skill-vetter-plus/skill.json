@@ -1,0 +1,14 @@
+{
+  "id": "certainlogic.skill-vetter-plus",
+  "name": "skill-vetter-plus",
+  "displayName": "Skill Vetter Plus",
+  "version": "1.0.0",
+  "description": "Security and honesty scanner for ClawHub skills. Checks code safety, marketing claims, network calls, and dependencies. Free tier shows pass/warn/fail. Pro tier gives full details + 'CertainLogic Certified' badge.",
+  "tags": ["security", "scanner", "skills", "clawhub", "certainlogic", "audit", "verification"],
+  "author": "CertainLogic",
+  "license": "MIT",
+  "source": "https://github.com/certainlogic/skill-vetter-plus",
+  "entrypoints": {
+    "cli": "scripts/vetter.py"
+  }
+}

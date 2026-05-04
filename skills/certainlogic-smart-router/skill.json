@@ -1,0 +1,34 @@
+{
+  "name": "CertainLogic Smart Router",
+  "version": "1.0.0",
+  "description": "Keyword-based query router that recommends which LLM model tier to use (cheap/default/powerful). Save money without thinking about it.",
+  "author": "CertainLogic",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": ["router", "cost-saving", "model-selection", "optimization", "llm"],
+  "entry": {
+    "cli": "scripts/smart_router.py"
+  },
+  "commands": [
+    {
+      "name": "route",
+      "description": "Classify a query and recommend model tier",
+      "args": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "The query to route"
+        },
+        {
+          "name": "profile",
+          "type": "string",
+          "required": false,
+          "description": "Force profile (coding, research, marketing, general)"
+        }
+      ]
+    }
+  ],
+  "homepage": "https://certainlogic.ai",
+  "repository": "https://github.com/CertainLogicAI/certainlogic-smart-router"
+}

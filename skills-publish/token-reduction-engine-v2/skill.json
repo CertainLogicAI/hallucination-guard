@@ -1,0 +1,23 @@
+{
+  "id": "certainlogic.token-reduction-engine",
+  "displayName": "Token Reduction Engine",
+  "name": "token-reduction-engine",
+  "summary": "Fast answer cache for AI agents. Repeats return in ~100ms, not 1-4 seconds.",
+  "description": "Persistent answer cache with automatic quality gating. Second identical query skips the LLM entirely — fast, cheap, consistent. Uncertain answers (hedging language) are shown to users but NOT cached, preventing garbage accumulation.",
+  "version": "1.2.0",
+  "license": "MIT-0",
+  "author": "CertainLogic",
+  "tags": ["cache", "performance", "cost-reduction", "openclaw", "agent-tool"],
+  "repository": "https://github.com/CertainLogicAI/token-reduction-engine",
+  "platforms": ["linux", "macos", "windows"],
+  "requires": ["python3.10+"],
+  "entry": {
+    "command": ["tre_client"]
+  },
+  "scripts": [
+    "tre_client cache <query> <answer>",
+    "tre_client get <query>",
+    "tre_client metrics",
+    "tre_client clear"
+  ]
+}

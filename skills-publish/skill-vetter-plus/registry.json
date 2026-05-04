@@ -1,0 +1,62 @@
+{
+  "dd6a22071e17bf24": {
+    "skill_id": "skill-vetter-plus",
+    "certified_at": "2026-04-30T19:42:39.134018",
+    "checks": {
+      "Code Safety": true,
+      "Claim Honesty": true,
+      "Network Calls": true,
+      "File System": true,
+      "Dependencies": true
+    },
+    "status": "active"
+  },
+  "cc6e38324932b7dd": {
+    "skill_id": "frontend-design-ultimate",
+    "certified_at": "2026-04-30T19:59:35.334772",
+    "checks": {
+      "Code Safety": true,
+      "Claim Honesty": true,
+      "Network Calls": true,
+      "File System": true,
+      "Dependencies": true
+    },
+    "status": "active"
+  },
+  "a722ab3c8df15e0d": {
+    "skill_id": "frontend-design-ultimate",
+    "certified_at": "2026-04-30T19:59:44.099223",
+    "checks": {
+      "Code Safety": true,
+      "Claim Honesty": true,
+      "Network Calls": true,
+      "File System": true,
+      "Dependencies": true
+    },
+    "status": "active"
+  },
+  "b04290eeddd3ca7a": {
+    "skill_id": "skill-guard",
+    "certified_at": "2026-04-30T19:59:57.220081",
+    "checks": {
+      "Code Safety": true,
+      "Claim Honesty": true,
+      "Network Calls": true,
+      "File System": true,
+      "Dependencies": true
+    },
+    "status": "active"
+  },
+  "15f2a7dfb30c3c27": {
+    "skill_id": "agentpathfinder",
+    "certified_at": "2026-04-30T20:33:04.585664",
+    "checks": {
+      "Code Safety": true,
+      "Claim Honesty": true,
+      "Network Calls": true,
+      "File System": true,
+      "Dependencies": true
+    },
+    "status": "active"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "2024-v2",
+  "id": "certainlogic.skill-packager",
+  "displayName": "Skill Packager",
+  "version": "1.0.0",
+  "description": "Internal tool to package CertainLogic skills for marketplace publication. Validates structure, audits language for jargon, generates honest benefits tables, and produces pre-flight checklists. Never publish without Anton's approval.",
+  "repository": "https://github.com/CertainLogicAI/skill-packager",
+  "entrypoints": {
+    "cli": {
+      "command": ["python3", "scripts/package_skill.py"]
+    }
+  },
+  "exports": {
+    "validate": "scripts.package_skill:validate_skill_structure",
+    "audit": "scripts.package_skill:audit_readme_language",
+    "template": "scripts.templates:generate_benefits_template"
+  },
+  "tags": ["internal", "automation", "marketplace", "validation", "packaging"],
+  "license": "MIT-0",
+  "author": {
+    "name": "CertainLogic",
+    "url": "https://github.com/CertainLogicAI"
+  }
+}

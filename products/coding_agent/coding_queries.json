@@ -1,0 +1,3392 @@
+{
+  "_meta": {
+    "product": "CertainLogic Coding Agent Pro",
+    "version": "1.0.0",
+    "created": "2026-04-30T10:05:12.133017",
+    "total_facts_mapped": 338,
+    "total_query_variations": 1014,
+    "update_frequency": "monthly"
+  },
+  "mappings": [
+    {
+      "fact_key": "python palindrome checker",
+      "fact_type": "string",
+      "queries": [
+        "python palindrome checker",
+        "how to palindrome checker in python",
+        "python palindrome checker example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python fibonacci sequence",
+      "fact_type": "string",
+      "queries": [
+        "python fibonacci sequence",
+        "how to fibonacci sequence in python",
+        "python fibonacci sequence example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python read file",
+      "fact_type": "string",
+      "queries": [
+        "python read file",
+        "how to read file in python",
+        "python read file example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python write file",
+      "fact_type": "string",
+      "queries": [
+        "python write file",
+        "how to write file in python",
+        "python write file example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python http request",
+      "fact_type": "string",
+      "queries": [
+        "python http request",
+        "how to http request in python",
+        "python http request example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python json parse",
+      "fact_type": "string",
+      "queries": [
+        "python json parse",
+        "how to json parse in python",
+        "python json parse example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python list comprehension",
+      "fact_type": "string",
+      "queries": [
+        "python list comprehension",
+        "how to list comprehension in python",
+        "python list comprehension example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python dictionary comprehension",
+      "fact_type": "string",
+      "queries": [
+        "python dictionary comprehension",
+        "how to dictionary comprehension in python",
+        "python dictionary comprehension example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python class with init",
+      "fact_type": "string",
+      "queries": [
+        "python class with init",
+        "how to class with init in python",
+        "python class with init example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python try except",
+      "fact_type": "string",
+      "queries": [
+        "python try except",
+        "how to try except in python",
+        "python try except example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python decorator",
+      "fact_type": "string",
+      "queries": [
+        "python decorator",
+        "how to decorator in python",
+        "python decorator example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python lambda function",
+      "fact_type": "string",
+      "queries": [
+        "python lambda function",
+        "how to lambda function in python",
+        "python lambda function example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python filter list",
+      "fact_type": "string",
+      "queries": [
+        "python filter list",
+        "how to filter list in python",
+        "python filter list example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python map function",
+      "fact_type": "string",
+      "queries": [
+        "python map function",
+        "how to map function in python",
+        "python map function example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python sort list",
+      "fact_type": "string",
+      "queries": [
+        "python sort list",
+        "how to sort list in python",
+        "python sort list example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python enumerate",
+      "fact_type": "string",
+      "queries": [
+        "python enumerate",
+        "how to enumerate in python",
+        "python enumerate example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python zip lists",
+      "fact_type": "string",
+      "queries": [
+        "python zip lists",
+        "how to zip lists in python",
+        "python zip lists example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python datetime now",
+      "fact_type": "string",
+      "queries": [
+        "python datetime now",
+        "how to datetime now in python",
+        "python datetime now example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python regex match",
+      "fact_type": "string",
+      "queries": [
+        "python regex match",
+        "how to regex match in python",
+        "python regex match example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python subprocess run",
+      "fact_type": "string",
+      "queries": [
+        "python subprocess run",
+        "how to subprocess run in python",
+        "python subprocess run example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python threading",
+      "fact_type": "string",
+      "queries": [
+        "python threading",
+        "how to threading in python",
+        "python threading example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python argparse",
+      "fact_type": "string",
+      "queries": [
+        "python argparse",
+        "how to argparse in python",
+        "python argparse example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python csv read",
+      "fact_type": "string",
+      "queries": [
+        "python csv read",
+        "how to csv read in python",
+        "python csv read example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python sqlite query",
+      "fact_type": "string",
+      "queries": [
+        "python sqlite query",
+        "how to sqlite query in python",
+        "python sqlite query example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python logging setup",
+      "fact_type": "string",
+      "queries": [
+        "python logging setup",
+        "how to logging setup in python",
+        "python logging setup example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python os path join",
+      "fact_type": "string",
+      "queries": [
+        "python os path join",
+        "how to os path join in python",
+        "python os path join example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python random number",
+      "fact_type": "string",
+      "queries": [
+        "python random number",
+        "how to random number in python",
+        "python random number example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python hash md5",
+      "fact_type": "string",
+      "queries": [
+        "python hash md5",
+        "how to hash md5 in python",
+        "python hash md5 example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python base64 encode",
+      "fact_type": "string",
+      "queries": [
+        "python base64 encode",
+        "how to base64 encode in python",
+        "python base64 encode example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python url parse",
+      "fact_type": "string",
+      "queries": [
+        "python url parse",
+        "how to url parse in python",
+        "python url parse example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python env var",
+      "fact_type": "string",
+      "queries": [
+        "python env var",
+        "how to env var in python",
+        "python env var example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python temp file",
+      "fact_type": "string",
+      "queries": [
+        "python temp file",
+        "how to temp file in python",
+        "python temp file example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python current stable version",
+      "fact_type": "string",
+      "queries": [
+        "python current stable version",
+        "how to current stable version in python",
+        "python current stable version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python 3.12 release date",
+      "fact_type": "string",
+      "queries": [
+        "python 3.12 release date",
+        "how to 3.12 release date in python",
+        "python 3.12 release date example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python 3.11 release date",
+      "fact_type": "string",
+      "queries": [
+        "python 3.11 release date",
+        "how to 3.11 release date in python",
+        "python 3.11 release date example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python 3.10 release date",
+      "fact_type": "string",
+      "queries": [
+        "python 3.10 release date",
+        "how to 3.10 release date in python",
+        "python 3.10 release date example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python 2 end of life date",
+      "fact_type": "string",
+      "queries": [
+        "python 2 end of life date",
+        "how to 2 end of life date in python",
+        "python 2 end of life date example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python default integer size",
+      "fact_type": "string",
+      "queries": [
+        "python default integer size",
+        "how to default integer size in python",
+        "python default integer size example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python list is mutable",
+      "fact_type": "string",
+      "queries": [
+        "python list is mutable",
+        "how to list is mutable in python",
+        "python list is mutable example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python tuple is immutable",
+      "fact_type": "string",
+      "queries": [
+        "python tuple is immutable",
+        "how to tuple is immutable in python",
+        "python tuple is immutable example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python dict preserves insertion order since version",
+      "fact_type": "string",
+      "queries": [
+        "python dict preserves insertion order since version",
+        "how to dict preserves insertion order since version in python",
+        "python dict preserves insertion order since version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python walrus operator introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python walrus operator introduced in version",
+        "how to walrus operator introduced in version in python",
+        "python walrus operator introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python walrus operator symbol",
+      "fact_type": "string",
+      "queries": [
+        "python walrus operator symbol",
+        "how to walrus operator symbol in python",
+        "python walrus operator symbol example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python match statement introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python match statement introduced in version",
+        "how to match statement introduced in version in python",
+        "python match statement introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python f-strings introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python f-strings introduced in version",
+        "how to f-strings introduced in version in python",
+        "python f-strings introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python gil stands for",
+      "fact_type": "string",
+      "queries": [
+        "python gil stands for",
+        "how to gil stands for in python",
+        "python gil stands for example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python gil removed in version",
+      "fact_type": "string",
+      "queries": [
+        "python gil removed in version",
+        "how to gil removed in version in python",
+        "python gil removed in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python number of built-in functions",
+      "fact_type": "numeric",
+      "queries": [
+        "python number of built-in functions",
+        "how to number of built-in functions in python",
+        "python number of built-in functions example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python range function returns",
+      "fact_type": "string",
+      "queries": [
+        "python range function returns",
+        "how to range function returns in python",
+        "python range function returns example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python default mutable argument gotcha",
+      "fact_type": "string",
+      "queries": [
+        "python default mutable argument gotcha",
+        "how to default mutable argument gotcha in python",
+        "python default mutable argument gotcha example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python __init__.py purpose",
+      "fact_type": "string",
+      "queries": [
+        "python __init__.py purpose",
+        "how to __init__.py purpose in python",
+        "python __init__.py purpose example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python type hints introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python type hints introduced in version",
+        "how to type hints introduced in version in python",
+        "python type hints introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python asyncio introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python asyncio introduced in version",
+        "how to asyncio introduced in version in python",
+        "python asyncio introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python is operator checks",
+      "fact_type": "string",
+      "queries": [
+        "python is operator checks",
+        "how to is operator checks in python",
+        "python is operator checks example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python small integer caching range",
+      "fact_type": "string",
+      "queries": [
+        "python small integer caching range",
+        "how to small integer caching range in python",
+        "python small integer caching range example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python list comprehension vs map performance",
+      "fact_type": "string",
+      "queries": [
+        "python list comprehension vs map performance",
+        "how to list comprehension vs map performance in python",
+        "python list comprehension vs map performance example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python deepcopy module",
+      "fact_type": "string",
+      "queries": [
+        "python deepcopy module",
+        "how to deepcopy module in python",
+        "python deepcopy module example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python virtual environment tool built-in",
+      "fact_type": "string",
+      "queries": [
+        "python virtual environment tool built-in",
+        "how to virtual environment tool built-in in python",
+        "python virtual environment tool built-in example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python pip stands for",
+      "fact_type": "string",
+      "queries": [
+        "python pip stands for",
+        "how to pip stands for in python",
+        "python pip stands for example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python __slots__ purpose",
+      "fact_type": "string",
+      "queries": [
+        "python __slots__ purpose",
+        "how to __slots__ purpose in python",
+        "python __slots__ purpose example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python generator function keyword",
+      "fact_type": "string",
+      "queries": [
+        "python generator function keyword",
+        "how to generator function keyword in python",
+        "python generator function keyword example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python dataclasses introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python dataclasses introduced in version",
+        "how to dataclasses introduced in version in python",
+        "python dataclasses introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python exception base class",
+      "fact_type": "string",
+      "queries": [
+        "python exception base class",
+        "how to exception base class in python",
+        "python exception base class example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python string encoding default",
+      "fact_type": "string",
+      "queries": [
+        "python string encoding default",
+        "how to string encoding default in python",
+        "python string encoding default example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python max recursion depth default",
+      "fact_type": "numeric",
+      "queries": [
+        "python max recursion depth default",
+        "how to max recursion depth default in python",
+        "python max recursion depth default example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python none type",
+      "fact_type": "string",
+      "queries": [
+        "python none type",
+        "how to none type in python",
+        "python none type example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python set is unordered",
+      "fact_type": "string",
+      "queries": [
+        "python set is unordered",
+        "how to set is unordered in python",
+        "python set is unordered example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python frozenset is hashable",
+      "fact_type": "string",
+      "queries": [
+        "python frozenset is hashable",
+        "how to frozenset is hashable in python",
+        "python frozenset is hashable example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python __dunder__ methods also called",
+      "fact_type": "string",
+      "queries": [
+        "python __dunder__ methods also called",
+        "how to __dunder__ methods also called in python",
+        "python __dunder__ methods also called example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python pep 8 max line length recommendation",
+      "fact_type": "numeric",
+      "queries": [
+        "python pep 8 max line length recommendation",
+        "how to pep 8 max line length recommendation in python",
+        "python pep 8 max line length recommendation example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python pathlib introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python pathlib introduced in version",
+        "how to pathlib introduced in version in python",
+        "python pathlib introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python typing union syntax new style version",
+      "fact_type": "string",
+      "queries": [
+        "python typing union syntax new style version",
+        "how to typing union syntax new style version in python",
+        "python typing union syntax new style version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "python tomllib introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "python tomllib introduced in version",
+        "how to tomllib introduced in version in python",
+        "python tomllib introduced in version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "javascript ecmascript 2015 also known as",
+      "fact_type": "string",
+      "queries": [
+        "javascript ecmascript 2015 also known as",
+        "what is javascript ecmascript 2015 also known as",
+        "javascript ecmascript 2015 also known as example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript typeof null returns",
+      "fact_type": "string",
+      "queries": [
+        "javascript typeof null returns",
+        "what is javascript typeof null returns",
+        "javascript typeof null returns example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript nan === nan is",
+      "fact_type": "string",
+      "queries": [
+        "javascript nan === nan is",
+        "what is javascript nan === nan is",
+        "javascript nan === nan is example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript var scoping",
+      "fact_type": "string",
+      "queries": [
+        "javascript var scoping",
+        "what is javascript var scoping",
+        "javascript var scoping example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript let and const scoping",
+      "fact_type": "string",
+      "queries": [
+        "javascript let and const scoping",
+        "what is javascript let and const scoping",
+        "javascript let and const scoping example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript == vs === difference",
+      "fact_type": "string",
+      "queries": [
+        "javascript == vs === difference",
+        "what is javascript == vs === difference",
+        "javascript == vs === difference example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript event loop is",
+      "fact_type": "string",
+      "queries": [
+        "javascript event loop is",
+        "what is javascript event loop is",
+        "javascript event loop is example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript promise states",
+      "fact_type": "string",
+      "queries": [
+        "javascript promise states",
+        "what is javascript promise states",
+        "javascript promise states example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript async/await introduced in es version",
+      "fact_type": "string",
+      "queries": [
+        "javascript async/await introduced in es version",
+        "what is javascript async/await introduced in es version",
+        "javascript async/await introduced in es version example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript arrow functions do not bind",
+      "fact_type": "string",
+      "queries": [
+        "javascript arrow functions do not bind",
+        "what is javascript arrow functions do not bind",
+        "javascript arrow functions do not bind example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript prototype chain terminator",
+      "fact_type": "string",
+      "queries": [
+        "javascript prototype chain terminator",
+        "what is javascript prototype chain terminator",
+        "javascript prototype chain terminator example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript optional chaining operator",
+      "fact_type": "string",
+      "queries": [
+        "javascript optional chaining operator",
+        "what is javascript optional chaining operator",
+        "javascript optional chaining operator example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript nullish coalescing operator",
+      "fact_type": "string",
+      "queries": [
+        "javascript nullish coalescing operator",
+        "what is javascript nullish coalescing operator",
+        "javascript nullish coalescing operator example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript array destructuring introduced in",
+      "fact_type": "string",
+      "queries": [
+        "javascript array destructuring introduced in",
+        "what is javascript array destructuring introduced in",
+        "javascript array destructuring introduced in example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript symbol type introduced in",
+      "fact_type": "string",
+      "queries": [
+        "javascript symbol type introduced in",
+        "what is javascript symbol type introduced in",
+        "javascript symbol type introduced in example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript bigint type introduced in",
+      "fact_type": "string",
+      "queries": [
+        "javascript bigint type introduced in",
+        "what is javascript bigint type introduced in",
+        "javascript bigint type introduced in example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript number max safe integer",
+      "fact_type": "numeric",
+      "queries": [
+        "javascript number max safe integer",
+        "what is javascript number max safe integer",
+        "javascript number max safe integer example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript hoisting applies to",
+      "fact_type": "string",
+      "queries": [
+        "javascript hoisting applies to",
+        "what is javascript hoisting applies to",
+        "javascript hoisting applies to example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript released by",
+      "fact_type": "string",
+      "queries": [
+        "typescript released by",
+        "what is typescript released by",
+        "typescript released by example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript is superset of",
+      "fact_type": "string",
+      "queries": [
+        "typescript is superset of",
+        "what is typescript is superset of",
+        "typescript is superset of example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript compiles to",
+      "fact_type": "string",
+      "queries": [
+        "typescript compiles to",
+        "what is typescript compiles to",
+        "typescript compiles to example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript config file name",
+      "fact_type": "string",
+      "queries": [
+        "typescript config file name",
+        "what is typescript config file name",
+        "typescript config file name example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript strict mode enables",
+      "fact_type": "string",
+      "queries": [
+        "typescript strict mode enables",
+        "what is typescript strict mode enables",
+        "typescript strict mode enables example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript any vs unknown",
+      "fact_type": "string",
+      "queries": [
+        "typescript any vs unknown",
+        "what is typescript any vs unknown",
+        "typescript any vs unknown example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript interface vs type alias",
+      "fact_type": "string",
+      "queries": [
+        "typescript interface vs type alias",
+        "what is typescript interface vs type alias",
+        "typescript interface vs type alias example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript decorators status as of ts 5",
+      "fact_type": "string",
+      "queries": [
+        "typescript decorators status as of ts 5",
+        "what is typescript decorators status as of ts 5",
+        "typescript decorators status as of ts 5 example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript satisfies operator introduced in",
+      "fact_type": "string",
+      "queries": [
+        "typescript satisfies operator introduced in",
+        "what is typescript satisfies operator introduced in",
+        "typescript satisfies operator introduced in example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript spread operator introduced in",
+      "fact_type": "string",
+      "queries": [
+        "javascript spread operator introduced in",
+        "what is javascript spread operator introduced in",
+        "javascript spread operator introduced in example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "javascript temporal dead zone applies to",
+      "fact_type": "string",
+      "queries": [
+        "javascript temporal dead zone applies to",
+        "what is javascript temporal dead zone applies to",
+        "javascript temporal dead zone applies to example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react initial release year",
+      "fact_type": "string",
+      "queries": [
+        "react initial release year",
+        "what is react initial release year",
+        "react initial release year example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react hooks introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "react hooks introduced in version",
+        "what is react hooks introduced in version",
+        "react hooks introduced in version example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react virtual dom purpose",
+      "fact_type": "string",
+      "queries": [
+        "react virtual dom purpose",
+        "what is react virtual dom purpose",
+        "react virtual dom purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react useEffect cleanup runs when",
+      "fact_type": "string",
+      "queries": [
+        "react useEffect cleanup runs when",
+        "what is react useEffect cleanup runs when",
+        "react useEffect cleanup runs when example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react useState setter is",
+      "fact_type": "string",
+      "queries": [
+        "react useState setter is",
+        "what is react useState setter is",
+        "react useState setter is example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react key prop purpose",
+      "fact_type": "string",
+      "queries": [
+        "react key prop purpose",
+        "what is react key prop purpose",
+        "react key prop purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react context api avoids",
+      "fact_type": "string",
+      "queries": [
+        "react context api avoids",
+        "what is react context api avoids",
+        "react context api avoids example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react concurrent mode default since version",
+      "fact_type": "string",
+      "queries": [
+        "react concurrent mode default since version",
+        "what is react concurrent mode default since version",
+        "react concurrent mode default since version example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react 18 new feature",
+      "fact_type": "string",
+      "queries": [
+        "react 18 new feature",
+        "what is react 18 new feature",
+        "react 18 new feature example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react useMemo purpose",
+      "fact_type": "string",
+      "queries": [
+        "react useMemo purpose",
+        "what is react useMemo purpose",
+        "react useMemo purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react useCallback purpose",
+      "fact_type": "string",
+      "queries": [
+        "react useCallback purpose",
+        "what is react useCallback purpose",
+        "react useCallback purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react strict mode double invokes",
+      "fact_type": "string",
+      "queries": [
+        "react strict mode double invokes",
+        "what is react strict mode double invokes",
+        "react strict mode double invokes example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react error boundary is",
+      "fact_type": "string",
+      "queries": [
+        "react error boundary is",
+        "what is react error boundary is",
+        "react error boundary is example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs lts release cycle",
+      "fact_type": "string",
+      "queries": [
+        "nodejs lts release cycle",
+        "what is nodejs lts release cycle",
+        "nodejs lts release cycle example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs event loop phases",
+      "fact_type": "string",
+      "queries": [
+        "nodejs event loop phases",
+        "what is nodejs event loop phases",
+        "nodejs event loop phases example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs process.nextTick vs setImmediate",
+      "fact_type": "string",
+      "queries": [
+        "nodejs process.nextTick vs setImmediate",
+        "what is nodejs process.nextTick vs setImmediate",
+        "nodejs process.nextTick vs setImmediate example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs built-in http default port",
+      "fact_type": "numeric",
+      "queries": [
+        "nodejs built-in http default port",
+        "what is nodejs built-in http default port",
+        "nodejs built-in http default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs require vs import",
+      "fact_type": "string",
+      "queries": [
+        "nodejs require vs import",
+        "what is nodejs require vs import",
+        "nodejs require vs import example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs package.json type field for esm",
+      "fact_type": "string",
+      "queries": [
+        "nodejs package.json type field for esm",
+        "what is nodejs package.json type field for esm",
+        "nodejs package.json type field for esm example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs streams types",
+      "fact_type": "string",
+      "queries": [
+        "nodejs streams types",
+        "what is nodejs streams types",
+        "nodejs streams types example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs cluster module purpose",
+      "fact_type": "string",
+      "queries": [
+        "nodejs cluster module purpose",
+        "what is nodejs cluster module purpose",
+        "nodejs cluster module purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs worker_threads introduced in version",
+      "fact_type": "string",
+      "queries": [
+        "nodejs worker_threads introduced in version",
+        "what is nodejs worker_threads introduced in version",
+        "nodejs worker_threads introduced in version example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs __dirname in esm modules",
+      "fact_type": "string",
+      "queries": [
+        "nodejs __dirname in esm modules",
+        "what is nodejs __dirname in esm modules",
+        "nodejs __dirname in esm modules example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "nodejs maximum buffer size",
+      "fact_type": "string",
+      "queries": [
+        "nodejs maximum buffer size",
+        "what is nodejs maximum buffer size",
+        "nodejs maximum buffer size example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react server components introduced in",
+      "fact_type": "string",
+      "queries": [
+        "react server components introduced in",
+        "what is react server components introduced in",
+        "react server components introduced in example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default registry",
+      "fact_type": "string",
+      "queries": [
+        "docker default registry",
+        "what is docker default registry",
+        "docker default registry example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker expose vs publish",
+      "fact_type": "string",
+      "queries": [
+        "docker expose vs publish",
+        "what is docker expose vs publish",
+        "docker expose vs publish example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default network driver",
+      "fact_type": "string",
+      "queries": [
+        "docker default network driver",
+        "what is docker default network driver",
+        "docker default network driver example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker host network mode",
+      "fact_type": "string",
+      "queries": [
+        "docker host network mode",
+        "what is docker host network mode",
+        "docker host network mode example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker entrypoint vs cmd",
+      "fact_type": "string",
+      "queries": [
+        "docker entrypoint vs cmd",
+        "what is docker entrypoint vs cmd",
+        "docker entrypoint vs cmd example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker layer caching invalidated when",
+      "fact_type": "string",
+      "queries": [
+        "docker layer caching invalidated when",
+        "what is docker layer caching invalidated when",
+        "docker layer caching invalidated when example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker multi-stage build benefit",
+      "fact_type": "string",
+      "queries": [
+        "docker multi-stage build benefit",
+        "what is docker multi-stage build benefit",
+        "docker multi-stage build benefit example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default container stop signal",
+      "fact_type": "string",
+      "queries": [
+        "docker default container stop signal",
+        "what is docker default container stop signal",
+        "docker default container stop signal example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker volumes vs bind mounts",
+      "fact_type": "string",
+      "queries": [
+        "docker volumes vs bind mounts",
+        "what is docker volumes vs bind mounts",
+        "docker volumes vs bind mounts example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker healthcheck instruction purpose",
+      "fact_type": "string",
+      "queries": [
+        "docker healthcheck instruction purpose",
+        "what is docker healthcheck instruction purpose",
+        "docker healthcheck instruction purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker image layers are",
+      "fact_type": "string",
+      "queries": [
+        "docker image layers are",
+        "what is docker image layers are",
+        "docker image layers are example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker compose default file name",
+      "fact_type": "string",
+      "queries": [
+        "docker compose default file name",
+        "what is docker compose default file name",
+        "docker compose default file name example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker build context",
+      "fact_type": "string",
+      "queries": [
+        "docker build context",
+        "what is docker build context",
+        "docker build context example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker exec vs run difference",
+      "fact_type": "string",
+      "queries": [
+        "docker exec vs run difference",
+        "what is docker exec vs run difference",
+        "docker exec vs run difference example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default postgres port",
+      "fact_type": "numeric",
+      "queries": [
+        "docker default postgres port",
+        "what is docker default postgres port",
+        "docker default postgres port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default mysql port",
+      "fact_type": "numeric",
+      "queries": [
+        "docker default mysql port",
+        "what is docker default mysql port",
+        "docker default mysql port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default redis port",
+      "fact_type": "numeric",
+      "queries": [
+        "docker default redis port",
+        "what is docker default redis port",
+        "docker default redis port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default nginx port",
+      "fact_type": "numeric",
+      "queries": [
+        "docker default nginx port",
+        "what is docker default nginx port",
+        "docker default nginx port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker .dockerignore purpose",
+      "fact_type": "string",
+      "queries": [
+        "docker .dockerignore purpose",
+        "what is docker .dockerignore purpose",
+        "docker .dockerignore purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker user instruction purpose",
+      "fact_type": "string",
+      "queries": [
+        "docker user instruction purpose",
+        "what is docker user instruction purpose",
+        "docker user instruction purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker overlay network purpose",
+      "fact_type": "string",
+      "queries": [
+        "docker overlay network purpose",
+        "what is docker overlay network purpose",
+        "docker overlay network purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker restart policy options",
+      "fact_type": "string",
+      "queries": [
+        "docker restart policy options",
+        "what is docker restart policy options",
+        "docker restart policy options example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker copy vs add instruction",
+      "fact_type": "string",
+      "queries": [
+        "docker copy vs add instruction",
+        "what is docker copy vs add instruction",
+        "docker copy vs add instruction example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker scratch image",
+      "fact_type": "string",
+      "queries": [
+        "docker scratch image",
+        "what is docker scratch image",
+        "docker scratch image example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker run --rm flag",
+      "fact_type": "string",
+      "queries": [
+        "docker run --rm flag",
+        "what is docker run --rm flag",
+        "docker run --rm flag example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker buildkit default since version",
+      "fact_type": "string",
+      "queries": [
+        "docker buildkit default since version",
+        "what is docker buildkit default since version",
+        "docker buildkit default since version example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git default branch name (modern)",
+      "fact_type": "string",
+      "queries": [
+        "git default branch name (modern)",
+        "what is git default branch name (modern)",
+        "git default branch name (modern) example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git staging area also called",
+      "fact_type": "string",
+      "queries": [
+        "git staging area also called",
+        "what is git staging area also called",
+        "git staging area also called example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git HEAD refers to",
+      "fact_type": "string",
+      "queries": [
+        "git HEAD refers to",
+        "what is git HEAD refers to",
+        "git HEAD refers to example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git detached HEAD state",
+      "fact_type": "string",
+      "queries": [
+        "git detached HEAD state",
+        "what is git detached HEAD state",
+        "git detached HEAD state example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git rebase vs merge",
+      "fact_type": "string",
+      "queries": [
+        "git rebase vs merge",
+        "what is git rebase vs merge",
+        "git rebase vs merge example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git cherry-pick purpose",
+      "fact_type": "string",
+      "queries": [
+        "git cherry-pick purpose",
+        "what is git cherry-pick purpose",
+        "git cherry-pick purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git stash command purpose",
+      "fact_type": "string",
+      "queries": [
+        "git stash command purpose",
+        "what is git stash command purpose",
+        "git stash command purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git --amend flag purpose",
+      "fact_type": "string",
+      "queries": [
+        "git --amend flag purpose",
+        "what is git --amend flag purpose",
+        "git --amend flag purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git force push command",
+      "fact_type": "string",
+      "queries": [
+        "git force push command",
+        "what is git force push command",
+        "git force push command example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git bisect purpose",
+      "fact_type": "string",
+      "queries": [
+        "git bisect purpose",
+        "what is git bisect purpose",
+        "git bisect purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git fetch vs pull",
+      "fact_type": "string",
+      "queries": [
+        "git fetch vs pull",
+        "what is git fetch vs pull",
+        "git fetch vs pull example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git tag types",
+      "fact_type": "string",
+      "queries": [
+        "git tag types",
+        "what is git tag types",
+        "git tag types example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git config scope levels",
+      "fact_type": "string",
+      "queries": [
+        "git config scope levels",
+        "what is git config scope levels",
+        "git config scope levels example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git object types",
+      "fact_type": "string",
+      "queries": [
+        "git object types",
+        "what is git object types",
+        "git object types example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git hash algorithm default",
+      "fact_type": "string",
+      "queries": [
+        "git hash algorithm default",
+        "what is git hash algorithm default",
+        "git hash algorithm default example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git submodule purpose",
+      "fact_type": "string",
+      "queries": [
+        "git submodule purpose",
+        "what is git submodule purpose",
+        "git submodule purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git reflog purpose",
+      "fact_type": "string",
+      "queries": [
+        "git reflog purpose",
+        "what is git reflog purpose",
+        "git reflog purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git conventional commits spec",
+      "fact_type": "string",
+      "queries": [
+        "git conventional commits spec",
+        "what is git conventional commits spec",
+        "git conventional commits spec example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git sparse checkout purpose",
+      "fact_type": "string",
+      "queries": [
+        "git sparse checkout purpose",
+        "what is git sparse checkout purpose",
+        "git sparse checkout purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git worktree purpose",
+      "fact_type": "string",
+      "queries": [
+        "git worktree purpose",
+        "what is git worktree purpose",
+        "git worktree purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git blame command shows",
+      "fact_type": "string",
+      "queries": [
+        "git blame command shows",
+        "what is git blame command shows",
+        "git blame command shows example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "gitflow main branches",
+      "fact_type": "string",
+      "queries": [
+        "gitflow main branches",
+        "what is gitflow main branches",
+        "gitflow main branches example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git shallow clone flag",
+      "fact_type": "string",
+      "queries": [
+        "git shallow clone flag",
+        "what is git shallow clone flag",
+        "git shallow clone flag example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git hooks location",
+      "fact_type": "string",
+      "queries": [
+        "git hooks location",
+        "what is git hooks location",
+        "git hooks location example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "git interactive rebase command",
+      "fact_type": "string",
+      "queries": [
+        "git interactive rebase command",
+        "what is git interactive rebase command",
+        "git interactive rebase command example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql select distinct removes",
+      "fact_type": "string",
+      "queries": [
+        "sql select distinct removes",
+        "what is sql select distinct removes",
+        "sql select distinct removes example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql null comparison correct operator",
+      "fact_type": "string",
+      "queries": [
+        "sql null comparison correct operator",
+        "what is sql null comparison correct operator",
+        "sql null comparison correct operator example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql inner join returns",
+      "fact_type": "string",
+      "queries": [
+        "sql inner join returns",
+        "what is sql inner join returns",
+        "sql inner join returns example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql left join returns",
+      "fact_type": "string",
+      "queries": [
+        "sql left join returns",
+        "what is sql left join returns",
+        "sql left join returns example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql group by requirement",
+      "fact_type": "string",
+      "queries": [
+        "sql group by requirement",
+        "what is sql group by requirement",
+        "sql group by requirement example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql having vs where",
+      "fact_type": "string",
+      "queries": [
+        "sql having vs where",
+        "what is sql having vs where",
+        "sql having vs where example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql index types in postgresql",
+      "fact_type": "string",
+      "queries": [
+        "sql index types in postgresql",
+        "what is sql index types in postgresql",
+        "sql index types in postgresql example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql transaction isolation levels",
+      "fact_type": "string",
+      "queries": [
+        "sql transaction isolation levels",
+        "what is sql transaction isolation levels",
+        "sql transaction isolation levels example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql default transaction isolation in postgresql",
+      "fact_type": "string",
+      "queries": [
+        "sql default transaction isolation in postgresql",
+        "what is sql default transaction isolation in postgresql",
+        "sql default transaction isolation in postgresql example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql acid acronym",
+      "fact_type": "string",
+      "queries": [
+        "sql acid acronym",
+        "what is sql acid acronym",
+        "sql acid acronym example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "postgresql serial type replaced by",
+      "fact_type": "string",
+      "queries": [
+        "postgresql serial type replaced by",
+        "what is postgresql serial type replaced by",
+        "postgresql serial type replaced by example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "postgresql jsonb vs json",
+      "fact_type": "string",
+      "queries": [
+        "postgresql jsonb vs json",
+        "what is postgresql jsonb vs json",
+        "postgresql jsonb vs json example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "mysql vs postgresql default port",
+      "fact_type": "string",
+      "queries": [
+        "mysql vs postgresql default port",
+        "what is mysql vs postgresql default port",
+        "mysql vs postgresql default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql explain analyze purpose",
+      "fact_type": "string",
+      "queries": [
+        "sql explain analyze purpose",
+        "what is sql explain analyze purpose",
+        "sql explain analyze purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql cte keyword",
+      "fact_type": "string",
+      "queries": [
+        "sql cte keyword",
+        "what is sql cte keyword",
+        "sql cte keyword example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql window function over clause",
+      "fact_type": "string",
+      "queries": [
+        "sql window function over clause",
+        "what is sql window function over clause",
+        "sql window function over clause example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "redis default port",
+      "fact_type": "numeric",
+      "queries": [
+        "redis default port",
+        "what is redis default port",
+        "redis default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "mongodb default port",
+      "fact_type": "numeric",
+      "queries": [
+        "mongodb default port",
+        "what is mongodb default port",
+        "mongodb default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql n+1 query problem",
+      "fact_type": "string",
+      "queries": [
+        "sql n+1 query problem",
+        "what is sql n+1 query problem",
+        "sql n+1 query problem example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "postgresql vacuum purpose",
+      "fact_type": "string",
+      "queries": [
+        "postgresql vacuum purpose",
+        "what is postgresql vacuum purpose",
+        "postgresql vacuum purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql foreign key constraint enforces",
+      "fact_type": "string",
+      "queries": [
+        "sql foreign key constraint enforces",
+        "what is sql foreign key constraint enforces",
+        "sql foreign key constraint enforces example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql on delete cascade",
+      "fact_type": "string",
+      "queries": [
+        "sql on delete cascade",
+        "what is sql on delete cascade",
+        "sql on delete cascade example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql between operator is inclusive",
+      "fact_type": "string",
+      "queries": [
+        "sql between operator is inclusive",
+        "what is sql between operator is inclusive",
+        "sql between operator is inclusive example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "elasticsearch default port",
+      "fact_type": "numeric",
+      "queries": [
+        "elasticsearch default port",
+        "what is elasticsearch default port",
+        "elasticsearch default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql upsert in postgresql",
+      "fact_type": "string",
+      "queries": [
+        "sql upsert in postgresql",
+        "what is sql upsert in postgresql",
+        "sql upsert in postgresql example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi based on",
+      "fact_type": "string",
+      "queries": [
+        "fastapi based on",
+        "what is fastapi based on",
+        "fastapi based on example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi automatic docs url",
+      "fact_type": "string",
+      "queries": [
+        "fastapi automatic docs url",
+        "what is fastapi automatic docs url",
+        "fastapi automatic docs url example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi dependency injection keyword",
+      "fact_type": "string",
+      "queries": [
+        "fastapi dependency injection keyword",
+        "what is fastapi dependency injection keyword",
+        "fastapi dependency injection keyword example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi background tasks class",
+      "fact_type": "string",
+      "queries": [
+        "fastapi background tasks class",
+        "what is fastapi background tasks class",
+        "fastapi background tasks class example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi path parameter syntax",
+      "fact_type": "string",
+      "queries": [
+        "fastapi path parameter syntax",
+        "what is fastapi path parameter syntax",
+        "fastapi path parameter syntax example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi pydantic v2 breaking change",
+      "fact_type": "string",
+      "queries": [
+        "fastapi pydantic v2 breaking change",
+        "what is fastapi pydantic v2 breaking change",
+        "fastapi pydantic v2 breaking change example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask application factory pattern",
+      "fact_type": "string",
+      "queries": [
+        "flask application factory pattern",
+        "what is flask application factory pattern",
+        "flask application factory pattern example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask debug mode warning",
+      "fact_type": "string",
+      "queries": [
+        "flask debug mode warning",
+        "what is flask debug mode warning",
+        "flask debug mode warning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask context globals",
+      "fact_type": "string",
+      "queries": [
+        "flask context globals",
+        "what is flask context globals",
+        "flask context globals example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask blueprint purpose",
+      "fact_type": "string",
+      "queries": [
+        "flask blueprint purpose",
+        "what is flask blueprint purpose",
+        "flask blueprint purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django orm query lazy evaluation",
+      "fact_type": "string",
+      "queries": [
+        "django orm query lazy evaluation",
+        "what is django orm query lazy evaluation",
+        "django orm query lazy evaluation example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django select_related vs prefetch_related",
+      "fact_type": "string",
+      "queries": [
+        "django select_related vs prefetch_related",
+        "what is django select_related vs prefetch_related",
+        "django select_related vs prefetch_related example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django middleware order matters",
+      "fact_type": "string",
+      "queries": [
+        "django middleware order matters",
+        "what is django middleware order matters",
+        "django middleware order matters example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django settings secret_key purpose",
+      "fact_type": "string",
+      "queries": [
+        "django settings secret_key purpose",
+        "what is django settings secret_key purpose",
+        "django settings secret_key purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django migrations command",
+      "fact_type": "string",
+      "queries": [
+        "django migrations command",
+        "what is django migrations command",
+        "django migrations command example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django version 4.0 dropped support for",
+      "fact_type": "string",
+      "queries": [
+        "django version 4.0 dropped support for",
+        "what is django version 4.0 dropped support for",
+        "django version 4.0 dropped support for example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask minimum python version (3.x)",
+      "fact_type": "string",
+      "queries": [
+        "flask minimum python version (3.x)",
+        "how to flask minimum version (3.x) in python",
+        "python flask minimum version (3.x) example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "fastapi minimum python version",
+      "fact_type": "string",
+      "queries": [
+        "fastapi minimum python version",
+        "how to fastapi minimum version in python",
+        "python fastapi minimum version example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "django rest framework serializer purpose",
+      "fact_type": "string",
+      "queries": [
+        "django rest framework serializer purpose",
+        "what is django rest framework serializer purpose",
+        "django rest framework serializer purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi lifespan event handler",
+      "fact_type": "string",
+      "queries": [
+        "fastapi lifespan event handler",
+        "what is fastapi lifespan event handler",
+        "fastapi lifespan event handler example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask run command default port",
+      "fact_type": "numeric",
+      "queries": [
+        "flask run command default port",
+        "what is flask run command default port",
+        "flask run command default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi default uvicorn port",
+      "fact_type": "numeric",
+      "queries": [
+        "fastapi default uvicorn port",
+        "what is fastapi default uvicorn port",
+        "fastapi default uvicorn port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django admin default url",
+      "fact_type": "string",
+      "queries": [
+        "django admin default url",
+        "what is django admin default url",
+        "django admin default url example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask wtf csrf token header",
+      "fact_type": "string",
+      "queries": [
+        "flask wtf csrf token header",
+        "what is flask wtf csrf token header",
+        "flask wtf csrf token header example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "django csrf token template tag",
+      "fact_type": "string",
+      "queries": [
+        "django csrf token template tag",
+        "what is django csrf token template tag",
+        "django csrf token template tag example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 200 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 200 meaning",
+        "what is http status 200 meaning",
+        "http status 200 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 200 code",
+      "fact_type": "string",
+      "queries": [
+        "http status 200 code",
+        "what is http status 200 code",
+        "http status 200 code example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 201 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 201 meaning",
+        "what is http status 201 meaning",
+        "http status 201 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 204 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 204 meaning",
+        "what is http status 204 meaning",
+        "http status 204 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 301 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 301 meaning",
+        "what is http status 301 meaning",
+        "http status 301 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 302 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 302 meaning",
+        "what is http status 302 meaning",
+        "http status 302 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 304 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 304 meaning",
+        "what is http status 304 meaning",
+        "http status 304 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 400 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 400 meaning",
+        "what is http status 400 meaning",
+        "http status 400 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 401 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 401 meaning",
+        "what is http status 401 meaning",
+        "http status 401 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 403 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 403 meaning",
+        "what is http status 403 meaning",
+        "http status 403 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 404 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 404 meaning",
+        "what is http status 404 meaning",
+        "http status 404 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 405 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 405 meaning",
+        "what is http status 405 meaning",
+        "http status 405 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 409 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 409 meaning",
+        "what is http status 409 meaning",
+        "http status 409 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 422 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 422 meaning",
+        "what is http status 422 meaning",
+        "http status 422 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 429 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 429 meaning",
+        "what is http status 429 meaning",
+        "http status 429 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 500 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 500 meaning",
+        "what is http status 500 meaning",
+        "http status 500 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 502 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 502 meaning",
+        "what is http status 502 meaning",
+        "http status 502 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http status 503 meaning",
+      "fact_type": "string",
+      "queries": [
+        "http status 503 meaning",
+        "what is http status 503 meaning",
+        "http status 503 meaning example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http methods safe and idempotent",
+      "fact_type": "string",
+      "queries": [
+        "http methods safe and idempotent",
+        "what is http methods safe and idempotent",
+        "http methods safe and idempotent example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http put vs patch",
+      "fact_type": "string",
+      "queries": [
+        "http put vs patch",
+        "what is http put vs patch",
+        "http put vs patch example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http cache-control no-store",
+      "fact_type": "string",
+      "queries": [
+        "http cache-control no-store",
+        "what is http cache-control no-store",
+        "http cache-control no-store example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http etag header purpose",
+      "fact_type": "string",
+      "queries": [
+        "http etag header purpose",
+        "what is http etag header purpose",
+        "http etag header purpose example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http cors preflight method",
+      "fact_type": "string",
+      "queries": [
+        "http cors preflight method",
+        "what is http cors preflight method",
+        "http cors preflight method example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http/2 multiplexing",
+      "fact_type": "string",
+      "queries": [
+        "http/2 multiplexing",
+        "what is http/2 multiplexing",
+        "http/2 multiplexing example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http content-type for json",
+      "fact_type": "string",
+      "queries": [
+        "http content-type for json",
+        "what is http content-type for json",
+        "http content-type for json example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "http authorization bearer token header",
+      "fact_type": "string",
+      "queries": [
+        "http authorization bearer token header",
+        "what is http authorization bearer token header",
+        "http authorization bearer token header example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "rest api constraint stateless",
+      "fact_type": "string",
+      "queries": [
+        "rest api constraint stateless",
+        "what is rest api constraint stateless",
+        "rest api constraint stateless example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws s3 max object size",
+      "fact_type": "numeric",
+      "queries": [
+        "aws s3 max object size",
+        "what is aws s3 max object size",
+        "aws s3 max object size explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws lambda max execution timeout",
+      "fact_type": "numeric",
+      "queries": [
+        "aws lambda max execution timeout",
+        "what is aws lambda max execution timeout",
+        "aws lambda max execution timeout explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws lambda max memory",
+      "fact_type": "numeric",
+      "queries": [
+        "aws lambda max memory",
+        "what is aws lambda max memory",
+        "aws lambda max memory explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws ec2 instance metadata url",
+      "fact_type": "string",
+      "queries": [
+        "aws ec2 instance metadata url",
+        "what is aws ec2 instance metadata url",
+        "aws ec2 instance metadata url explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws sqs message retention default",
+      "fact_type": "numeric",
+      "queries": [
+        "aws sqs message retention default",
+        "what is aws sqs message retention default",
+        "aws sqs message retention default explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "gcp cloud run concurrency default",
+      "fact_type": "numeric",
+      "queries": [
+        "gcp cloud run concurrency default",
+        "what is gcp cloud run concurrency default",
+        "gcp cloud run concurrency default explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "gcp bigquery pricing model",
+      "fact_type": "string",
+      "queries": [
+        "gcp bigquery pricing model",
+        "what is gcp bigquery pricing model",
+        "gcp bigquery pricing model explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "azure functions consumption plan timeout",
+      "fact_type": "numeric",
+      "queries": [
+        "azure functions consumption plan timeout",
+        "what is azure functions consumption plan timeout",
+        "azure functions consumption plan timeout explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws cloudwatch logs retention default",
+      "fact_type": "string",
+      "queries": [
+        "aws cloudwatch logs retention default",
+        "what is aws cloudwatch logs retention default",
+        "aws cloudwatch logs retention default explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws vpc default cidr block",
+      "fact_type": "string",
+      "queries": [
+        "aws vpc default cidr block",
+        "what is aws vpc default cidr block",
+        "aws vpc default cidr block explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws s3 bucket name constraints",
+      "fact_type": "string",
+      "queries": [
+        "aws s3 bucket name constraints",
+        "what is aws s3 bucket name constraints",
+        "aws s3 bucket name constraints explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes default namespace",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes default namespace",
+        "what is kubernetes default namespace",
+        "kubernetes default namespace example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "gcp cloud storage classes",
+      "fact_type": "string",
+      "queries": [
+        "gcp cloud storage classes",
+        "what is gcp cloud storage classes",
+        "gcp cloud storage classes explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws api gateway stages",
+      "fact_type": "string",
+      "queries": [
+        "aws api gateway stages",
+        "what is aws api gateway stages",
+        "aws api gateway stages explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "oauth 2.0 grant types",
+      "fact_type": "string",
+      "queries": [
+        "oauth 2.0 grant types",
+        "what is oauth 2.0 grant types",
+        "oauth 2.0 grant types example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "jwt structure",
+      "fact_type": "string",
+      "queries": [
+        "jwt structure",
+        "what is jwt structure",
+        "jwt structure example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "jwt signing algorithms",
+      "fact_type": "string",
+      "queries": [
+        "jwt signing algorithms",
+        "what is jwt signing algorithms",
+        "jwt signing algorithms example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "jwt exp claim",
+      "fact_type": "string",
+      "queries": [
+        "jwt exp claim",
+        "what is jwt exp claim",
+        "jwt exp claim example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "tls 1.3 released year",
+      "fact_type": "string",
+      "queries": [
+        "tls 1.3 released year",
+        "what is tls 1.3 released year",
+        "tls 1.3 released year example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "tls deprecated versions",
+      "fact_type": "string",
+      "queries": [
+        "tls deprecated versions",
+        "what is tls deprecated versions",
+        "tls deprecated versions example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "sql injection prevention",
+      "fact_type": "string",
+      "queries": [
+        "sql injection prevention",
+        "what is sql injection prevention",
+        "sql injection prevention example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "csrf stands for",
+      "fact_type": "string",
+      "queries": [
+        "csrf stands for",
+        "what is csrf stands for",
+        "csrf stands for example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "xss stands for",
+      "fact_type": "string",
+      "queries": [
+        "xss stands for",
+        "what is xss stands for",
+        "xss stands for example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "bcrypt hash rounds default recommendation",
+      "fact_type": "numeric",
+      "queries": [
+        "bcrypt hash rounds default recommendation",
+        "what is bcrypt hash rounds default recommendation",
+        "bcrypt hash rounds default recommendation example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "https port",
+      "fact_type": "numeric",
+      "queries": [
+        "https port",
+        "what is https port",
+        "https port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "oauth pkce stands for",
+      "fact_type": "string",
+      "queries": [
+        "oauth pkce stands for",
+        "what is oauth pkce stands for",
+        "oauth pkce stands for example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "hsts header",
+      "fact_type": "string",
+      "queries": [
+        "hsts header",
+        "what is hsts header",
+        "hsts header example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "argon2 type recommendation for passwords",
+      "fact_type": "string",
+      "queries": [
+        "argon2 type recommendation for passwords",
+        "what is argon2 type recommendation for passwords",
+        "argon2 type recommendation for passwords example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "ssh default port",
+      "fact_type": "numeric",
+      "queries": [
+        "ssh default port",
+        "what is ssh default port",
+        "ssh default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "api key vs oauth2 difference",
+      "fact_type": "string",
+      "queries": [
+        "api key vs oauth2 difference",
+        "what is api key vs oauth2 difference",
+        "api key vs oauth2 difference example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions workflow file location",
+      "fact_type": "string",
+      "queries": [
+        "github actions workflow file location",
+        "what is github actions workflow file location",
+        "github actions workflow file location example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions trigger on push",
+      "fact_type": "string",
+      "queries": [
+        "github actions trigger on push",
+        "what is github actions trigger on push",
+        "github actions trigger on push example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions job runs-on options",
+      "fact_type": "string",
+      "queries": [
+        "github actions job runs-on options",
+        "what is github actions job runs-on options",
+        "github actions job runs-on options example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions secrets access",
+      "fact_type": "string",
+      "queries": [
+        "github actions secrets access",
+        "what is github actions secrets access",
+        "github actions secrets access example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions cache action",
+      "fact_type": "string",
+      "queries": [
+        "github actions cache action",
+        "what is github actions cache action",
+        "github actions cache action example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions matrix strategy",
+      "fact_type": "string",
+      "queries": [
+        "github actions matrix strategy",
+        "what is github actions matrix strategy",
+        "github actions matrix strategy example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes pod definition",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes pod definition",
+        "what is kubernetes pod definition",
+        "kubernetes pod definition example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes deployment vs statefulset",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes deployment vs statefulset",
+        "what is kubernetes deployment vs statefulset",
+        "kubernetes deployment vs statefulset example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes service types",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes service types",
+        "what is kubernetes service types",
+        "kubernetes service types example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes liveness vs readiness probe",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes liveness vs readiness probe",
+        "what is kubernetes liveness vs readiness probe",
+        "kubernetes liveness vs readiness probe example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes configmap vs secret",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes configmap vs secret",
+        "what is kubernetes configmap vs secret",
+        "kubernetes configmap vs secret example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker compose depends_on limitation",
+      "fact_type": "string",
+      "queries": [
+        "docker compose depends_on limitation",
+        "what is docker compose depends_on limitation",
+        "docker compose depends_on limitation example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions environment context",
+      "fact_type": "string",
+      "queries": [
+        "github actions environment context",
+        "what is github actions environment context",
+        "github actions environment context example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "semver format",
+      "fact_type": "string",
+      "queries": [
+        "semver format",
+        "what is semver format",
+        "semver format example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes kubectl apply vs create",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes kubectl apply vs create",
+        "what is kubernetes kubectl apply vs create",
+        "kubernetes kubectl apply vs create example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "terraform state file",
+      "fact_type": "string",
+      "queries": [
+        "terraform state file",
+        "what is terraform state file",
+        "terraform state file example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker compose version 3 minimum docker version",
+      "fact_type": "string",
+      "queries": [
+        "docker compose version 3 minimum docker version",
+        "what is docker compose version 3 minimum docker version",
+        "docker compose version 3 minimum docker version example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions reusable workflow call",
+      "fact_type": "string",
+      "queries": [
+        "github actions reusable workflow call",
+        "what is github actions reusable workflow call",
+        "github actions reusable workflow call example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes horizontal pod autoscaler metric",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes horizontal pod autoscaler metric",
+        "what is kubernetes horizontal pod autoscaler metric",
+        "kubernetes horizontal pod autoscaler metric example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "github actions concurrency group",
+      "fact_type": "string",
+      "queries": [
+        "github actions concurrency group",
+        "what is github actions concurrency group",
+        "github actions concurrency group example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react 16 deprecated lifecycle componentWillMount",
+      "fact_type": "string",
+      "queries": [
+        "react 16 deprecated lifecycle componentWillMount",
+        "what is react 16 deprecated lifecycle componentWillMount",
+        "react 16 deprecated lifecycle componentWillMount example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "python distutils deprecated since",
+      "fact_type": "string",
+      "queries": [
+        "python distutils deprecated since",
+        "how to distutils deprecated since in python",
+        "python distutils deprecated since example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "jquery ajax replaced by",
+      "fact_type": "string",
+      "queries": [
+        "jquery ajax replaced by",
+        "what is jquery ajax replaced by",
+        "jquery ajax replaced by example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "create react app deprecated",
+      "fact_type": "string",
+      "queries": [
+        "create react app deprecated",
+        "what is create react app deprecated",
+        "create react app deprecated example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "python setup.py deprecated in favor of",
+      "fact_type": "string",
+      "queries": [
+        "python setup.py deprecated in favor of",
+        "how to setup.py deprecated in favor of in python",
+        "python setup.py deprecated in favor of example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "django 4.2 lts support until",
+      "fact_type": "string",
+      "queries": [
+        "django 4.2 lts support until",
+        "what is django 4.2 lts support until",
+        "django 4.2 lts support until example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "flask 2.0 async support",
+      "fact_type": "string",
+      "queries": [
+        "flask 2.0 async support",
+        "what is flask 2.0 async support",
+        "flask 2.0 async support example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "moment.js maintenance mode",
+      "fact_type": "string",
+      "queries": [
+        "moment.js maintenance mode",
+        "what is moment.js maintenance mode",
+        "moment.js maintenance mode example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "node 16 end of life",
+      "fact_type": "string",
+      "queries": [
+        "node 16 end of life",
+        "what is node 16 end of life",
+        "node 16 end of life example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "kubernetes docker runtime deprecated",
+      "fact_type": "string",
+      "queries": [
+        "kubernetes docker runtime deprecated",
+        "what is kubernetes docker runtime deprecated",
+        "kubernetes docker runtime deprecated example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "next.js pages router vs app router",
+      "fact_type": "string",
+      "queries": [
+        "next.js pages router vs app router",
+        "what is next.js pages router vs app router",
+        "next.js pages router vs app router example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "react class components status",
+      "fact_type": "string",
+      "queries": [
+        "react class components status",
+        "what is react class components status",
+        "react class components status example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "typescript 5.0 breaking change",
+      "fact_type": "string",
+      "queries": [
+        "typescript 5.0 breaking change",
+        "what is typescript 5.0 breaking change",
+        "typescript 5.0 breaking change example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "python asyncio.get_event_loop deprecation",
+      "fact_type": "string",
+      "queries": [
+        "python asyncio.get_event_loop deprecation",
+        "how to asyncio.get_event_loop deprecation in python",
+        "python asyncio.get_event_loop deprecation example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "vue 2 end of life",
+      "fact_type": "string",
+      "queries": [
+        "vue 2 end of life",
+        "what is vue 2 end of life",
+        "vue 2 end of life example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "angular ivy renderer default since",
+      "fact_type": "string",
+      "queries": [
+        "angular ivy renderer default since",
+        "what is angular ivy renderer default since",
+        "angular ivy renderer default since example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "fastapi 0.100 pydantic v2 default",
+      "fact_type": "string",
+      "queries": [
+        "fastapi 0.100 pydantic v2 default",
+        "what is fastapi 0.100 pydantic v2 default",
+        "fastapi 0.100 pydantic v2 default example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "webpack 4 vs 5 breaking changes",
+      "fact_type": "string",
+      "queries": [
+        "webpack 4 vs 5 breaking changes",
+        "what is webpack 4 vs 5 breaking changes",
+        "webpack 4 vs 5 breaking changes example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "python importlib.resources api change",
+      "fact_type": "string",
+      "queries": [
+        "python importlib.resources api change",
+        "how to importlib.resources api change in python",
+        "python importlib.resources api change example"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "fact_key": "mysql default port",
+      "fact_type": "numeric",
+      "queries": [
+        "mysql default port",
+        "what is mysql default port",
+        "mysql default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "postgresql default port",
+      "fact_type": "numeric",
+      "queries": [
+        "postgresql default port",
+        "what is postgresql default port",
+        "postgresql default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "postgres default port",
+      "fact_type": "numeric",
+      "queries": [
+        "postgres default port",
+        "what is postgres default port",
+        "postgres default port example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "what does acid stand for",
+      "fact_type": "string",
+      "queries": [
+        "what does acid stand for",
+        "what is what does acid stand for",
+        "what does acid stand for example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "docker default stop signal",
+      "fact_type": "string",
+      "queries": [
+        "docker default stop signal",
+        "what is docker default stop signal",
+        "docker default stop signal example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws iam policy evaluation order",
+      "fact_type": "string",
+      "queries": [
+        "aws iam policy evaluation order",
+        "what is aws iam policy evaluation order",
+        "aws iam policy evaluation order explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws region vs availability zone",
+      "fact_type": "string",
+      "queries": [
+        "aws region vs availability zone",
+        "what is aws region vs availability zone",
+        "aws region vs availability zone explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws rds multi-az purpose",
+      "fact_type": "string",
+      "queries": [
+        "aws rds multi-az purpose",
+        "what is aws rds multi-az purpose",
+        "aws rds multi-az purpose explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws s3 presigned url purpose",
+      "fact_type": "string",
+      "queries": [
+        "aws s3 presigned url purpose",
+        "what is aws s3 presigned url purpose",
+        "aws s3 presigned url purpose explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "azure blob storage tiers",
+      "fact_type": "string",
+      "queries": [
+        "azure blob storage tiers",
+        "what is azure blob storage tiers",
+        "azure blob storage tiers explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws elasticache engines",
+      "fact_type": "string",
+      "queries": [
+        "aws elasticache engines",
+        "what is aws elasticache engines",
+        "aws elasticache engines explained"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "owasp top 10 2021 number 1",
+      "fact_type": "string",
+      "queries": [
+        "owasp top 10 2021 number 1",
+        "what is owasp top 10 2021 number 1",
+        "owasp top 10 2021 number 1 example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "rate limiting retry-after header",
+      "fact_type": "string",
+      "queries": [
+        "rate limiting retry-after header",
+        "what is rate limiting retry-after header",
+        "rate limiting retry-after header example"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "fact_key": "aws s3 path-style access deprecated",
+      "fact_type": "string",
+      "queries": [
+        "aws s3 path-style access deprecated",
+        "what is aws s3 path-style access deprecated",
+        "aws s3 path-style access deprecated explained"
+      ],
+      "difficulty": "intermediate"
+    }
+  ]
+}

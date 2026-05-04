@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-04-30T10:05:12.138542",
+  "product": "coding_agent_pro",
+  "version": "1.0.0",
+  "status": "active",
+  "facts": {
+    "total": 338,
+    "core_coding": 329,
+    "infrastructure": 9,
+    "verified": true,
+    "last_verified": "2026-04-30"
+  },
+  "queries": {
+    "total_mappings": 1014,
+    "total_variations": 1014,
+    "coverage": "3 queries per fact"
+  },
+  "files": {
+    "coding_facts": "coding_facts.json",
+    "coding_queries": "coding_queries.json",
+    "inventory": "inventory.json"
+  },
+  "pricing": {
+    "base_price": "$69 one-time",
+    "monthly_updates": "$10/month",
+    "source": "facts_db.json + coder_facts_pack"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "certainlogicai.the-install-sandbox",
+  "name": "the-install-sandbox",
+  "summary": "Sandbox and scan ClawHub skills before installation",
+  "description": "Isolated tmpfs sandbox + 30+ security checks. PASS/WARNING/BLOCK scoring. Clean pipeline for agent ecosystem.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "CertainLogic",
+  "tags": ["security", "sandbox", "trust", "audit", "safety", "open-source"],
+  "repository": "https://github.com/CertainLogicAI/the-install-sandbox",
+  "platforms": ["linux", "macos"],
+  "requires": ["python3.10+", "typer", "colorama"],
+  "entry": {
+    "command": ["the_install_sandbox"]
+  },
+  "scripts": [
+    "the_install_sandbox scan <path>",
+    "the_install_sandbox report",
+    "the_install_sandbox policy --auto-approve 5"
+  ]
+}
