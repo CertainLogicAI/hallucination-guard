@@ -42,11 +42,11 @@
 | # | Item | Why Blocked | What Anton Needs to Do |
 |---|------|-------------|------------------------|
 | B1 | Skill audit on clean machine | Only Anton has personal machine access | Run AUDIT_PLAN.md tonight after work, report back |
-| B2 | Delist smart-router from ClawHub | No CLI unpublish command | Log into clawhub.ai web UI → unpublish, or email support |
-| B3 | Delist pa-pack from ClawHub | Same as B2 | Same as B2 |
-| B4 | Hallucination Guard decision | April 24 retirement — rebuild, replace, or remove? | Decide if deterministic layer needs factual validation or if TRE/graceful fallback is sufficient |
-| B5 | Model routing strategy | Currently Kimi K2.6 default — split by task? | Confirm: keep Kimi default, or route coding→Kimi, simple→Haiku, complex→Opus? |
-| B6 | Merge `cleanup_complete` → `main` | Anton wanted to wait until after audit | Approve merge, or wait until audit passes |
+| B2 | Delist smart-router from ClawHub | ✅ DONE | `clawhub delete certainlogic-smart-router --yes` — Success |
+| B3 | Delist pa-pack from ClawHub | ✅ DONE | `clawhub delete pa-pack --yes` — Success |
+| B4 | Hallucination Guard | ✅ DECIDED | Log as asset in ASSET_SYSTEM.md. Don't sell standalone. Integrate into Brain API. |
+| B5 | Model routing | ✅ DECIDED | Kimi (coding/arch), Grok (marketing/biz), Free (crons/lower tier) |
+| B6 | Merge branch | ✅ DECIDED | WAIT until after B1 clean machine audit |
 
 ### Process — Do Next (Before Building Products)
 
@@ -79,11 +79,13 @@
 ## Recommended Priority Order
 
 **Phase 1: Solid Footing (This Week)**
-1. ☐ Anton completes items B1-B6 (audit + decisions + merge approval)
-2. ☐ Alex builds P1 `requirements.txt` (15 min)
-3. ☐ Alex writes P2 unit tests — start with `coding_query_tracker.py` (2-3 hrs)
-4. ☐ Alex creates P3 `ONBOARDING.md` (1 hr)
-5. ☐ Alex renames branch P4 `master` → `main` (5 min)
+1. ☐ Alex updates ASSET_SYSTEM.md to log Hallucination Guard + Validator as assets — DECIDED B4
+2. ☐ Alex adds model routing config: Kimi (coding/arch), Grok (marketing/biz), Free (crons) — DECIDED B5
+3. ☐ Alex builds P1 `requirements.txt` (15 min)
+4. ☐ Alex writes P2 unit tests — start with `coding_query_tracker.py` (2-3 hrs)
+5. ☐ Alex creates P3 `ONBOARDING.md` (1 hr)
+6. ☐ Alex renames branch P4 `master` → `main` (5 min)
+7. ☐ Anton runs B1 clean machine audit tonight
 
 **Phase 2: Infrastructure Docs (Next Week)**
 6. ☐ Alex builds P5 OpenAPI spec for Brain API (1-2 hrs)
@@ -125,7 +127,10 @@
 | 2026-05-04 08:08 UTC | Create IMPROVEMENTS.md — systematic gap list | Alex | Need visibility into what's broken |
 | 2026-05-04 08:38 UTC | Fix 6 crons by setting delivery mode to `none` | Alex | Silent failures were hiding real problems |
 | 2026-05-04 08:50 UTC | Create ASSET_SYSTEM.md — modular compounding framework | Alex (clarified as plan, not built) | Anton needs clarity before building |
-| 2026-05-04 09:07 UTC | Create PROCESS_LOG.md — this file | Anton (requested), Alex (implementing) | Need single source of truth + tracking |
+| 2026-05-04 10:09 UTC | B4: Don't sell Guard/Validator standalone, log as asset, integrate into Brain API | Anton | These are features not products |
+| 2026-05-04 10:09 UTC | B5: Tiered model routing — Kimi (coding/arch), Grok (marketing/biz), Free (crons) | Anton | Right tool for right job |
+| 2026-05-04 10:09 UTC | B6: WAIT on merge cleanup_complete → main | Anton | Wait until after B1 audit passes |
+| 2026-05-04 10:09 UTC | B2+B3: Delisted smart-router and pa-pack via clawhub CLI | Alex | Dashboard had no option, CLI worked |
 
 ---
 
