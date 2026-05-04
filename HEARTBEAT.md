@@ -29,5 +29,8 @@
   - Alert if: >500MB (old projects accumulating)
 - **Decision Log Review**: Ensure docs/anton-todo.md has no stale items >14 days
 
+## Repo Conventions (enforced)
+See `docs/CONVENTIONS.md` for rules preventing git disorganization and duplicate files.
+
 ## Quiet hours
 - 11PM–8AM CST: stay quiet unless urgent
