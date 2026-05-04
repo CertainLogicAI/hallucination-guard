@@ -36,7 +36,11 @@ blog/
 __pycache__/
 *.pyc
 *.cpython-313.pyc
--e 
+
+# Submodules (tracked in their own repos)
+patent_filings/
+certainlogic-site/
+
 # Retired
 site/
 workspace-cache.json
