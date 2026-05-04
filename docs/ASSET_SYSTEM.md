@@ -23,6 +23,8 @@ Projects we scoped, validated, but passed on due to timing/strategy. These are f
 | **Decoupled Agent Architecture** | Cost-optimized decoupled agent design | Cost analysis showed partial viability | Scale economics change, cost reduction tech | ideas/decoupled-agent-architecture-costs.md |
 | **Model Tiering Strategy** | Multi-model routing optimization | Implemented as part of TRE and routing | New models, pricing changes | ideas/model-tiering.md |
 | **LLM Optimization Infrastructure** | Infrastructure for optimizing LLM costs | Partially implemented, not productized | Enterprise demand for LLM cost optimization | ideas/llm-optimization-infrastructure.md |
+| **Hallucination Guard** | Deterministic factual validation layer for LLM outputs | Retired April 24 after Hermes destruction; feature not product | Integrate into Brain API as capability; revisit if factual errors spike | `hallucination_detector.py` runtime module |
+| **CertainLogic Validator** | AI output verification and quality scoring | Not built as standalone; concept validated | Enterprise/regulated AI validation demand; could be premium feature | Concept only — docs from audits |
 
 **Rule:** When reviving, check original scope against current reality. Update before building. Never rebuild from scratch when scoped docs exist.
 
