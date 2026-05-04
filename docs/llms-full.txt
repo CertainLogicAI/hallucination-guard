@@ -1,0 +1,244 @@
+# CertainLogic.ai — Full Technical Documentation
+
+> Complete technical reference for agents and integrators. For overview, see /llms.txt.
+
+## API Reference
+
+### Health Check
+```http
+GET /health
+```
+
+Response:
+```json
+{
+  "status": "ok",
+  "components": {
+    "token_engine": "ok",
+    "memory_search": "ok", 
+    "hallucination_detector": "ok",
+    "hybrid_router": "ok",
+    "facts_db": "84 facts loaded"
+  },
+  "uptime_check": 1234567890.123
+}
+```
+
+### Fact Search
+```http
+GET /facts/search?q={query}
+```
+
+Query parameters:
+- `q` (required): Search query string
+- `limit` (optional): Max results, default 10
+- `threshold` (optional): Similarity threshold 0.0-1.0, default 0.7
+
+Response:
+```json
+{
+  "query": "capital of France",
+  "results": [
+    {
+      "fact": "Paris is the capital of France",
+      "confidence": 0.99,
+      "source": "facts_db"
+    }
+  ],
+  "total": 1
+}
+```
+
+### Hybrid Process
+```http
+POST /process
+Content-Type: application/json
+```
+
+Request body (Pydantic BaseModel):
+```json
+{
+  "query": "string",           // The user query
+  "context": "string",         // Optional conversation context
+  "use_cache": true,           // Use deterministic cache first
+  "require_facts": false,      // Only return fact-verified answers
+  "model_tier": "default"      // "default", "coding", "marketing", "cron"
+}
+```
+
+Response:
+```json
+{
+  "answer": "string",
+  "source": "facts_db|cache|llm",
+  "confidence": 0.95,
+  "tokens_used": 42,
+  "tokens_saved": 158,
+  "model": "kimi-k2.6",
+  "hallucination_check": "passed",
+  "response_time_ms": 45
+}
+```
+
+## Architecture
+
+### Deterministic Layer
+- **Cache:** LRU with TTL (3600s), 1000 entries max
+- **Facts DB:** JSON file, 84 verified facts, human-curated
+- **Router:** Pattern-based intent classification, keyword matching
+- **Hallucination Detector:** Regex + schema validation, factual consistency checks
+
+### LLM Layer
+- **Primary:** Moonshot Kimi K2.6 (coding, architecture, complex reasoning)
+- **Marketing:** xAI Grok 3 (creative content, brand voice)
+- **Automation:** Free models (gemma-4-26b, ling-2.6-flash) for cron jobs
+- **Fallback:** OpenRouter + multiple provider redundancy
+
+### Hybrid Routing Decision Tree
+```
+Query → Tokenize → Intent Classification
+  ↓
+Simple factual? → Facts DB → Return (deterministic)
+  ↓
+Cached recently? → Cache → Return (deterministic)
+  ↓
+Requires reasoning? → Select model tier → LLM call
+  ↓
+Hallucination check → Schema validation → Return
+```
+
+## MCP Tool Definitions
+
+### brain_lookup
+```json
+{
+  "name": "brain_lookup",
+  "description": "Search CertainLogic Brain fact database for verified information",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "The search query"
+      },
+      "limit": {
+        "type": "integer",
+        "default": 5,
+        "description": "Maximum number of results"
+      }
+    },
+    "required": ["query"]
+  }
+}
+```
+
+### brain_status
+```json
+{
+  "name": "brain_status",
+  "description": "Get Brain API health and performance metrics",
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}
+```
+
+## Integration Examples
+
+### Python
+```python
+import requests
+
+class CertainLogicClient:
+    def __init__(self, base_url="http://127.0.0.1:8000"):
+        self.base = base_url
+    
+    def query(self, text, use_cache=True):
+        r = requests.post(f"{self.base}/process", json={
+            "query": text,
+            "use_cache": use_cache
+        })
+        return r.json()
+
+client = CertainLogicClient()
+result = client.query("What is Python?")
+print(f"Answer: {result['answer']} (source: {result['source']})")
+```
+
+### cURL
+```bash
+curl -X POST http://127.0.0.1:8000/process \
+  -H "Content-Type: application/json" \
+  -d '{"query": "Explain caching", "model_tier": "coding"}'
+```
+
+### OpenClaw Skill
+```bash
+clawhub install certainlogic-pathfinder
+```
+
+## Performance Benchmarks
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Facts DB size | 84 facts | Growing daily via cache harvest |
+| Cache hit rate | 15-24% | New deployment, warming |
+| Token savings | 60% average | Query deduplication + routing |
+| Response time (deterministic) | 50-100ms | No LLM call |
+| Response time (LLM) | 2-4s | Model-dependent |
+| Daily cost | $0.02-0.20 | At current scale |
+| Uptime | 99.9% | Brain API watchdog every 5min |
+
+## Model Routing Configuration
+
+See `/config/model_routing.json` for full tier configuration.
+
+Key tiers:
+- `coding_architecture`: Kimi K2.6 → Sonnet 4.6 fallback
+- `marketing`: Grok 3 → Grok 3 Beta fallback
+- `business_strategy`: Grok 3 → Kimi K2.6 fallback
+- `cron_automation`: gemma-4-26b → ling-2.6-flash fallback
+- `simple_queries`: ling-2.6-flash → gemma-4-26b fallback
+
+## Error Handling
+
+| Error | Code | Retry Strategy |
+|-------|------|---------------|
+| Rate limit | 429 | Exponential backoff, 5 retries |
+| Model unavailable | 503 | Fallback to next model in tier |
+| Timeout | 504 | Retry with faster model tier |
+| Invalid query | 400 | Return validation error |
+| Hallucination detected | 422 | Return "uncertain" with low confidence |
+
+## Environment Variables
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `BRAIN_API_HOST` | `127.0.0.1` | Server bind address |
+| `BRAIN_API_PORT` | `8000` | Server port |
+| `FACTS_DB_PATH` | `facts_db.json` | Facts database file |
+| `CACHE_FILE` | `cache.db` | Cache database file |
+| `USE_DETERMINISTIC` | `true` | Enable deterministic routing |
+| `LOG_LEVEL` | `INFO` | Logging verbosity |
+
+## Security
+
+- **Self-hosted:** Trust boundary at network level, no auth required for local
+- **Cloud:** API key via `X-API-Key` header
+- **Hallucination Guard:** Factual validation before any response
+- **No PII storage:** Queries truncated to 200 chars in logs
+- **Deterministic layer:** Zero-LLM capability for regulated environments
+
+## Development
+
+**Repo:** github.com/CertainLogicAI (migration in progress)
+**Branch:** `cleanup_complete` (working), `main` (to be merged after audit)
+**Tests:** `pytest tests/ -v`
+**Local dev:** `pip install -r requirements.txt && uvicorn main:app --reload`
+
+## Contact
+
+anton@certainlogic.ai
+@CertainLogicAI on X

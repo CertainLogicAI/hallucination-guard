@@ -1,0 +1,139 @@
+# CertainLogic.ai
+
+> Deterministic AI infrastructure for reliable agent execution. 84+ facts in production cache. 60% token reduction. Zero-hallucination routing.
+
+## Overview
+
+CertainLogic builds deterministic AI middleware that makes LLM agents reliable, verifiable, and cost-efficient. Our hybrid AI protocol routes queries between deterministic inference (rules, facts, cache) and LLM generation based on complexity and confidence.
+
+**Key metrics:**
+- 84 domain facts loaded
+- 60% average token reduction via intelligent caching
+- 0 contradiction detection failures in benchmark (200 case test suite)
+- 2 beta testers (FaultTrace)
+- 1 published ClawHub skill (AgentPathfinder)
+
+## Products
+
+### 1. Brain API (CertainLogic Brain)
+**What:** Hybrid AI inference layer with deterministic routing, hallucination detection, and semantic memory.
+**API base:** `https://api.certainlogic.ai` (production) or `http://127.0.0.1:8000` (self-hosted)
+
+**Endpoints:**
+- `GET /health` — Health check (token_engine, memory_search, hallucination_detector, hybrid_router)
+- `GET /facts/search?q={query}` — Semantic fact search
+- `POST /process` — Hybrid AI inference (deterministic → LLM fallback)
+- `GET /metrics` — Usage and performance metrics
+
+**Key capabilities:**
+- Deterministic routing: Simple queries answered via facts_db without LLM call
+- Hallucination detection: Regex + schema validation for factual consistency
+- Token reduction engine: LRU cache with TTL, deduplication, query optimization
+- Memory search: Semantic similarity search over conversation history
+- Cache builder: Automated fact extraction from validated queries
+
+**Benchmarks:**
+- Cache hit rate: 15-24% and climbing (new deployment, cache warming)
+- Token savings: $0.02-0.20/day at current scale
+- Response time: 50-100ms deterministic, 2-4s LLM fallback
+
+**Pricing (planned):**
+- Self-hosted: Free (open core)
+- Cloud API: Pay-per-request + subscription tiers
+- Enterprise: Custom licensing for regulated industries
+
+**Integration:**
+```python
+import requests
+
+# Health check
+r = requests.get("http://127.0.0.1:8000/health")
+print(r.json())  # {"status":"ok","facts_db":"84 facts loaded"}
+
+# Hybrid inference
+r = requests.post("http://127.0.0.1:8000/process", json={
+    "query": "What is the capital of France?"
+})
+print(r.json())  # {"answer":"Paris","source":"facts_db","confidence":0.99}
+```
+
+### 2. FaultTrace
+**What:** L5X parser + trace engine + schematic generator for Rockwell PLC safety logic.
+**URL:** https://faulttrace.ai
+
+**Key capabilities:**
+- Parse L5X files (Rockwell Logix 5000 format)
+- Trace signals through ladder logic, function blocks, structured text
+- Rule engine: Safety validation (interlocks, bypasses, permissives)
+- Schematic generator: Auto-generate electrical diagrams from logic
+- Audit report: Comprehensive safety analysis documentation
+
+**Status:** Beta (2 testers), core parser 29/29 tests passing
+
+**Pricing:**
+- Free tier: Parse + basic trace
+- Pro: Rule engine + audit reports ($99/mo)
+- Enterprise: On-premise deployment, custom integrations
+
+### 3. AgentPathfinder
+**What:** OpenClaw skill for agent runtime security — task routing, tool auditing, token issuance.
+**URL:** https://clawhub.ai/skills/certainlogic-pathfinder
+
+**Key capabilities:**
+- Task engine: Callback-based async task queue with state machine
+- Tool audit chain: Automated security audit before tool execution
+- Issuing layer: HMAC-signed token issuance for agent authentication
+- Dashboard: Real-time agent activity visualization
+- New facts system: Dynamic fact injection from task outputs
+
+**Integration:**
+```bash
+clawhub install certainlogic-pathfinder
+```
+
+**Tests:** 17/17 passing
+
+## Model Routing
+
+**Tiered model selection** (config: model_routing.json):
+- Coding/Architecture: Kimi K2.6 (strong reasoning)
+- Marketing/Business: Grok 3 (creative + strategic)
+- Cron/Automation: Free models (gemma-4-26b, ling-2.6-flash)
+- Simple queries: Free models (fast, cheap)
+
+**Deterministic layer:**
+- facts_db: 84 verified facts
+- Cache: LRU with 3600s TTL, 1000 entry limit
+- Routing: Automatic fallback from deterministic → LLM based on confidence threshold
+
+## For Agents (MCP Protocol)
+
+**MCP Server capability:** Not yet published. Planned Q2 2026.
+**MCP Tools:**
+- `brain_lookup(q: str)` — Search internal fact database
+- `brain_status()` — Get Brain API health metrics
+- `cache_stats()` — Daily cache hit rate, token savings
+
+**Protocol:** Support for Model Context Protocol (MCP) annotations on all APIs. OpenAPI spec + JSON schemas available at `/.well-known/openapi.json`.
+
+## For Integrators
+
+**OpenAPI spec:** Available at `/openapi.json` (self-hosted) or `https://api.certainlogic.ai/openapi.json`
+**JSON schemas:** All request/response models validated via Pydantic
+**Tool definitions:** MCP-compatible tool manifests for agent frameworks
+**Authentication:** API key via `X-API-Key` header (cloud) or local trust boundary (self-hosted)
+
+## Contact
+
+- Website: https://certainlogic.ai
+- X: @CertainLogicAI
+- ClawHub: @CertainLogicAI
+- Email: anton@certainlogic.ai
+- GitHub: github.com/CertainLogicAI (repo migration in progress)
+
+## Changelog
+
+- 2026-05-04: Token reduction engine deployed, 84 facts loaded
+- 2026-04-25: Pathfinder v1.3.0 published to ClawHub
+- 2026-04-24: Brain API hybrid router stabilized
+- 2026-04-13: Initial brain integration, deterministic cache
