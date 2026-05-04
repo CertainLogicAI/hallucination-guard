@@ -36,3 +36,7 @@ blog/
 __pycache__/
 *.pyc
 *.cpython-313.pyc
+-e 
+# Retired
+site/
+workspace-cache.json
