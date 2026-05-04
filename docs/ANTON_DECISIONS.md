@@ -69,14 +69,8 @@
 ☐ **B. REPLACE** — Use external hallucination detection (e.g., grounding APIs, RAG verification). Effort: 1 day integration.  
 ☐ **C. REMOVE** — Accept that TRE's graceful fallback + hybrid routing is sufficient. No dedicated hallucination layer. Effort: 0. Already done.  
 
-### Decision needed
-☐ Pick A, B, or C  
-☐ If A or B: prioritize in Phase 2 (next week)  
-☐ If C: close this item, remove from future roadmaps  
-
-**Recommendation from Alex:** Option C for now. TRE's `try/except` works. Brain API handles factual consistency via facts_db. Revisit only if factual errors spike.  
-
-**Do this:** Reply with "A", "B", or "C"  
+**Decision by Anton:** Do NOT sell as standalone products. Log as potential future assets in ASSET_SYSTEM.md, integrate into Brain API instead.
+**Status:** ✅ DECIDED — Remove from standalone product roadmap, keep as Brain API capability  
 
 ---
 
@@ -93,13 +87,13 @@
   - TRE routing already decides internal/external — extend for model selection  
 ☐ **C. COST-OPTIMIZED** — Use free models where possible,付费 only for complex. Risk: quality inconsistency.  
 
-### Decision needed
-☐ Pick A, B, or C  
-☐ If B or C: Alex updates routing logic in TRE + Brain API  
+**Decision by Anton:**
+- **Coding + Specing/Architecture** → Kimi K2.6
+- **Marketing content** → Grok
+- **General business recommendations** → Grok
+- **Crons + Lower tier tasks** → Free models (gemma-4-26b, ling-2.6-flash)
 
-**Recommendation from Alex:** Option B with conservative thresholds. Start with Kimi default, add Haiku for simple queries, measure quality.  
-
-**Do this:** Reply with "A", "B", or "C"  
+**Status:** ✅ DECIDED — Update TRE routing and cron configs with tiered model selection  
 
 ---
 
@@ -119,12 +113,8 @@
 ☐ Push to origin  
 ☐ Verify: `git status` clean on main  
 
-### Decision needed
-☐ **APPROVE MERGE** — Alex merges now (or after B1)  
-☐ **WAIT** — Keep `cleanup_complete` as working branch until after audit  
-☐ **NEVER MERGE** — Keep branches separate (not recommended)  
-
-**Do this:** Reply with "MERGE", "WAIT", or "NEVER"  
+**Decision by Anton:** WAIT until after B1 clean machine audit passes.
+**Status:** ✅ DECIDED — Keep `cleanup_complete` as working branch, do not merge yet  
 
 ---
 
@@ -143,8 +133,8 @@
 | Item | Decision | Notes |
 |------|----------|-------|
 | B1 — Clean machine audit | ☐ Will do tonight / ☐ Skip | |
-| B2 — Delist smart-router | ☐ Doing now / ☐ Skip | |
-| B3 — Delist pa-pack | ☐ Doing now / ☐ Skip | |
-| B4 — Hallucination Guard | ☐ A / ☐ B / ☐ C | |
-| B5 — Model Routing | ☐ A / ☐ B / ☐ C | |
-| B6 — Merge branch | ☐ MERGE / ☐ WAIT / ☐ NEVER | |
+| B2 — Delist smart-router | ✅ DONE | ClawHub CLI `clawhub delete certainlogic-smart-router --yes` |
+| B3 — Delist pa-pack | ✅ DONE | ClawHub CLI `clawhub delete pa-pack --yes` |
+| B4 — Hallucination Guard | ✅ DECIDED | Log as asset, don't sell standalone, integrate into Brain API |
+| B5 — Model Routing | ✅ DECIDED | Tiered: Kimi (coding/arch), Grok (marketing/biz), Free (crons) |
+| B6 — Merge branch | ✅ DECIDED | WAIT until after B1 audit |
