@@ -8,15 +8,16 @@
 | Slug | Display Name | Status | Has Code | Has Tests | Issue |
 |------|-------------|--------|----------|-----------|-------|
 | certainlogic-onboarding-wizard | Certainlogic Onboarding Wizard | ✅ Visible | ? | ? | **Tool** — verify manually |
-| certainlogic-smart-router | CertainLogic Smart Router | ⚠️ Quality held | ✅ | ✅ 14 passed | **Tool** — verify manually |
+| certainlogic-smart-router | CertainLogic Smart Router | ❌ Delisted 2026-05-04 | ❌ | ✅ 14 passed | Retired — absorbed into Hybrid Router |
 | skill-oracle | Skill Oracle | ✅ Visible | ❌ No code | ❌ | **Documentation** — MD-only by design |
-| pa-pack | Pa Pack | ✅ Visible | ❌ No code | ❌ | **Documentation** — recommendations pack |
+| pa-pack | Pa Pack | ❌ Delisted 2026-05-04 | ❌ No code | ❌ | Retired — documentation-only, not a product |
 | skill-vetter-plus | Skill Vetter Plus | 🔴 Suspicious | ✅ | ❌ | **Tool** — verify manually (false positive?) |
 | certainlogic-context-tokenreducer | CertainLogic Context Manager | ✅ Visible | ? | ? | **Tool** — verify manually |
 
 ### Action Items (Published)
 - **skill-oracle**: UNPUBLISH or implement code
-- **pa-pack**: UNPUBLISH or implement code
+- ~~**pa-pack**: UNPUBLISH or implement code~~ ✅ Delisted 2026-05-04
+- ~~**certainlogic-smart-router**: Investigate why quality-held~~ ✅ Retired, delisted 2026-05-04
 - **skill-vetter-plus**: Contact ClawHub about false positive flag
 - **certainlogic-smart-router**: Investigate why quality-held
 - **certainlogic-onboarding-wizard**: Pull local copy, verify it works
