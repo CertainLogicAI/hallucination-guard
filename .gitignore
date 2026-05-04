@@ -27,3 +27,12 @@ logs/*.json
 agentpathfinder_dashboard.html
 archive/
 logs/
+
+# Generated content
+demo_data/
+content_output/
+brain-internal/
+blog/
+__pycache__/
+*.pyc
+*.cpython-313.pyc
