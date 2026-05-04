@@ -164,3 +164,4 @@ Extracted from conversation logs — ideas, decisions, improvements that surface
 ---
 
 *This system ensures CertainLogic's modular design pays compound interest instead of scattering value into the void.*
+2026-05-04 19:50 UTC — User insight: Process/configuration itself is most valuable asset. 0→YC in 2 months validates the system. Potential product/moat.
