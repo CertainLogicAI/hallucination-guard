@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-04-30T13:22:00Z",
+  "generated_by": "comprehensive_workspace_audit_v2",
+  "products": {
+    "coding_agent_pro": {
+      "name": "CertainLogic Coding Agent Pro",
+      "version": "1.0.0",
+      "status": "active",
+      "directory": "/data/.openclaw/workspace/products/coding_agent/",
+      "files": {
+        "coding_facts.json": "338 facts (329 core coding + 9 infrastructure)",
+        "coding_queries.json": "338 fact mappings with 1014 query variations",
+        "inventory.json": "Product metadata and pricing"
+      },
+      "pricing": {
+        "base": "$69 one-time",
+        "monthly_updates": "$10/month"
+      },
+      "total_facts": 338,
+      "breakdown": {
+        "core_coding": 329,
+        "infrastructure": 9
+      },
+      "total_query_mappings": 1014,
+      "total_query_variations": 1014,
+      "verified": true,
+      "verified_by": "Anton",
+      "verification_date": "2026-04-30"
+    }
+  },
+  "internal_systems": {
+    "brain_api": {
+      "facts_db_original": "/data/.openclaw/workspace/facts_db.json",
+      "status": "split",
+      "note": "Original 84 facts split into product (32 coding) + internal (52 business/trivia/claims)"
+    },
+    "business_facts": {
+      "file": "/data/.openclaw/workspace/brain-internal/business_facts.json",
+      "count": 26,
+      "type": "proprietary",
+      "sellable": false,
+      "description": "Internal business information - NEVER publish"
+    },
+    "product_claims": {
+      "file": "/data/.openclaw/workspace/brain-internal/product_claims.json",
+      "count": 6,
+      "type": "performance_metrics",
+      "sellable": false,
+      "description": "Product performance claims - verify before any marketing use"
+    },
+    "response_cache": {
+      "file": "/data/.openclaw/workspace/agentpathfinder/cache_data.json",
+      "count": 315,
+      "type": "runtime_query_cache",
+      "description": "Ephemeral LLM response cache - not product data"
+    }
+  },
+  "archived": {
+    "trivia_facts": {
+      "file": "/data/.openclaw/workspace/archive/facts_trivia_2026-04-30.json",
+      "count": 26,
+      "type": "general_knowledge",
+      "description": "Public domain trivia - not part of any product",
+      "reason": "Not relevant to coding or business products"
+    },
+    "legacy_cache": {
+      "file": "/data/.openclaw/workspace/facts_cache.json",
+      "count": 7,
+      "type": "legacy",
+      "description": "Old cache file - superseded by product structure"
+    }
+  },
+  "standalone_resources": {
+    "coder_facts_pack": {
+      "file": "/data/.openclaw/workspace/opensource/coder_facts_pack_v1.0.json",
+      "count": 309,
+      "type": "open_source_seed",
+      "description": "Open source coding facts pack. NOW INTEGRATED into Coding Agent Pro.",
+      "note": "This file remains as source attribution. Product uses copied data."
+    },
+    "code_snippets": {
+      "file": "/data/.openclaw/workspace/coding_cache_seed.json",
+      "count": 32,
+      "type": "code_templates",
+      "description": "Code snippet seed file. NOW INTEGRATED into Coding Agent Pro (32 of 338 facts)."
+    }
+  },
+  "policy": {
+    "rule": "No marketing content may reference any count not present in products.coding_agent_pro",
+    "enforcement": "All claims must match inventory.json exactly",
+    "update_frequency": "Monthly review required before any marketing claims",
+    "consequence": "Violation = immediate content block, escalation to Anton"
+  },
+  "honest_marketing_claims": {
+    "coding_agent_pro": "338 verified facts covering Python, JavaScript, infrastructure, and security",
+    "query_coverage": "1014 query variations mapped to 338 facts",
+    "update_promise": "Monthly verified fact updates",
+    "source_attribution": "Curated from open source packs + manual verification"
+  }
+}

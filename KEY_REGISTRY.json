@@ -1,0 +1,109 @@
+{
+  "version": "2.0.0",
+  "last_updated": "2026-05-02T12:35:00Z",
+  "warning": "THIS FILE IS THE SINGLE SOURCE OF TRUTH. Update immediately when keys change.",
+
+  "github": {
+    "status": "ACTIVE",
+    "count": 3,
+    "tokens": [
+      {
+        "id": "token_1",
+        "suffix": "zmDRZ",
+        "repos": ["site", "hallucination-benchmark", "llm-benchmarks", "certainlogic-site"],
+        "primary_location": "~/.openclaw/workspace/skills-publish/*/repo/.git/config remote.origin.url",
+        "backup_location": "~/.openclaw/workspace/secrets/github_tokens.json"
+      },
+      {
+        "id": "token_2",
+        "suffix": "28Tt",
+        "repos": ["agentpathfinder"],
+        "primary_location": "~/.openclaw/workspace/skills-publish/agentpathfinder/.git/config remote.origin.url",
+        "backup_location": "~/.openclaw/workspace/secrets/github_tokens.json"
+      },
+      {
+        "id": "token_3",
+        "suffix": "3aqie4",
+        "repos": ["skill-vetter-plus", "pa-pack", "skill-oracle", "lobehub-marketplace"],
+        "primary_location": "~/.openclaw/workspace/skills-publish/*/repo/.git/config remote.origin.url",
+        "backup_location": "NOT in github_tokens.json — ADD THIS"
+      }
+    ]
+  },
+
+  "openrouter": {
+    "status": "ACTIVE",
+    "key_suffix": "7d2",
+    "primary_location": "~/.openclaw/agents/main/agent/auth-profiles.json",
+    "duplicate_locations": [
+      "~/.openclaw/openclaw.json (OPENROUTER_API_KEY)",
+      "~/.openclaw/workspace/.env",
+      "~/.openclaw/workspace/.env (duplicate entry)"
+    ],
+    "note": "Remove duplicates. Primary should be auth-profiles.json only."
+  },
+
+  "x_api": {
+    "status": "ACTIVE — REAL CREDENTIALS FOUND",
+    "discovery": "Found 2026-05-02 during full system search",
+    "real_location": "~/.openclaw/secrets/x-api.json",
+    "empty_placeholder": "~/.openclaw/workspace/secrets/x_credentials.json",
+    "action_required": "DELETE empty placeholder. Use real credentials. Test posting.",
+    "credentials": {
+      "api_key": "FDEp2...OZS (masked)",
+      "api_secret": "3ejLq...yOP (masked)",
+      "access_token": "1549638180827271169-...MDhEjp (masked)",
+      "access_token_secret": "MpEpZ...VPwLk (masked)"
+    },
+    "created_by": "Subagent 2026-04-14 session",
+    "history": "These are real OAuth tokens for @CertainLogicAI. Ready for use."
+  },
+
+  "cloudflare": {
+    "status": "ACTIVE",
+    "primary_location": "~/.openclaw/secrets/cloudflare.json",
+    "duplicate_location": "~/.openclaw/workspace/secrets/cloudflare.json",
+    "action_required": "Pick ONE location. Delete duplicate.",
+    "api_token_suffix": "f5e",
+    "account_id": "0ffe11efd6021bf4611526cbbfaa6c29",
+    "zone_id": "4b58b138a4503968c8a1875cbb580946"
+  },
+
+  "anthropic": {
+    "status": "ACTIVE",
+    "location": "~/.openclaw/workspace/brain-internal/.env",
+    "key_suffix": "mBrsAAA",
+    "note": "Used by brain-internal processes. Not for general use."
+  },
+
+  "clawhub_cli": {
+    "status": "ACTIVE",
+    "note": "Uses GitHub OAuth via `clawhub login`. No stored API key. Token managed by ClawHub CLI."
+  },
+
+  "other": {
+    "pypi": {
+      "location": "~/.openclaw/secrets/pypi.json",
+      "status": "ACTIVE",
+      "note": "For PyPI package publishing"
+    },
+    "brain_api_internal": {
+      "location": "~/.openclaw/secrets/brain-api.json",
+      "status": "INTERNAL_ONLY",
+      "note": "Never expose externally"
+    },
+    "stackoverflow": {
+      "location": "~/.openclaw/secrets/stackoverflow.json",
+      "status": "UNKNOWN_USAGE"
+    }
+  },
+
+  "process_rules": {
+    "1": "ALL new keys go to ~/.openclaw/secrets/ ONLY (not workspace/secrets/)",
+    "2": "NO key goes in more than 2 places (primary + one backup)",
+    "3": "Update THIS FILE within 1 hour of key creation/rotation",
+    "4": "Run verify script daily: python3 ~/.openclaw/workspace/scripts/verify_keys.py",
+    "5": "Rotate keys every 90 days",
+    "6": "Old keys get 7-day grace period before deletion"
+  }
+}
