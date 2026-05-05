@@ -12,9 +12,14 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 import time
 from pathlib import Path
 from typing import Dict, Any, Optional, List
+
+# Import crypto provenance from sibling module
+sys.path.insert(0, str(Path(__file__).parent))
+from crypto_provenance import sign_page, verify_page
 
 # ── Config ────────────────────────────────────────────────────────────────
 GBRAIN_PATH = os.getenv("GBRAIN_PATH", "/data/.openclaw/workspace/company-brain")
@@ -230,25 +235,42 @@ class DeterministicBrain:
         # 4. Execute via GBrain
         result = self._execute(cmd, params)
 
-        # 5. Hash verification for writes
+        # 5. Hash + HMAC verification for writes
         if cmd == "brain.put_page":
             slug = params.get("slug", "")
+            
+            # HMAC signature for third-party provenance (sign canonical params)
+            hmac_sig = sign_page(slug, params["content"], params.get("frontmatter", {}), audit_id)
+            result["hmac_signature"] = hmac_sig
+            
             # CRITICAL: Hash the GBrain-canonical content, not the input
             # GBrain normalizes frontmatter/whitespace; input hash won't match retrieved
             get_result = self._execute("brain.get_page", {"slug": slug})
             if get_result.get("success"):
-                # GBrain returns raw markdown text, not JSON
                 raw = get_result.get("output", "")
                 # Hash the RAW canonical content for round-trip integrity
                 _store_hash(slug, raw=raw, family=params.get("family"), audit_id=audit_id)
                 result["hash"] = compute_hash(raw=raw)
             else:
-                # Fallback: hash input (will warn)
                 content = params.get("content", "")
                 fm = params.get("frontmatter", {})
                 _store_hash(slug, content=content, frontmatter=fm, family=params.get("family"), audit_id=audit_id)
                 result["hash"] = compute_hash(content=content, frontmatter=fm)
                 result["_warning"] = "Stored input hash (GBrain retrieve failed)"
+            # Re-PUT with HMAC in frontmatter for self-verifying pages
+            self._execute("brain.put_page", {
+                "slug": slug,
+                "content": params["content"],
+                "frontmatter": {**(params.get("frontmatter") or {}), "hmac_signature": hmac_sig},
+                "source": params.get("source", "default")
+            })
+            # Re-fetch the canonical version WITH HMAC and re-hash
+            final_get = self._execute("brain.get_page", {"slug": slug})
+            if final_get.get("success"):
+                raw = final_get.get("output", "")
+                _store_hash(slug, raw=raw, family=params.get("family"), audit_id=audit_id)
+                result["hash"] = compute_hash(raw=raw)
+            result["hmac_persisted"] = True
 
         # 6. Audit complete
         self._audit({
@@ -289,19 +311,45 @@ class DeterministicBrain:
             return {"success": False, "error": f"Command '{cmd}' not yet implemented in wrapper"}
 
     def verify(self, slug: str) -> dict:
-        """Verify a page's current hash against stored hash."""
+        """Verify a page's hash + HMAC signature."""
         result = self.command("brain.get_page", {"slug": slug})
         if not result.get("success"):
             return result
 
-        # Get raw markdown from gbrain (it's markdown text, not JSON)
         raw = result.get("output", "")
+        # Hash check
         valid, stored, computed = verify_page_hash(slug, raw=raw)
+        # HMAC check (provenance)
+        hmac_valid = False
+        hmac_sig = None
+        content = raw
+        frontmatter = {}
+        # Parse GBrain markdown: ---frontmatter---\n\nbody
+        if raw.startswith("---"):
+            parts = raw.split("---", 2)
+            if len(parts) >= 3:
+                fm_text = parts[1].strip()
+                content = parts[2].lstrip("\n")
+                # Parse simple key: value frontmatter
+                for line in fm_text.split("\n"):
+                    line = line.strip()
+                    if not line or ":" not in line:
+                        continue
+                    k, v = line.split(":", 1)
+                    k, v = k.strip(), v.strip()
+                    if k == "hmac_signature":
+                        hmac_sig = v
+                    else:
+                        frontmatter[k] = v
+        if hmac_sig:
+            hmac_valid = verify_page(slug, content, frontmatter, hmac_sig)
         return {
             "slug": slug,
-            "verified": valid,
+            "hash_verified": valid,
             "stored_hash": stored,
             "computed_hash": computed,
+            "hmac_verified": hmac_valid,
+            "hmac_signature": hmac_sig,
         }
 
 # ── Convenience: Create intent node ────────────────────────────────────────

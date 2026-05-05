@@ -274,10 +274,12 @@ class TestLiveGBrainIntegration:
         assert result["success"], f"Put failed: {result.get('error')}"
         assert "hash" in result
         
-        # VERIFY (get + hash check)
+        # VERIFY (get + hash + HMAC check)
         verify = self.brain.verify(slug)
-        assert verify.get("verified"), f"Hash mismatch: stored={verify['stored_hash']}, computed={verify['computed_hash']}"
+        assert verify.get("hash_verified"), f"Hash mismatch: stored={verify['stored_hash']}, computed={verify['computed_hash']}"
         assert verify["stored_hash"] == result["hash"], "Stored hash should match returned hash"
+        assert verify.get("hmac_signature") is not None, "HMAC signature should be stored in frontmatter"
+        assert verify.get("hmac_verified"), "HMAC should verify successfully"
 
 # ── Run directly ──────────────────────────────────────────────────────────
 if __name__ == "__main__":
