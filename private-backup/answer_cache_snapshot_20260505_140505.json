@@ -1,0 +1,2553 @@
+{
+  "entries": [
+    {
+      "q": "64ad73596b1065390e9221622595e32d52ec760be79bda2b20a0198bce98a035",
+      "a": "Python is a programming language.",
+      "ts": 1777572400.1552708,
+      "tc": 6
+    },
+    {
+      "q": "89f7b067b7569e8f8add0ba915d1499c8f2c7591d3f8fddb1b21732711ed6885",
+      "a": "| AgentPathfinder v1.2 | \u2705 Ready | 17 tests pass, coded + cleanup, SKILL.md finalized |\n| Coding Query Tracker | \u2705 Working | Daily hit rate logging deployed, cron active |\n| Git Cleanup Script | \u2705 Ready | 157 files \u2192 needs Anton approval on remaining items |\n| Git Cleanup Script | \u2705 Ready | 157 files \u2192 needs Anton approval on remaining items |\n| Smart Router Analysis | \u2705 Done | Quality hold = auto-hold for simple tools, code clean |\n\n\n**File:** `AUDIT_PLAN.md` ready for clean machine testing  \n**What to test:** Install each published skill, verify Pathfinder works end-to-end  \n**File:** `AUDIT_PLAN.md` ready for clean machine testing  \n**What to test:** Install each published skill, verify Pathfinder works end-to-end  \n**Where:** Anton's personal machine (clean environment per OPTIMIZATION_MERGED.md)  \n**Finding:** OpenClaw has real plugin system with hooks  \n**Plugin vs Skill for Pathfinder:**\n- Plugin = Automatic, deeply integrated, hooks into every query\n**Plugin vs Skill for Pathfinder:**\n- Plugin = Automatic, deeply integrated, hooks into every query\n- Skill = Manual, external tool, agent must invoke explicitly\n- Skill = Manual, external tool, agent must invoke explicitly\n- **Decision:** Keep Pathfinder as skill for now (works, published, tested). Plugin upgrade = future research project.\n\n|------|------|--------|\n| HEARTBEAT.md expansion | ~30 min | Added skills registry, git health, coding query checks |\n| Pathfinder final polish | ~45 min | Fixed dashboard docs, added `pf version` |\n| Smart Router quality analysis | ~30 min | QUALITY_HOLD_ANALYSIS.md created |\n| Coding Query Tracker | ~45 min | `scripts/coding_query_tracker.py` deployed + cron |\n| Company Brain roadmaps | ~60 min | Two detailed roadmaps in `docs/roadmaps/` |\n- **Brain API:** Healthy all day (84 facts, stable)\n- **Coding queries logged:** 1 (test query)\n- **Git commits today:** 5 (`cleanup_complete` branch)\n- AgentPathfinder is the strongest near-term deliverable. If audit passes tonight, priority shifts to promoting it.\n- Smart Router auto-hold is benign \u2014 code is clean, just too simple for \"productivity\" category.\n- Plugin architecture research shows OpenClaw's `runtime-api.js` supports hooks, making long-term plugin vision feasible.",
+      "ts": 1777979272.8209212,
+      "tc": 398
+    },
+    {
+      "q": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+      "a": "[{\"key\": \"faulttrace test results\", \"fact\": {\"type\": \"string\", \"value\": \"29/29 test files passed. Largest: 7.8MB java-parser-test.L5X (30 programs, 413 routines, 11995 rungs, 30716 cross-refs) parsed in 2.5s.\", \"source\": \"memory/2026-03-22.md\"}, \"score\": 0.333, \"hash\": \"85db4eee5d3fcd952ca9c430cef525f68bf9eb6378ad1f723bf410c365ba5251\"}]",
+      "ts": 1777987582.489359,
+      "tc": 58
+    },
+    {
+      "q": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+      "a": "\n[Tue 2026-04-21 22:19 EDT] hello, very pleased with the results today. on the MCP integration work, do we have docs on that too?\nassistant:    Good. Let me check what we have on the MCP side. ",
+      "ts": 1777988910.4058475,
+      "tc": 50
+    },
+    {
+      "q": "11ebe513a017db35c43236e43f89000a",
+      "a": "python current stable version",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bd67cc3a27647eebf04e03098edd8f23",
+      "a": "python 3.12 release date",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4884179246aac396a79c9f5b3e426e9f",
+      "a": "python 3.11 release date",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ee2871d711b19613e24aeddea7884210",
+      "a": "python 3.10 release date",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3fcd4d42dde9fea86b1526695e20fa19",
+      "a": "python 2 end of life date",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "36c9c1fdffc8098aa390cf0c30c61b6e",
+      "a": "python default integer size",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bb89d560944ed15e582a1a5a240db79d",
+      "a": "python list is mutable",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d2b11607a9fe8e8621640b7854cf5e22",
+      "a": "python tuple is immutable",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7e4a88cd996578878c37aec8eaeea1cc",
+      "a": "python dict preserves insertion order since version",
+      "ts": 1778000000.0,
+      "tc": 7,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "348364fc9262483b2bdb38bfbdf1d18a",
+      "a": "python walrus operator introduced in version",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "39a184f6910c72a350480e396d3ddd2e",
+      "a": "python walrus operator symbol",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "72281f11345636656266e5990af2c393",
+      "a": "python match statement introduced in version",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8aef1fb350f8e3a5fb81e7c8263d5fa1",
+      "a": "python f-strings introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "32dfac251c5ca43c5c9f21ce1e5afae3",
+      "a": "python gil stands for",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "96464869a3db7ea4b8d3bba6592036b3",
+      "a": "python gil removed in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4496b753f1ef5215bc7cdf6d98878089",
+      "a": "python number of built-in functions",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "aeaf4f3effa01d5185e247a13cf8d44e",
+      "a": "python range function returns",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3f1bbad02efa5bc3682974a627238ddb",
+      "a": "python default mutable argument gotcha",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "9e677ce5ffb43268d51538ab2ad3401a",
+      "a": "python __init__.py purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c46741c9e0cc5a2b04398d9ae837ea40",
+      "a": "python type hints introduced in version",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c3a48d23bea5e093243ea7a4a44db9c7",
+      "a": "python asyncio introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "528f37a67891bd59fc282b6287c2cfe8",
+      "a": "python is operator checks",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "20a6710a0e770024f96b8ab23a6a750c",
+      "a": "python small integer caching range",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8c1e282227c743b146f2946f198f70ef",
+      "a": "python list comprehension vs map performance",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "630e4d5d52463ccbf17581024dd9ed93",
+      "a": "python deepcopy module",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "828f86dbf77d651d68f9f37ae2ac25e4",
+      "a": "python virtual environment tool built-in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8f546d5d92aefecfb9bf7e77c874c411",
+      "a": "python pip stands for",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "09f8973d42b46758459e6db1db77dc1b",
+      "a": "python __slots__ purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a9b408fb878443ba0385fde9e626a377",
+      "a": "python generator function keyword",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ac0fdc39e1e6bbeaed1d22a2e79933f0",
+      "a": "python dataclasses introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5cf2ba8d3b729ee4eea3c72e5952c9cc",
+      "a": "python exception base class",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f422d4a1ed05eed17124e6947b24dc4e",
+      "a": "python string encoding default",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "32cf12699b45e3e29fdf17065699e8aa",
+      "a": "python max recursion depth default",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a90e125e16abd9f13b2e2ec40e1f48f6",
+      "a": "python none type",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2a370eb834fee7581ba5fd41157d8e45",
+      "a": "python set is unordered",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a5dd1461684f7d6154d78667a97222ac",
+      "a": "python frozenset is hashable",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2f58f5547e8be66efcbcc6d8ed74bd7d",
+      "a": "python __dunder__ methods also called",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d01bafccd63dae873b2e4fc4ee7296e5",
+      "a": "python pep 8 max line length recommendation",
+      "ts": 1778000000.0,
+      "tc": 7,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f3c542cc272cfe452f963e9c1faf5235",
+      "a": "python pathlib introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8c97b643ddd8c1f7f8c581fc156805b2",
+      "a": "python typing union syntax new style version",
+      "ts": 1778000000.0,
+      "tc": 7,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8f5f523cd4f0a4209ea0a72dd60222ad",
+      "a": "python tomllib introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a582d65bb61c6c7bd100aeedbbbab5e3",
+      "a": "javascript ecmascript 2015 also known as",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "9973ba8c068423e20da8f324f947a2a6",
+      "a": "javascript typeof null returns",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d7acd71c8061b0ffb886a2fb91f1020f",
+      "a": "javascript nan === nan is",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "01a4185266b7f3b055b4932bd3df263e",
+      "a": "javascript var scoping",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a4300ab27814746c1ebd707647f43b80",
+      "a": "javascript let and const scoping",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "43be43064256356d2767515f840c69b9",
+      "a": "javascript == vs === difference",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0d6b535f3a4707c84c11d000782f3817",
+      "a": "javascript event loop is",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b6378cfd7c98f5190e69d1a339998e2b",
+      "a": "javascript promise states",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "604bf4af15129de86f727beaee31f89b",
+      "a": "javascript async/await introduced in es version",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5464115155176119e12dd0696d1c1243",
+      "a": "javascript arrow functions do not bind",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ac138175fc075364b771ccaa290d2272",
+      "a": "javascript prototype chain terminator",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "cba2791d75c94c828138b8f588baf773",
+      "a": "javascript optional chaining operator",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ab54b787b4fcbd3e951cbc9a7932cd44",
+      "a": "javascript nullish coalescing operator",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f98c9d2237a2a01b758a5697c5049933",
+      "a": "javascript array destructuring introduced in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7efab8fa3cd5c1ecb24507fe4c062f2c",
+      "a": "javascript symbol type introduced in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2b1779efc35307b0c8794d3209e7d983",
+      "a": "javascript bigint type introduced in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e656eabbd101b0176b7ff6d98540f0f0",
+      "a": "javascript number max safe integer",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "04017030d5fcd3225b1050d2a2cb639b",
+      "a": "javascript hoisting applies to",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "72620eef0701b993e576217474fcae03",
+      "a": "typescript released by",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3ca6c515f1c2a5fe6e72e4fb181ad5c3",
+      "a": "typescript is superset of",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "346c7bb0476e79180c2a022648016a86",
+      "a": "typescript compiles to",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d3e17eaeb81213abdbf8361611f29f05",
+      "a": "typescript config file name",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3cda45553b74cd091c3caf44920c4d75",
+      "a": "typescript strict mode enables",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "654d5c09cd1bbd988c7e4dd60c42ca08",
+      "a": "typescript any vs unknown",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "34a2502983b3228fcf292ea16ad0549f",
+      "a": "typescript interface vs type alias",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "66c3f3ad98adcc09996ccffaf47862c8",
+      "a": "typescript decorators status as of ts 5",
+      "ts": 1778000000.0,
+      "tc": 7,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5848cd6a9d53147aafdaa16c2640afb8",
+      "a": "typescript satisfies operator introduced in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "475c8ee0fdee3b735fd10dfe346b3557",
+      "a": "javascript spread operator introduced in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d51ace14726f91e32cd3ef6daea31b46",
+      "a": "javascript temporal dead zone applies to",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "75a62acf0758add804b4ca31eac37301",
+      "a": "react initial release year",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f043861fb6757056da5970eee2fa1822",
+      "a": "react hooks introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b847e4a3f316cb59d82c8463b205d81f",
+      "a": "react virtual dom purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0180b6872adf525941d076f1e0dabaf7",
+      "a": "react useEffect cleanup runs when",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3a55c6c82ca4dc4773230c58cb5b0136",
+      "a": "react useState setter is",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "05a36afe1f5745ef8079e6f6d76eb2b8",
+      "a": "react key prop purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "53f0ee02b597b1523d4530dd1d412f5d",
+      "a": "react context api avoids",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "91001a89919794b53bce6c6681fd7953",
+      "a": "react concurrent mode default since version",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3b843a7ecb7adab252b017253081da5c",
+      "a": "react 18 new feature",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a6ff837222ed9a0426807c7c5ef3bf1a",
+      "a": "react useMemo purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "64c390376f74eefff6b6f8a230e49d0d",
+      "a": "react useCallback purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b5aa61f684b2138ac8f1ec5814a0a5b3",
+      "a": "react strict mode double invokes",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6e59e876e5153f38717e1e3fbb001eab",
+      "a": "react error boundary is",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "387def41d32e511779ea5a5123f6a5ec",
+      "a": "nodejs lts release cycle",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "05739d4fd2c9f382c5c3c97c3225d476",
+      "a": "nodejs event loop phases",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1ee896bf209b65429613eeb68de15d33",
+      "a": "nodejs process.nextTick vs setImmediate",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1e0e563d3c234da4a748954d0b3aa83a",
+      "a": "nodejs built-in http default port",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "42de03835576989d58ca9b0ad7b7e9b7",
+      "a": "nodejs require vs import",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2c9e0ff079de2bb50c6231f7fdffe737",
+      "a": "nodejs package.json type field for esm",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3f30fa839b3383ca538ffbbecaab1574",
+      "a": "nodejs streams types",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "de8ab4afa378d6c778034df499389c45",
+      "a": "nodejs cluster module purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8a6386c248292fe1088e066f8912a176",
+      "a": "nodejs worker_threads introduced in version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "dce0fb7ceaf4e0015d15a581d17a1ca2",
+      "a": "nodejs __dirname in esm modules",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0f0f5e80ea54e7b9ae33402ca335b673",
+      "a": "nodejs maximum buffer size",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a181e81cb209a3b3cae1e4cdadb797e1",
+      "a": "react server components introduced in",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "82c3440d2e2a67715c72d0fd4a29b920",
+      "a": "docker default registry",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "db970658f5cb4f869be40217f433bccd",
+      "a": "docker expose vs publish",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bc38c8bac0179e2e7ac06566280c37d1",
+      "a": "docker default network driver",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7509020157ed241500c7b939a32796cc",
+      "a": "docker host network mode",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "483aca3ec4d3f05edf3d664727e8d65b",
+      "a": "docker entrypoint vs cmd",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "29466cc4d33e258f7a76eefe6dbabe14",
+      "a": "docker layer caching invalidated when",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0da1e19c7b6ec34ec1fb045030320e71",
+      "a": "docker multi-stage build benefit",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6628fff68a53131db9c4d10a4a848934",
+      "a": "docker default container stop signal",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "653bf00140a5bb5c6e2e5070bc4b2ada",
+      "a": "docker volumes vs bind mounts",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "507fb291bdd28555f2a5bf3248ff9fbf",
+      "a": "docker healthcheck instruction purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "784794c51fae459b9bcd84ad97a36fe1",
+      "a": "docker image layers are",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3f0583d8190764481a2d14ab49e317b4",
+      "a": "docker compose default file name",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "242a43215b52c27ee52abd9dd3a5bbe3",
+      "a": "docker build context",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a1d1f3183aba6e5c69cc354762111799",
+      "a": "docker exec vs run difference",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6811be9ef37e21d2c553b17e68e62fbe",
+      "a": "docker default postgres port",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "88bb23b9f18f5513cb3625ce7e5b6bed",
+      "a": "docker default mysql port",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2faf8e9eaab4abb432377b93a110b74d",
+      "a": "docker default redis port",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6c732e4fba39cd048edd525f62d3b1c1",
+      "a": "docker default nginx port",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2a7cd684c0b858f871edcd7af9c2cf77",
+      "a": "docker .dockerignore purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "eedffff0221628172f6e083f0af7d517",
+      "a": "docker user instruction purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0a3e9717849b0507b83359e65c5846ca",
+      "a": "docker overlay network purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "943643eb1d66714d2b40086ffde90ce8",
+      "a": "docker restart policy options",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "13b6fe068133ae6407b675113ddb765b",
+      "a": "docker copy vs add instruction",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "33d5ef57b364ac580f5738410cd46f82",
+      "a": "docker scratch image",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "30db8b3173793a6af8e6cd6a0936d969",
+      "a": "docker run --rm flag",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4da7aede68a4ff04caec481f3873389f",
+      "a": "docker buildkit default since version",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bd404129c316dc0696b64d1bde2bd1a6",
+      "a": "git default branch name (modern)",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a908b9af3cbbf568793ce753525d308f",
+      "a": "git staging area also called",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3de52341d475f5132a5b585aed986df7",
+      "a": "git HEAD refers to",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a12d5c3d48c87ef62c6f58d41915ac6e",
+      "a": "git detached HEAD state",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "071d268d388e7c42d1b66f00b7052fc9",
+      "a": "git rebase vs merge",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f8c1fc1caa3ca33a4091bdfa17867672",
+      "a": "git cherry-pick purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b492a4d3c74b437aeb8338ff1565b146",
+      "a": "git stash command purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4d29f306b95a41d22d4639d72eedda85",
+      "a": "git --amend flag purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d8c5eb26de270a4984d155e4fa3f79fb",
+      "a": "git force push command",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "98bcac2a5c503ae44af10a701f2eaa3e",
+      "a": "git bisect purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ee9a5a468bac57e8d39797386f5432a8",
+      "a": "git fetch vs pull",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "909c080279de461979f1f896c857fabe",
+      "a": "git tag types",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1f09f7a1dd85b567509ad9a5e6b9a946",
+      "a": "git config scope levels",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3d5eeadd8d26da20910356fce1b31220",
+      "a": "git object types",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3c4dd68034e109c6db27f8f5c255f967",
+      "a": "git hash algorithm default",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "9e711af1cc0d38e3c546a81f79ad358c",
+      "a": "git submodule purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d1908a8a65eaf0537e72a538ec010b5e",
+      "a": "git reflog purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2c81756054159f68bd0156ac0b90a39a",
+      "a": "git conventional commits spec",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a9ab595d9b9adfa2c0d9f11013b9c08d",
+      "a": "git sparse checkout purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e119bf6e581ec3e76f317b5905172915",
+      "a": "git worktree purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "11ea012207310f532f32f0ed90f5aea0",
+      "a": "git blame command shows",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a2128af283fe33ba5be6c9453427da36",
+      "a": "gitflow main branches",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "32f92897f5513c2cc848537163443f29",
+      "a": "git shallow clone flag",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "95c2863971a9ce7c07a90ac25d6074e8",
+      "a": "git hooks location",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fe0f48f5386a03c447e200bed19a3f41",
+      "a": "git interactive rebase command",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ffe717abf409da17d72c434a5fc8fe5b",
+      "a": "sql select distinct removes",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0a0083644f62bab8150882d0662c3d1d",
+      "a": "sql null comparison correct operator",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a27d5f570093a535daf1dae22fe2a860",
+      "a": "sql inner join returns",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5b60e6bb77d3e196132f94c3a52540ea",
+      "a": "sql left join returns",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1c7d2d8331863a51806758413993985e",
+      "a": "sql group by requirement",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "62322e713ff5270619e07c610016370f",
+      "a": "sql having vs where",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a6ef919c2e68abe4ae576502604561b5",
+      "a": "sql index types in postgresql",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bf2cc24f410c12fc2e6539bc41d88b99",
+      "a": "sql transaction isolation levels",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0522b81b1ea52825ce78d8c92e831f6b",
+      "a": "sql default transaction isolation in postgresql",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c8c32a2c1d0d53a134502bb6ed16d194",
+      "a": "sql acid acronym",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8c49fcf3afcdb81458f1fa842faaca81",
+      "a": "postgresql serial type replaced by",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ad7b99ab203b4cf22a541ab3584bfcd7",
+      "a": "postgresql jsonb vs json",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "9cc2b3be1d7e17aa3db1ed96ff4285e4",
+      "a": "mysql vs postgresql default port",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "de59836da854dc2b0a631b20155b50af",
+      "a": "sql explain analyze purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fffde17e150aafe1b340f449ee5518f6",
+      "a": "sql cte keyword",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8d42dcefaf15983e0788a827dc8ce73c",
+      "a": "sql window function over clause",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f04a8c12578b3d01ce4e3a2dc3e8d6ad",
+      "a": "redis default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e5bd5619aa35589b6a34c156492c5ea9",
+      "a": "mongodb default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bf325c090e876504f639951530308167",
+      "a": "sql n+1 query problem",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f5aabccb17fe3c267a5bff3526576532",
+      "a": "postgresql vacuum purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a490b97c05a6cb6078c756c55df86538",
+      "a": "sql foreign key constraint enforces",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "29e6ef0cc2325aaf72f41f09210de310",
+      "a": "sql on delete cascade",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3469d7e619baff0645126ce7fb98785a",
+      "a": "sql between operator is inclusive",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "349c4a8a227585b89c3180472b808fdd",
+      "a": "elasticsearch default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2de60cb062105c12fa90180d8062f443",
+      "a": "sql upsert in postgresql",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4589f0dbb0a29edc96ec5dd0aea934d9",
+      "a": "fastapi based on",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "19c9507ec8df02a227bbe61243f20cbd",
+      "a": "fastapi automatic docs url",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "48c8728b06ff9795ba3dd44e6bce7007",
+      "a": "fastapi dependency injection keyword",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2e745162687f2bc9c72c9bea898a7e35",
+      "a": "fastapi background tasks class",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ad22aff794c4ff7c2c3b5f14973f165e",
+      "a": "fastapi path parameter syntax",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "eb2d85431628f074968cf24881fb4470",
+      "a": "fastapi pydantic v2 breaking change",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fff5e32f894e0eb8692acfa5e6814fe0",
+      "a": "flask application factory pattern",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "19a9f3303d6f77c6bc47fa830f852b18",
+      "a": "flask debug mode warning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3a43546512cf92610177d93ef153c96a",
+      "a": "flask context globals",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c6272a41f6cd1f55ff4d9fbf71954117",
+      "a": "flask blueprint purpose",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5b74a06a4f07c5aae9c244bb64b11353",
+      "a": "django orm query lazy evaluation",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5fad755b85be011a792093d5a16680d1",
+      "a": "django select_related vs prefetch_related",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b502e8878aba47852594fe5ac8485bd3",
+      "a": "django middleware order matters",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "10efa1e542b53f430651c09c9482e4dd",
+      "a": "django settings secret_key purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "80084bc09d033a6b951c35943db0362d",
+      "a": "django migrations command",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a57be121f38218f8b3c123b7814a4a32",
+      "a": "django version 4.0 dropped support for",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a7187d3242fcc4de473e9bf8b13962b0",
+      "a": "flask minimum python version (3.x)",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a7d7c1384c9d9ff519819fc16e0bb99b",
+      "a": "fastapi minimum python version",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fd9394bf8a8f49ebdcb10ebd4fe03650",
+      "a": "django rest framework serializer purpose",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d6dbcfe333dc3f26324911f79c3f859e",
+      "a": "fastapi lifespan event handler",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "afb7ab0f52714100bd65a531f082af83",
+      "a": "flask run command default port",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "05a93af7b5b237b361c68c7850a25806",
+      "a": "fastapi default uvicorn port",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f51db554a89339d6f63636cc095d66ed",
+      "a": "django admin default url",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d179a45a3b2abc50459d8c998ca257a0",
+      "a": "flask wtf csrf token header",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c7f1549da4472c4c16a802ae5813b512",
+      "a": "django csrf token template tag",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8e983ebae4c1343e6464e087bb0481dc",
+      "a": "http status 200 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b4d6ca9cd907258a539c0056eadec5db",
+      "a": "http status 200 code",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5c17de49b9d3d49b2722592e3ce6bd74",
+      "a": "http status 201 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7e948d424488c3ae5c9db02c8aca34bc",
+      "a": "http status 204 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ec11545e355cd1115e76bd85a01599f1",
+      "a": "http status 301 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "cf15fe2891a8242667d5dccb72797a22",
+      "a": "http status 302 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "62f8c7feced51b099835b1e64db96bb6",
+      "a": "http status 304 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3adf3f74cc28c5b02c98aea0217ecd1a",
+      "a": "http status 400 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "68627f59db2e78fb617def15cc27ac1b",
+      "a": "http status 401 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "386e96561dcc1f04c267a4f1f87379b0",
+      "a": "http status 403 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3f8190c2648fbc981b085d64f7df5933",
+      "a": "http status 404 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4868463e644535c492fea9f954a4f186",
+      "a": "http status 405 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2431e4d1ec9833b53f93f4f02cf47d46",
+      "a": "http status 409 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "dac45c4ae13579d98d9516c984e5a501",
+      "a": "http status 422 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3897fb65bbe1a4a4b1f092789cbddd3a",
+      "a": "http status 429 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "cf6646ec1e2cdb1070ee8d21fff17d8d",
+      "a": "http status 500 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f9efe206f60eb9880a386ddc98ffc1b1",
+      "a": "http status 502 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "57397ee98206d4ac627e392059fc3209",
+      "a": "http status 503 meaning",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "711738982ba8b9ed7b66e508c4008b93",
+      "a": "http methods safe and idempotent",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "9f0a2ea38bd396bd330a5055059718b5",
+      "a": "http put vs patch",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "045ec93bcf16cda4d4587c45b417dbf5",
+      "a": "http cache-control no-store",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b1f4c1adf7783bedf59ebafb5e204420",
+      "a": "http etag header purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e55b1604b6cbcc53cc27eb679597da98",
+      "a": "http cors preflight method",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "060431a0cc265b621fb905b02bd65f88",
+      "a": "http/2 multiplexing",
+      "ts": 1778000000.0,
+      "tc": 2,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6979a5bf4fc9751173f08d4541e6bc23",
+      "a": "http content-type for json",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b2f1aa8d27985694cf6db20332d269ae",
+      "a": "http authorization bearer token header",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1ec182956e4f2feb7453cded9efc1a80",
+      "a": "rest api constraint stateless",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bfef00a47448f5c2e6e1ca00b825a785",
+      "a": "aws s3 max object size",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "563e56a9e8dfffcd369cb3fe4ea246b9",
+      "a": "aws lambda max execution timeout",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4cf95f27fb6b587a36c54f666544947a",
+      "a": "aws lambda max memory",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e852494815b06c3b95822e545bfbb0b0",
+      "a": "aws ec2 instance metadata url",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4cdd8403fc837272ac4a676a4f661a87",
+      "a": "aws iam policy evaluation order",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ea66a98b7a67ac8ed866f4e79ea4e991",
+      "a": "aws region vs availability zone",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "37fe96c06f0a35539f8c1ee8e8de0736",
+      "a": "aws sqs message retention default",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a3802d01065326b5706466d640878cd6",
+      "a": "gcp cloud run concurrency default",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fd9018228cb4ef1d4aae67c63c96f59d",
+      "a": "gcp bigquery pricing model",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1f195e890dfbd6d4775242fea271f1d0",
+      "a": "azure functions consumption plan timeout",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b1c132cfe3736d74b10a592dd525ed6a",
+      "a": "aws cloudwatch logs retention default",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2dde482cebefd0114b9af03b578be4b3",
+      "a": "aws rds multi-az purpose",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4b6234a626ad4de63a1121a19aa25ca4",
+      "a": "aws vpc default cidr block",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "654f665e64c8a8fab2eabe92fc4a8ec7",
+      "a": "aws s3 bucket name constraints",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "0af25ddcc82b6a1fcfca579b1673cc72",
+      "a": "kubernetes default namespace",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1522bea0eaffcdfd428ebb7f2429c17f",
+      "a": "gcp cloud storage classes",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b300d8239c5205874cb3c7a2f0949401",
+      "a": "aws api gateway stages",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "426be27326e521d6571c183cb26eb3b0",
+      "a": "aws s3 presigned url purpose",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "977b9429be54281bfd474c275933e1b4",
+      "a": "azure blob storage tiers",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3351de34d18350bbfc13b866d38ad267",
+      "a": "aws elasticache engines",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "456521c4e5f54cbe846f028c9a315e9b",
+      "a": "oauth 2.0 grant types",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ba4447b615cc4d60ebe5cd6fb6672736",
+      "a": "jwt structure",
+      "ts": 1778000000.0,
+      "tc": 2,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e5ee81fd219982c903b81cf7249b48fd",
+      "a": "jwt signing algorithms",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7a66a3b1daf6ef9c938bebca4d4c8b8f",
+      "a": "jwt exp claim",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "af8432adad07e3a8f686a3940db15304",
+      "a": "tls 1.3 released year",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1a2773d42dd333c9653ec8cf50d74a0d",
+      "a": "tls deprecated versions",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1a901ee0456b7b9277c810d910a83b8f",
+      "a": "owasp top 10 2021 number 1",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fbe56a32ad97e029ceb9f26a72450f5b",
+      "a": "sql injection prevention",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ca2131f8b6abd1c2bb9dcfe987105329",
+      "a": "csrf stands for",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "709f869112d2ff1b458702aeee134291",
+      "a": "xss stands for",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7b7a9233f3fa87b251f0a3fd4352c11e",
+      "a": "bcrypt hash rounds default recommendation",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "530420b1a7165ffbdbb0d6991c6b02ff",
+      "a": "https port",
+      "ts": 1778000000.0,
+      "tc": 2,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "468676fc739ac04762193310c9f01724",
+      "a": "oauth pkce stands for",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e385886a3b52bbac5425b0320f3a75cd",
+      "a": "hsts header",
+      "ts": 1778000000.0,
+      "tc": 2,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "92a1977061e6d19364d17f70a03b2979",
+      "a": "content security policy header abbreviation",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "26889c53c5fedaec88a5088a667b60a8",
+      "a": "argon2 type recommendation for passwords",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2cb045cd8a93ebfdc31e5a276f3994e6",
+      "a": "openid connect is built on",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ca40d295256b7892b770ba018b86a53a",
+      "a": "ssh default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3e64aee07b8175d3d8be6a5d8f811f4f",
+      "a": "api key vs oauth2 difference",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f7e0fa8ed69bb6509714856593cb91e1",
+      "a": "rate limiting retry-after header",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6bd1d4b519a59f27efc4ec751c92ef0c",
+      "a": "github actions workflow file location",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "09b81bb71355d2f9ebd6b2832990f6a0",
+      "a": "github actions trigger on push",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "dc1af74015418a4e31bc559f84e88257",
+      "a": "github actions job runs-on options",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "164ef777944a4eb3c0c5e81baf858e63",
+      "a": "github actions secrets access",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "1f5ae5b66657ce09c1c07ad17100d0c3",
+      "a": "github actions cache action",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "52a8c6d6c99cb706fb7c5828fe7d7f3c",
+      "a": "github actions matrix strategy",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8fbec5843674deab5a65a5ad87b9d8f1",
+      "a": "kubernetes pod definition",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8956bfcd5e8f83198325b33343daec4d",
+      "a": "kubernetes deployment vs statefulset",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "b22706306e9d7266094748c30ced280f",
+      "a": "kubernetes service types",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "f73cbe8743a9180d68a584c39680a23b",
+      "a": "kubernetes liveness vs readiness probe",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "be3d1cc0220628d775cd3cd8615772f0",
+      "a": "kubernetes configmap vs secret",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2c4b367dfc23430b7a316fdbc645bc23",
+      "a": "docker compose depends_on limitation",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4c39ec2df230cd442e6d0511a1153e57",
+      "a": "github actions environment context",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "8fd2dc895babe824c97cc6268555df72",
+      "a": "semver format",
+      "ts": 1778000000.0,
+      "tc": 2,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "9bc23e6724ffe599298c9a1130d060cf",
+      "a": "kubernetes kubectl apply vs create",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "4a654ac62b682e702e244a48439a48c4",
+      "a": "terraform state file",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "59fe8fde6d75aee6661e44f16323a10d",
+      "a": "ci cd acronym",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "76895e614a97226cd8679c333257a84c",
+      "a": "docker compose version 3 minimum docker version",
+      "ts": 1778000000.0,
+      "tc": 7,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "72c6945aae5c1aa4e330412d18e751ef",
+      "a": "github actions reusable workflow call",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "10c0ab61a2efd818544d72bd27b54b6c",
+      "a": "kubernetes horizontal pod autoscaler metric",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c26c8c3a27ef83842c87677720488618",
+      "a": "github actions concurrency group",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "d098f591420f265956540961f61253e5",
+      "a": "react 16 deprecated lifecycle componentWillMount",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2e1b7d90bc8285166d2746c7c8c5e1f7",
+      "a": "python distutils deprecated since",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ef93d316c1fbb5b4eabcbfd250af6e04",
+      "a": "jquery ajax replaced by",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "fa179cd25f3c8249ea987cc18853ba5a",
+      "a": "create react app deprecated",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bd41d699ea0fb348359ffde0f0d97bdf",
+      "a": "python setup.py deprecated in favor of",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ba1fca999901c292e32aa52960365608",
+      "a": "django 4.2 lts support until",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "5b2ad2d65977124876e4f7e54b266feb",
+      "a": "flask 2.0 async support",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3bfc6da4840bf0ae8d7b8601b5f77c63",
+      "a": "moment.js maintenance mode",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "bcef204ffb3c0e0809fcb4bc199b51dd",
+      "a": "node 16 end of life",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "a404d10a4a5689a5b880e0c05c73bfcc",
+      "a": "kubernetes docker runtime deprecated",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "65a9c87ca76531afa3cc7637b2365339",
+      "a": "next.js pages router vs app router",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "e9e2237ae5441cbff2d7cb9fff69388c",
+      "a": "react class components status",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "510e4a6b42b265c0c0854fbdca27ad2a",
+      "a": "typescript 5.0 breaking change",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "841d4cfda94a06b5223812d9eddf3e97",
+      "a": "python asyncio.get_event_loop deprecation",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "6eb0c1e2a876a35a22a0bd44a021aa0a",
+      "a": "vue 2 end of life",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7b54dcd4f90a7eb680cca60cca76f659",
+      "a": "angular ivy renderer default since",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "93bb4ae97566cab8319ad8d4b4b981a1",
+      "a": "fastapi 0.100 pydantic v2 default",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "48df1871b63c4ec88041210f11846c85",
+      "a": "aws s3 path-style access deprecated",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "89eee63ba996024f0d7343788951184f",
+      "a": "webpack 4 vs 5 breaking changes",
+      "ts": 1778000000.0,
+      "tc": 6,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c8edc76aafb378b574c552a40080dbe4",
+      "a": "python importlib.resources api change",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c2d0dbb9a23f958767c88e11e686714b",
+      "a": "mysql default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c8ccaf52c968f02b63dec7e26326a189",
+      "a": "postgresql default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "7d0d86ffdb6e556fac6b5548b8453e77",
+      "a": "postgres default port",
+      "ts": 1778000000.0,
+      "tc": 3,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "c522bdcdec0c94e614128e29c83d8637",
+      "a": "what does acid stand for",
+      "ts": 1778000000.0,
+      "tc": 5,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "042c47e002f9d9e4068b4566309e9f43",
+      "a": "docker default stop signal",
+      "ts": 1778000000.0,
+      "tc": 4,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "2120538d5f30aa3f90dba805fc13fb38",
+      "a": "python+exception+handling&limit=2",
+      "ts": 1778000000.0,
+      "tc": 1,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "45b1721756ae89918bf0b2f777c68f8a",
+      "a": "python+recursion+limit+sys.setrecursionlimit",
+      "ts": 1778000000.0,
+      "tc": 1,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "957b40f6c9ef542c54fff9186aadaaeb",
+      "a": "math.factorial+python+large+numbers",
+      "ts": 1778000000.0,
+      "tc": 1,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3d478d5ff919e044dc60a3a341f0f7d6",
+      "a": "python+ValueError+exception+handling+pattern",
+      "ts": 1778000000.0,
+      "tc": 1,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "ffb938de83d6e51a22984134108629dd",
+      "a": "python+recursion",
+      "ts": 1778000000.0,
+      "tc": 1,
+      "source": "log_prewarm",
+      "migrated": true
+    },
+    {
+      "q": "3e1052dc24a4f38a6e68a2be6d56374b",
+      "a": "factorial",
+      "ts": 1778000000.0,
+      "tc": 1,
+      "source": "log_prewarm",
+      "migrated": true
+    }
+  ],
+  "_meta": {
+    "migrated_at": "2026-05-05T13:42:18.138018",
+    "total_entries": 319,
+    "added_from_pathfinder": 315
+  }
+}
