@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /data/.openclaw/workspace
+plugins: anyio-4.13.0, asyncio-1.3.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 26 items
+
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_compute_hash_consistent PASSED [  3%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_compute_hash_different PASSED [  7%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_compute_hash_content_matters PASSED [ 11%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_compute_hash_frontmatter_matters PASSED [ 15%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_compute_family_hash_consistent PASSED [ 19%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_compute_family_hash_different PASSED [ 23%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_store_and_get_hash PASSED [ 26%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_get_hash_missing PASSED [ 30%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_store_overwrites PASSED [ 34%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_store_includes_family_and_audit PASSED [ 38%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_verify_valid_content PASSED [ 42%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_verify_tampered_content PASSED [ 46%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_verify_never_stored PASSED [ 50%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_blocks_forbidden PASSED [ 53%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_allows_read PASSED [ 57%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_blocks_mutate_without_domain PASSED [ 61%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_allows_in_list PASSED [ 65%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_blocks_not_in_list PASSED [ 69%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_blocks_by_forbidden_list PASSED [ 73%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_intent_checks_required_fields PASSED [ 76%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_unknown_command_rejected PASSED [ 80%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_valid_command_checks_intent PASSED [ 84%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_audit_entry_format PASSED [ 88%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_audit_id_unique PASSED [ 92%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_create_intent_file PASSED [ 96%]
+tests/test_deterministic_brain.py::TestDeterministicBrain::test_create_intent_parsed_back PASSED [100%]
+
+============================== 26 passed in 0.07s ==============================

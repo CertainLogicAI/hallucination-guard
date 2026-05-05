@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-05-05-142617",
+  "test_name": "test_deterministic_brain",
+  "git": {
+    "commit": "397bbad",
+    "branch": "cleanup_complete"
+  },
+  "python_version": "3.13.5 (main, Jun 25 2025, 18:55:22) [GCC 14.2.0]",
+  "workspace": "/data/.openclaw/workspace"
+}
