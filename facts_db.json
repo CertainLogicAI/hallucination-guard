@@ -1,442 +1,2556 @@
 {
   "_meta": {
-    "version": "1.0",
-    "last_updated": "2026-04-30"
+    "merged_sources": [
+      "coder_pack",
+      "coding_agent",
+      "pathfinder_new"
+    ],
+    "migrated_at": "2026-05-05T13:42:18.133735",
+    "previous_count": 84,
+    "version": "2.0"
   },
   "facts": {
     "2+2": {
-      "type": "numeric",
-      "value": "4",
+      "source": "mathematics",
       "tolerance": 0.0,
-      "source": "mathematics"
-    },
-    "capital of france": {
-      "type": "string",
-      "value": "paris",
-      "source": "geography"
-    },
-    "speed of light": {
       "type": "numeric",
-      "value": "299792458",
-      "unit": "m/s",
-      "source": "physics/NIST"
-    },
-    "water freezes at": {
-      "type": "numeric",
-      "value": "0",
-      "unit": "\u00b0c",
-      "source": "physics"
-    },
-    "pi": {
-      "type": "numeric",
-      "value": "3.1415926535",
-      "source": "mathematics"
-    },
-    "boiling point of water": {
-      "type": "numeric",
-      "value": "100",
-      "unit": "\u00b0c",
-      "source": "physics"
-    },
-    "earth distance from sun": {
-      "type": "numeric",
-      "value": "149597870.7",
-      "unit": "km",
-      "source": "astronomy/IAU"
-    },
-    "avogadro number": {
-      "type": "numeric",
-      "value": "6.02214076e23",
-      "source": "chemistry/NIST"
-    },
-    "gravitational constant": {
-      "type": "numeric",
-      "value": "6.67430e-11",
-      "unit": "m\u00b3/(kg\u00b7s\u00b2)",
-      "source": "physics/NIST"
-    },
-    "planck constant": {
-      "type": "numeric",
-      "value": "6.62607015e-34",
-      "unit": "J\u00b7s",
-      "source": "physics/NIST"
-    },
-    "capital of germany": {
-      "type": "string",
-      "value": "berlin",
-      "source": "geography"
-    },
-    "capital of japan": {
-      "type": "string",
-      "value": "tokyo",
-      "source": "geography"
-    },
-    "capital of australia": {
-      "type": "string",
-      "value": "canberra",
-      "source": "geography"
-    },
-    "chemical formula for water": {
-      "type": "string",
-      "value": "h2o",
-      "source": "chemistry"
-    },
-    "chemical formula for aspirin": {
-      "type": "string",
-      "value": "c9h8o4",
-      "source": "chemistry/IUPAC"
-    },
-    "first smartphone": {
-      "type": "string",
-      "value": "ibm simon",
-      "year": "1992",
-      "source": "technology/IEEE"
-    },
-    "inventor of telephone": {
-      "type": "string",
-      "value": "alexander graham bell",
-      "source": "history/USPTO"
+      "value": "4"
     },
     "absolute zero": {
+      "source": "physics",
       "type": "numeric",
-      "value": "-273.15",
       "unit": "\u00b0c",
-      "source": "physics"
+      "value": "-273.15"
     },
-    "speed of sound in air": {
-      "type": "numeric",
-      "value": "343",
-      "unit": "m/s",
-      "source": "physics"
-    },
-    "electron mass": {
-      "type": "numeric",
-      "value": "9.1093837015e-31",
-      "unit": "kg",
-      "source": "physics/NIST"
-    },
-    "deterministic ai product 1": {
+    "agent authentication": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "Agent/SMB tier: LLM responses pass hallucination filter then get cached. Future matching queries served from cache at zero token cost. Hallucination rate above 2% but acceptable for general use. Value prop: massive token savings as cache fills.",
-      "source": "anton/architecture"
+      "value": "256-bit API keys, HMAC-signed requests, constant-time verification"
     },
-    "deterministic ai product 2": {
+    "agentpathfinder free tier limits": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "Regulated/compliance tier: Known facts database with pre-validated authoritative data. Queries validated against facts cache. Can run with zero LLM dependency. Targeting sub-2% hallucination rate. For regulated industries (medical, financial, industrial).",
-      "source": "anton/architecture"
+      "value": "No usage caps - unlimited tasks, agents, local vault"
     },
-    "faulttrace product": {
+    "agentpathfinder install command": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "FaultTrace: 3 modes - Troubleshoot (L5X + fault -> wire-level diagnosis), Build (parts list -> PLC program via L5X writer), Draft (parts list -> electrical schematics SVG). Client-side parsing, nothing leaves browser. Target: industrial automation, controls engineers.",
-      "source": "project docs"
+      "value": "clawhub install agentpathfinder"
     },
-    "faulttrace domain": {
+    "agentpathfinder license": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "faulttrace.ai",
-      "source": "project docs"
+      "value": "MIT"
     },
-    "faulttrace architecture": {
+    "agentpathfinder modules": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "Client-side browser app. L5X files parsed in browser via DOMParser. Zero network calls for analysis. AI features use extracted snippets only. Privacy: nothing leaves your browser.",
-      "source": "project docs"
+      "value": "pathfinder_core, task_engine, issuing_layer, agent_runtime, audit_trail, cli, brain_skill, trinity_stack"
     },
-    "faulttrace test results": {
+    "agentpathfinder pip install": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "29/29 test files passed. Largest: 7.8MB java-parser-test.L5X (30 programs, 413 routines, 11995 rungs, 30716 cross-refs) parsed in 2.5s.",
-      "source": "memory/2026-03-22.md"
+      "value": "pip install git+https://github.com/CertainLogicAI/agentpathfinder.git"
     },
-    "faulttrace pricing": {
+    "agentpathfinder pricing tiers": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "Not finalized. Discussion range: $99/mo Starter, $499/mo Professional, $2499/mo Enterprise ($30K/yr). Enterprise displaces $124K+ in headcount. Anton thinks $500/yr is too cheap - industrial software is $5K-15K/seat.",
-      "source": "anton/memory/2026-03-24.md"
+      "value": "Free (unlimited tasks, CLI), Pro $29/mo (dashboard, exports), Business $79/mo (team, remote vault), Enterprise $299+/mo (on-prem)"
     },
-    "skills pricing": {
+    "agentpathfinder repository": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "Individual premium skills: $19 each. Business Starter Bundle: $59 launch price (normally $76). Sold via Gumroad (blenderismai.gumroad.com) and own website (blenderism.github.io).",
-      "source": "memory/2026-03-22.md"
+      "value": "github.com/CertainLogicAI/agentpathfinder"
     },
-    "clawhub account": {
+    "agentpathfinder test coverage": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "@blenderism on ClawHub",
-      "source": "project docs"
+      "value": "Phases 1-5: key generation, sharding, signing, tasks, tokens, audit, agents, atomic writes, locking, crash recovery"
     },
-    "gumroad store": {
+    "agentpathfinder tests total": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "https://blenderismai.gumroad.com/",
-      "source": "memory/2026-03-22.md"
+      "value": "29"
     },
-    "website": {
+    "agentpathfinder version": {
+      "source": "pathfinder_new",
       "type": "string",
-      "value": "blenderism.github.io - GitHub Pages hosted, Stripe for payments (2.9% vs Gumroad 10%)",
-      "source": "memory/2026-03-22.md"
+      "value": "2.1.0 (post-security-hardening)"
     },
-    "shopclawmart": {
+    "angular ivy renderer default since": {
+      "source": "https://angular.io/guide/ivy",
       "type": "string",
-      "value": "ShopClawMart.com - premium skills sales platform",
-      "source": "project docs"
-    },
-    "certainlogic": {
-      "type": "string",
-      "value": "CertainLogic.ai - domain owned by Anton. Intended as the consulting/custom builds brand for deterministic AI solutions for SMBs. Site not built yet.",
-      "source": "anton/2026-04-13"
-    },
-    "competitor felix": {
-      "type": "string",
-      "value": "Felix CEO persona ($99) - all-in-one persona product. We sell specialized working tools, not personas. Different market positioning.",
-      "source": "memory/2026-03-21.md"
-    },
-    "patent status": {
-      "type": "string",
-      "value": "Provisional patent DRAFTED but NOT FILED. Deterministic Query Processing System with Hash-Verified Local Execution and Hybrid LLM Routing. 10 claims under CertainLogic.ai. Needs drawings inserted. NOT submitted to USPTO/EFS-Web yet.",
-      "source": "anton/2026-04-13"
-    },
-    "patent ip protection": {
-      "type": "string",
-      "value": "No prior art posted for token reduction engine or deterministic layer. Trade secret protection maintained. Patent eligibility preserved. All implementation details confidential.",
-      "source": "memory/2026-03-31-no-prior-art.md"
-    },
-    "deterministic ai hallucination rate": {
-      "type": "numeric",
-      "value": "0.8",
-      "unit": "%",
-      "source": "patent_filings/validated_patent_application.md"
-    },
-    "deterministic ai token reduction": {
-      "type": "numeric",
-      "value": "85",
-      "unit": "%",
-      "source": "patent_filings/validated_patent_application.md"
-    },
-    "deterministic ai cache hit rate": {
-      "type": "numeric",
-      "value": "38",
-      "unit": "%",
-      "source": "patent_filings/validated_patent_application.md"
-    },
-    "token engine throughput": {
-      "type": "string",
-      "value": "464,550 queries/sec on stress test. 20,000 queries in 0.04s. 99.9% cache hit rate on repeat queries.",
-      "source": "memory/2026-03-31.md"
-    },
-    "premium skills list": {
-      "type": "string",
-      "value": "Skill Audit Pro ($19), Cold Outreach Pro ($19), Market Research Pro ($19), SEO Audit Pro ($19), AI Visibility Pro, X Monitor Pro, Domain Analyzer Pro. 25 total skills (6 premium Pro versions).",
-      "source": "memory/2026-03-22.md"
+      "value": "angular 9",
+      "verified_date": "2026-04-21"
     },
     "anton background": {
+      "source": "conversations",
       "type": "string",
-      "value": "Controls engineering background. Builds and commissions industrial automation equipment. Familiar with Allen-Bradley, Studio 5000, ladder logic, structured text.",
-      "source": "conversations"
-    },
-    "anton timezone": {
-      "type": "string",
-      "value": "CST",
-      "source": "USER.md"
-    },
-    "anton telegram": {
-      "type": "string",
-      "value": "@ForCryptoClearly (ID: 1381429689)",
-      "source": "USER.md"
-    },
-    "business funnel": {
-      "type": "string",
-      "value": "Agent tech (free/cheap, high volume) -> SMB market (same product, packaged for cost savings) -> Regulated industries (stricter validation, known-facts-only, higher price) -> Manufacturing/FaultTrace (domain-specific, highest margin). Track A: deterministic AI funnel. Track B: FaultTrace (parallel, ship now).",
-      "source": "anton/2026-04-13 discussion"
-    },
-    "faulttrace value prop": {
-      "type": "string",
-      "value": "Stop paying $1,000/call to understand code someone else wrote badly. Get machines back online faster. Your newest guy can troubleshoot like your best guy.",
-      "source": "memory/2026-03-24.md"
-    },
-    "faulttrace beta testers": {
-      "type": "string",
-      "value": "Beta tester #1: AB engineer at small company automating. Said unused tags feature is something hed pay for. Beta tester #2: Commissioning manager, signed up with ref=beta2.",
-      "source": "memory/2026-03-25.md"
-    },
-    "certainlogic site decisions": {
-      "type": "string",
-      "value": "Tech: Astro + Stripe + Cloudflare Pages. Domain on Cloudflare already. Priority: blog-first for traffic. Design: polished, business credibility, light mode. Full platform: shop, blog, services, products.",
-      "source": "anton/2026-04-13"
+      "value": "Controls engineering background. Builds and commissions industrial automation equipment. Familiar with Allen-Bradley, Studio 5000, ladder logic, structured text."
     },
     "anton background full": {
+      "source": "anton/2026-04-13",
       "type": "string",
-      "value": "Controls engineer by trade. Degree in marketing. Sales experience. Significant crypto experience. Ran own business buying/selling rental real estate. Believes AI compute will remain expensive as model capabilities grow. Built token saving tech to address this. Sees AI creating economic divide between those with resources/skills and those without.",
-      "source": "anton/2026-04-13"
+      "value": "Controls engineer by trade. Degree in marketing. Sales experience. Significant crypto experience. Ran own business buying/selling rental real estate. Believes AI compute will remain expensive as model capabilities grow. Built token saving tech to address this. Sees AI creating economic divide between those with resources/skills and those without."
+    },
+    "anton telegram": {
+      "source": "USER.md",
+      "type": "string",
+      "value": "@ForCryptoClearly (ID: 1381429689)"
+    },
+    "anton timezone": {
+      "source": "USER.md",
+      "type": "string",
+      "value": "CST"
+    },
+    "ap orchestrator budget": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "$5.00/day max, $2.00/subagent ceiling"
+    },
+    "ap orchestrator phases": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "8: Gatekeeper, Assessment, Test, Failure Analysis, Fix Design, Fix Apply (Hermes), Verify, Custody, Commit"
+    },
+    "ap orchestrator schedule": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Every 2 hours via cron (America/Chicago)"
+    },
+    "api key vs oauth2 difference": {
+      "source": "https://swagger.io/docs/specification/authentication/",
+      "type": "string",
+      "value": "api keys identify applications; oauth2 grants delegated user authorization with scopes",
+      "verified_date": "2026-04-21"
+    },
+    "argon2 type recommendation for passwords": {
+      "source": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "type": "string",
+      "value": "argon2id (winner of password hashing competition 2015)",
+      "verified_date": "2026-04-21"
+    },
+    "audit signing": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Separate audit key derived via HMAC-SHA256 KDF from master key"
+    },
+    "avogadro number": {
+      "source": "chemistry/NIST",
+      "type": "numeric",
+      "value": "6.02214076e23"
+    },
+    "aws api gateway stages": {
+      "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-stages.html",
+      "type": "string",
+      "value": "logical environments (dev/staging/prod) mapped to api deployments",
+      "verified_date": "2026-04-21"
+    },
+    "aws cloudwatch logs retention default": {
+      "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html",
+      "type": "string",
+      "value": "never expires (must set retention policy manually)",
+      "verified_date": "2026-04-21"
+    },
+    "aws ec2 instance metadata url": {
+      "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html",
+      "type": "string",
+      "value": "http://169.254.169.254/latest/meta-data/",
+      "verified_date": "2026-04-21"
+    },
+    "aws elasticache engines": {
+      "source": "https://docs.aws.amazon.com/elasticache/",
+      "type": "string",
+      "value": "redis and memcached",
+      "verified_date": "2026-04-21"
+    },
+    "aws iam policy evaluation order": {
+      "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
+      "type": "string",
+      "value": "explicit deny overrides allow; default deny if no matching allow",
+      "verified_date": "2026-04-21"
+    },
+    "aws lambda max execution timeout": {
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html",
+      "type": "numeric",
+      "unit": "seconds",
+      "value": "900 seconds (15 minutes)",
+      "verified_date": "2026-04-21"
+    },
+    "aws lambda max memory": {
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html",
+      "type": "numeric",
+      "value": "10240 mb (10 gb)",
+      "verified_date": "2026-04-21"
+    },
+    "aws rds multi-az purpose": {
+      "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html",
+      "type": "string",
+      "value": "synchronous standby replica in different AZ for high availability and automatic failover",
+      "verified_date": "2026-04-21"
+    },
+    "aws region vs availability zone": {
+      "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html",
+      "type": "string",
+      "value": "region is geographic area with multiple AZs; AZ is isolated data center(s) within a region",
+      "verified_date": "2026-04-21"
+    },
+    "aws s3 bucket name constraints": {
+      "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html",
+      "type": "string",
+      "value": "3-63 chars, lowercase letters/numbers/hyphens, must start/end with letter or number, globally unique",
+      "verified_date": "2026-04-21"
+    },
+    "aws s3 max object size": {
+      "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html",
+      "type": "numeric",
+      "value": "5 tb",
+      "verified_date": "2026-04-21"
+    },
+    "aws s3 path-style access deprecated": {
+      "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html",
+      "type": "string",
+      "value": "s3 path-style endpoints (s3.amazonaws.com/bucket) deprecated; use virtual-hosted-style (bucket.s3.amazonaws.com)",
+      "verified_date": "2026-04-21"
+    },
+    "aws s3 presigned url purpose": {
+      "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html",
+      "type": "string",
+      "value": "time-limited url granting temporary access to private s3 object without aws credentials",
+      "verified_date": "2026-04-21"
+    },
+    "aws sqs message retention default": {
+      "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html",
+      "type": "numeric",
+      "value": "4 days (max 14 days)",
+      "verified_date": "2026-04-21"
+    },
+    "aws vpc default cidr block": {
+      "source": "https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html",
+      "type": "string",
+      "value": "172.31.0.0/16 (default vpc)",
+      "verified_date": "2026-04-21"
+    },
+    "azure blob storage tiers": {
+      "source": "https://docs.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
+      "type": "string",
+      "value": "hot, cool, cold, archive",
+      "verified_date": "2026-04-21"
+    },
+    "azure functions consumption plan timeout": {
+      "source": "https://docs.microsoft.com/en-us/azure/azure-functions/functions-scale",
+      "type": "numeric",
+      "value": "5 minutes default (max 10 minutes)",
+      "verified_date": "2026-04-21"
+    },
+    "bcrypt hash rounds default recommendation": {
+      "source": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "type": "numeric",
+      "value": "12 (cost factor; higher = slower = more secure)",
+      "verified_date": "2026-04-21"
+    },
+    "boiling point of water": {
+      "source": "physics",
+      "type": "numeric",
+      "unit": "\u00b0c",
+      "value": "100"
+    },
+    "brain api endpoint": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "http://127.0.0.1:8000"
+    },
+    "brain api health endpoint": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "/health returns status ok + component statuses + facts_db count"
+    },
+    "brain components": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "token_engine, memory_search, hallucination_detector, hybrid_router"
+    },
+    "brain facts current count": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "393"
+    },
+    "brain first dispatch behavior": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Checks Brain API first, returns fact instantly on hit, falls back to LLM on miss"
+    },
+    "brain hermes overlap": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "308 of 315 Hermes queries match Brain facts (97.8%)"
+    },
+    "brain hit output format": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "{brain_hit: bool, answer: str, tokens_saved: int, cost_saved_usd: float, llm_fallback: bool}"
+    },
+    "brain hit rate tested": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "100% on known facts (3ms latency)"
+    },
+    "brain hook metrics log": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "brain_hook_metrics.jsonl (JSONL format)"
+    },
+    "brain skill methods": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "ask(query), get_report(), save_metrics()"
+    },
+    "brain skill strategy": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Brain-first: query Brain API before LLM, fallback only on miss"
+    },
+    "business funnel": {
+      "source": "anton/2026-04-13 discussion",
+      "type": "string",
+      "value": "Agent tech (free/cheap, high volume) -> SMB market (same product, packaged for cost savings) -> Regulated industries (stricter validation, known-facts-only, higher price) -> Manufacturing/FaultTrace (domain-specific, highest margin). Track A: deterministic AI funnel. Track B: FaultTrace (parallel, ship now)."
+    },
+    "cache hit rate historical": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "20% (old in-memory cache)"
+    },
+    "capital of australia": {
+      "source": "geography",
+      "type": "string",
+      "value": "canberra"
+    },
+    "capital of france": {
+      "source": "geography",
+      "type": "string",
+      "value": "paris"
+    },
+    "capital of germany": {
+      "source": "geography",
+      "type": "string",
+      "value": "berlin"
+    },
+    "capital of japan": {
+      "source": "geography",
+      "type": "string",
+      "value": "tokyo"
+    },
+    "certainlogic": {
+      "source": "anton/2026-04-13",
+      "type": "string",
+      "value": "CertainLogic.ai - domain owned by Anton. Intended as the consulting/custom builds brand for deterministic AI solutions for SMBs. Site not built yet."
+    },
+    "certainlogic brand": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "CertainLogic.ai, @CertainLogicAI on X"
     },
     "certainlogic brand colors": {
+      "source": "anton/2026-04-13",
       "type": "string",
-      "value": "Primary: #0F1724 (deep navy). Background: #FFFFFF / #F8FAFC. Accent: #2563EB (electric blue) - CTAs, links, key numbers. Text: #111827. Muted: #6B7280. Light mode. Polished, precise, professional.",
-      "source": "anton/2026-04-13"
+      "value": "Primary: #0F1724 (deep navy). Background: #FFFFFF / #F8FAFC. Accent: #2563EB (electric blue) - CTAs, links, key numbers. Text: #111827. Muted: #6B7280. Light mode. Polished, precise, professional."
+    },
+    "certainlogic founder": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Anton"
+    },
+    "certainlogic products": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "AgentPathfinder (task router), FaultTrace (PLC tools), Hallucination Guard (validation), Brain API (facts)"
+    },
+    "certainlogic site decisions": {
+      "source": "anton/2026-04-13",
+      "type": "string",
+      "value": "Tech: Astro + Stripe + Cloudflare Pages. Domain on Cloudflare already. Priority: blog-first for traffic. Design: polished, business credibility, light mode. Full platform: shop, blog, services, products."
+    },
+    "chemical formula for aspirin": {
+      "source": "chemistry/IUPAC",
+      "type": "string",
+      "value": "c9h8o4"
+    },
+    "chemical formula for water": {
+      "source": "chemistry",
+      "type": "string",
+      "value": "h2o"
+    },
+    "ci cd acronym": {
+      "source": "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
+      "type": "string",
+      "value": "continuous integration / continuous delivery (or deployment)",
+      "verified_date": "2026-04-21"
+    },
+    "clawhub account": {
+      "source": "project docs",
+      "type": "string",
+      "value": "@blenderism on ClawHub"
+    },
+    "competitor felix": {
+      "source": "memory/2026-03-21.md",
+      "type": "string",
+      "value": "Felix CEO persona ($99) - all-in-one persona product. We sell specialized working tools, not personas. Different market positioning."
+    },
+    "content security policy header abbreviation": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP",
+      "type": "string",
+      "value": "csp (Content-Security-Policy header)",
+      "verified_date": "2026-04-21"
+    },
+    "crash recovery": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "detect_crashed_steps() finds running steps, reset_running_step() recovers"
+    },
+    "create react app deprecated": {
+      "source": "https://react.dev/learn/start-a-new-react-project",
+      "type": "string",
+      "value": "create-react-app is no longer recommended; use vite, next.js, or remix",
+      "verified_date": "2026-04-21"
+    },
+    "csrf stands for": {
+      "source": "https://owasp.org/www-community/attacks/csrf",
+      "type": "string",
+      "value": "cross-site request forgery",
+      "verified_date": "2026-04-21"
+    },
+    "deterministic ai cache hit rate": {
+      "source": "patent_filings/validated_patent_application.md",
+      "type": "numeric",
+      "unit": "%",
+      "value": "38"
+    },
+    "deterministic ai hallucination rate": {
+      "source": "patent_filings/validated_patent_application.md",
+      "type": "numeric",
+      "unit": "%",
+      "value": "0.8"
+    },
+    "deterministic ai product 1": {
+      "source": "anton/architecture",
+      "type": "string",
+      "value": "Agent/SMB tier: LLM responses pass hallucination filter then get cached. Future matching queries served from cache at zero token cost. Hallucination rate above 2% but acceptable for general use. Value prop: massive token savings as cache fills."
+    },
+    "deterministic ai product 2": {
+      "source": "anton/architecture",
+      "type": "string",
+      "value": "Regulated/compliance tier: Known facts database with pre-validated authoritative data. Queries validated against facts cache. Can run with zero LLM dependency. Targeting sub-2% hallucination rate. For regulated industries (medical, financial, industrial)."
+    },
+    "deterministic ai token reduction": {
+      "source": "patent_filings/validated_patent_application.md",
+      "type": "numeric",
+      "unit": "%",
+      "value": "85"
+    },
+    "django 4.2 lts support until": {
+      "source": "https://www.djangoproject.com/download/#supported-versions",
+      "type": "string",
+      "value": "april 2026",
+      "verified_date": "2026-04-21"
+    },
+    "django admin default url": {
+      "source": "https://docs.djangoproject.com/en/5.0/ref/contrib/admin/",
+      "type": "string",
+      "value": "/admin/",
+      "verified_date": "2026-04-21"
+    },
+    "django csrf token template tag": {
+      "source": "https://docs.djangoproject.com/en/5.0/ref/csrf/",
+      "type": "string",
+      "value": "{% csrf_token %}",
+      "verified_date": "2026-04-21"
+    },
+    "django middleware order matters": {
+      "source": "https://docs.django-rest-framework.org/api-guide/middleware/",
+      "type": "string",
+      "value": "request phase processes top-to-bottom; response phase bottom-to-top",
+      "verified_date": "2026-04-21"
+    },
+    "django migrations command": {
+      "source": "https://docs.djangoproject.com/en/5.0/topics/migrations/",
+      "type": "string",
+      "value": "python manage.py makemigrations && python manage.py migrate",
+      "verified_date": "2026-04-21"
+    },
+    "django orm query lazy evaluation": {
+      "source": "https://docs.djangoproject.com/en/5.0/topics/db/queries/#querysets-are-lazy",
+      "type": "string",
+      "value": "querysets are lazy; database hit occurs only when queryset is evaluated (iterated, sliced, etc.)",
+      "verified_date": "2026-04-21"
+    },
+    "django rest framework serializer purpose": {
+      "source": "https://www.django-rest-framework.org/api-guide/serializers/",
+      "type": "string",
+      "value": "converts complex types (querysets, model instances) to python native datatypes for rendering to json/xml",
+      "verified_date": "2026-04-21"
+    },
+    "django select_related vs prefetch_related": {
+      "source": "https://docs.djangoproject.com/en/5.0/ref/models/querysets/#select-related",
+      "type": "string",
+      "value": "select_related uses SQL JOIN (foreign key/one-to-one); prefetch_related does separate query and joins in python",
+      "verified_date": "2026-04-21"
+    },
+    "django settings secret_key purpose": {
+      "source": "https://docs.djangoproject.com/en/5.0/ref/settings/#secret-key",
+      "type": "string",
+      "value": "used for cryptographic signing of sessions, csrf tokens, passwords; must be secret in production",
+      "verified_date": "2026-04-21"
+    },
+    "django version 4.0 dropped support for": {
+      "source": "https://docs.djangoproject.com/en/4.0/releases/4.0/",
+      "type": "string",
+      "value": "python 3.6 and 3.7",
+      "verified_date": "2026-04-21"
+    },
+    "docker .dockerignore purpose": {
+      "source": "https://docs.docker.com/engine/reference/builder/#dockerignore-file",
+      "type": "string",
+      "value": "excludes files and directories from build context to reduce size and avoid leaking secrets",
+      "verified_date": "2026-04-21"
+    },
+    "docker build context": {
+      "source": "https://docs.docker.com/build/concepts/context/",
+      "type": "string",
+      "value": "the set of files sent to docker daemon; defined by the path/url argument to docker build",
+      "verified_date": "2026-04-21"
+    },
+    "docker buildkit default since version": {
+      "source": "https://docs.docker.com/build/buildkit/",
+      "type": "string",
+      "value": "docker 23.0",
+      "verified_date": "2026-04-21"
+    },
+    "docker compose default file name": {
+      "source": "https://docs.docker.com/compose/compose-file/",
+      "type": "string",
+      "value": "docker-compose.yml (v1) / compose.yaml (v2 preferred)",
+      "verified_date": "2026-04-21"
+    },
+    "docker compose depends_on limitation": {
+      "source": "https://docs.docker.com/compose/compose-file/05-services/#depends_on",
+      "type": "string",
+      "value": "only waits for container to start, not for service inside to be ready; use healthcheck + condition",
+      "verified_date": "2026-04-21"
+    },
+    "docker compose version 3 minimum docker version": {
+      "source": "https://docs.docker.com/compose/compose-file/compose-versioning/",
+      "type": "string",
+      "value": "docker engine 1.13.0+",
+      "verified_date": "2026-04-21"
+    },
+    "docker copy vs add instruction": {
+      "source": "https://docs.docker.com/engine/reference/builder/#copy",
+      "type": "string",
+      "value": "COPY copies files/dirs; ADD also supports URL fetch and tar auto-extraction (prefer COPY for simplicity)",
+      "verified_date": "2026-04-21"
+    },
+    "docker default container stop signal": {
+      "source": "https://docs.docker.com/engine/reference/commandline/stop/",
+      "type": "string",
+      "value": "SIGTERM; SIGKILL sent after grace period (default 10s)",
+      "verified_date": "2026-04-21"
+    },
+    "docker default mysql port": {
+      "source": "https://hub.docker.com/_/mysql",
+      "type": "numeric",
+      "value": "3306",
+      "verified_date": "2026-04-21"
+    },
+    "docker default network driver": {
+      "source": "https://docs.docker.com/network/drivers/bridge/",
+      "type": "string",
+      "value": "bridge",
+      "verified_date": "2026-04-21"
+    },
+    "docker default nginx port": {
+      "source": "https://hub.docker.com/_/nginx",
+      "type": "numeric",
+      "value": "80",
+      "verified_date": "2026-04-21"
+    },
+    "docker default postgres port": {
+      "source": "https://hub.docker.com/_/postgres",
+      "type": "numeric",
+      "value": "5432",
+      "verified_date": "2026-04-21"
+    },
+    "docker default redis port": {
+      "source": "https://hub.docker.com/_/redis",
+      "type": "numeric",
+      "value": "6379",
+      "verified_date": "2026-04-21"
+    },
+    "docker default registry": {
+      "source": "https://docs.docker.com/docker-hub/",
+      "type": "string",
+      "value": "docker hub (hub.docker.com)",
+      "verified_date": "2026-04-21"
+    },
+    "docker default stop signal": {
+      "source": "https://docs.docker.com/engine/reference/commandline/stop/",
+      "type": "string",
+      "value": "sigterm; sigkill sent after grace period (default 10s)",
+      "verified_date": "2026-04-21"
+    },
+    "docker entrypoint vs cmd": {
+      "source": "https://docs.docker.com/engine/reference/builder/#entrypoint",
+      "type": "string",
+      "value": "ENTRYPOINT sets the executable; CMD provides default arguments (overridable at runtime)",
+      "verified_date": "2026-04-21"
+    },
+    "docker exec vs run difference": {
+      "source": "https://docs.docker.com/engine/reference/commandline/exec/",
+      "type": "string",
+      "value": "docker run creates a new container; docker exec runs command in existing running container",
+      "verified_date": "2026-04-21"
+    },
+    "docker expose vs publish": {
+      "source": "https://docs.docker.com/engine/reference/builder/#expose",
+      "type": "string",
+      "value": "EXPOSE documents a port; -p/--publish actually maps it to the host",
+      "verified_date": "2026-04-21"
+    },
+    "docker healthcheck instruction purpose": {
+      "source": "https://docs.docker.com/engine/reference/builder/#healthcheck",
+      "type": "string",
+      "value": "runs a command inside container to determine if it is healthy",
+      "verified_date": "2026-04-21"
+    },
+    "docker host network mode": {
+      "source": "https://docs.docker.com/network/drivers/host/",
+      "type": "string",
+      "value": "container shares host network stack; no network isolation",
+      "verified_date": "2026-04-21"
+    },
+    "docker image layers are": {
+      "source": "https://docs.docker.com/storage/storagedriver/",
+      "type": "string",
+      "value": "read-only; container adds a writable layer on top",
+      "verified_date": "2026-04-21"
+    },
+    "docker layer caching invalidated when": {
+      "source": "https://docs.docker.com/build/cache/",
+      "type": "string",
+      "value": "a dockerfile instruction or its context changes; all subsequent layers are rebuilt",
+      "verified_date": "2026-04-21"
+    },
+    "docker multi-stage build benefit": {
+      "source": "https://docs.docker.com/build/building/multi-stage/",
+      "type": "string",
+      "value": "reduces final image size by discarding build-time dependencies",
+      "verified_date": "2026-04-21"
+    },
+    "docker overlay network purpose": {
+      "source": "https://docs.docker.com/network/drivers/overlay/",
+      "type": "string",
+      "value": "connects containers across multiple docker hosts (swarm/kubernetes)",
+      "verified_date": "2026-04-21"
+    },
+    "docker restart policy options": {
+      "source": "https://docs.docker.com/engine/reference/run/#restart-policies---restart",
+      "type": "string",
+      "value": "no, always, on-failure, unless-stopped",
+      "verified_date": "2026-04-21"
+    },
+    "docker run --rm flag": {
+      "source": "https://docs.docker.com/engine/reference/run/#clean-up---rm",
+      "type": "string",
+      "value": "automatically removes the container when it exits",
+      "verified_date": "2026-04-21"
+    },
+    "docker scratch image": {
+      "source": "https://hub.docker.com/_/scratch",
+      "type": "string",
+      "value": "empty base image; used for statically compiled binaries with zero dependencies",
+      "verified_date": "2026-04-21"
+    },
+    "docker user instruction purpose": {
+      "source": "https://docs.docker.com/engine/reference/builder/#user",
+      "type": "string",
+      "value": "sets the user and group for subsequent RUN, CMD, ENTRYPOINT instructions",
+      "verified_date": "2026-04-21"
+    },
+    "docker volumes vs bind mounts": {
+      "source": "https://docs.docker.com/storage/volumes/",
+      "type": "string",
+      "value": "volumes are managed by docker and stored in docker area; bind mounts map host directory directly",
+      "verified_date": "2026-04-21"
+    },
+    "earth distance from sun": {
+      "source": "astronomy/IAU",
+      "type": "numeric",
+      "unit": "km",
+      "value": "149597870.7"
+    },
+    "elasticsearch default port": {
+      "source": "https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html",
+      "type": "numeric",
+      "value": "9200",
+      "verified_date": "2026-04-21"
+    },
+    "electron mass": {
+      "source": "physics/NIST",
+      "type": "numeric",
+      "unit": "kg",
+      "value": "9.1093837015e-31"
+    },
+    "fastapi 0.100 pydantic v2 default": {
+      "source": "https://fastapi.tiangolo.com/release-notes/#01000",
+      "type": "string",
+      "value": "fastapi 0.100.0 uses pydantic v2 by default with backward compatibility layer",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi automatic docs url": {
+      "source": "https://fastapi.tiangolo.com/tutorial/first-steps/",
+      "type": "string",
+      "value": "/docs (swagger ui) and /redoc",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi background tasks class": {
+      "source": "https://fastapi.tiangolo.com/tutorial/background-tasks/",
+      "type": "string",
+      "value": "BackgroundTasks",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi based on": {
+      "source": "https://fastapi.tiangolo.com/",
+      "type": "string",
+      "value": "starlette (asgi framework) and pydantic (data validation)",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi default uvicorn port": {
+      "source": "https://fastapi.tiangolo.com/tutorial/first-steps/",
+      "type": "numeric",
+      "value": "8000",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi dependency injection keyword": {
+      "source": "https://fastapi.tiangolo.com/tutorial/dependencies/",
+      "type": "string",
+      "value": "Depends()",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi lifespan event handler": {
+      "source": "https://fastapi.tiangolo.com/advanced/events/",
+      "type": "string",
+      "value": "@asynccontextmanager lifespan function replaces deprecated on_event startup/shutdown in fastapi 0.93+",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi minimum python version": {
+      "source": "https://fastapi.tiangolo.com/#requirements",
+      "type": "string",
+      "value": "3.8",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi path parameter syntax": {
+      "source": "https://fastapi.tiangolo.com/tutorial/path-params/",
+      "type": "string",
+      "value": "{param_name} in path string, typed in function signature",
+      "verified_date": "2026-04-21"
+    },
+    "fastapi pydantic v2 breaking change": {
+      "source": "https://docs.pydantic.dev/latest/migration/",
+      "type": "string",
+      "value": "pydantic v2 (used in fastapi 0.100+) changes .dict() to .model_dump() and .json() to .model_json()",
+      "verified_date": "2026-04-21"
+    },
+    "faulttrace architecture": {
+      "source": "project docs",
+      "type": "string",
+      "value": "Client-side browser app. L5X files parsed in browser via DOMParser. Zero network calls for analysis. AI features use extracted snippets only. Privacy: nothing leaves your browser."
+    },
+    "faulttrace beta testers": {
+      "source": "memory/2026-03-25.md",
+      "type": "string",
+      "value": "Beta tester #1: AB engineer at small company automating. Said unused tags feature is something hed pay for. Beta tester #2: Commissioning manager, signed up with ref=beta2."
+    },
+    "faulttrace domain": {
+      "source": "project docs",
+      "type": "string",
+      "value": "faulttrace.ai"
+    },
+    "faulttrace pricing": {
+      "source": "anton/memory/2026-03-24.md",
+      "type": "string",
+      "value": "Not finalized. Discussion range: $99/mo Starter, $499/mo Professional, $2499/mo Enterprise ($30K/yr). Enterprise displaces $124K+ in headcount. Anton thinks $500/yr is too cheap - industrial software is $5K-15K/seat."
+    },
+    "faulttrace product": {
+      "source": "project docs",
+      "type": "string",
+      "value": "FaultTrace: 3 modes - Troubleshoot (L5X + fault -> wire-level diagnosis), Build (parts list -> PLC program via L5X writer), Draft (parts list -> electrical schematics SVG). Client-side parsing, nothing leaves browser. Target: industrial automation, controls engineers."
+    },
+    "faulttrace test results": {
+      "source": "memory/2026-03-22.md",
+      "type": "string",
+      "value": "29/29 test files passed. Largest: 7.8MB java-parser-test.L5X (30 programs, 413 routines, 11995 rungs, 30716 cross-refs) parsed in 2.5s."
+    },
+    "faulttrace value prop": {
+      "source": "memory/2026-03-24.md",
+      "type": "string",
+      "value": "Stop paying $1,000/call to understand code someone else wrote badly. Get machines back online faster. Your newest guy can troubleshoot like your best guy."
+    },
+    "first smartphone": {
+      "source": "technology/IEEE",
+      "type": "string",
+      "value": "ibm simon",
+      "year": "1992"
+    },
+    "flask 2.0 async support": {
+      "source": "https://flask.palletsprojects.com/en/2.0.x/async-await/",
+      "type": "string",
+      "value": "flask 2.0 added native async view support using asyncio",
+      "verified_date": "2026-04-21"
+    },
+    "flask application factory pattern": {
+      "source": "https://flask.palletsprojects.com/en/3.0.x/patterns/appfactories/",
+      "type": "string",
+      "value": "create_app() function that instantiates and configures Flask app; enables testing with different configs",
+      "verified_date": "2026-04-21"
+    },
+    "flask blueprint purpose": {
+      "source": "https://flask.palletsprojects.com/en/3.0.x/blueprints/",
+      "type": "string",
+      "value": "organizes application into modular components with their own routes and views",
+      "verified_date": "2026-04-21"
+    },
+    "flask context globals": {
+      "source": "https://flask.palletsprojects.com/en/3.0.x/appcontext/",
+      "type": "string",
+      "value": "g (request context), request, session, current_app",
+      "verified_date": "2026-04-21"
+    },
+    "flask debug mode warning": {
+      "source": "https://flask.palletsprojects.com/en/3.0.x/debugging/",
+      "type": "string",
+      "value": "never run debug=True in production; exposes interactive debugger (remote code execution risk)",
+      "verified_date": "2026-04-21"
+    },
+    "flask minimum python version (3.x)": {
+      "source": "https://flask.palletsprojects.com/en/3.0.x/installation/",
+      "type": "string",
+      "value": "3.8 (flask 3.x requires python 3.8+)",
+      "verified_date": "2026-04-21"
+    },
+    "flask run command default port": {
+      "source": "https://flask.palletsprojects.com/en/3.0.x/quickstart/",
+      "type": "numeric",
+      "value": "5000",
+      "verified_date": "2026-04-21"
+    },
+    "flask wtf csrf token header": {
+      "source": "https://flask-wtf.readthedocs.io/en/1.2.x/csrf/",
+      "type": "string",
+      "value": "X-CSRFToken",
+      "verified_date": "2026-04-21"
+    },
+    "gcp bigquery pricing model": {
+      "source": "https://cloud.google.com/bigquery/pricing",
+      "type": "string",
+      "value": "on-demand: charged per bytes processed; flat-rate: reserved slots",
+      "verified_date": "2026-04-21"
+    },
+    "gcp cloud run concurrency default": {
+      "source": "https://cloud.google.com/run/docs/about-concurrency",
+      "type": "numeric",
+      "value": "80 concurrent requests per container instance",
+      "verified_date": "2026-04-21"
+    },
+    "gcp cloud storage classes": {
+      "source": "https://cloud.google.com/storage/docs/storage-classes",
+      "type": "string",
+      "value": "standard, nearline (30-day min), coldline (90-day min), archive (365-day min)",
+      "verified_date": "2026-04-21"
+    },
+    "git --amend flag purpose": {
+      "source": "https://git-scm.com/docs/git-commit",
+      "type": "string",
+      "value": "modifies the most recent commit (message and/or staged changes)",
+      "verified_date": "2026-04-21"
+    },
+    "git bisect purpose": {
+      "source": "https://git-scm.com/docs/git-bisect",
+      "type": "string",
+      "value": "binary search through commit history to find the commit that introduced a bug",
+      "verified_date": "2026-04-21"
+    },
+    "git blame command shows": {
+      "source": "https://git-scm.com/docs/git-blame",
+      "type": "string",
+      "value": "last commit that modified each line of a file, with author and date",
+      "verified_date": "2026-04-21"
+    },
+    "git cherry-pick purpose": {
+      "source": "https://git-scm.com/docs/git-cherry-pick",
+      "type": "string",
+      "value": "applies a specific commit from one branch onto current branch",
+      "verified_date": "2026-04-21"
+    },
+    "git config scope levels": {
+      "source": "https://git-scm.com/docs/git-config",
+      "type": "string",
+      "value": "system (/etc/gitconfig), global (~/.gitconfig), local (.git/config)",
+      "verified_date": "2026-04-21"
+    },
+    "git conventional commits spec": {
+      "source": "https://www.conventionalcommits.org/",
+      "type": "string",
+      "value": "standardized commit message format: type(scope): description (e.g., feat(auth): add oauth support)",
+      "verified_date": "2026-04-21"
+    },
+    "git default branch name (modern)": {
+      "source": "https://git-scm.com/docs/git-init",
+      "type": "string",
+      "value": "main (changed from master; configurable via init.defaultBranch)",
+      "verified_date": "2026-04-21"
+    },
+    "git detached head state": {
+      "source": "https://git-scm.com/docs/git-checkout",
+      "type": "string",
+      "value": "HEAD points directly to a commit sha instead of a branch ref",
+      "verified_date": "2026-04-21"
+    },
+    "git fetch vs pull": {
+      "source": "https://git-scm.com/docs/git-pull",
+      "type": "string",
+      "value": "fetch downloads remote changes without merging; pull = fetch + merge",
+      "verified_date": "2026-04-21"
+    },
+    "git force push command": {
+      "source": "https://git-scm.com/docs/git-push",
+      "type": "string",
+      "value": "git push --force or git push -f (prefer --force-with-lease for safety)",
+      "verified_date": "2026-04-21"
+    },
+    "git hash algorithm default": {
+      "source": "https://git-scm.com/docs/hash-function-transition",
+      "type": "string",
+      "value": "sha-1 (sha-256 support added in git 2.29 experimental)",
+      "verified_date": "2026-04-21"
+    },
+    "git head refers to": {
+      "source": "https://git-scm.com/docs/gitglossary",
+      "type": "string",
+      "value": "current branch tip or current commit (if detached HEAD state)",
+      "verified_date": "2026-04-21"
+    },
+    "git hooks location": {
+      "source": "https://git-scm.com/docs/githooks",
+      "type": "string",
+      "value": ".git/hooks/ directory; scripts named by hook type (pre-commit, post-commit, etc.)",
+      "verified_date": "2026-04-21"
+    },
+    "git interactive rebase command": {
+      "source": "https://git-scm.com/docs/git-rebase",
+      "type": "string",
+      "value": "git rebase -i <base-commit>",
+      "verified_date": "2026-04-21"
+    },
+    "git object types": {
+      "source": "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+      "type": "string",
+      "value": "blob, tree, commit, tag",
+      "verified_date": "2026-04-21"
+    },
+    "git rebase vs merge": {
+      "source": "https://git-scm.com/book/en/v2/Git-Branching-Rebasing",
+      "type": "string",
+      "value": "merge preserves history with merge commit; rebase replays commits for linear history",
+      "verified_date": "2026-04-21"
+    },
+    "git reflog purpose": {
+      "source": "https://git-scm.com/docs/git-reflog",
+      "type": "string",
+      "value": "records updates to branch tips; useful for recovering lost commits",
+      "verified_date": "2026-04-21"
+    },
+    "git shallow clone flag": {
+      "source": "https://git-scm.com/docs/git-clone",
+      "type": "string",
+      "value": "--depth=N; clones only the last N commits",
+      "verified_date": "2026-04-21"
+    },
+    "git sparse checkout purpose": {
+      "source": "https://git-scm.com/docs/git-sparse-checkout",
+      "type": "string",
+      "value": "checks out only a subset of files in a repository (useful for monorepos)",
+      "verified_date": "2026-04-21"
+    },
+    "git staging area also called": {
+      "source": "https://git-scm.com/about/staging-area",
+      "type": "string",
+      "value": "index",
+      "verified_date": "2026-04-21"
+    },
+    "git stash command purpose": {
+      "source": "https://git-scm.com/docs/git-stash",
+      "type": "string",
+      "value": "temporarily shelves uncommitted changes so working directory is clean",
+      "verified_date": "2026-04-21"
+    },
+    "git submodule purpose": {
+      "source": "https://git-scm.com/book/en/v2/Git-Tools-Submodules",
+      "type": "string",
+      "value": "embeds another git repository as a subdirectory within a parent repository",
+      "verified_date": "2026-04-21"
+    },
+    "git tag types": {
+      "source": "https://git-scm.com/book/en/v2/Git-Basics-Tagging",
+      "type": "string",
+      "value": "lightweight (pointer to commit) and annotated (full object with message, tagger, date)",
+      "verified_date": "2026-04-21"
+    },
+    "git worktree purpose": {
+      "source": "https://git-scm.com/docs/git-worktree",
+      "type": "string",
+      "value": "allows multiple working trees attached to same repository for parallel branch work",
+      "verified_date": "2026-04-21"
+    },
+    "gitflow main branches": {
+      "source": "https://nvie.com/posts/a-successful-git-branching-model/",
+      "type": "string",
+      "value": "main (production) and develop (integration); feature/release/hotfix branches off these",
+      "verified_date": "2026-04-21"
+    },
+    "github actions cache action": {
+      "source": "https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows",
+      "type": "string",
+      "value": "actions/cache@v3; caches dependencies to speed up workflows",
+      "verified_date": "2026-04-21"
+    },
+    "github actions concurrency group": {
+      "source": "https://docs.github.com/en/actions/using-jobs/using-concurrency",
+      "type": "string",
+      "value": "concurrency: group: ${{ github.ref }} cancel-in-progress: true; cancels duplicate runs",
+      "verified_date": "2026-04-21"
+    },
+    "github actions environment context": {
+      "source": "https://docs.github.com/en/actions/learn-github-actions/contexts",
+      "type": "string",
+      "value": "${{ env.VAR_NAME }} for env vars; ${{ github.sha }} for commit sha",
+      "verified_date": "2026-04-21"
+    },
+    "github actions job runs-on options": {
+      "source": "https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners",
+      "type": "string",
+      "value": "ubuntu-latest, windows-latest, macos-latest (github-hosted runners)",
+      "verified_date": "2026-04-21"
+    },
+    "github actions matrix strategy": {
+      "source": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+      "type": "string",
+      "value": "strategy: matrix: runs job multiple times with different variable combinations",
+      "verified_date": "2026-04-21"
+    },
+    "github actions reusable workflow call": {
+      "source": "https://docs.github.com/en/actions/using-workflows/reusing-workflows",
+      "type": "string",
+      "value": "uses: org/repo/.github/workflows/file.yml@ref",
+      "verified_date": "2026-04-21"
+    },
+    "github actions secrets access": {
+      "source": "https://docs.github.com/en/actions/security-guides/encrypted-secrets",
+      "type": "string",
+      "value": "${{ secrets.SECRET_NAME }}",
+      "verified_date": "2026-04-21"
+    },
+    "github actions trigger on push": {
+      "source": "https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows",
+      "type": "string",
+      "value": "on: push: branches: [main]",
+      "verified_date": "2026-04-21"
+    },
+    "github actions workflow file location": {
+      "source": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions",
+      "type": "string",
+      "value": ".github/workflows/*.yml",
+      "verified_date": "2026-04-21"
+    },
+    "gravitational constant": {
+      "source": "physics/NIST",
+      "type": "numeric",
+      "unit": "m\u00b3/(kg\u00b7s\u00b2)",
+      "value": "6.67430e-11"
+    },
+    "guard tool call behavior": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Verifies tool outputs against Brain facts for hallucinations"
+    },
+    "gumroad store": {
+      "source": "memory/2026-03-22.md",
+      "type": "string",
+      "value": "https://blenderismai.gumroad.com/"
+    },
+    "hash algorithm": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "SHA-256"
+    },
+    "hermes brain client api": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "ask(query), log_task(name), log_phase(task_id, phase), complete_task(task_id), guard(tool, args, result)"
+    },
+    "hermes brain client version": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "2 (Trinity Stack integrated)"
+    },
+    "hermes cache entries": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "315 pre-warmed queries from brain-api.log"
+    },
+    "hermes system prompt updated": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "2026-04-26 - instructs Brain-first, task tracking, guard usage"
+    },
+    "hmac algorithm": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "HMAC-SHA256"
+    },
+    "hsts header": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security",
+      "type": "string",
+      "value": "Strict-Transport-Security: max-age=<seconds>; includeSubDomains",
+      "verified_date": "2026-04-21"
+    },
+    "http authorization bearer token header": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization",
+      "type": "string",
+      "value": "Authorization: Bearer <token>",
+      "verified_date": "2026-04-21"
+    },
+    "http cache-control no-store": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control",
+      "type": "string",
+      "value": "instructs caches to never store response; stronger than no-cache",
+      "verified_date": "2026-04-21"
+    },
+    "http content-type for json": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type",
+      "type": "string",
+      "value": "application/json",
+      "verified_date": "2026-04-21"
+    },
+    "http cors preflight method": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+      "type": "string",
+      "value": "OPTIONS request sent before cross-origin request to check server permissions",
+      "verified_date": "2026-04-21"
+    },
+    "http etag header purpose": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag",
+      "type": "string",
+      "value": "opaque identifier for resource version; used with If-None-Match for conditional requests",
+      "verified_date": "2026-04-21"
+    },
+    "http methods safe and idempotent": {
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP",
+      "type": "string",
+      "value": "GET and HEAD are safe (no side effects) and idempotent",
+      "verified_date": "2026-04-21"
+    },
+    "http put vs patch": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH",
+      "type": "string",
+      "value": "PUT replaces entire resource; PATCH applies partial update",
+      "verified_date": "2026-04-21"
+    },
+    "http status 200 code": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200",
+      "type": "string",
+      "value": "200",
+      "verified_date": "2026-04-21"
+    },
+    "http status 200 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200",
+      "type": "string",
+      "value": "ok",
+      "verified_date": "2026-04-21"
+    },
+    "http status 201 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201",
+      "type": "string",
+      "value": "created - resource successfully created",
+      "verified_date": "2026-04-21"
+    },
+    "http status 204 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204",
+      "type": "string",
+      "value": "no content - success with no response body",
+      "verified_date": "2026-04-21"
+    },
+    "http status 301 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301",
+      "type": "string",
+      "value": "moved permanently - resource has new permanent uri",
+      "verified_date": "2026-04-21"
+    },
+    "http status 302 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302",
+      "type": "string",
+      "value": "found - temporary redirect",
+      "verified_date": "2026-04-21"
+    },
+    "http status 304 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304",
+      "type": "string",
+      "value": "not modified - cached version is valid; no body returned",
+      "verified_date": "2026-04-21"
+    },
+    "http status 400 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "type": "string",
+      "value": "bad request - client sent invalid request",
+      "verified_date": "2026-04-21"
+    },
+    "http status 401 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
+      "type": "string",
+      "value": "unauthorized - authentication required",
+      "verified_date": "2026-04-21"
+    },
+    "http status 403 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403",
+      "type": "string",
+      "value": "forbidden - authenticated but not authorized",
+      "verified_date": "2026-04-21"
+    },
+    "http status 404 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "type": "string",
+      "value": "not found - resource does not exist",
+      "verified_date": "2026-04-21"
+    },
+    "http status 405 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405",
+      "type": "string",
+      "value": "method not allowed - http method not supported for this endpoint",
+      "verified_date": "2026-04-21"
+    },
+    "http status 409 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409",
+      "type": "string",
+      "value": "conflict - request conflicts with current resource state",
+      "verified_date": "2026-04-21"
+    },
+    "http status 422 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422",
+      "type": "string",
+      "value": "unprocessable entity - request well-formed but semantic errors (used in rest apis)",
+      "verified_date": "2026-04-21"
+    },
+    "http status 429 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429",
+      "type": "string",
+      "value": "too many requests - rate limit exceeded",
+      "verified_date": "2026-04-21"
+    },
+    "http status 500 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+      "type": "string",
+      "value": "internal server error - server encountered unexpected condition",
+      "verified_date": "2026-04-21"
+    },
+    "http status 502 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "type": "string",
+      "value": "bad gateway - upstream server returned invalid response",
+      "verified_date": "2026-04-21"
+    },
+    "http status 503 meaning": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503",
+      "type": "string",
+      "value": "service unavailable - server temporarily overloaded or down",
+      "verified_date": "2026-04-21"
+    },
+    "http/2 multiplexing": {
+      "source": "https://http2.github.io/faq/",
+      "type": "string",
+      "value": "multiple requests/responses over single tcp connection simultaneously (no head-of-line blocking)",
+      "verified_date": "2026-04-21"
+    },
+    "https port": {
+      "source": "https://www.iana.org/assignments/service-names-port-numbers/",
+      "type": "numeric",
+      "value": "443",
+      "verified_date": "2026-04-21"
+    },
+    "inventor of telephone": {
+      "source": "history/USPTO",
+      "type": "string",
+      "value": "alexander graham bell"
+    },
+    "javascript == vs === difference": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness",
+      "type": "string",
+      "value": "== performs type coercion; === checks strict equality without coercion",
+      "verified_date": "2026-04-21"
+    },
+    "javascript array destructuring introduced in": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+      "type": "string",
+      "value": "es2015 (es6)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript arrow functions do not bind": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+      "type": "string",
+      "value": "this, arguments, super, or new.target",
+      "verified_date": "2026-04-21"
+    },
+    "javascript async/await introduced in es version": {
+      "source": "https://tc39.es/ecma262/2017/",
+      "type": "string",
+      "value": "es2017 (es8)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript bigint type introduced in": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt",
+      "type": "string",
+      "value": "es2020",
+      "verified_date": "2026-04-21"
+    },
+    "javascript ecmascript 2015 also known as": {
+      "source": "https://262.ecma-international.org/6.0/",
+      "type": "string",
+      "value": "es6",
+      "verified_date": "2026-04-21"
+    },
+    "javascript event loop is": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+      "type": "string",
+      "value": "single-threaded; uses call stack, task queue, and microtask queue",
+      "verified_date": "2026-04-21"
+    },
+    "javascript hoisting applies to": {
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/Hoisting",
+      "type": "string",
+      "value": "var declarations and function declarations (not let/const)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript let and const scoping": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
+      "type": "string",
+      "value": "block-scoped",
+      "verified_date": "2026-04-21"
+    },
+    "javascript nan === nan is": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+      "type": "string",
+      "value": "false (NaN is not equal to itself)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript nullish coalescing operator": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing",
+      "type": "string",
+      "value": "??",
+      "verified_date": "2026-04-21"
+    },
+    "javascript number max safe integer": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER",
+      "type": "numeric",
+      "value": "9007199254740991 (2^53 - 1)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript optional chaining operator": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining",
+      "type": "string",
+      "value": "?.",
+      "verified_date": "2026-04-21"
+    },
+    "javascript promise states": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "type": "string",
+      "value": "pending, fulfilled, rejected",
+      "verified_date": "2026-04-21"
+    },
+    "javascript prototype chain terminator": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+      "type": "string",
+      "value": "null",
+      "verified_date": "2026-04-21"
+    },
+    "javascript spread operator introduced in": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+      "type": "string",
+      "value": "es2015 (es6)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript symbol type introduced in": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+      "type": "string",
+      "value": "es2015 (es6)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript temporal dead zone applies to": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz",
+      "type": "string",
+      "value": "let and const declarations before initialization",
+      "verified_date": "2026-04-21"
+    },
+    "javascript typeof null returns": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof",
+      "type": "string",
+      "value": "object (historical bug in js specification)",
+      "verified_date": "2026-04-21"
+    },
+    "javascript var scoping": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var",
+      "type": "string",
+      "value": "function-scoped (not block-scoped)",
+      "verified_date": "2026-04-21"
+    },
+    "jquery ajax replaced by": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+      "type": "string",
+      "value": "fetch api (native browser) or axios (library)",
+      "verified_date": "2026-04-21"
+    },
+    "jwt exp claim": {
+      "source": "https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4",
+      "type": "string",
+      "value": "expiration time as unix timestamp; must be validated by recipient",
+      "verified_date": "2026-04-21"
+    },
+    "jwt signing algorithms": {
+      "source": "https://jwt.io/introduction",
+      "type": "string",
+      "value": "hs256 (symmetric), rs256 (asymmetric rsa), es256 (elliptic curve)",
+      "verified_date": "2026-04-21"
+    },
+    "jwt structure": {
+      "source": "https://jwt.io/introduction",
+      "type": "string",
+      "value": "three base64url-encoded parts: header.payload.signature",
+      "verified_date": "2026-04-21"
+    },
+    "key generation size": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "256 bits (32 bytes)"
+    },
+    "kubernetes configmap vs secret": {
+      "source": "https://kubernetes.io/docs/concepts/configuration/secret/",
+      "type": "string",
+      "value": "configmap stores non-sensitive config; secret stores sensitive data (base64-encoded, not encrypted by default)",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes default namespace": {
+      "source": "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+      "type": "string",
+      "value": "default",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes deployment vs statefulset": {
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
+      "type": "string",
+      "value": "deployment for stateless apps; statefulset for stateful apps with stable network ids and persistent storage",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes docker runtime deprecated": {
+      "source": "https://kubernetes.io/blog/2022/01/07/kubernetes-is-moving-on-from-dockershim/",
+      "type": "string",
+      "value": "dockershim removed in kubernetes 1.24; use containerd or cri-o",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes horizontal pod autoscaler metric": {
+      "source": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+      "type": "string",
+      "value": "scales based on cpu/memory utilization or custom metrics",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes kubectl apply vs create": {
+      "source": "https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/",
+      "type": "string",
+      "value": "kubectl apply is declarative (create or update); kubectl create is imperative (fails if exists)",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes liveness vs readiness probe": {
+      "source": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "type": "string",
+      "value": "liveness: restart if unhealthy; readiness: remove from load balancer if not ready",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes pod definition": {
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/",
+      "type": "string",
+      "value": "smallest deployable unit in kubernetes; one or more containers sharing network and storage",
+      "verified_date": "2026-04-21"
+    },
+    "kubernetes service types": {
+      "source": "https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+      "type": "string",
+      "value": "clusterip (default), nodeport, loadbalancer, externalname",
+      "verified_date": "2026-04-21"
+    },
+    "lock file extension": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": ".lock"
+    },
+    "moment.js maintenance mode": {
+      "source": "https://momentjs.com/docs/#/-project-status/",
+      "type": "string",
+      "value": "moment.js is in maintenance-only mode; use date-fns, dayjs, or luxon",
+      "verified_date": "2026-04-21"
+    },
+    "mongodb default port": {
+      "source": "https://www.mongodb.com/docs/manual/reference/default-mongodb-port/",
+      "type": "numeric",
+      "value": "27017",
+      "verified_date": "2026-04-21"
+    },
+    "mysql default port": {
+      "source": "https://dev.mysql.com/doc/",
+      "type": "numeric",
+      "value": "3306",
+      "verified_date": "2026-04-21"
+    },
+    "mysql vs postgresql default port": {
+      "source": "https://dev.mysql.com/doc/; https://www.postgresql.org/docs/",
+      "type": "string",
+      "value": "mysql: 3306; postgresql: 5432",
+      "verified_date": "2026-04-21"
+    },
+    "next.js pages router vs app router": {
+      "source": "https://nextjs.org/docs/app",
+      "type": "string",
+      "value": "app router (next 13+) uses react server components; pages router is legacy but still supported",
+      "verified_date": "2026-04-21"
+    },
+    "node 16 end of life": {
+      "source": "https://nodejs.org/en/blog/announcements/nodejs16-eol",
+      "type": "string",
+      "value": "september 2023",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs __dirname in esm modules": {
+      "source": "https://nodejs.org/api/esm.html#importmetaurl",
+      "type": "string",
+      "value": "__dirname is not defined in esm; use import.meta.url with fileURLToPath instead",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs built-in http default port": {
+      "source": "https://nodejs.org/api/http.html",
+      "type": "numeric",
+      "value": "80 (http) / 443 (https)",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs cluster module purpose": {
+      "source": "https://nodejs.org/api/cluster.html",
+      "type": "string",
+      "value": "allows spawning child processes sharing server ports to utilize multi-core cpus",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs event loop phases": {
+      "source": "https://nodejs.org/en/guides/event-loop-timers-and-nexttick",
+      "type": "string",
+      "value": "timers, pending callbacks, idle/prepare, poll, check, close callbacks",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs lts release cycle": {
+      "source": "https://nodejs.org/en/about/previous-releases",
+      "type": "string",
+      "value": "even-numbered versions become lts; active lts for 18 months, maintenance lts for 12 more",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs maximum buffer size": {
+      "source": "https://nodejs.org/api/buffer.html#static-method-bufferallocsafe",
+      "type": "string",
+      "value": "2gb on 64-bit systems (v8 heap limit)",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs package.json type field for esm": {
+      "source": "https://nodejs.org/api/packages.html#type",
+      "type": "string",
+      "value": "\"type\": \"module\"",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs process.nexttick vs setimmediate": {
+      "source": "https://nodejs.org/en/guides/event-loop-timers-and-nexttick",
+      "type": "string",
+      "value": "process.nextTick fires before i/o events; setImmediate fires in the check phase after i/o",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs require vs import": {
+      "source": "https://nodejs.org/api/esm.html",
+      "type": "string",
+      "value": "require is commonjs (sync); import is esm (async, static analysis friendly)",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs streams types": {
+      "source": "https://nodejs.org/api/stream.html",
+      "type": "string",
+      "value": "readable, writable, duplex, transform",
+      "verified_date": "2026-04-21"
+    },
+    "nodejs worker_threads introduced in version": {
+      "source": "https://nodejs.org/api/worker_threads.html",
+      "type": "string",
+      "value": "10.5.0 (experimental), stable in 12",
+      "verified_date": "2026-04-21"
+    },
+    "oauth 2.0 grant types": {
+      "source": "https://oauth.net/2/grant-types/",
+      "type": "string",
+      "value": "authorization code, implicit (deprecated), client credentials, resource owner password (deprecated), device code",
+      "verified_date": "2026-04-21"
+    },
+    "oauth pkce stands for": {
+      "source": "https://oauth.net/2/pkce/",
+      "type": "string",
+      "value": "proof key for code exchange; prevents authorization code interception attacks",
+      "verified_date": "2026-04-21"
+    },
+    "openid connect is built on": {
+      "source": "https://openid.net/connect/",
+      "type": "string",
+      "value": "oauth 2.0",
+      "verified_date": "2026-04-21"
     },
     "openrouter status": {
+      "source": "anton/2026-04-13",
       "type": "string",
-      "value": "Configured and working. 24 free models available. Best free fallback: google/gemma-4-26b-a4b-it:free. Key stored in auth-profiles.json.",
-      "source": "anton/2026-04-13"
+      "value": "Configured and working. 24 free models available. Best free fallback: google/gemma-4-26b-a4b-it:free. Key stored in auth-profiles.json."
     },
-    "x twitter handle": {
+    "owasp top 10 2021 number 1": {
+      "source": "https://owasp.org/Top10/",
       "type": "string",
-      "value": "@CertainLogicAI \u2014 rebranded from @ForCryptoClearly. Anton personal account, pivoted to AI/CertainLogic content.",
-      "source": "anton/2026-04-13"
+      "value": "broken access control",
+      "verified_date": "2026-04-21"
     },
-    "python palindrome checker": {
+    "patent ip protection": {
+      "source": "memory/2026-03-31-no-prior-art.md",
       "type": "string",
-      "value": "def is_palindrome(s): return s == s[::-1]",
-      "source": "common_python"
+      "value": "No prior art posted for token reduction engine or deterministic layer. Trade secret protection maintained. Patent eligibility preserved. All implementation details confidential."
     },
-    "python fibonacci sequence": {
+    "patent status": {
+      "source": "anton/2026-04-13",
       "type": "string",
-      "value": "def fib(n): return n if n <= 1 else fib(n-1) + fib(n-2)",
-      "source": "common_python"
+      "value": "Provisional patent DRAFTED but NOT FILED. Deterministic Query Processing System with Hash-Verified Local Execution and Hybrid LLM Routing. 10 claims under CertainLogic.ai. Needs drawings inserted. NOT submitted to USPTO/EFS-Web yet."
     },
-    "python read file": {
-      "type": "string",
-      "value": "with open('file.txt', 'r') as f: content = f.read()",
-      "source": "common_python"
+    "pi": {
+      "source": "mathematics",
+      "type": "numeric",
+      "value": "3.1415926535"
     },
-    "python write file": {
-      "type": "string",
-      "value": "with open('file.txt', 'w') as f: f.write(content)",
-      "source": "common_python"
+    "planck constant": {
+      "source": "physics/NIST",
+      "type": "numeric",
+      "unit": "J\u00b7s",
+      "value": "6.62607015e-34"
     },
-    "python http request": {
-      "type": "string",
-      "value": "import requests; response = requests.get(url)",
-      "source": "common_python"
+    "postgres default port": {
+      "source": "https://www.postgresql.org/docs/",
+      "type": "numeric",
+      "value": "5432",
+      "verified_date": "2026-04-21"
     },
-    "python json parse": {
-      "type": "string",
-      "value": "import json; data = json.loads(json_string)",
-      "source": "common_python"
+    "postgresql default port": {
+      "source": "https://www.postgresql.org/docs/",
+      "type": "numeric",
+      "value": "5432",
+      "verified_date": "2026-04-21"
     },
-    "python list comprehension": {
+    "postgresql jsonb vs json": {
+      "source": "https://www.postgresql.org/docs/current/datatype-json.html",
       "type": "string",
-      "value": "squares = [x**2 for x in range(10)]",
-      "source": "common_python"
+      "value": "jsonb stores parsed binary (indexable, faster queries); json stores text verbatim",
+      "verified_date": "2026-04-21"
     },
-    "python dictionary comprehension": {
+    "postgresql serial type replaced by": {
+      "source": "https://www.postgresql.org/docs/current/sql-createtable.html",
       "type": "string",
-      "value": "d = {k: v for k, v in zip(keys, values)}",
-      "source": "common_python"
+      "value": "identity columns (GENERATED ALWAYS AS IDENTITY) as of postgresql 10",
+      "verified_date": "2026-04-21"
     },
-    "python class with init": {
+    "postgresql vacuum purpose": {
+      "source": "https://www.postgresql.org/docs/current/routine-vacuuming.html",
       "type": "string",
-      "value": "class MyClass:\n    def __init__(self):\n        self.value = 0",
-      "source": "common_python"
+      "value": "reclaims storage from dead tuples created by updates/deletes (mvcc cleanup)",
+      "verified_date": "2026-04-21"
     },
-    "python try except": {
+    "premium skills list": {
+      "source": "memory/2026-03-22.md",
       "type": "string",
-      "value": "try:\n    result = risky_operation()\nexcept Exception as e:\n    print(f'Error: {e}')",
-      "source": "common_python"
+      "value": "Skill Audit Pro ($19), Cold Outreach Pro ($19), Market Research Pro ($19), SEO Audit Pro ($19), AI Visibility Pro, X Monitor Pro, Domain Analyzer Pro. 25 total skills (6 premium Pro versions)."
     },
-    "python decorator": {
+    "python 2 end of life date": {
+      "source": "https://www.python.org/doc/sunset-python-2/",
       "type": "string",
-      "value": "def my_decorator(f):\n    def wrapper(*args, **kwargs):\n        return f(*args, **kwargs)\n    return wrapper",
-      "source": "common_python"
+      "value": "2020-01-01",
+      "verified_date": "2026-04-21"
     },
-    "python lambda function": {
+    "python 3.10 release date": {
+      "source": "https://docs.python.org/3/whatsnew/3.10.html",
       "type": "string",
-      "value": "square = lambda x: x ** 2",
-      "source": "common_python"
+      "value": "2021-10-04",
+      "verified_date": "2026-04-21"
     },
-    "python filter list": {
+    "python 3.11 release date": {
+      "source": "https://docs.python.org/3/whatsnew/3.11.html",
       "type": "string",
-      "value": "evens = list(filter(lambda x: x % 2 == 0, numbers))",
-      "source": "common_python"
+      "value": "2022-10-24",
+      "verified_date": "2026-04-21"
     },
-    "python map function": {
+    "python 3.12 release date": {
+      "source": "https://docs.python.org/3/whatsnew/3.12.html",
       "type": "string",
-      "value": "squares = list(map(lambda x: x**2, numbers))",
-      "source": "common_python"
+      "value": "2023-10-02",
+      "verified_date": "2026-04-21"
     },
-    "python sort list": {
+    "python __dunder__ methods also called": {
+      "source": "https://docs.python.org/3/reference/datamodel.html#special-method-names",
       "type": "string",
-      "value": "sorted_list = sorted(items, key=lambda x: x['name'])",
-      "source": "common_python"
+      "value": "magic methods or special methods",
+      "verified_date": "2026-04-21"
     },
-    "python enumerate": {
+    "python __init__.py purpose": {
+      "source": "https://docs.python.org/3/reference/import.html#package-relative-imports",
       "type": "string",
-      "value": "for index, value in enumerate(items):\n    print(f'{index}: {value}')",
-      "source": "common_python"
+      "value": "marks a directory as a python package; can be empty",
+      "verified_date": "2026-04-21"
     },
-    "python zip lists": {
+    "python __slots__ purpose": {
+      "source": "https://docs.python.org/3/reference/datamodel.html#slots",
       "type": "string",
-      "value": "for a, b in zip(list_a, list_b):\n    print(a, b)",
-      "source": "common_python"
-    },
-    "python datetime now": {
-      "type": "string",
-      "value": "from datetime import datetime; now = datetime.now()",
-      "source": "common_python"
-    },
-    "python regex match": {
-      "type": "string",
-      "value": "import re; match = re.search(r'pattern', text)",
-      "source": "common_python"
-    },
-    "python subprocess run": {
-      "type": "string",
-      "value": "import subprocess; result = subprocess.run(['ls', '-la'], capture_output=True, text=True)",
-      "source": "common_python"
-    },
-    "python threading": {
-      "type": "string",
-      "value": "import threading; thread = threading.Thread(target=func); thread.start()",
-      "source": "common_python"
+      "value": "restricts instance attributes and reduces memory usage by avoiding per-instance __dict__",
+      "verified_date": "2026-04-21"
     },
     "python argparse": {
+      "source": "common_python",
       "type": "string",
-      "value": "import argparse; parser = argparse.ArgumentParser(); parser.add_argument('--input'); args = parser.parse_args()",
-      "source": "common_python"
+      "value": "import argparse; parser = argparse.ArgumentParser(); parser.add_argument('--input'); args = parser.parse_args()"
     },
-    "python csv read": {
+    "python asyncio introduced in version": {
+      "source": "https://docs.python.org/3/whatsnew/3.4.html",
       "type": "string",
-      "value": "import csv; with open('data.csv') as f: reader = csv.DictReader(f); rows = list(reader)",
-      "source": "common_python"
+      "value": "3.4",
+      "verified_date": "2026-04-21"
     },
-    "python sqlite query": {
+    "python asyncio.get_event_loop deprecation": {
+      "source": "https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.get_event_loop",
       "type": "string",
-      "value": "import sqlite3; conn = sqlite3.connect('db.sqlite'); cursor = conn.execute('SELECT * FROM users')",
-      "source": "common_python"
-    },
-    "python logging setup": {
-      "type": "string",
-      "value": "import logging; logging.basicConfig(level=logging.INFO); logger = logging.getLogger(__name__)",
-      "source": "common_python"
-    },
-    "python os path join": {
-      "type": "string",
-      "value": "import os; filepath = os.path.join('data', 'file.txt')",
-      "source": "common_python"
-    },
-    "python random number": {
-      "type": "string",
-      "value": "import random; num = random.randint(1, 100)",
-      "source": "common_python"
-    },
-    "python hash md5": {
-      "type": "string",
-      "value": "import hashlib; hash = hashlib.md5(data.encode()).hexdigest()",
-      "source": "common_python"
+      "value": "deprecated in 3.10 when no running loop exists; use asyncio.run() instead",
+      "verified_date": "2026-04-21"
     },
     "python base64 encode": {
+      "source": "common_python",
       "type": "string",
-      "value": "import base64; encoded = base64.b64encode(data.encode()).decode()",
-      "source": "common_python"
+      "value": "import base64; encoded = base64.b64encode(data.encode()).decode()"
     },
-    "python url parse": {
+    "python class with init": {
+      "source": "common_python",
       "type": "string",
-      "value": "from urllib.parse import urlparse; parsed = urlparse(url)",
-      "source": "common_python"
+      "value": "class MyClass:\n    def __init__(self):\n        self.value = 0"
+    },
+    "python csv read": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import csv; with open('data.csv') as f: reader = csv.DictReader(f); rows = list(reader)"
+    },
+    "python current stable version": {
+      "source": "https://www.python.org/downloads/",
+      "type": "string",
+      "value": "3.13",
+      "verified_date": "2026-04-21"
+    },
+    "python dataclasses introduced in version": {
+      "source": "https://docs.python.org/3/library/dataclasses.html",
+      "type": "string",
+      "value": "3.7",
+      "verified_date": "2026-04-21"
+    },
+    "python datetime now": {
+      "source": "common_python",
+      "type": "string",
+      "value": "from datetime import datetime; now = datetime.now()"
+    },
+    "python decorator": {
+      "source": "common_python",
+      "type": "string",
+      "value": "def my_decorator(f):\n    def wrapper(*args, **kwargs):\n        return f(*args, **kwargs)\n    return wrapper"
+    },
+    "python deepcopy module": {
+      "source": "https://docs.python.org/3/library/copy.html",
+      "type": "string",
+      "value": "copy",
+      "verified_date": "2026-04-21"
+    },
+    "python default integer size": {
+      "source": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
+      "type": "string",
+      "value": "arbitrary precision (unlimited)",
+      "verified_date": "2026-04-21"
+    },
+    "python default mutable argument gotcha": {
+      "source": "https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments",
+      "type": "string",
+      "value": "default mutable arguments (list, dict) are evaluated once at function definition, not per call",
+      "verified_date": "2026-04-21"
+    },
+    "python dict preserves insertion order since version": {
+      "source": "https://docs.python.org/3/whatsnew/3.7.html",
+      "type": "string",
+      "value": "3.7",
+      "verified_date": "2026-04-21"
+    },
+    "python dictionary comprehension": {
+      "source": "common_python",
+      "type": "string",
+      "value": "d = {k: v for k, v in zip(keys, values)}"
+    },
+    "python distutils deprecated since": {
+      "source": "https://docs.python.org/3/whatsnew/3.12.html",
+      "type": "string",
+      "value": "python 3.10; removed in python 3.12",
+      "verified_date": "2026-04-21"
+    },
+    "python enumerate": {
+      "source": "common_python",
+      "type": "string",
+      "value": "for index, value in enumerate(items):\n    print(f'{index}: {value}')"
     },
     "python env var": {
+      "source": "common_python",
       "type": "string",
-      "value": "import os; value = os.getenv('KEY', 'default')",
-      "source": "common_python"
+      "value": "import os; value = os.getenv('KEY', 'default')"
+    },
+    "python exception base class": {
+      "source": "https://docs.python.org/3/library/exceptions.html#BaseException",
+      "type": "string",
+      "value": "BaseException",
+      "verified_date": "2026-04-21"
+    },
+    "python f-strings introduced in version": {
+      "source": "https://docs.python.org/3/whatsnew/3.6.html",
+      "type": "string",
+      "value": "3.6",
+      "verified_date": "2026-04-21"
+    },
+    "python fibonacci sequence": {
+      "source": "common_python",
+      "type": "string",
+      "value": "def fib(n): return n if n <= 1 else fib(n-1) + fib(n-2)"
+    },
+    "python filter list": {
+      "source": "common_python",
+      "type": "string",
+      "value": "evens = list(filter(lambda x: x % 2 == 0, numbers))"
+    },
+    "python frozenset is hashable": {
+      "source": "https://docs.python.org/3/library/stdtypes.html#frozenset",
+      "type": "string",
+      "value": "true",
+      "verified_date": "2026-04-21"
+    },
+    "python generator function keyword": {
+      "source": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
+      "type": "string",
+      "value": "yield",
+      "verified_date": "2026-04-21"
+    },
+    "python gil removed in version": {
+      "source": "https://docs.python.org/3/whatsnew/3.13.html",
+      "type": "string",
+      "value": "3.13 (experimental free-threaded build, pep 703)",
+      "verified_date": "2026-04-21"
+    },
+    "python gil stands for": {
+      "source": "https://docs.python.org/3/glossary.html#term-global-interpreter-lock",
+      "type": "string",
+      "value": "global interpreter lock",
+      "verified_date": "2026-04-21"
+    },
+    "python hash md5": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import hashlib; hash = hashlib.md5(data.encode()).hexdigest()"
+    },
+    "python http request": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import requests; response = requests.get(url)"
+    },
+    "python importlib.resources api change": {
+      "source": "https://docs.python.org/3/library/importlib.resources.html",
+      "type": "string",
+      "value": "importlib.resources.path() deprecated in 3.9; use importlib.resources.files() instead",
+      "verified_date": "2026-04-21"
+    },
+    "python is operator checks": {
+      "source": "https://docs.python.org/3/reference/expressions.html#is",
+      "type": "string",
+      "value": "object identity (memory address), not equality",
+      "verified_date": "2026-04-21"
+    },
+    "python json parse": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import json; data = json.loads(json_string)"
+    },
+    "python lambda function": {
+      "source": "common_python",
+      "type": "string",
+      "value": "square = lambda x: x ** 2"
+    },
+    "python list comprehension": {
+      "source": "common_python",
+      "type": "string",
+      "value": "squares = [x**2 for x in range(10)]"
+    },
+    "python list comprehension vs map performance": {
+      "source": "https://wiki.python.org/moin/PythonSpeed/PerformanceTips",
+      "type": "string",
+      "value": "list comprehensions are generally faster than map() with lambda in cpython",
+      "verified_date": "2026-04-21"
+    },
+    "python list is mutable": {
+      "source": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
+      "type": "string",
+      "value": "true",
+      "verified_date": "2026-04-21"
+    },
+    "python logging setup": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import logging; logging.basicConfig(level=logging.INFO); logger = logging.getLogger(__name__)"
+    },
+    "python map function": {
+      "source": "common_python",
+      "type": "string",
+      "value": "squares = list(map(lambda x: x**2, numbers))"
+    },
+    "python match statement introduced in version": {
+      "source": "https://docs.python.org/3/whatsnew/3.10.html",
+      "type": "string",
+      "value": "3.10",
+      "verified_date": "2026-04-21"
+    },
+    "python max recursion depth default": {
+      "source": "https://docs.python.org/3/library/sys.html#sys.getrecursionlimit",
+      "type": "numeric",
+      "value": "1000",
+      "verified_date": "2026-04-21"
+    },
+    "python none type": {
+      "source": "https://docs.python.org/3/library/constants.html#None",
+      "type": "string",
+      "value": "NoneType",
+      "verified_date": "2026-04-21"
+    },
+    "python number of built-in functions": {
+      "source": "https://docs.python.org/3/library/functions.html",
+      "type": "numeric",
+      "value": "68",
+      "verified_date": "2026-04-21"
+    },
+    "python os path join": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import os; filepath = os.path.join('data', 'file.txt')"
+    },
+    "python palindrome checker": {
+      "source": "common_python",
+      "type": "string",
+      "value": "def is_palindrome(s): return s == s[::-1]"
+    },
+    "python pathlib introduced in version": {
+      "source": "https://docs.python.org/3/library/pathlib.html",
+      "type": "string",
+      "value": "3.4",
+      "verified_date": "2026-04-21"
+    },
+    "python pep 8 max line length recommendation": {
+      "source": "https://peps.python.org/pep-0008/",
+      "type": "numeric",
+      "unit": "characters",
+      "value": "79 characters",
+      "verified_date": "2026-04-21"
+    },
+    "python pip stands for": {
+      "source": "https://pip.pypa.io/en/stable/",
+      "type": "string",
+      "value": "pip installs packages (recursive acronym)",
+      "verified_date": "2026-04-21"
+    },
+    "python random number": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import random; num = random.randint(1, 100)"
+    },
+    "python range function returns": {
+      "source": "https://docs.python.org/3/library/stdtypes.html#ranges",
+      "type": "string",
+      "value": "range object (lazy sequence), not a list",
+      "verified_date": "2026-04-21"
+    },
+    "python read file": {
+      "source": "common_python",
+      "type": "string",
+      "value": "with open('file.txt', 'r') as f: content = f.read()"
+    },
+    "python regex match": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import re; match = re.search(r'pattern', text)"
+    },
+    "python set is unordered": {
+      "source": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+      "type": "string",
+      "value": "true; sets do not preserve insertion order",
+      "verified_date": "2026-04-21"
+    },
+    "python setup.py deprecated in favor of": {
+      "source": "https://peps.python.org/pep-0517/",
+      "type": "string",
+      "value": "pyproject.toml (pep 517/518); setuptools still supported via pyproject.toml",
+      "verified_date": "2026-04-21"
+    },
+    "python small integer caching range": {
+      "source": "https://docs.python.org/3/c-api/long.html",
+      "type": "string",
+      "value": "-5 to 256 (cpython implementation detail)",
+      "verified_date": "2026-04-21"
+    },
+    "python sort list": {
+      "source": "common_python",
+      "type": "string",
+      "value": "sorted_list = sorted(items, key=lambda x: x['name'])"
+    },
+    "python sqlite query": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import sqlite3; conn = sqlite3.connect('db.sqlite'); cursor = conn.execute('SELECT * FROM users')"
+    },
+    "python string encoding default": {
+      "source": "https://docs.python.org/3/howto/unicode.html",
+      "type": "string",
+      "value": "utf-8",
+      "verified_date": "2026-04-21"
+    },
+    "python subprocess run": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import subprocess; result = subprocess.run(['ls', '-la'], capture_output=True, text=True)"
     },
     "python temp file": {
+      "source": "common_python",
       "type": "string",
-      "value": "import tempfile; with tempfile.NamedTemporaryFile(mode='w') as f: f.write(data)",
-      "source": "common_python"
+      "value": "import tempfile; with tempfile.NamedTemporaryFile(mode='w') as f: f.write(data)"
+    },
+    "python threading": {
+      "source": "common_python",
+      "type": "string",
+      "value": "import threading; thread = threading.Thread(target=func); thread.start()"
+    },
+    "python tomllib introduced in version": {
+      "source": "https://docs.python.org/3/library/tomllib.html",
+      "type": "string",
+      "value": "3.11",
+      "verified_date": "2026-04-21"
+    },
+    "python try except": {
+      "source": "common_python",
+      "type": "string",
+      "value": "try:\n    result = risky_operation()\nexcept Exception as e:\n    print(f'Error: {e}')"
+    },
+    "python tuple is immutable": {
+      "source": "https://docs.python.org/3/library/stdtypes.html#immutable-sequence-types",
+      "type": "string",
+      "value": "true",
+      "verified_date": "2026-04-21"
+    },
+    "python type hints introduced in version": {
+      "source": "https://docs.python.org/3/whatsnew/3.5.html",
+      "type": "string",
+      "value": "3.5",
+      "verified_date": "2026-04-21"
+    },
+    "python typing union syntax new style version": {
+      "source": "https://docs.python.org/3/whatsnew/3.10.html",
+      "type": "string",
+      "value": "3.10 (use x | y instead of Union[x, y])",
+      "verified_date": "2026-04-21"
+    },
+    "python url parse": {
+      "source": "common_python",
+      "type": "string",
+      "value": "from urllib.parse import urlparse; parsed = urlparse(url)"
+    },
+    "python virtual environment tool built-in": {
+      "source": "https://docs.python.org/3/library/venv.html",
+      "type": "string",
+      "value": "venv (introduced python 3.3)",
+      "verified_date": "2026-04-21"
+    },
+    "python walrus operator introduced in version": {
+      "source": "https://docs.python.org/3/whatsnew/3.8.html",
+      "type": "string",
+      "value": "3.8",
+      "verified_date": "2026-04-21"
+    },
+    "python walrus operator symbol": {
+      "source": "https://docs.python.org/3/whatsnew/3.8.html",
+      "type": "string",
+      "value": ":=",
+      "verified_date": "2026-04-21"
+    },
+    "python write file": {
+      "source": "common_python",
+      "type": "string",
+      "value": "with open('file.txt', 'w') as f: f.write(content)"
+    },
+    "python zip lists": {
+      "source": "common_python",
+      "type": "string",
+      "value": "for a, b in zip(list_a, list_b):\n    print(a, b)"
+    },
+    "rate limiting retry-after header": {
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After",
+      "type": "string",
+      "value": "Retry-After: <seconds> or <date>; returned with 429 or 503",
+      "verified_date": "2026-04-21"
+    },
+    "react 16 deprecated lifecycle componentwillmount": {
+      "source": "https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html",
+      "type": "string",
+      "value": "deprecated in react 16.3; renamed UNSAFE_componentWillMount; replaced by componentDidMount or useEffect",
+      "verified_date": "2026-04-21"
+    },
+    "react 18 new feature": {
+      "source": "https://reactjs.org/blog/2022/03/29/react-v18.html",
+      "type": "string",
+      "value": "automatic batching, transitions, suspense improvements, new root api (createRoot)",
+      "verified_date": "2026-04-21"
+    },
+    "react class components status": {
+      "source": "https://react.dev/reference/react/Component",
+      "type": "string",
+      "value": "still supported but not recommended; function components with hooks are the current standard",
+      "verified_date": "2026-04-21"
+    },
+    "react concurrent mode default since version": {
+      "source": "https://reactjs.org/blog/2022/03/29/react-v18.html",
+      "type": "string",
+      "value": "18",
+      "verified_date": "2026-04-21"
+    },
+    "react context api avoids": {
+      "source": "https://react.dev/learn/passing-data-deeply-with-context",
+      "type": "string",
+      "value": "prop drilling (passing props through intermediate components)",
+      "verified_date": "2026-04-21"
+    },
+    "react error boundary is": {
+      "source": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary",
+      "type": "string",
+      "value": "class component that catches javascript errors in child component tree",
+      "verified_date": "2026-04-21"
+    },
+    "react hooks introduced in version": {
+      "source": "https://reactjs.org/blog/2019/02/06/react-v16.8.0.html",
+      "type": "string",
+      "value": "16.8",
+      "verified_date": "2026-04-21"
+    },
+    "react initial release year": {
+      "source": "https://reactjs.org/blog/2013/06/05/why-react.html",
+      "type": "string",
+      "value": "2013",
+      "verified_date": "2026-04-21"
+    },
+    "react key prop purpose": {
+      "source": "https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key",
+      "type": "string",
+      "value": "helps react identify which list items changed, added, or removed",
+      "verified_date": "2026-04-21"
+    },
+    "react server components introduced in": {
+      "source": "https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023",
+      "type": "string",
+      "value": "react 18 / next.js 13 app router (stable 2023)",
+      "verified_date": "2026-04-21"
+    },
+    "react strict mode double invokes": {
+      "source": "https://react.dev/reference/react/StrictMode",
+      "type": "string",
+      "value": "renders and effects are called twice in development to detect side effects",
+      "verified_date": "2026-04-21"
+    },
+    "react usecallback purpose": {
+      "source": "https://react.dev/reference/react/useCallback",
+      "type": "string",
+      "value": "memoizes function reference; returns same function unless dependencies change",
+      "verified_date": "2026-04-21"
+    },
+    "react useeffect cleanup runs when": {
+      "source": "https://react.dev/reference/react/useEffect",
+      "type": "string",
+      "value": "before every re-run of the effect and on component unmount",
+      "verified_date": "2026-04-21"
+    },
+    "react usememo purpose": {
+      "source": "https://react.dev/reference/react/useMemo",
+      "type": "string",
+      "value": "memoizes computed value; recomputes only when dependencies change",
+      "verified_date": "2026-04-21"
+    },
+    "react usestate setter is": {
+      "source": "https://react.dev/reference/react/useState",
+      "type": "string",
+      "value": "asynchronous; state is not updated immediately after calling the setter",
+      "verified_date": "2026-04-21"
+    },
+    "react virtual dom purpose": {
+      "source": "https://reactjs.org/docs/faq-internals.html",
+      "type": "string",
+      "value": "in-memory representation of the real dom; react diffs it to minimize actual dom mutations",
+      "verified_date": "2026-04-21"
+    },
+    "redis default port": {
+      "source": "https://redis.io/docs/getting-started/",
+      "type": "numeric",
+      "value": "6379",
+      "verified_date": "2026-04-21"
+    },
+    "rest api constraint stateless": {
+      "source": "https://restfulapi.net/statelessness/",
+      "type": "string",
+      "value": "each request must contain all info needed; server stores no client session state",
+      "verified_date": "2026-04-21"
+    },
+    "running state idempotency": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Same idempotency key = no-op, different key = ValueError (conflict)"
+    },
+    "semver format": {
+      "source": "https://semver.org/",
+      "type": "string",
+      "value": "MAJOR.MINOR.PATCH; major=breaking changes, minor=new features, patch=bug fixes",
+      "verified_date": "2026-04-21"
+    },
+    "shard count default": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "5 shards"
+    },
+    "shard storage": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Step shards stored in pathfinder_data/vault/{task_id}/{step}.shard, task JSON stores only metadata"
+    },
+    "shopclawmart": {
+      "source": "project docs",
+      "type": "string",
+      "value": "ShopClawMart.com - premium skills sales platform"
+    },
+    "skills pricing": {
+      "source": "memory/2026-03-22.md",
+      "type": "string",
+      "value": "Individual premium skills: $19 each. Business Starter Bundle: $59 launch price (normally $76). Sold via Gumroad (blenderismai.gumroad.com) and own website (blenderism.github.io)."
+    },
+    "speed of light": {
+      "source": "physics/NIST",
+      "type": "numeric",
+      "unit": "m/s",
+      "value": "299792458"
+    },
+    "speed of sound in air": {
+      "source": "physics",
+      "type": "numeric",
+      "unit": "m/s",
+      "value": "343"
+    },
+    "sql acid acronym": {
+      "exact_match_required": true,
+      "source": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "type": "string",
+      "value": "atomicity, consistency, isolation, durability",
+      "verified_date": "2026-04-21"
+    },
+    "sql between operator is inclusive": {
+      "source": "https://www.postgresql.org/docs/current/functions-comparison.html",
+      "type": "string",
+      "value": "true; BETWEEN a AND b includes both endpoints",
+      "verified_date": "2026-04-21"
+    },
+    "sql cte keyword": {
+      "source": "https://www.postgresql.org/docs/current/queries-with.html",
+      "type": "string",
+      "value": "WITH (common table expression)",
+      "verified_date": "2026-04-21"
+    },
+    "sql default transaction isolation in postgresql": {
+      "source": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "type": "string",
+      "value": "read committed",
+      "verified_date": "2026-04-21"
+    },
+    "sql explain analyze purpose": {
+      "source": "https://www.postgresql.org/docs/current/sql-explain.html",
+      "type": "string",
+      "value": "shows query execution plan with actual timing and row counts",
+      "verified_date": "2026-04-21"
+    },
+    "sql foreign key constraint enforces": {
+      "source": "https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-FK",
+      "type": "string",
+      "value": "referential integrity: value in child column must exist in referenced parent column",
+      "verified_date": "2026-04-21"
+    },
+    "sql group by requirement": {
+      "source": "https://www.postgresql.org/docs/current/sql-select.html#SQL-GROUPBY",
+      "type": "string",
+      "value": "all non-aggregate columns in SELECT must appear in GROUP BY clause",
+      "verified_date": "2026-04-21"
+    },
+    "sql having vs where": {
+      "source": "https://www.postgresql.org/docs/current/sql-select.html#SQL-HAVING",
+      "type": "string",
+      "value": "WHERE filters rows before aggregation; HAVING filters groups after aggregation",
+      "verified_date": "2026-04-21"
+    },
+    "sql index types in postgresql": {
+      "source": "https://www.postgresql.org/docs/current/indexes-types.html",
+      "type": "string",
+      "value": "btree (default), hash, gist, sp-gist, gin, brin",
+      "verified_date": "2026-04-21"
+    },
+    "sql injection prevention": {
+      "source": "https://owasp.org/www-community/attacks/SQL_Injection",
+      "type": "string",
+      "value": "use parameterized queries / prepared statements; never interpolate user input into sql strings",
+      "verified_date": "2026-04-21"
+    },
+    "sql inner join returns": {
+      "source": "https://www.postgresql.org/docs/current/queries-table-expressions.html#QUERIES-JOIN",
+      "type": "string",
+      "value": "rows with matching values in both tables",
+      "verified_date": "2026-04-21"
+    },
+    "sql left join returns": {
+      "source": "https://www.postgresql.org/docs/current/queries-table-expressions.html#QUERIES-JOIN",
+      "type": "string",
+      "value": "all rows from left table plus matched rows from right; nulls for non-matches",
+      "verified_date": "2026-04-21"
+    },
+    "sql n+1 query problem": {
+      "source": "https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations",
+      "type": "string",
+      "value": "issuing one query for parent records then n individual queries for each child; solved with JOIN or eager loading",
+      "verified_date": "2026-04-21"
+    },
+    "sql null comparison correct operator": {
+      "source": "https://www.postgresql.org/docs/current/functions-comparison.html",
+      "type": "string",
+      "value": "IS NULL or IS NOT NULL (not = NULL or != NULL)",
+      "verified_date": "2026-04-21"
+    },
+    "sql on delete cascade": {
+      "source": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+      "type": "string",
+      "value": "automatically deletes child rows when parent row is deleted",
+      "verified_date": "2026-04-21"
+    },
+    "sql select distinct removes": {
+      "source": "https://www.postgresql.org/docs/current/sql-select.html",
+      "type": "string",
+      "value": "duplicate rows from result set",
+      "verified_date": "2026-04-21"
+    },
+    "sql transaction isolation levels": {
+      "source": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "type": "string",
+      "value": "read uncommitted, read committed, repeatable read, serializable",
+      "verified_date": "2026-04-21"
+    },
+    "sql upsert in postgresql": {
+      "source": "https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT",
+      "type": "string",
+      "value": "INSERT ... ON CONFLICT (col) DO UPDATE SET ...",
+      "verified_date": "2026-04-21"
+    },
+    "sql window function over clause": {
+      "source": "https://www.postgresql.org/docs/current/tutorial-window.html",
+      "type": "string",
+      "value": "OVER (PARTITION BY ... ORDER BY ...) defines the window for aggregate/ranking functions",
+      "verified_date": "2026-04-21"
+    },
+    "ssh default port": {
+      "source": "https://www.iana.org/assignments/service-names-port-numbers/",
+      "type": "numeric",
+      "value": "22",
+      "verified_date": "2026-04-21"
+    },
+    "task engine concurrency": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Uses fcntl.flock() advisory locks for multi-process safety"
+    },
+    "task engine persistence": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Uses atomic writes (mkstemp + fsync + rename) for crash safety"
+    },
+    "task tracking api": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "start_task(name, spec) -> log_phase(task_id, phase, result) -> complete_task(task_id, success, summary)"
+    },
+    "task trail log": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "task_trail.jsonl (JSONL format)"
+    },
+    "terraform state file": {
+      "source": "https://developer.hashicorp.com/terraform/language/state",
+      "type": "string",
+      "value": "terraform.tfstate; tracks current infrastructure state; should be stored remotely (s3/gcs) in teams",
+      "verified_date": "2026-04-21"
+    },
+    "tls 1.3 released year": {
+      "source": "https://datatracker.ietf.org/doc/html/rfc8446",
+      "type": "string",
+      "value": "2018",
+      "verified_date": "2026-04-21"
+    },
+    "tls deprecated versions": {
+      "source": "https://datatracker.ietf.org/doc/html/rfc8996",
+      "type": "string",
+      "value": "tls 1.0 and tls 1.1 deprecated (rfc 8996, 2021)",
+      "verified_date": "2026-04-21"
+    },
+    "token engine throughput": {
+      "source": "memory/2026-03-31.md",
+      "type": "string",
+      "value": "464,550 queries/sec on stress test. 20,000 queries in 0.04s. 99.9% cache hit rate on repeat queries."
+    },
+    "trinity metrics log": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "trinity_metrics.jsonl (JSONL format)"
+    },
+    "trinity stack activation": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "Import agentpathfinder or call activate()"
+    },
+    "trinity stack layers": {
+      "source": "pathfinder_new",
+      "type": "string",
+      "value": "3: Brain-first query interception, Hallucination guard, Task tracking"
+    },
+    "typescript 5.0 breaking change": {
+      "source": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+      "type": "string",
+      "value": "some decorators behavior changed; experimental decorators now distinct from standard decorators",
+      "verified_date": "2026-04-21"
+    },
+    "typescript any vs unknown": {
+      "source": "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+      "type": "string",
+      "value": "unknown requires type check before use; any bypasses all type checks",
+      "verified_date": "2026-04-21"
+    },
+    "typescript compiles to": {
+      "source": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+      "type": "string",
+      "value": "javascript",
+      "verified_date": "2026-04-21"
+    },
+    "typescript config file name": {
+      "source": "https://www.typescriptlang.org/tsconfig",
+      "type": "string",
+      "value": "tsconfig.json",
+      "verified_date": "2026-04-21"
+    },
+    "typescript decorators status as of ts 5": {
+      "source": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+      "type": "string",
+      "value": "stage 3 tc39 proposal, supported natively in typescript 5.0",
+      "verified_date": "2026-04-21"
+    },
+    "typescript interface vs type alias": {
+      "source": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces",
+      "type": "string",
+      "value": "interfaces can be extended/merged; type aliases can express union/intersection types more flexibly",
+      "verified_date": "2026-04-21"
+    },
+    "typescript is superset of": {
+      "source": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+      "type": "string",
+      "value": "javascript",
+      "verified_date": "2026-04-21"
+    },
+    "typescript released by": {
+      "source": "https://www.typescriptlang.org/",
+      "type": "string",
+      "value": "microsoft",
+      "verified_date": "2026-04-21"
+    },
+    "typescript satisfies operator introduced in": {
+      "source": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+      "type": "string",
+      "value": "typescript 4.9",
+      "verified_date": "2026-04-21"
+    },
+    "typescript strict mode enables": {
+      "source": "https://www.typescriptlang.org/tsconfig#strict",
+      "type": "string",
+      "value": "strictNullChecks, strictFunctionTypes, strictPropertyInitialization, noImplicitAny, and more",
+      "verified_date": "2026-04-21"
+    },
+    "vue 2 end of life": {
+      "source": "https://v2.vuejs.org/eol/",
+      "type": "string",
+      "value": "december 31, 2023",
+      "verified_date": "2026-04-21"
+    },
+    "water freezes at": {
+      "source": "physics",
+      "type": "numeric",
+      "unit": "\u00b0c",
+      "value": "0"
+    },
+    "webpack 4 vs 5 breaking changes": {
+      "source": "https://webpack.js.org/migrate/5/",
+      "type": "string",
+      "value": "webpack 5 removed automatic node.js polyfills; adds persistent caching and module federation",
+      "verified_date": "2026-04-21"
+    },
+    "website": {
+      "source": "memory/2026-03-22.md",
+      "type": "string",
+      "value": "blenderism.github.io - GitHub Pages hosted, Stripe for payments (2.9% vs Gumroad 10%)"
+    },
+    "what does acid stand for": {
+      "exact_match_required": true,
+      "source": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "type": "string",
+      "value": "atomicity, consistency, isolation, durability",
+      "verified_date": "2026-04-21"
+    },
+    "x twitter handle": {
+      "source": "anton/2026-04-13",
+      "type": "string",
+      "value": "@CertainLogicAI \u2014 rebranded from @ForCryptoClearly. Anton personal account, pivoted to AI/CertainLogic content."
+    },
+    "xss stands for": {
+      "source": "https://owasp.org/www-community/attacks/xss/",
+      "type": "string",
+      "value": "cross-site scripting",
+      "verified_date": "2026-04-21"
     }
   }
 }

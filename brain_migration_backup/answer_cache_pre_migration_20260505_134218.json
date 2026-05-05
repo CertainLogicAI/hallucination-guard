@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "q": "64ad73596b1065390e9221622595e32d52ec760be79bda2b20a0198bce98a035",
+      "a": "Python is a programming language.",
+      "ts": 1777572400.1552708,
+      "tc": 6
+    },
+    {
+      "q": "89f7b067b7569e8f8add0ba915d1499c8f2c7591d3f8fddb1b21732711ed6885",
+      "a": "| AgentPathfinder v1.2 | \u2705 Ready | 17 tests pass, coded + cleanup, SKILL.md finalized |\n| Coding Query Tracker | \u2705 Working | Daily hit rate logging deployed, cron active |\n| Git Cleanup Script | \u2705 Ready | 157 files \u2192 needs Anton approval on remaining items |\n| Git Cleanup Script | \u2705 Ready | 157 files \u2192 needs Anton approval on remaining items |\n| Smart Router Analysis | \u2705 Done | Quality hold = auto-hold for simple tools, code clean |\n\n\n**File:** `AUDIT_PLAN.md` ready for clean machine testing  \n**What to test:** Install each published skill, verify Pathfinder works end-to-end  \n**File:** `AUDIT_PLAN.md` ready for clean machine testing  \n**What to test:** Install each published skill, verify Pathfinder works end-to-end  \n**Where:** Anton's personal machine (clean environment per OPTIMIZATION_MERGED.md)  \n**Finding:** OpenClaw has real plugin system with hooks  \n**Plugin vs Skill for Pathfinder:**\n- Plugin = Automatic, deeply integrated, hooks into every query\n**Plugin vs Skill for Pathfinder:**\n- Plugin = Automatic, deeply integrated, hooks into every query\n- Skill = Manual, external tool, agent must invoke explicitly\n- Skill = Manual, external tool, agent must invoke explicitly\n- **Decision:** Keep Pathfinder as skill for now (works, published, tested). Plugin upgrade = future research project.\n\n|------|------|--------|\n| HEARTBEAT.md expansion | ~30 min | Added skills registry, git health, coding query checks |\n| Pathfinder final polish | ~45 min | Fixed dashboard docs, added `pf version` |\n| Smart Router quality analysis | ~30 min | QUALITY_HOLD_ANALYSIS.md created |\n| Coding Query Tracker | ~45 min | `scripts/coding_query_tracker.py` deployed + cron |\n| Company Brain roadmaps | ~60 min | Two detailed roadmaps in `docs/roadmaps/` |\n- **Brain API:** Healthy all day (84 facts, stable)\n- **Coding queries logged:** 1 (test query)\n- **Git commits today:** 5 (`cleanup_complete` branch)\n- AgentPathfinder is the strongest near-term deliverable. If audit passes tonight, priority shifts to promoting it.\n- Smart Router auto-hold is benign \u2014 code is clean, just too simple for \"productivity\" category.\n- Plugin architecture research shows OpenClaw's `runtime-api.js` supports hooks, making long-term plugin vision feasible.",
+      "ts": 1777979272.8209212,
+      "tc": 398
+    },
+    {
+      "q": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+      "a": "[{\"key\": \"faulttrace test results\", \"fact\": {\"type\": \"string\", \"value\": \"29/29 test files passed. Largest: 7.8MB java-parser-test.L5X (30 programs, 413 routines, 11995 rungs, 30716 cross-refs) parsed in 2.5s.\", \"source\": \"memory/2026-03-22.md\"}, \"score\": 0.333, \"hash\": \"85db4eee5d3fcd952ca9c430cef525f68bf9eb6378ad1f723bf410c365ba5251\"}]",
+      "ts": 1777987582.489359,
+      "tc": 58
+    },
+    {
+      "q": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+      "a": "\n[Tue 2026-04-21 22:19 EDT] hello, very pleased with the results today. on the MCP integration work, do we have docs on that too?\nassistant:    Good. Let me check what we have on the MCP side. ",
+      "ts": 1777988910.4058475,
+      "tc": 50
+    }
+  ]
+}
