@@ -70,7 +70,7 @@ def _parse_intent(content: str) -> Dict[str, Any]:
                 key = key.strip()
                 val = val.strip()
                 if key in ["allowed_ops", "forbidden_ops", "required_fields"]:
-                    intent[key] = [v.strip() for v in val.split(",")]
+                    intent[key] = [v.strip() for v in val.split(",") if v.strip()]
                 else:
                     intent[key] = val
         else:

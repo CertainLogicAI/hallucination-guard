@@ -33,6 +33,9 @@ cache_data/
 logs/*.json
 agentpathfinder_dashboard.html
 archive/
+patent_filings/
+audit_log.jsonl
+
 logs/
 
 # Generated content
