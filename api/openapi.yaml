@@ -1,0 +1,386 @@
+openapi: 3.0.3
+info:
+  title: CertainLogic Brain API
+  description: |
+    Deterministic, hallucination-free query processing with hash-verified outputs.
+    End-to-end pipeline: Query → Token Reduction → Routing → Search/Fallback → Validation → Response.
+    All responses carry SHA-256 hashes for cryptographic verification.
+  version: 1.0.0
+  contact:
+    name: CertainLogic
+    url: https://certainlogic.ai
+    email: team@certainlogic.ai
+servers:
+  - url: http://127.0.0.1:8000
+    description: Local development
+paths:
+  /:
+    get:
+      tags: [System]
+      summary: API info
+      description: Returns service name, version, and available endpoints.
+      responses:
+        '200':
+          description: Service info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service: {type: string, example: "Deterministic AI Brain"}
+                  version: {type: string, example: "1.0.0"}
+                  endpoints: {type: array, items: {type: string}}
+
+  /health:
+    get:
+      tags: [System]
+      summary: Health check
+      description: Check Brain API and all component statuses.
+      responses:
+        '200':
+          description: System health
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string, enum: [ok], example: ok}
+                  components:
+                    type: object
+                    properties:
+                      token_engine: {type: string, example: ok}
+                      memory_search: {type: string, example: ok}
+                      hallucination_detector: {type: string, example: ok}
+                      hybrid_router: {type: string, example: ok}
+                      facts_db: {type: string, example: "84 facts loaded"}
+                  uptime_check: {type: number, format: double}
+
+  /metrics:
+    get:
+      tags: [System]
+      summary: Pipeline metrics
+      description: Token engine statistics including hit rates and savings.
+      responses:
+        '200':
+          description: Metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token_engine:
+                    type: object
+                    additionalProperties: true
+
+  /query:
+    post:
+      tags: [Query]
+      summary: Process query through deterministic pipeline
+      description: |
+        Full pipeline: cache check → token reduction → routing → facts/memory search →
+        external fallback → validation → hashing → audit. Returns a verifiable,
+        hash-signed response.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Processed query with audit trail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /validate:
+    post:
+      tags: [Query]
+      summary: Direct hallucination validation
+      description: |
+        Validate any (query,response) pair without routing or LLM calls.
+        Returns structured confidence score and flagged checks.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateRequest'
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid: {type: boolean}
+                  flagged: {type: boolean}
+                  confidence: {type: number, format: float}
+                  flags: {type: array, items: {type: string}}
+                  checks: {type: object, additionalProperties: true}
+
+  /facts:
+    get:
+      tags: [Facts]
+      summary: List all facts
+      responses:
+        '200':
+          description: Fact database contents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: {type: integer}
+                  facts: {type: object, additionalProperties: true}
+    post:
+      tags: [Facts]
+      summary: Add a fact
+      description: Add or overwrite a fact in the deterministic knowledge base.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FactEntry'
+      responses:
+        '201':
+          description: Fact added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string, example: added}
+                  key: {type: string}
+                  total_facts: {type: integer}
+
+  /facts/search:
+    get:
+      tags: [Facts]
+      summary: Search facts by keyword
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema: {type: string}
+          description: Search query string
+      responses:
+        '200':
+          description: Matching facts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query: {type: string}
+                  count: {type: integer}
+                  results: {type: object, additionalProperties: true}
+
+  /facts/{key}:
+    put:
+      tags: [Facts]
+      summary: Update a fact
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FactEntry'
+      responses:
+        '200':
+          description: Fact updated
+        '404':
+          description: Fact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags: [Facts]
+      summary: Delete a fact
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Fact deleted
+        '404':
+          description: Fact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /audit:
+    get:
+      tags: [Audit]
+      summary: Get recent audit log entries
+      parameters:
+        - name: limit
+          in: query
+          schema: {type: integer, default: 20}
+          description: Maximum entries to return
+      responses:
+        '200':
+          description: Audit entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        audit_id: {type: string}
+                        query: {type: string}
+                        routing: {type: string}
+                        method: {type: string}
+                        confidence: {type: number}
+                        valid: {type: boolean}
+                        response_hash: {type: string}
+                        elapsed_ms: {type: number}
+                        _ts: {type: number}
+
+  /cache/clear:
+    post:
+      tags: [Cache]
+      summary: Clear token reduction cache
+      responses:
+        '200':
+          description: Cache cleared
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string, example: cleared}
+
+  /cache/purge:
+    post:
+      tags: [Cache]
+      summary: Purge all data
+      description: Wipe entire facts database and token cache.
+      responses:
+        '200':
+          description: All data purged
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string, example: purged}
+                  facts: {type: integer, example: 0}
+
+components:
+  schemas:
+    QueryRequest:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          minLength: 1
+          maxLength: 10000
+          description: The user query to process
+          example: "What is our token savings rate?"
+        context:
+          type: object
+          description: Optional additional context for routing
+          example: {"source": "dashboard", "user_tier": "premium"}
+        force_deterministic:
+          type: boolean
+          default: false
+          description: Force deterministic routing (no external LLM)
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 5
+          description: Number of memory search results to return
+
+    QueryResponse:
+      type: object
+      properties:
+        query: {type: string}
+        routing:
+          type: string
+          enum: [deterministic, external]
+        routing_confidence: {type: number, format: float}
+        routing_reason: {type: string}
+        method:
+          type: string
+          enum: [answer_cache, facts_cache, deterministic_search, token_fallback, external_placeholder, answer_cache]
+        results:
+          type: object
+          description: Result payload (structure varies by method)
+        token_stats:
+          type: object
+          properties:
+            original_tokens: {type: integer}
+            reduced_tokens: {type: integer}
+            tokens_saved: {type: integer}
+            cache_hit: {type: boolean}
+        validation:
+          type: object
+          properties:
+            valid: {type: boolean}
+            source: {type: string}
+            details: {type: object}
+        response_hash: {type: string, description: SHA-256 hash of response payload}
+        audit_id: {type: string, description: 16-character audit trail ID}
+        warning: {type: string}
+        cache_status: {type: string, enum: [cached, uncached, flagged_not_cached]}
+
+    FactEntry:
+      type: object
+      required: [key, type, value]
+      properties:
+        key: {type: string, description: Unique fact identifier}
+        type:
+          type: string
+          enum: [numeric, string]
+        value: {type: string}
+        unit: {type: string, description: Unit of measurement if numeric}
+        source: {type: string, description: Attribution/source URL}
+
+    ValidateRequest:
+      type: object
+      required: [query, response]
+      properties:
+        query: {type: string}
+        response: {type: string}
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail: {type: string}
+
+    ValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              loc: {type: array, items: {type: string}}
+              msg: {type: string}
+              type: {type: string}
