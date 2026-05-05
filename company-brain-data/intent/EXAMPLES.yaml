@@ -1,0 +1,17 @@
+coding-intent:
+  allowed: [brain.query, brain.get_page, brain.search]
+  forbidden: [brain.put_page, brain.ingest, brain.sync, brain.delete]
+  required: [source]
+  description: Read-only intent for coding domain. No mutations allowed.
+
+business-intent:
+  allowed: [brain.query, brain.get_page, brain.search, brain.ingest]
+  forbidden: [brain.put_page, brain.sync, brain.delete]
+  required: [source, metadata]
+  description: Business domain allows ingestion but not direct page edits.
+
+admin-intent:
+  allowed: [brain.*]
+  forbidden: [brain.purge, brain.delete_brain]
+  required: [source]
+  description: Admin can do almost anything except destructive operations.
