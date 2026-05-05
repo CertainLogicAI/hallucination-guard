@@ -4,7 +4,9 @@
 - **What to call them:** Anton
 - **Telegram:** @ForCryptoClearly (ID: 1381429689)
 - **Timezone:** CST
-- **Notes:** Prefers concise responses, asks to expand when needed. Proactive problem-flagging appreciated. Light humor welcome.
+- **Physical presence:** 6'9", 280lbs, red hair — memorable, attracts attention, has natural presence when "on"
+- **Personality:** Prefers privacy but recognizes presence is an asset; needs practice being "on" consistently
+- **Communication:** Prefers concise responses, asks to expand when needed. Proactive problem-flagging appreciated. Light humor welcome.
 
 ## Context
 
