@@ -133,18 +133,19 @@ def verify_page_hash(slug: str, content: str, frontmatter: Optional[dict] = None
     return computed == stored, stored, computed
 
 def _get_stored_hash(slug: str) -> Optional[str]:
-    """Read hash from append-only hash DB."""
+    """Read hash from append-only hash DB. Returns LATEST match."""
     if not HASH_DB.exists():
         return None
+    latest = None
     with open(HASH_DB) as f:
         for line in f:
             try:
                 entry = json.loads(line)
                 if entry.get("slug") == slug:
-                    return entry.get("hash")
+                    latest = entry.get("hash")
             except json.JSONDecodeError:
                 continue
-    return None
+    return latest
 
 def _store_hash(slug: str, content: str, frontmatter: Optional[dict] = None,
                 family: Optional[str] = None, audit_id: Optional[str] = None):
@@ -203,7 +204,9 @@ class DeterministicBrain:
         """
         # 1. Command validation
         if cmd not in VALID_COMMANDS:
-            return {"success": False, "error": f"Unknown command '{cmd}'"}
+            audit_id = hashlib.sha256(f"{cmd}:{time.time()}".encode()).hexdigest()[:16]
+            self._audit({"audit_id": audit_id, "cmd": cmd, "params": params, "blocked": True, "reason": "Unknown command"})
+            return {"success": False, "error": f"Unknown command '{cmd}'", "audit_id": audit_id}
 
         # 2. Intent check
         allowed, reason = check_intent(cmd, params, self.domain)

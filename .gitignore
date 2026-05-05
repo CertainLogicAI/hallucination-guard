@@ -15,6 +15,13 @@ projects/plc-analyzer/
 secrets/
 .env
 
+# CertainLogic modules (shim files tracked; source repo as submodule)
+company-brain/*
+!company-brain/deterministic_brain.py
+
+# GBrain runtime data
+company-brain-data/
+
 # Generated files
 __pycache__/
 *.pyc
