@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "company-brain"))
 from deterministic_brain import (
     compute_hash, compute_family_hash, _store_hash, _get_stored_hash,
     verify_page_hash, check_intent, create_intent, DeterministicBrain,
-    VALID_COMMANDS, FORBIDDEN_COMMANDS
+    VALID_COMMANDS, gbrain_cli
 )
 
 # ── Fixtures ──────────────────────────────────────────────────────────────
@@ -243,6 +243,41 @@ class TestDeterministicBrain:
         assert "op3" in intent["forbidden_ops"]
         assert "field1" in intent["required_fields"]
 
+
+# ── Live GBrain Integration (Optional) ────────────────────────
+class TestLiveGBrainIntegration:
+    """Skipped if GBrain not installed — these hit the real PGLite DB."""
+
+    def setup_method(self):
+        self.brain = DeterministicBrain(domain="test")
+        # Probe gbrain availability
+        result = gbrain_cli(["--help"])
+        self.gbrain_available = result.get("success", False) and "gbrain" in result.get("output", "")
+
+    def test_live_put_and_get(self):
+        if not self.gbrain_available:
+            pytest.skip("GBrain not installed or not configured")
+        
+        # Create intent for test domain to allow put_page
+        create_intent("test", ["brain.put_page", "brain.get_page"], [], [])
+        
+        slug = f"live-test-{time.time():.0f}"
+        content = "Live integration test page."
+        
+        # PUT
+        result = self.brain.command("brain.put_page", {
+            "slug": slug,
+            "content": content,
+            "frontmatter": {"domain": "test"},
+            "source": "test"
+        })
+        assert result["success"], f"Put failed: {result.get('error')}"
+        assert "hash" in result
+        
+        # VERIFY (get + hash check)
+        verify = self.brain.verify(slug)
+        assert verify.get("verified"), f"Hash mismatch: stored={verify['stored_hash']}, computed={verify['computed_hash']}"
+        assert verify["stored_hash"] == result["hash"], "Stored hash should match returned hash"
 
 # ── Run directly ──────────────────────────────────────────────────────────
 if __name__ == "__main__":

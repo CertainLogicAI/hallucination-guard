@@ -110,8 +110,14 @@ def check_intent(cmd: str, params: dict, domain: str = "default") -> tuple[bool,
 HASH_DB = CERTAINLOGIC_DATA / "page_hashes.jsonl"
 FAMILY_DB = CERTAINLOGIC_DATA / "families.json"
 
-def compute_hash(content: str, frontmatter: Optional[dict] = None) -> str:
-    """Compute SHA-256 of page content + frontmatter."""
+def compute_hash(content: str = "", frontmatter: Optional[dict] = None, raw: Optional[str] = None) -> str:
+    """Compute SHA-256 of page content + frontmatter.
+    
+    If raw is provided, hash the raw markdown text (most accurate for GBrain round-trips).
+    Otherwise hash parsed content + frontmatter dict.
+    """
+    if raw is not None:
+        return hashlib.sha256(raw.encode()).hexdigest()
     payload = {"content": content, "frontmatter": frontmatter or {}}
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(canonical.encode()).hexdigest()
@@ -121,12 +127,12 @@ def compute_family_hash(slugs: List[str], hashes: List[str]) -> str:
     combined = "".join(sorted(f"{s}:{h}" for s, h in zip(slugs, hashes)))
     return hashlib.sha256(combined.encode()).hexdigest()
 
-def verify_page_hash(slug: str, content: str, frontmatter: Optional[dict] = None) -> tuple[bool, str, str]:
+def verify_page_hash(slug: str, content: str = "", frontmatter: Optional[dict] = None, raw: Optional[str] = None) -> tuple[bool, str, str]:
     """
     Verify a page against stored hash.
     Returns (valid, stored_hash, computed_hash).
     """
-    computed = compute_hash(content, frontmatter)
+    computed = compute_hash(content, frontmatter, raw)
     stored = _get_stored_hash(slug)
     if stored is None:
         return False, "", computed  # Never stored = can't verify
@@ -147,13 +153,14 @@ def _get_stored_hash(slug: str) -> Optional[str]:
                 continue
     return latest
 
-def _store_hash(slug: str, content: str, frontmatter: Optional[dict] = None,
-                family: Optional[str] = None, audit_id: Optional[str] = None):
+def _store_hash(slug: str, content: str = "", frontmatter: Optional[dict] = None,
+                raw: Optional[str] = None, family: Optional[str] = None,
+                audit_id: Optional[str] = None):
     """Write hash to append-only DB."""
     entry = {
         "_ts": time.time(),
         "slug": slug,
-        "hash": compute_hash(content, frontmatter),
+        "hash": compute_hash(content, frontmatter, raw),
         "family": family,
         "audit_id": audit_id,
     }
@@ -196,6 +203,7 @@ class DeterministicBrain:
     def _audit(self, entry: dict):
         entry["_ts"] = time.time()
         entry["domain"] = self.domain
+        self.audit_log.parent.mkdir(parents=True, exist_ok=True)
         with open(self.audit_log, "a") as f:
             f.write(json.dumps(entry, default=str) + "\n")
 
@@ -225,10 +233,22 @@ class DeterministicBrain:
         # 5. Hash verification for writes
         if cmd == "brain.put_page":
             slug = params.get("slug", "")
-            content = params.get("content", "")
-            fm = params.get("frontmatter", {})
-            _store_hash(slug, content, fm, family=params.get("family"), audit_id=audit_id)
-            result["hash"] = compute_hash(content, fm)
+            # CRITICAL: Hash the GBrain-canonical content, not the input
+            # GBrain normalizes frontmatter/whitespace; input hash won't match retrieved
+            get_result = self._execute("brain.get_page", {"slug": slug})
+            if get_result.get("success"):
+                # GBrain returns raw markdown text, not JSON
+                raw = get_result.get("output", "")
+                # Hash the RAW canonical content for round-trip integrity
+                _store_hash(slug, raw=raw, family=params.get("family"), audit_id=audit_id)
+                result["hash"] = compute_hash(raw=raw)
+            else:
+                # Fallback: hash input (will warn)
+                content = params.get("content", "")
+                fm = params.get("frontmatter", {})
+                _store_hash(slug, content=content, frontmatter=fm, family=params.get("family"), audit_id=audit_id)
+                result["hash"] = compute_hash(content=content, frontmatter=fm)
+                result["_warning"] = "Stored input hash (GBrain retrieve failed)"
 
         # 6. Audit complete
         self._audit({
@@ -248,20 +268,18 @@ class DeterministicBrain:
         elif cmd == "brain.get_page":
             return gbrain_cli(["get", params["slug"]])
         elif cmd == "brain.put_page":
-            # Write content to temp file, then use gbrain put <slug> < file.md
-            tmp = CERTAINLOGIC_DATA / f"tmp_{params['slug'].replace('/', '_')}.md"
-            with open(tmp, "w") as f:
-                if "frontmatter" in params and params["frontmatter"]:
-                    f.write("---\n")
-                    for k, v in params["frontmatter"].items():
-                        f.write(f"{k}: {v}\n")
-                    f.write("---\n\n")
-                f.write(params["content"])
-            # Use stdin redirection for put
-            with open(tmp) as infile:
-                result = gbrain_cli(["put", params["slug"], "--source", params.get("source", "default")],
-                                  stdin=infile.read())
-            tmp.unlink(missing_ok=True)
+            # Build markdown with frontmatter and use gbrain put <slug> --content
+            content_parts = []
+            if "frontmatter" in params and params["frontmatter"]:
+                content_parts.append("---")
+                for k, v in params["frontmatter"].items():
+                    content_parts.append(f"{k}: {v}")
+                content_parts.append("---")
+                content_parts.append("")
+            content_parts.append(params["content"])
+            full_content = "\n".join(content_parts)
+            
+            result = gbrain_cli(["put", params["slug"], "--content", full_content])
             return result
         elif cmd == "brain.search":
             return gbrain_cli(["search", params["q"], "--limit", str(params.get("limit", 5))])
@@ -276,22 +294,9 @@ class DeterministicBrain:
         if not result.get("success"):
             return result
 
-        # Extract content from gbrain get output (it's markdown text, not JSON)
-        output = result.get("output", "")
-        content = output
-        fm = {}
-        # Try to parse frontmatter if present
-        if output.startswith("---"):
-            parts = output.split("---", 2)
-            if len(parts) >= 3:
-                try:
-                    import yaml
-                    fm = yaml.safe_load(parts[1])
-                    content = parts[2].strip()
-                except ImportError:
-                    pass
-
-        valid, stored, computed = verify_page_hash(slug, content, fm)
+        # Get raw markdown from gbrain (it's markdown text, not JSON)
+        raw = result.get("output", "")
+        valid, stored, computed = verify_page_hash(slug, raw=raw)
         return {
             "slug": slug,
             "verified": valid,
@@ -303,6 +308,7 @@ class DeterministicBrain:
 def create_intent(domain: str, allowed: List[str], forbidden: List[str],
                   required: List[str], description: str = ""):
     """Create a new intent node for a domain."""
+    INTENT_PATH.mkdir(parents=True, exist_ok=True)
     intent_file = INTENT_PATH / f"{domain}-INTENT.md"
     content = f"""---
 allowed_ops: {', '.join(allowed)}

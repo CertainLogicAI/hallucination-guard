@@ -92,7 +92,7 @@ def parse_summary(stdout: str):
             m = re.search(r'(\d+) failed', line)
             if m:
                 summary["failed"] = int(m.group(1))
-            m = re.search(r'in ([\d.]+s)$', line)
+            m = re.search(r'in ([\d.]+s)', line)
             if m:
                 summary["time"] = m.group(1)
         if "FAILED" in line:
