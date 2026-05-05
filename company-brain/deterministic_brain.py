@@ -161,12 +161,13 @@ def _store_hash(slug: str, content: str, frontmatter: Optional[dict] = None,
         f.write(json.dumps(entry) + "\n")
 
 # ── Layer 4: GBrain CLI Wrapper ──────────────────────────────────────────
-def gbrain_cli(args: List[str], **kwargs) -> dict:
+def gbrain_cli(args: List[str], stdin: Optional[str] = None, **kwargs) -> dict:
     """Call gbrain CLI and return parsed JSON output."""
     cmd = ["bun", "run", f"{GBRAIN_PATH}/src/cli.ts"] + args
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=30, cwd=GBRAIN_PATH
+            cmd, capture_output=True, text=True, timeout=30, cwd=GBRAIN_PATH,
+            input=stdin, **kwargs
         )
         # GBrain outputs JSON for most commands
         try:
@@ -245,19 +246,25 @@ class DeterministicBrain:
         if cmd == "brain.query":
             return gbrain_cli(["query", params["query"], "--source", params.get("source", "default")])
         elif cmd == "brain.get_page":
-            return gbrain_cli(["get_page", params["slug"]])
+            return gbrain_cli(["get", params["slug"]])
         elif cmd == "brain.put_page":
-            # Write content to temp file, then gbrain import
+            # Write content to temp file, then use gbrain put <slug> < file.md
             tmp = CERTAINLOGIC_DATA / f"tmp_{params['slug'].replace('/', '_')}.md"
             with open(tmp, "w") as f:
                 if "frontmatter" in params and params["frontmatter"]:
                     f.write("---\n")
-                    f.write(json.dumps(params["frontmatter"], indent=2))
-                    f.write("\n---\n\n")
+                    for k, v in params["frontmatter"].items():
+                        f.write(f"{k}: {v}\n")
+                    f.write("---\n\n")
                 f.write(params["content"])
-            return gbrain_cli(["import-file", str(tmp), "--source", params.get("source", "default")])
+            # Use stdin redirection for put
+            with open(tmp) as infile:
+                result = gbrain_cli(["put", params["slug"], "--source", params.get("source", "default")],
+                                  stdin=infile.read())
+            tmp.unlink(missing_ok=True)
+            return result
         elif cmd == "brain.search":
-            return gbrain_cli(["query", params["q"], "--limit", str(params.get("limit", 5))])
+            return gbrain_cli(["search", params["q"], "--limit", str(params.get("limit", 5))])
         elif cmd == "brain.sync":
             return gbrain_cli(["sync", "--source", params.get("source", "default")])
         else:
@@ -269,8 +276,21 @@ class DeterministicBrain:
         if not result.get("success"):
             return result
 
-        content = result.get("output", {}).get("content", "")
-        fm = result.get("output", {}).get("frontmatter", {})
+        # Extract content from gbrain get output (it's markdown text, not JSON)
+        output = result.get("output", "")
+        content = output
+        fm = {}
+        # Try to parse frontmatter if present
+        if output.startswith("---"):
+            parts = output.split("---", 2)
+            if len(parts) >= 3:
+                try:
+                    import yaml
+                    fm = yaml.safe_load(parts[1])
+                    content = parts[2].strip()
+                except ImportError:
+                    pass
+
         valid, stored, computed = verify_page_hash(slug, content, fm)
         return {
             "slug": slug,
