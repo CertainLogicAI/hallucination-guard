@@ -41,6 +41,9 @@ app = FastAPI(
     title="Deterministic AI Brain",
     version="1.0.0",
     description="Deterministic, hallucination-free query processing with hash-verified outputs",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json",
 )
 
 router = HybridAIRouter(WORKSPACE_PATH)
