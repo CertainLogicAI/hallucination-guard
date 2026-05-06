@@ -6,6 +6,25 @@
 
 ---
 
+## The "OS for Business Agents" Framing
+
+CertainLogic is positioning as the **operating system for business agents**, with GBrain as one component (the file system).
+
+| OS Component | CertainLogic Layer | Attribution |
+|-------------|-------------------|-------------|
+| **Kernel** | Deterministic verification (HMAC, hash validation) | CertainLogic |
+| **File System** | GBrain (page storage, semantic search) | GBrain |
+| **Security Model** | Intent-based access control | CertainLogic |
+| **User Preferences** | Ethos encoding (business rules, communication style) | CertainLogic |
+| **System Logs** | Audit trail + provenance (395 entries, 32 HMAC-signed) | CertainLogic |
+| **Package Manager** | ClawHub skills marketplace | Both |
+| **Applications** | Agent skills (Pathfinder, trend factory, etc.) | Both |
+| **Shell/CLI** | Brain API + deterministic_brain.py wrapper | CertainLogic |
+
+**Key distinction:** Running GBrain raw is like running apps without an OS — possible, but dangerous for business. CertainLogic provides the OS layer that makes GBrain safe, auditable, and governed.
+
+---
+
 ## GBrain Foundation (Garry Tan)
 
 | Capability | What It Does |
