@@ -1,0 +1,3 @@
+[submodule "certainlogic-site"]
+	path = certainlogic-site
+	url = https://github.com/CertainLogicAI/certainlogic-site.git

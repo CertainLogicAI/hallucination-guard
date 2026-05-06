@@ -55,3 +55,6 @@ certainlogic-site/
 # Retired
 site/
 workspace-cache.json
+memory-index.json
+*.pyc
+.pytest_cache/
