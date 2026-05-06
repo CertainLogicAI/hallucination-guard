@@ -1,0 +1,18 @@
+Day 5 of building the Company Brain in public.
+
+What we shipped:
+
+→ HMAC-SHA256 signing on every agent write
+→ Intent-based access control (domains define what agents CAN'T do)
+→ Deterministic cache: 443 facts, 319 queries, zero hallucination risk
+→ Tamper-evident audit: modify data → break cryptographic proof
+
+This isn't "AI done safely."
+
+This is "prove every action or it didn't happen."
+
+Opening beta for teams that audit everything.
+
+🔗 certainlogic.ai/beta
+
+#CompanyBrain #DeterministicAI #BuildInPublic
