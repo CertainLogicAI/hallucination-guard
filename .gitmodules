@@ -1,3 +1,12 @@
 [submodule "certainlogic-site"]
 	path = certainlogic-site
 	url = https://github.com/CertainLogicAI/certainlogic-site.git
+[submodule "skills-publish/agentpathfinder"]
+	path = skills-publish/agentpathfinder
+	url = https://github.com/CertainLogicAI/agentpathfinder.git
+[submodule "skills-publish/certainlogic-onboarding-wizard"]
+	path = skills-publish/certainlogic-onboarding-wizard
+	url = https://github.com/CertainLogicAI/certainlogic-onboarding-wizard.git
+[submodule "skills-publish/the-install-sandbox"]
+	path = skills-publish/the-install-sandbox
+	url = https://github.com/CertainLogicAI/the-install-sandbox.git
