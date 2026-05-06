@@ -1,0 +1,8 @@
+# Ignore GBrain build artifacts and large binaries
+src/assets/wasm/
+node_modules/
+build/
+dist/
+*.wasm
+*.lockb
+bun.lockb
