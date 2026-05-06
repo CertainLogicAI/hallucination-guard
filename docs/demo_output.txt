@@ -1,0 +1,94 @@
+
+============================================================
+  DEMO: Tamper-Evident Company Brain
+============================================================
+Product: CertainLogic - Deterministic AI Infrastructure
+Built on: GBrain + AgentPathfinder HMAC
+
+============================================================
+  STEP 1: Define Domain Intent
+============================================================
+
+Intent nodes control what operations an agent can perform.
+This is the 'security policy' layer.
+    
+  Created intent: /data/.openclaw/workspace/company-brain-data/intent/medical-INTENT.md
+
+============================================================
+  STEP 2: Initialize Deterministic Brain
+============================================================
+  Domain: medical
+  Data dir: /data/.openclaw/workspace/company-brain-data
+
+============================================================
+  STEP 3: Write Tamper-Evident Page
+============================================================
+
+Every write generates an HMAC-SHA256 signature.
+The signature is stored in the page's frontmatter.
+If anyone modifies the page, the signature won't verify.
+    
+  Slug: demo/patient-record-012632
+  Write success: True
+  SHA-256 Hash: 4912152e93c4b6e9...
+  HMAC Signature: 5db041420ac082e0...
+  Audit ID: cb9c2cb860cfdb62
+
+============================================================
+  STEP 4: Verify Page Integrity
+============================================================
+
+Verification performs TWO checks:
+1. SHA-256 hash match (content hasn't changed)
+2. HMAC signature match (provenance is valid)
+    
+  Hash verified: True
+  HMAC verified: True
+  Stored hash:   4912152e93c4b6e9...
+  Computed hash: 4912152e93c4b6e9...
+  HMAC sig:      5db041420ac082e0...
+  ✅ PASS — Full verification (hash + HMAC)
+
+============================================================
+  STEP 5: Security - Blocked Operation
+============================================================
+
+Intent layer blocks operations not in the 'allowed' list.
+Medical domain forbids 'brain.sync' - this should be BLOCKED.
+    
+  Command: brain.sync
+  Blocked: True
+  Reason: Command 'brain.sync' forbidden by intent for domain 'medical'
+  ✅ PASS — Intent blocked unauthorized sync
+
+============================================================
+  STEP 6: Audit Trail
+============================================================
+
+Every operation is logged to an append-only audit file.
+This creates a non-repudiable record of all agent actions.
+    
+  [01:26:35] brain.get_page | N/A
+  [01:26:35] brain.get_page | True
+  [01:26:35] brain.sync | N/A
+
+============================================================
+  DEMO COMPLETE
+============================================================
+
+What we demonstrated:
+  ✅ Intent-based access control (security policy)
+  ✅ HMAC-SHA256 signing on every write (provenance)
+  ✅ SHA-256 hash verification (integrity)
+  ✅ Append-only audit trail (non-repudiation)
+  ✅ Unauthorized operations blocked
+
+Use Cases:
+  • Enterprise: Prove AI knowledge hasn't been tampered
+  • Compliance: Audit trail for every agent action
+  • Insurance: Cryptographic proof of data provenance
+  • Critical Systems: Medical, legal, financial records
+
+Tech Stack: GBrain + AgentPathfinder + Deterministic Shims
+Tests: 27/27 passing (26 unit + 1 live integration)
+    

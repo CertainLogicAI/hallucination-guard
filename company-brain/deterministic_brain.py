@@ -310,9 +310,9 @@ class DeterministicBrain:
         else:
             return {"success": False, "error": f"Command '{cmd}' not yet implemented in wrapper"}
 
-    def verify(self, slug: str) -> dict:
+    def verify(self, slug: str, source: str = "verification") -> dict:
         """Verify a page's hash + HMAC signature."""
-        result = self.command("brain.get_page", {"slug": slug})
+        result = self.command("brain.get_page", {"slug": slug, "source": source})
         if not result.get("success"):
             return result
 
