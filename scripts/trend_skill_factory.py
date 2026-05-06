@@ -104,13 +104,27 @@ class FreeModel:
     def load_key(cls):
         if cls.OPENROUTER_KEY:
             return cls.OPENROUTER_KEY
+        # Try env first
+        env_key = os.environ.get("OPENROUTER_API_KEY", "")
+        if env_key:
+            cls.OPENROUTER_KEY = env_key
+            return cls.OPENROUTER_KEY
+        # Try .env file
+        try:
+            with open("/data/.openclaw/workspace/.env") as f:
+                for line in f:
+                    if line.startswith("OPENROUTER_API_KEY="):
+                        cls.OPENROUTER_KEY = line.strip().split("=", 1)[1]
+                        return cls.OPENROUTER_KEY
+        except:
+            pass
+        # Fallback to secrets file
         try:
             with open("/data/.openclaw/secrets/openrouter.json") as f:
                 cls.OPENROUTER_KEY = json.load(f)["api_key"]
             return cls.OPENROUTER_KEY
         except:
-            # Fallback to env
-            cls.OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+            cls.OPENROUTER_KEY = ""
             return cls.OPENROUTER_KEY
 
     @classmethod
