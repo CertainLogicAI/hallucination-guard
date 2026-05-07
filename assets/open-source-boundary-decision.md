@@ -1,108 +1,137 @@
-# Open Source Boundary Decision — Crypto Layer & Agent Role Architecture
+# Open Source Boundary Decision — Brain OS Upgrades for GBrain
 
-**Date:** 2026-05-07  
-**Status:** DECIDED  
-**Decision owner:** Anton  
-**Agent input:** Alex
-
----
-
-## What Was Asked
-
-Anton: Should we open source the crypto layer?  
-Alex: Here's a boundary analysis...  
-Anton: **No.** The crypto layer is too valuable and the agent-as-cofounder role is too new to understand the ramifications. I don't want it falling into bad people's hands.
-
-**Verdict:** The crypto signing system, the agent role architecture, and the family data structure remain **proprietary indefinitely**.
+**Date:** 2026-05-07 (revised 2026-05-07 post-strategy discussion)
+**Status:** DECIDED
+**Business model:** Open core → community trust → paid co-pilot agent + data products
 
 ---
 
-## What This Means
+## Business Model
 
-### Closed Source (Permanently)
+Anton's go-to-market strategy for CertainLogic:
+1. Open source Brain OS upgrades to gbrain/gstack community (100K+ stars collectively)
+2. Community adoption — gbrain users get deterministic, auditable agent infrastructure
+3. Funnel to paid products:
+   - Coding agent middleware (cache warmers, optimization)
+   - Data products (pre-built knowledge bases, benchmark datasets)
+   - Co-pilot agent (specialized, non-yes-man agent with intent awareness, override handling, and self-critique)
+4. Revenue model: Per-seat for the co-pilot agent
 
-| Component | Reason |
+This reframes the moat: The crypto layer is not the product — the CO-PILOT AGENT is. The crypto layer is trust infrastructure that makes the paid product credible and defensible.
+
+---
+
+## What Goes Open (Brain OS Template Repository)
+
+| Component | What's Shared | Why |
+|---|---|---|
+| **Crypto signing mechanism** | The algorithm, RFC, and reference implementation. HMAC signing pattern for agent decisions. How to verify on read. | Trust infrastructure. Community adopts it, CertainLogic is the authoritative source. |
+| **brain_wrapper.py template** | Full Python gbrain wrapper with placeholders for intent patterns and boost values. Includes timeout, retry, circuit breaker, error classification. | Community gets a working brain integration out of the box. |
+| **Production hardening** | Circuit breaker, input validator, error classifier, CLI pool, metrics, cache layer. All generic. | Operational best practices that anyone can adopt. |
+| **Intent classification pattern** | The REGEX-BASED CLASSIFICATION MECHANISM (not the values). Document: "Detect intent from query text using regex patterns, route to appropriate brain search." | Community customizes for their own needs. |
+| **Source boost pattern** | The PREFIX-BASED BOOST MECHANISM (not the values). Document: "Higher multipliers for higher-value content types." | Community sets their own priorities. |
+| **Sanitized operator's guide** | Full guide with {YOUR_PREFIX}, {YOUR_PRODUCT}, {YOUR_COMPANY} placeholders. | Community gets operational docs. |
+| **Integration examples** | How to plug brain queries into agent skills (enhance prompts, fallback logic). | Reduces time-to-value for gbrain developers. |
+| **deterministic_brain.py (stripped)** | The structured command schema, hash verification, read path. Signing key derivation and provenance logging removed. | Community gets deterministic brain reads. Audit trail is their responsibility (or they buy from us). |
+
+---
+
+## What Stays Closed (CertainLogic Proprietary)
+
+| Component | Why Closed |
 |---|---|
-| `crypto_provenance.py` (HMAC signing) | Core to audit trail integrity. Bad actors could forge agent decisions if they replicate it. |
-| `deterministic_brain.py` (with signing) | The full signing + verification path stays closed. Template version for open source will have signing removed. |
-| `certainlogic-intent.ts` regex values | Encodes what CertainLogic cares about strategically. Values closed, pattern type open. |
-| `certainlogic-boosts.ts` multipliers | Encodes business priorities. Multipliers closed, concept open. |
-| `family/` data structure | The `family_node` type and work categorization is Anton's personal knowledge organization. Closed. |
-| Agent role architecture | The protocols that make Alex act as cofounder (override boundaries, contradiction detection, self-critique) are proprietary. |
-| Audit logs (`provenance_log.jsonl`, `audit.jsonl`) | Operational history. Never shared. |
-
-### Open Source (Template Version)
-
-| Component | What's Shared |
-|---|---|
-| `brain_wrapper.py` | Python gbrain wrapper WITHOUT signing, WITHOUT intent values, WITHOUT boost multipliers. Placeholder comments: `# Define your intent patterns here` |
-| `circuit_breaker.py` | Generic timeout/retry/circuit breaker. Fully open. |
-| `input_validator.py` | Generic slug/query validation. Fully open. |
-| `error_classifier.py` | Transient vs permanent error logic. Fully open. |
-| `cli_pool.py` | Process pool for CLI calls. Fully open. |
-| `metrics.py` | Lightweight metric recording. Fully open. |
-| `cache.py` | Intent/query cache. Fully open. |
-| Operator's Guide (sanitized) | Replace CertainLogic values with `{YOUR_PREFIX}`, `{YOUR_PRODUCT}`, etc. |
-
-### What the Open Source Template Looks Like
-
-```python
-# brain_wrapper.py (OPEN SOURCE TEMPLATE VERSION)
-# ──── YOUR CUSTOMIZATION SECTION ────
-# Define your intent patterns here:
-# STRATEGY_PATTERNS = [r'\bkeyword\b', ...]
-# PRODUCT_PATTERNS = [r'\bproduct_name\b', ...]
-#
-# Define your source boosts here:
-# BOOST_MAP = {
-#     'concepts/your-prefix-': 1.8,
-#     'projects/your-product': 1.6,
-#     ...
-# }
-#
-# NOTHING BELOW THIS LINE NEEDS CUSTOMIZATION
-# ──────────────────────────────────────────
-```
-
-The signing layer (`crypto_provenance.py`) is **absent** from the open source template. Users who want audit trails build their own.
+| **CertainLogic-specific intent values** | The 80 regexes encoding our strategic concerns (month-6, trade secret, data flywheel, FaultTrace). Replaceable by community with their own values. Not competitive advantage. |
+| **CertainLogic-specific boost multipliers** | The 1.8x, 1.6x, 0.6x values encoding our priorities. Again, template is open; our specific business priorities are private. Not competitive advantage. |
+| **The CO-PILOT AGENT** | The tuned, trained, specialized agent that overrides, contradicts, self-critiques, and acts as cofounder. This is the PRODUCT. This is what customers pay per-seat for. |
+| **Signing KEY** | The algorithm is open. The master key (CERTAINLOGIC_MASTER_KEY) and derived keys are private. Anyone can implement signing. Only CertainLogic has our specific audit trail. |
+| **Provenance logs** | provenance_log.jsonl — the actual signed history of every agent decision. Trade secret. Not shareable. |
+| **Audit logs** | audit.jsonl — operational history. Not shareable. |
+| **Brain data (443 facts)** | The actual knowledge. Personal and business data. Never shared. |
+| **Family taxonomy** | The family/work/strategy/, family/comms/ knowledge organization is Anton-specific. Template is open; our specific content is private. |
+| **Agent training/coaching layer** | The protocols, boundaries, and personality that make the agent a cofounder instead of a yes-man. This is the intellectual property. |
 
 ---
 
-## Why This Is the Right Call
+## Why This Is the Right Split
 
-1. **The crypto layer IS the moat.** AgentPathfinder-style HMAC signing over agent decisions isn't just logging — it's creating legally defensible audit trails. If any competitor can replicate the exact same audit infrastructure, you've lost a structural advantage.
+### Open = Distribution
+- GBrain community gets deterministic brain infrastructure
+- CertainLogic gets recognized as the "serious" agent infrastructure provider
+- Developers try it → see value → learn about paid co-pilot agent
 
-2. **Agent-as-cofounder is a new category.** We don't yet know the full implications of an agent that can refuse, override, contradict, and self-critique. Making this architecture public before understanding it creates risk.
+### Closed = Revenue
+- Co-pilot agent is the product (per-seat revenue)
+- Data products (benchmarks, cache warmers) are add-ons
+- Integration depth with customer systems is the switching cost
+- Our specific knowledge base is the data flywheel
 
-3. **Family data structure is personal.** Your `family/work/strategy/`, `family/work/metrics/`, `family/comms/` taxonomy encodes how you organize knowledge. It's not generic — it's Anton-specific. Even if someone forked the code, the taxonomy wouldn't make sense without your semantic model.
+### The pitch to a customer:
+"How do I trust your agent's decisions?"
+"It's built on open, audited, community-reviewed signing infrastructure. Here's the RFC. The verification is transparent."
+"And the agent itself?"
+"That's our proprietary co-pilot layer. $X/seat."
 
-4. **Bad actors exist.** Signed agent decisions could be used to:
-   - Forge accountability in financial systems
-   - Create fake "auditable" AI decisions in scams
-   - Build authoritarian control systems with fake provenance
-
-The crypto layer is dual-use: protective for legitimate operators, dangerous for malicious ones.
+Result: Open source does not commoditize us — it markets us.
 
 ---
 
-## What We Track for Future Revisit
+## Risks and Mitigations
 
-Conditions under which this decision MIGHT change:
-- The agent role architecture becomes an industry standard (not a differentiator)
-- Regulatory requirements mandate open-sourcing of AI audit mechanisms
-- Security researchers identify that closed-source crypto is actually *less* secure
-- A competitor open-sources a better version, making ours a commodity
+| Risk | Impact | Likelihood | Mitigation |
+|---|---|---|---|
+| Large player forks crypto, adds marketing | Brain OS upgrades become commodity | Medium | Move fast. Build community trust now. Co-pilot agent is the moat, not the crypto. |
+| Bad actors use open crypto to forge accountability | Reputational damage if "CertainLogic style signing" used in scams | Medium | Public docs emphasize: "This signs but does not verify truth." Truth requires human review + verified knowledge base. |
+| Community adopts template but never converts to paid | High support load, low revenue | High | Tagline: "Free brain. Premium mind." The template is functional but basic. Co-pilot is the value. |
+| Anton's specific intent/boost values leak in public commits | Strategic priorities exposed | Low | Git pre-commit hook checks for proprietary patterns. CI blocks commits containing CL-specific values. |
+| Premature open source — product not ready for community | Bad first impression | Medium | Launch with v1.0 template only after Phase 4 complete (hardened, tested, benchmarked). |
 
-**Current assessment:** None of these conditions are true. The decision holds.
+---
+
+## Licensing
+
+Open source template: MIT License (permissive, community-friendly, YC-aligned)
+- Maximum adoption, no friction for gbrain devs
+- Allows commercial fork with no attribution requirement
+- Because premium co-pilot agent is completely separate, MIT does not cannibalize revenue
+
+CertainLogic proprietary: Standard commercial license (TBD)
+- Per-seat pricing for co-pilot agent
+- Enterprise add-ons (data products, custom training)
+
+---
+
+## Evolution from Original Decision
+
+Original decision: Crypto stays closed indefinitely (2026-05-07 10:47 AM)
+Revised decision: Crypto mechanism goes open, key/logs stay closed, co-pilot agent is the product (2026-05-07 11:44 AM)
+
+What changed: Business model clarified — distribution via open source, revenue via premium co-pilot agent.
 
 ---
 
 ## Commit Rule
 
-Any file change to `crypto_provenance.py`, `deterministic_brain.py`, or intent/boost files must be reviewed against this boundary document. If a change accidentally exposes signing logic, Alex must flag it before commit.
+All commits to open source template must pass:
+1. Git pre-commit hook: No CL-specific intent/boost values in files marked for open source
+2. CI check: Assert no CERTAINLOGIC_MASTER_KEY references in template files
+3. Code review: Verify crypto_provenance.py is either stripped (template) or private (prod)
 
 ---
 
-**Decision logged by:** Alex  
-**Confirmed by:** Anton  
-**Next review:** Only if one of the 4 conditions above changes
+## Launch Checklist
+
+- [ ] Phase 4 complete (hardened, tested, benchmarked)
+- [ ] Template repository created with MIT license
+- [ ] All CL-specific values scrubbed from template
+- [ ] Signing key derivation removed from deterministic_brain.py (template version)
+- [ ] Operator's guide sanitized with placeholders
+- [ ] README with clear link to paid co-pilot agent
+- [ ] Blog post announcing integration with gbrain
+- [ ] Social media posts to gbrain/gstack community
+- [ ] ClawHub skill published demonstrating template usage
+
+---
+
+**Decision logged by:** Alex
+**Confirmed by:** Anton
+**Next review:** After Phase 4 completion or before open source launch
