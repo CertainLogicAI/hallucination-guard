@@ -11,7 +11,6 @@ import urllib.request
 import sys
 
 API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-CREDENTIALS = "/data/.openclaw/workspace/skills/x-api/scripts/.x-api.json"
 SEEN_FILE = "/data/.openclaw/workspace/.seen_ai_stories.json"
 
 def load_seen():
