@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
 CertainLogic Content Engine — Daily X Post Generator
-Generates 10 brand-aligned X posts with the HSCR framework:
-Hook → Story → CTA → Repeat
+Generates 10 brand-aligned X posts with the HSCR framework.
+
+Post-Phase-4D Migration:
+  - Queries Brain for brand voice/strategy to weight template selection
+  - Falls back to legacy random selection if Brain unavailable
+  - Zero changes to output format or CLI
 
 Usage: python3 content_engine.py [--date YYYY-MM-DD] [--output-dir PATH]
 """
@@ -13,6 +17,88 @@ import os
 import random
 import sys
 from datetime import datetime, timezone
+from pathlib import Path
+
+# ─── Brain Integration (Phase 4D) ────────────────────────────────────────────
+
+# Optional brain import — wrapped in try/except for graceful fallback
+def _load_brain():
+    """Lazy-load Brain wrapper. Returns None if unavailable."""
+    try:
+        # Add company-brain to Python path
+        brain_path = Path("/data/.openclaw/workspace/company-brain")
+        if str(brain_path) not in sys.path:
+            sys.path.insert(0, str(brain_path))
+        from brain_wrapper import Brain
+        return Brain()
+    except Exception:
+        return None
+
+_BRAIN = None  # Lazy singleton
+
+def get_brain():
+    """Get or create Brain singleton."""
+    global _BRAIN
+    if _BRAIN is None:
+        _BRAIN = _load_brain()
+    return _BRAIN
+
+def get_brain_messaging_themes():
+    """
+    Query brain for current messaging priorities.
+    Returns weighted theme map, or None if brain unavailable.
+    """
+    brain = get_brain()
+    if brain is None:
+        return None
+
+    # Query multiple axes and merge scores
+    weighted = {}
+
+    try:
+        # Strategy positioning
+        strategy = brain.strategy("what is our brand messaging today")
+        if strategy.get("confidence", 0) > 0.2:
+            weighted["strategy"] = strategy["confidence"]
+    except Exception:
+        pass
+
+    try:
+        # Product highlight
+        product = brain.product("what product should we highlight")
+        if product.get("confidence", 0) > 0.2:
+            weighted["product"] = product["confidence"]
+    except Exception:
+        pass
+
+    try:
+        # Operational message
+        ops = brain.ops("what is our current focus")
+        if ops.get("confidence", 0) > 0.2:
+            weighted["ops"] = ops["confidence"]
+    except Exception:
+        pass
+
+    return weighted if weighted else None
+
+def get_brain_quote():
+    """
+    Pull a quote or key line from brain if available.
+    Returns (text, confidence) or (None, 0).
+    """
+    brain = get_brain()
+    if brain is None:
+        return None, 0
+
+    try:
+        result = brain.query("brand voice quote or key message today")
+        if result.get("confidence", 0) > 0.2:
+            return result.get("answer", ""), result.get("confidence", 0)
+    except Exception:
+        pass
+
+    return None, 0
+
 
 # ─── Load Inventory (Single Source of Truth) ──────────────────────────────────
 
@@ -209,35 +295,74 @@ class ContentEngine:
         return post
 
     def generate_daily_posts(self, count: int = 10) -> list[dict]:
-        """Generate N posts for the day with variety."""
-        # Weighted distribution: prefer hooks, proof, lessons
-        type_pool = (
-            ["hook"] * 3 +
-            ["proof"] * 3 +
-            ["lesson"] * 2 +
-            ["engagement"] * 2 +
-            ["recap"] * 1
-        )
-        
+        """Generate N posts for the day with variety.
+
+        Phase 4D Enhancement: Uses brain insights to weight type selection.
+        Falls back to legacy behavior if brain unavailable.
+        """
+        # Brain-enhanced type weights (or legacy uniform)
+        brain_themes = get_brain_messaging_themes()
+        if brain_themes and "strategy" in brain_themes:
+            # Brain has a strong strategy message — weight proof/lesson higher
+            type_pool = (
+                ["hook"] * 2 +
+                ["proof"] * 4 +
+                ["lesson"] * 3 +
+                ["engagement"] * 2 +
+                ["recap"] * 1
+            )
+        elif brain_themes and "product" in brain_themes:
+            # Brain wants product highlight — weight proof higher
+            type_pool = (
+                ["hook"] * 3 +
+                ["proof"] * 5 +
+                ["lesson"] * 2 +
+                ["engagement"] * 2 +
+                ["recap"] * 1
+            )
+        else:
+            # Legacy: balanced distribution
+            type_pool = (
+                ["hook"] * 3 +
+                ["proof"] * 3 +
+                ["lesson"] * 2 +
+                ["engagement"] * 2 +
+                ["recap"] * 1
+            )
+
+        # Optionally inject brain quote into a hook post
+        brain_quote, _ = get_brain_quote()
+
         used_templates: set[tuple[str, int]] = set()
-        
+        brain_quote_used = False
+
         for i in range(count):
             # Pick a type, avoiding immediate repeats if possible
             available_types = [t for t in type_pool if t not in [p["type"] for p in self.posts[-2:]]] or type_pool
             post_type = random.choice(available_types)
-            
+
             # Pick a template we haven't used
             templates = TEMPLATES[post_type]
             available_indices = [j for j in range(len(templates)) if (post_type, j) not in used_templates]
             if not available_indices:
                 available_indices = list(range(len(templates)))
-            
+
             idx = random.choice(available_indices)
             used_templates.add((post_type, idx))
-            
+
             post = self._format_post(templates[idx], i, post_type)
+
+            # Phase 4D: if this is a hook post and we have a brain quote, prepend it
+            if post_type == "hook" and brain_quote and not brain_quote_used:
+                brain_quote_used = True
+                brain_line = brain_quote.split("\n")[0][:200]  # First line, max 200 chars
+                post["text"] = f"{brain_line}\n\n{post['text']}"
+                post["brain_enhanced"] = True
+                post["char_count"] = len(post["text"])
+                post["under_limit"] = post["char_count"] <= 280
+
             self.posts.append(post)
-        
+
         return self.posts
 
     def to_markdown(self) -> str:
