@@ -112,7 +112,7 @@ def post_to_x(text):
     
     result = subprocess.run(
         ["node", "/data/.openclaw/workspace/skills/x-api/scripts/x-post-file.mjs",
-         CREDENTIALS, tweet_file],
+         tweet_file],
         capture_output=True,
         text=True
     )
