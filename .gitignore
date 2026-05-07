@@ -33,6 +33,8 @@ company-brain/*
 !company-brain/src/core/log_redactor.py
 !company-brain/src/core/content_sanitizer.py
 !company-brain/src/core/metrics.py
+!company-brain/intent_cache.py
+!company-brain/query_cache.py
 !company-brain/concepts/
 
 # GBrain runtime data
