@@ -3,6 +3,7 @@
 **Date:** 2026-05-07 (revised 2026-05-07 post-strategy discussion)
 **Status:** DECIDED
 **Business model:** Open core → community trust → paid co-pilot agent + data products
+**Tier model clarified:** Free tracking (AgentPathfinder style) vs paid verification (regulatory compliance)
 
 ---
 
@@ -52,26 +53,30 @@ This reframes the moat: The crypto layer is not the product — the CO-PILOT AGE
 
 ---
 
-## Why This Is the Right Split
+## Tier Model (Anton's Vision)
 
-### Open = Distribution
-- GBrain community gets deterministic brain infrastructure
-- CertainLogic gets recognized as the "serious" agent infrastructure provider
-- Developers try it → see value → learn about paid co-pilot agent
+### Free Tier: AgentPathfinder-Style Tracking
+- Structured logging of every agent query
+- Intent classification (what the agent was trying to do)
+- Confidence scores (how sure the brain was)
+- Basic analytics: hit rate, latency, intent distribution
+- Self-hosted: logs stay on your machine
+- **No verification: trust but no proof**
 
-### Closed = Revenue
-- Co-pilot agent is the product (per-seat revenue)
-- Data products (benchmarks, cache warmers) are add-ons
-- Integration depth with customer systems is the switching cost
-- Our specific knowledge base is the data flywheel
+### Paid Tier: Regulatory Verification
+- Cryptographic chain of custody (HMAC-signed audit trails)
+- Tamper-evident provenance logs
+- Third-party verifiable decision history
+- Compliance exports (SOC2, HIPAA, FDA)
+- **For regulated industries that MUST prove chain of custody**
 
-### The pitch to a customer:
-"How do I trust your agent's decisions?"
-"It's built on open, audited, community-reviewed signing infrastructure. Here's the RFC. The verification is transparent."
-"And the agent itself?"
-"That's our proprietary co-pilot layer. $X/seat."
+### Premium Tier: Co-Pilot Agent
+- Tuned agent personality (override handling, contradiction, self-critique)
+- Business-specific intent patterns
+- Custom knowledge base and boost tuning
+- Deep integration with customer workflows
+- Per-seat pricing
 
-Result: Open source does not commoditize us — it markets us.
 
 ---
 
