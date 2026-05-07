@@ -1,9 +1,90 @@
-# Open Source Boundary Decision — Brain OS Upgrades for GBrain
+# CertainLogic Foundation — Open Source Manifest
 
-**Date:** 2026-05-07 (revised 2026-05-07 post-strategy discussion)
-**Status:** DECIDED
-**Business model:** Open core → community trust → paid co-pilot agent + data products
-**Tier model clarified:** Free tracking (AgentPathfinder style) vs paid verification (regulatory compliance)
+**Date:** 2026-05-07 (LOCKED IN)
+**Status:** ACTIVE
+**Business model:** Open core → community trust → paid verification/co-pilot
+**Product name:** CertainLogic Foundation (or "Base OS")
+**License:** MIT
+**Target communities:** gbrain, gstack (100K+ stars collectively)
+
+## What Was Decided
+
+Anton: "Lock it in. We give a basic intent layer to the gbrain community along with a plugin for our TRE and AgentPathfinder all set to bolt on easy. This forms the CertainLogic Foundation or base OS."
+
+**Verdict:** The CertainLogic Foundation is now the official open source product. It includes the intent layer framework, TRE plugin, and AgentPathfinder tracking layer — all bolted onto gbrain. Proprietary layers (co-pilot agent, crypto verification) remain paid.
+
+## What's in the Foundation (Open Source)
+
+### 1. Intent Layer
+- Generic intent classification framework (regex-based, extensible)
+- Source boost framework (prefix-based multipliers)
+- Python wrapper around gbrain CLI with production hardening
+- Placeholder configs for community customization
+
+### 2. TRE Plugin (Token Reduction Engine)
+- Query intent caching
+- Result caching with invalidation
+- Model routing (cheap ↔ expensive by complexity)
+- Token savings tracker
+
+### 3. AgentPathfinder (Tracking Layer)
+- Structured query logging (JSONL)
+- Daily analytics: hit rate, latency, intent distribution
+- Self-hosted (logs stay local)
+- No crypto signing — structured plaintext tracking only
+
+## What's NOT in Foundation (Proprietary)
+
+- CertainLogic-specific intent values (our 80 regexes)
+- CertainLogic-specific boost multipliers (our priorities)
+- Cryptographic signing / chain of custody (Verification tier)
+- Co-pilot agent personality (Premium tier)
+
+## Three-Tier Model
+
+| Tier | Name | What's Included | Price |
+|---|---|---|---|
+| 1 | Foundation | Intent framework, TRE, AgentPathfinder tracking | FREE (MIT) |
+| 2 | Verification | Foundation + crypto signing + compliance exports | PAID |
+| 3 | Co-Pilot | Verification + tuned agent personality + deep integration | PER-SEAT |
+
+## Philosophy
+
+"Open source is distribution, not charity."
+
+The Foundation clears the path. The moat is the co-pilot agent.
+
+## Launch
+
+- **v1.0 target:** After Phase 4 completion (Week 5, ~2026-06-11)
+- **Distribution:** PyPI (`pip install certainlogic-foundation`)
+- **Community:** GitHub repo under CertainLogicAI org
+- **Integration:** One `pip install`, two config lines, bolted onto existing gbrain
+
+## Why This Works
+
+1. **gbrain users need this.** gbrain is a great core but lacks intent awareness, query routing, and agent observability.
+2. **Install is trivial.** `pip install` + config. Zero friction.
+3. **Upgrade path is clear.** Start tracking (free) → need compliance (paid) → want intelligence (premium).
+4. **Moat is protected.** The co-pilot agent (personality, contradiction, self-critique) is the product. Can't be replicated in a weekend.
+
+## Commit Rule
+
+All Foundation code must:
+1. Be generic (no CertainLogic-specific values)
+2. Include placeholder configs (clearly marked for customization)
+3. Be documented (operator's guide entry)
+4. Have tests (unit + integration)
+5. Be MIT licensed
+
+CertainLogic-specific configs live in a separate private repo, never committed to Foundation.
+
+---
+
+**Decision locked by:** Alex  
+**Confirmed by:** Anton  
+**Next step:** Build Foundation v1.0 after Phase 4 (Week 5)
+
 
 ---
 
