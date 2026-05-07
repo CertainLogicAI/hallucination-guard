@@ -21,6 +21,11 @@ secrets/
 # CertainLogic modules (shim files tracked; source repo as submodule)
 company-brain/*
 !company-brain/deterministic_brain.py
+!company-brain/src/core/search/certainlogic-boosts.ts
+!company-brain/src/core/search/certainlogic-intent.ts
+!company-brain/src/core/search/intent.ts
+!company-brain/src/core/search/source-boost.ts
+!company-brain/concepts/
 
 # GBrain runtime data
 company-brain-data/
