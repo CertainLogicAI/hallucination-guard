@@ -24,7 +24,15 @@ company-brain/*
 !company-brain/src/core/search/certainlogic-boosts.ts
 !company-brain/src/core/search/certainlogic-intent.ts
 !company-brain/src/core/search/intent.ts
-!company-brain/src/core/search/source-boost.ts
+!company-brain/brain_wrapper.py
+!company-brain/src/core/circuit_breaker.py
+!company-brain/src/core/error_classifier.py
+!company-brain/src/core/cli_pool.py
+!company-brain/src/core/input_validator.py
+!company-brain/src/core/write_guard.py
+!company-brain/src/core/log_redactor.py
+!company-brain/src/core/content_sanitizer.py
+!company-brain/src/core/metrics.py
 !company-brain/concepts/
 
 # GBrain runtime data
