@@ -7,6 +7,9 @@ secrets/
 *.key
 *.pem
 
+# X API credentials (NOT tracked — git rm --cached)
+skills/x-api/scripts/.x-api.json
+
 # OpenClaw internals
 .openclaw/secrets/
 
