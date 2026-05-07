@@ -300,31 +300,66 @@ Migrate remaining 9 skills, validated one at a time.
 
 ---
 
-### Phase 4F: Testing (Weeks 4–5)
+### Phase 4F: Cache Layer (Week 4)
+
+**Purpose:** Required for external dataset validation (Wikipedia, etc.). Facts can grow 10–100x quickly; PGLite LIKE queries on 10K–100K rows degrade without cache.
+
+**Cache layers:**
+
+1. **Intent Classification Cache** — `query_text → intent` mapping.
+   - Storage: In-memory dict, max 1000 entries, LRU eviction
+   - TTL: 1 hour (patterns don't change often)
+   - File: `src/core/intent_cache.py`
+
+2. **Query Result Cache** — `query_text + detail_level + limit → results`.
+   - Storage: SQLite on disk (`company-brain-data/query_cache.db`)
+   - TTL: 5 minutes (content changes with ingestion)
+   - Invalidation: On `brain.put_page`, `brain.ingest` — clear all cache
+   - File: `src/core/query_cache.py`
+
+**Deliverables (4F):**
+- `src/core/intent_cache.py`
+- `src/core/query_cache.py`
+- Updated `brain_wrapper.py` with cache integration
+- `test/test_cache.py`
+
+**Acceptance criteria (4F):**
+| Test | Input | Expected Output | Pass/Fail |
+|---|---|---|---|
+| Intent cache hit | Query "moat" twice | Second query returns cached intent in <1ms | |
+| Intent cache miss | New query "never seen before" | Runs regex classification, stores in cache | |
+| Query cache hit | Same query + detail + limit twice | Second query returns cached results in <5ms | |
+| Cache invalidation | Ingest new page, then query | Returns fresh results (not stale cache) | |
+| Cache performance | 1000 unique queries | Intent cache hit rate >50% | |
+
+---
+
+### Phase 4G: Testing (Week 5)
 
 **Three tiers:**
 
-**F.1: Unit tests (Python)**
+**G.1: Unit tests (Python)**
 - `test/test_intent_detection.py` — 50 queries per category
 - `test/test_source_boosts.py` — Verify correct slug→boost mapping
 - `test/test_input_validation.py` — Injection attempts
 - `test/test_security.py` — All security mitigations
+- `test/test_cache.py` — Cache hit/miss/invalidation
 
-**F.2: Integration tests**
+**G.2: Integration tests**
 - `test/test_brain_end_to_end.py` — Full query → result pipeline
 - `test/test_fallback.py` — Brain empty → legacy path
 
-**F.3: Benchmark**
+**G.3: Benchmark**
 - `test/test_brain_benchmark.py` — 200 queries, old path vs new path
-- Measure: latency (target: <100ms), cost ($0 brain vs LLM cost), accuracy (brain answers relevant?)
-- Target: brain path <100ms avg, hit rate >50%, cost reduction >30%
+- Measure: latency (target: <100ms with cache), cost ($0 brain vs LLM cost), accuracy (brain answers relevant?)
+- Target: brain path <100ms avg (with cache), hit rate >50%, cost reduction >30%
 
-**Deliverables (4F):**
+**Deliverables (4G):**
 - `test/` directory with all test files
 - `scripts/run_tests.sh` — runs all tiers with report
 - `test/BENCHMARK_RESULTS.md` — baseline vs brain-enhanced comparison
 
-**Acceptance criteria (4F):**
+**Acceptance criteria (4G):**
 | Tier | Target | Pass/Fail |
 |---|---|---|
 | Unit tests | ≥90% pass rate | |
@@ -333,7 +368,7 @@ Migrate remaining 9 skills, validated one at a time.
 
 ---
 
-### Phase 4G: Deployment & Rollback (Week 5)
+### Phase 4H: Deployment & Rollback (Week 5)
 
 **4G.1: Feature Flag**
 - Environment variable: `BRAIN_DETERMINISTIC_LAYER=enabled|disabled`
@@ -363,7 +398,7 @@ Migrate remaining 9 skills, validated one at a time.
 
 ---
 
-### Phase 4H: LLM Fallback (Week 5)
+### Phase 4I: LLM Fallback (Week 5)
 
 When brain returns nothing useful, skills fall back to what they would have done before brain existed.
 
@@ -383,7 +418,7 @@ if confidence < 0.2:
 
 ## Out of Scope (Phase 5)
 
-1. **Cache layers** — 443 facts in PGLite is already sub-100ms. Cache deferred until >10,000 facts.
+1. **Cache layers** — In scope for Phase 4D (Week 4). Required for external dataset validation (Wikipedia, etc.) where facts can grow 10–100x quickly.
 2. **Multi-brain support** — Single brain instance only.
 3. **Distributed brain** — Single node only.
 4. **Real-time sync** — Batch ingestion, not streaming.
@@ -399,10 +434,10 @@ if confidence < 0.2:
 
 | Week | Milestone | Deliverables | Acceptance Criteria |
 |---|---|---|---|
-| **W1** | Production Layer Hardened | circuit_breaker.py, error_classifier.py, cli_pool.py, updated brain_wrapper.py, input_validator.py, write_guard.py, log_redactor.py, content_sanitizer.py | All 9 AC tables pass |
+| **W1** | Production Hardening + Security | circuit_breaker.py, error_classifier.py, cli_pool.py, updated brain_wrapper.py, input_validator.py, write_guard.py, log_redactor.py, content_sanitizer.py, regex guard | All AC tables pass |
 | **W2** | Observability + Pilot Migration | metrics.py, brain_metrics.py, content_engine.py migrated | 4 metrics recording, pilot skill works with brain |
 | **W3** | Bulk Migration (Skills 2–6) | 5 skills migrated | All skills import Brain(), no regressions |
-| **W4** | Bulk Migration (Skills 7–10) + Testing | 4 skills migrated, all tests pass, benchmark run | 100% integration pass, benchmark targets hit |
+| **W4** | Cache Layer + Bulk (Skills 7–10) + Testing | intent_cache.py, query_cache.py, invalidation logic, 4 skills migrated, all tests, benchmark | Cache hit rate >50%, benchmark targets hit |
 | **W5** | Deployment + Fallback | deploy.sh, rollback.sh, feature flags, brain_sourced field | One-command deploy/rollback, flag works |
 
 ---
