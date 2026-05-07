@@ -35,6 +35,7 @@ company-brain/*
 !company-brain/src/core/metrics.py
 !company-brain/intent_cache.py
 !company-brain/query_cache.py
+!company-brain/cache_warmer.py
 !company-brain/concepts/
 
 # GBrain runtime data
