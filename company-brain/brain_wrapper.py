@@ -41,6 +41,13 @@ from src.core.log_redactor import redact_query
 from src.core.content_sanitizer import sanitize_content
 from src.core.metrics import record_query
 
+try:
+    from intent_cache import get_intent_cache
+    from query_cache import get_query_cache
+    _CACHE_AVAILABLE = True
+except Exception:
+    _CACHE_AVAILABLE = False
+
 
 class Brain:
     """
@@ -61,6 +68,14 @@ class Brain:
         self._circuit = CircuitBreaker(failure_threshold=5, recovery_timeout=600.0, name="brain")
         self._pool = get_cli_pool()
         self.domain = domain
+
+        # Caches (Phase 4F)
+        if _CACHE_AVAILABLE:
+            self._intent_cache = get_intent_cache()
+            self._query_cache = get_query_cache()
+        else:
+            self._intent_cache = None
+            self._query_cache = None
 
     def query(self, text: str, intent: Optional[str] = None,
               limit: int = 5, timeout: float = 2.0) -> Dict[str, Any]:
@@ -104,10 +119,42 @@ class Brain:
             # 3. Classify intent
             detected_intent = intent or classify_intent(text)
 
+            # 3c. Check intent cache if we auto-classified
+            if not intent and self._intent_cache:
+                cached_intent = self._intent_cache.get(text)
+                if cached_intent:
+                    detected_intent = cached_intent
+                else:
+                    self._intent_cache.put(text, detected_intent)
+
+            # 3d. Check query result cache
+            cached_result = None
+            if self._query_cache:
+                cached_result = self._query_cache.get(text, detail_level="medium", limit=limit)
+
+            if cached_result is not None:
+                # Cache hit — return directly, skip gbrain
+                latency_ms = self._elapsed_ms(start_time)
+                record_query(
+                    query=redacted_query,
+                    intent=detected_intent,
+                    confidence=cached_result.get("confidence", 0),
+                    latency_ms=latency_ms,
+                    hit=cached_result.get("brain_sourced", False),
+                    error=None,
+                    brain_sourced=cached_result.get("brain_sourced", False),
+                    query_cache="hit",
+                )
+                return cached_result
+
             # 4. Execute query with timeout
             try:
+                # 4a. Store in query cache on success
                 result = self._execute_query(text, detected_intent, limit, timeout)
                 self._circuit.record_success()
+
+                if self._query_cache:
+                    self._query_cache.put(text, result, detail_level="medium", limit=limit)
 
                 # 5. Record metrics
                 latency_ms = self._elapsed_ms(start_time)
