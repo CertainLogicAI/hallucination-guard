@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CertainLogic X Poster — Permanent credential storage
+CertainLogic X Poster - Permanent credential storage
 Reads from ~/.openclaw/workspace/secrets/x_credentials.json (survives sessions)
 Falls back to environment variables
 Posts content either from today's generated file or command line
@@ -22,7 +22,7 @@ def load_x_credentials():
             api_secret = data.get("api_secret", data.get("consumer_secret", ""))
             access_token = data.get("access_token", data.get("accessToken", ""))
             access_secret = data.get("access_token_secret", data.get("accessTokenSecret", ""))
-            
+
             if api_key and api_secret and access_token and access_secret:
                 if "YOUR_" in api_key:
                     print("⚠️  Credentials file has placeholders. Run:\n   nano ~/.openclaw/workspace/secrets/x_credentials.json")
@@ -35,7 +35,7 @@ def load_x_credentials():
                 }
         except Exception as e:
             print(f"❌ Failed to read credentials file: {e}")
-    
+
     # Fallback: environment variables
     env_creds = {
         "api_key": os.environ.get("X_API_KEY", os.environ.get("CONSUMER_KEY", "")),
@@ -45,7 +45,7 @@ def load_x_credentials():
     }
     if all(env_creds.values()):
         return env_creds
-    
+
     print("""❌ No X API credentials found.
 
 Primary source (permanent):
@@ -66,17 +66,17 @@ def post_to_x(text: str, dry_run: bool = False):
     creds = load_x_credentials()
     if not creds:
         return False
-    
+
     if dry_run:
         print(f"[DRY RUN] Would post:\n{text}")
         return True
-    
+
     try:
         import tweepy
         auth = tweepy.OAuthHandler(creds["api_key"], creds["api_secret"])
         auth.set_access_token(creds["access_token"], creds["access_secret"])
         client = tweepy.API(auth)
-        
+
         # Try v2 API first
         client_v2 = tweepy.Client(
             consumer_key=creds["api_key"],
@@ -84,28 +84,28 @@ def post_to_x(text: str, dry_run: bool = False):
             access_token=creds["access_token"],
             access_token_secret=creds["access_secret"]
         )
-        
+
         response = client_v2.create_tweet(text=text)
         tweet_id = response.data["id"]
         print(f"✅ Posted: https://x.com/i/status/{tweet_id}")
         return True
-        
+
     except ImportError:
         # Fallback to simple OAuth1 request with requests
         import requests, urllib.parse, hmac, hashlib, base64, time
-        
+
         def sign_request(url, method, params, consumer_secret, token_secret):
-            params_string = "&".join(f"{urllib.parse.quote(k, safe='')}={urllib.parse.quote(v, safe='')}" 
+            params_string = "&".join(f"{urllib.parse.quote(k, safe='')}={urllib.parse.quote(v, safe='')}"
                                       for k, v in sorted(params.items()))
             base_string = f"{method.upper()}&{urllib.parse.quote(url, safe='')}&{urllib.parse.quote(params_string, safe='')}"
             signing_key = f"{urllib.parse.quote(consumer_secret, safe='')}&{urllib.parse.quote(token_secret, safe='')}"
             signature = base64.b64encode(hmac.new(signing_key.encode(), base_string.encode(), hashlib.sha1).digest()).decode()
             return signature
-        
+
         url = "https://api.twitter.com/2/tweets"
         timestamp = str(int(time.time()))
         nonce = base64.b64encode(os.urandom(16)).decode().rstrip("=")
-        
+
         oauth_params = {
             "oauth_consumer_key": creds["api_key"],
             "oauth_nonce": nonce,
@@ -114,15 +114,15 @@ def post_to_x(text: str, dry_run: bool = False):
             "oauth_token": creds["access_token"],
             "oauth_version": "1.0",
         }
-        
+
         oauth_params["oauth_signature"] = sign_request(url, "POST", oauth_params, creds["api_secret"], creds["access_secret"])
-        
-        auth_header = "OAuth " + ", ".join(f'{urllib.parse.quote(k, safe="")}="{urllib.parse.quote(v, safe="")}"' 
+
+        auth_header = "OAuth " + ", ".join(f'{urllib.parse.quote(k, safe="")}="{urllib.parse.quote(v, safe="")}"'
                                               for k, v in oauth_params.items())
-        
-        response = requests.post(url, headers={"Authorization": auth_header, "Content-Type": "application/json"}, 
+
+        response = requests.post(url, headers={"Authorization": auth_header, "Content-Type": "application/json"},
                                 json={"text": text})
-        
+
         if response.status_code == 201:
             data = response.json()
             tweet_id = data["data"]["id"]
@@ -131,7 +131,7 @@ def post_to_x(text: str, dry_run: bool = False):
         else:
             print(f"❌ Failed: {response.status_code} - {response.text}")
             return False
-            
+
     except Exception as e:
         print(f"❌ Error posting: {e}")
         return False
@@ -142,18 +142,18 @@ def load_todays_post(slot: str = None):
     """Load today's generated posts and pick one, optionally by slot."""
     today = datetime.now().strftime("%Y-%m-%d")
     posts_path = Path("/data/.openclaw/workspace/content_output") / f"x-posts-{today}.json"
-    
+
     if not posts_path.exists():
         print(f"❌ No posts generated for {today}. Run: python3 marketing/content_engine.py")
         return None
-    
+
     data = json.load(open(posts_path))
     posts = data.get("posts", [])
-    
+
     if not posts:
         print("❌ No posts in today's file")
         return None
-    
+
     # Slot-based selection
     slot_map = {
         "morning": (0, 2),     # Posts 1-2
@@ -165,17 +165,17 @@ def load_todays_post(slot: str = None):
         "evening_2": (9, 10),  # Post 10
         "night": (9, 10),      # Post 10
     }
-    
+
     if slot and slot in slot_map:
         start, end = slot_map[slot]
         candidates = [p for p in posts if start <= p["index"] - 1 < end]
     else:
         # Pick first un-posted hook/proof/engagement
         candidates = [p for p in posts if p["type"] in ("hook", "proof", "engagement")]
-    
+
     if not candidates:
         candidates = posts
-    
+
     return random.choice(candidates)
 
 # ─── CLI ────────────────────────────────────────────────────────────
@@ -188,7 +188,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Show what would be posted but don't post")
     parser.add_argument("--list", action="store_true", help="Show today's available posts")
     args = parser.parse_args()
-    
+
     if args.list:
         post = load_todays_post()
         if post:
@@ -200,6 +200,22 @@ def main():
                 print(f"  {status} Post {p['index']}: {p['emoji']} {p['type']} ({p['char_count']} chars)")
         return 0
     
+    # Post review gate — only for non-trending slots
+    if args.slot and not args.text and not args.dry_run:
+        try:
+            import subprocess
+            result = subprocess.run(
+                [sys.executable, "/data/.openclaw/workspace/marketing/post_review.py", "--check", args.slot],
+                capture_output=True, text=True, timeout=10
+            )
+            if "pending" in result.stdout.lower():
+                print(f"⛔ Slot '{args.slot}' not approved. Review required.")
+                print(f"   Run: python3 marketing/post_review.py --show")
+                return 0  # Not a failure — just blocked pending review
+        except Exception as e:
+            print(f"⚠️  Could not check approval gate: {e}")
+            print(f"   Proceeding with post (manual check recommended)")
+
     if args.text:
         text = args.text
     else:
@@ -208,10 +224,10 @@ def main():
             return 1
         text = post["text"]
         print(f"📋 Selected Post {post['index']} ({post['type']}, {post['char_count']} chars)")
-    
+
     if len(text) > 280:
         print(f"⚠️  Text is {len(text)} chars (over 280). Trim or verify thread support.")
-    
+
     return 0 if post_to_x(text, dry_run=args.dry_run) else 1
 
 if __name__ == "__main__":
