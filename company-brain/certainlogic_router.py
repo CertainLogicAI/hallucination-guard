@@ -34,6 +34,8 @@ import {{ classifyCertainLogicIntent }} from './src/core/search/certainlogic-int
 console.log(classifyCertainLogicIntent("{query.replace('"', '\\"')}") || "general");
 """
     
+    VALID_INTENTS = {"strategy", "product", "data", "operations", "general"}
+
     try:
         cmd = ["bun", "run", "-e", ts_code]
         result = subprocess.run(
@@ -44,10 +46,14 @@ console.log(classifyCertainLogicIntent("{query.replace('"', '\\"')}") || "genera
             cwd=gbrain_path,
         )
         intent = result.stdout.strip()
-        return intent if intent else "general"
+        # Validate: must be one of expected intents, not help text or error output
+        if intent in VALID_INTENTS:
+            return intent
     except (subprocess.TimeoutExpired, subprocess.CalledProcessError, FileNotFoundError):
-        # Fallback: keyword-based intent detection
-        return _keyword_intent(query)
+        pass
+
+    # Fallback: keyword-based intent detection
+    return _keyword_intent(query)
 
 
 def _keyword_intent(query: str) -> str:

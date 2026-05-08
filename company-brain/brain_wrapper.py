@@ -128,15 +128,21 @@ class Brain:
                     self._intent_cache.put(text, detected_intent)
 
             # 3d. Check query result cache
-            # NOTE: Cache temporarily disabled due to serialization bug.
-            #       See journal/2026-05-07.md for details.
-            #       Re-enable after brain() returns cache dict directly without mutation.
-            # if self._query_cache:
-            #     cached_result = self._query_cache.get(text, detail_level="medium", limit=limit)
-            #     if cached_result is not None:
-            #         latency_ms = self._elapsed_ms(start_time)
-            #         record_query(...)
-            #         return cached_result
+            if self._query_cache:
+                cached_result = self._query_cache.get(text, detail_level="medium", limit=limit)
+                if cached_result is not None:
+                    latency_ms = self._elapsed_ms(start_time)
+                    record_query(
+                        query=redacted_query,
+                        intent=detected_intent,
+                        confidence=cached_result.get("confidence", 0),
+                        latency_ms=latency_ms,
+                        hit=cached_result.get("brain_sourced", False),
+                        error=None,
+                        brain_sourced=cached_result.get("brain_sourced", False),
+                    )
+                    # Return a copy to prevent mutation of cached data
+                    return dict(cached_result)
 
             # 4. Execute query with timeout
             try:
