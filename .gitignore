@@ -36,6 +36,8 @@ company-brain/*
 !company-brain/intent_cache.py
 !company-brain/query_cache.py
 !company-brain/cache_warmer.py
+!company-brain/benchmark.py
+!company-brain/benchmark_results.json
 !company-brain/concepts/
 
 # GBrain runtime data
