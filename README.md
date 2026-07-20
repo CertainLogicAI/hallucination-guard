@@ -1,6 +1,6 @@
 # Hallucination Guard v2.0
 
-> ⚠️ **DRAFT — Pending personal review and explicit approval by Anton before publication.** Per CertainLogic Claim Verification Policy v1.0.
+> **RETIRED AS STANDALONE PRODUCT** — The hedging-detection capability has been absorbed into the CertainLogic Token Reduction Engine / Brain OS. This repository remains public for reference and prior-art purposes.
 
 Catches hedging language before it reaches users. Flags "maybe," "I think," and "not sure" so you can review low-confidence responses.
 
@@ -140,7 +140,7 @@ print(result["warning"])      # ⚠️ Contains uncertainty...
 
 ## License
 
-MIT-0 — use freely, no attribution required.
+Business Source License 1.1 (BSL 1.1) — broad grant. See LICENSE.
 
 ---
 
