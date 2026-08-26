@@ -1,6 +1,8 @@
 # Benchmarks
 
-Real-world performance numbers from our 200-case benchmark suite (April 2026).
+Results from our 200-case benchmark suite (April 2026).
+
+> **Conflict of interest:** This suite was designed and run by the tool's own developers. The 200 test cases, benchmark script (`benchmarks/benchmark_suite.py`), and raw results (`benchmarks/results.json`) are published in this repo so anyone can re-run and verify. Treat these as vendor-reported numbers until independently replicated.
 
 ## Summary
 

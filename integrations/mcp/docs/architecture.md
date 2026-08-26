@@ -2,7 +2,7 @@
 
 ## Design Goals
 
-1. **Zero hallucination risk** on factual queries
+1. **Minimized hallucination risk** on factual queries (verified against published 200-case benchmark)
 2. **Sub-millisecond cache hits** after first call
 3. **Honest uncertainty** — returns `uncertain` instead of guessing
 4. **Privacy-first** — query text hashed, no PII logged
